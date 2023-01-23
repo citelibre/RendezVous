@@ -1,0 +1,324 @@
+<link rel='stylesheet' href='css/plugins/appointment/fullcalendar.css' />
+<link rel='stylesheet' href='css/plugins/appointment/fullcalendar_ow.css' />
+<link rel="stylesheet" href="js/jquery/plugins/ui/css/jquery-ui.min.css"  />
+<script src='js/plugins/appointment/jquery.min.js' ></script>
+<script src="js/plugins/appointment/moment.min.js" ></script>
+<script src='js/plugins/appointment/fullcalendar.min.js' ></script>
+<script src='js/plugins/appointment/locale-all.js' ></script>
+<script src="js/plugins/appointment/bootstrap-datepicker.js" ></script>
+<script src="js/locales/bootstrap-datepicker.fr.js" charset="utf-8"></script>
+<link rel='stylesheet' href='css/plugins/appointment/bootstrap-datepicker.min.css' />
+<link rel='stylesheet' href='css/plugins/appointment/bootstrap-datepicker.standalone.css' />
+<link href="css/plugins/appointment/appointment.css" rel="stylesheet" />
+<@cBreadCrumb home='Accueil'><li class="breadcrumb-item active" aria-current="page"></li></@cBreadCrumb>
+<@cContainer hasHeader=false class='pb-3 no-header'>
+<div class="row nextStepTitleRow">
+	<div class="col-xs-12">
+		<div class="container">
+			<h2 class="stepTitle next">
+				<span class="stepTitleNumber previous"><i class="fa fa-check"></i></span>
+				<#if form.displayTitleFo && form.title != '' >
+					${form.title}
+				<#else>
+					#i18n{appointment.appointmentApp.defaultTitle}
+				</#if>
+			</h2>
+		</div>
+	</div>
+</div>
+<div class="row steps">
+	<div class="col-xs-12">
+		<div class="container recap">
+			<div class="row">
+				<div class="col-xs-12 col-sm-9 col-md-9">
+					<ul class="recap-step-list">
+						<li>${form.description!}</li>
+					</ul>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-3 stepRecapButtonMargin">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row currentStepTitleRow">
+	<div class="col-xs-12">
+		<div class="container">
+			<h2 class="current stepTitle" id="step2">
+				<span class="current stepTitleNumber">2</span>
+				<#if formMessages.calendarTitle?? && formMessages.calendarTitle != ''>
+					${formMessages.calendarTitle}
+				</#if>
+			</h2>
+		</div>
+	</div>
+</div>
+<div class="row currentStepContentRow">
+	<div class="col-xs-12">
+		<div class="container" id="current_step">
+		<div class="formGroupContainer">
+		<#if infos??>
+			<@messages infos=infos/>
+		</#if>
+		<#if formCalendarErrors??>
+			<@messages errors=errors />					
+		<#else>
+			<@messages errors=errors />
+			<div id="calendar"></div>
+		</#if>
+		</div>
+		</div>
+	</div>
+</div>
+<div class="row nextStepTitleRow">
+	<div class="col-xs-12">
+		<div class="container">
+			<h2 class="stepTitle next">
+				<span class="stepTitleNumber next">3</span>
+				#i18n{appointment.appointmentApp.enteringInformation}
+			</h2>
+		</div>
+	</div>
+</div>
+<div class="row nextStepTitleRow">
+	<div class="col-xs-12">
+		<div class="container">
+			<h2 class="stepTitle next">
+				<span class="stepTitleNumber next">4</span>
+				#i18n{appointment.appointmentApp.recap.title}
+			</h2>
+		</div>
+	</div>
+</div>
+<div class="row nextStepTitleRow">
+	<div class="col-xs-12">
+		<div class="container">
+			<h2 class="stepTitle next">
+				<span class="stepTitleNumber next">5</span>
+				#i18n{appointment.appointmentApp.confirmation}
+			</h2>
+		</div>
+	</div>
+</div>
+</@cContainer>
+<script type="text/javascript">
+	var slotDuration = '${min_duration}';
+    var minTime = '${min_time}';
+    var maxTime = '${max_time}';
+	var strEndingDateOfDisplay = '${str_ending_date_of_display}';
+    var endingDateOfDisplay = '${ending_date_of_display}';
+    var minDateOfOpenDay = '${min_date_of_open_day}';
+    var maxDateOfOpenDay = '${max_date_of_open_day}';
+    var dow = [
+		<#if dow??>								   
+			<#list dow as day>
+				${day},								
+			</#list>
+		</#if>				
+	];
+    var hiddenDays = [
+        <#if hidden_days??>								   
+        	<#list hidden_days as hidden_day>
+            	${hidden_day},								
+            </#list>
+         </#if>
+    ];
+    var eventUrl = 'jsp/site/Portal.jsp?page=appointment&view=getViewAppointmentForm';    
+    var defaultDate = '${date_of_display}';
+    var dayView = '${day_view}';
+    var weekView = '${week_view}';
+    var events = [
+		<#if events??>								   
+			<#list events as event>
+				{
+					title : <#if event.isOpen & (event.nbRemainingPlaces > 0) & (event.nbRemainingPlaces = event.nbPotentialRemainingPlaces) & ('${day_view}' == 'agendaDay' || '${week_view}' == 'agendaWeek')>'${formMessages.calendarReserveLabel}'
+							<#elseif event.isOpen & (event.nbRemainingPlaces > 0) & (event.nbPotentialRemainingPlaces > 0) & (event.nbRemainingPlaces > event.nbPotentialRemainingPlaces)>'#i18n{appointment.manageCalendarSlots.labelEdit}'							
+							<#elseif event.isOpen & (event.nbRemainingPlaces > 0) & (event.nbPotentialRemainingPlaces = 0)>'#i18n{appointment.manageCalendarSlots.labelEditFull}'
+							<#elseif event.isOpen & (event.nbRemainingPlaces <= 0)>'${formMessages.calendarFullLabel}'
+							<#elseif !event.isOpen>'#i18n{appointment.manageCalendarSlots.labelClosed}'
+                            <#else>''</#if>,		
+					className : <#if event.isOpen & (event.nbRemainingPlaces > 0) >''
+								<#elseif event.isOpen>'slot-full'<#else>'slot-closed'</#if>,
+					start : '${event.startingDateTime}',
+					end : '${event.endingDateTime}',
+					id : '${event.idSlot}',
+					url : eventUrl +'&id_form=${event.idForm}&starting_date_time=${event.startingDateTime}&modif_date=${modifDateAppointment?c}&anchor=step3',
+				},								
+			</#list>
+		</#if>
+	];    
+    var eventTitleResult = <#if formMessages?? && formMessages.calendarFullLabel??>
+	'${formMessages.calendarFullLabel}'
+	<#else>
+	'nothing'
+	</#if>;
+    $(document).ready(function() {
+		$('#calendar').fullCalendar({
+            displayEventEnd: true,
+            timeFormat: 'H:mm',
+            themeSystem: 'jquery-ui',
+            themeButtonIcons: {
+                prev: 'chevron-left',
+                next: 'chevron-right',
+                prevYear: 'fast-backward',
+                nextYear: 'fast-forward'
+            },
+			hiddenDays: hiddenDays,
+			defaultDate: defaultDate,
+			defaultView: weekView,
+			height: 'auto',
+			locale: 'fr',
+			theme: true,
+			editable: false,
+			customButtons: {
+				datePicker: {
+                    themeIcon: 'calendar',
+					click: function () {
+						var $btnCustom = $('.fc-datePicker-button'); // name of custom  button in the generated code
+						$btnCustom.after('<input type="text" id="hiddenDate" class="datepicker"/>');
+						$("#hiddenDate").datepicker({
+							showOn: "button",							
+							autoclose: true,
+                            language:'fr',
+							startDate: "today",
+							endDate: moment(endingDateOfDisplay).format('DD-MM-YYYY')
+						});
+						var $btnDatepicker = $(".ui-datepicker-trigger"); // name of the generated datepicker UI 
+						//Below are required for manipulating dynamically created datepicker on custom button click
+						$("#hiddenDate").focus().hide();
+						$btnDatepicker.trigger("click"); //dynamically generated button for datepicker when clicked on input textbox
+						$btnDatepicker.hide();
+						$btnDatepicker.remove();
+						$("input.datepicker").not(":first").remove();//dynamically appended every time on custom button click
+						$("#hiddenDate").change(function () {
+							$('#calendar').fullCalendar('gotoDate', moment($("#hiddenDate").val(),'DD-MM-YYYY'));
+						});
+					}
+				}
+			},
+			// header
+			header: {
+				left: 'prev',
+				center: 'datePicker, title',
+				right: 'next'
+			},
+			columnHeaderHtml: function(mom) {
+				return mom.format('dddd') + '</br>' + mom.format('LL');
+			},
+			slotLabelFormat: 'H : mm',
+			slotLabelInterval: slotDuration,
+			slotDuration: slotDuration,
+			allDaySlot: false,
+			minTime: minTime,
+			maxTime: maxTime,         
+			businessHours: {
+				start: minTime,
+				end: maxTime,
+				dow: dow
+			},
+			eventClick: function(event) {
+				if (event.title == eventTitleResult || event.title == '#i18n{appointment.manageCalendarSlots.labelClosed}'
+						|| event.title == '#i18n{appointment.manageCalendarSlots.labelEditFull}') {
+					return false;
+				} else {
+					location.href = event.url;
+				}
+			},
+			events: events,
+            eventRender: function(event, element) {
+                $(element).popover({
+                	container: 'body',
+                    placement : 'bottom',
+                    html : true,
+                    trigger : 'hover',
+                    content : '<center>'+event.start.format('ddd DD/MM')+'</center>' + '<center><b>' + event.start.format('HH:mm') + '</b> - <b>' + event.end.format('HH:mm')+'</b></center>'
+                });
+                $(element).contextmenu(function() {
+                    return false;
+                });
+            },
+			viewRender: function(view, element) {
+				var minDate = moment.utc(minDateOfOpenDay);
+				var maxDate = moment.utc(maxDateOfOpenDay);
+				// Past
+				if (minDate >= view.start && minDate <= view.end || view.end <= minDate) {
+					$(".fc-prev-button").prop('disabled', true);
+					$(".fc-prev-button").addClass('fc-state-disabled');
+                    $('.fc-prev-button').popover('hide');
+				} else {
+					$(".fc-prev-button").removeClass('fc-state-disabled'); 
+					$(".fc-prev-button").prop('disabled', false); 
+				}
+				// Future
+				if (maxDate >= view.start && maxDate <= view.end || maxDate <= view.start) {
+					$(".fc-next-button").prop('disabled', true); 
+					$(".fc-next-button").addClass('fc-state-disabled');  
+                    $('.fc-next-button').popover('hide');
+				} else {
+					$(".fc-next-button").removeClass('fc-state-disabled'); 
+					$(".fc-next-button").prop('disabled', false); 
+				}
+			},
+			eventAfterAllRender: function(view) {			
+				$('.fc-event').css('cursor', 'pointer');
+				$('.fc-next-button').attr('class', 'fc-next-button btn btn-primary btn-sm');
+				$('.fc-prev-button').attr('class', 'fc-prev-button btn btn-primary btn-sm');
+				$('.fc-datePicker-button').attr('class', 'fc-datePicker-button btn btn-primary btn-sm');
+                $('.fc-datePicker-button').popover({
+                    placement : 'bottom',
+                    trigger : 'hover',
+                    content : '#i18n{appointment.appointmentApp.calendar}'
+                });
+                $('.fc-next-button').popover({
+                    placement : 'bottom',
+                    trigger : 'hover',
+                    content : function() {
+                        var message = '#i18n{appointment.appointmentApp.nextWeek}';
+                        if ($(window).width() < 1050){
+                            message = '#i18n{appointment.appointmentApp.nextDay}'
+                        }
+                        return message;
+                    }
+                });
+                $('.fc-prev-button').popover({
+                    placement : 'bottom',
+                    trigger : 'hover',
+                    content : function() {
+                        var message = '#i18n{appointment.appointmentApp.previousWeek}';
+                        if ($(window).width() < 1050){
+                           message = '#i18n{appointment.appointmentApp.previousDay}'
+                        }
+                        return message;
+                    }
+                });
+			},
+			windowResize: function(view) {
+			        if ($(window).width() < 1050){
+			            $('#calendar').fullCalendar( 'changeView', dayView );
+			        } else {
+			            $('#calendar').fullCalendar( 'changeView', weekView );
+			        }
+			},
+		});
+	});      
+</script>
+<script src="js/util/shepherd/lutece-shepherd.js"></script>
+<script>
+$(function(){
+	const tour = initTour("lutece");
+	let currentEvent=null, currentEventLink='', currentEventLabel='';
+	$( '.fc-event-container .fc-day-grid-event.fc-event' ).each( function( i, e ){
+		const el = e.querySelector( '.fc-title' );
+		if( el.innerText.trim() === '' ){
+			currentEvent = e;
+			currentEventLabel = e.getAttribute( 'title');
+			currentEventLink = e.getAttribute( 'href' ); 
+			return false;
+		}
+	});
+	initStep( tour, 'Semaine précédente', 'En cliquant ici, vous vous dirigerez vers la semaine précédente', { element: ".fc-prev-button", on: "bottom"}, {action() {return this.back();}, text: 'Précédent' }, {action() {return this.next();}, text: 'Suivant'},'prevweek');
+	initStep( tour, 'Semaine suivante', 'En cliquant ici, vous vous dirigerez vers la semaine suivante', { element: ".fc-next-button", on: "bottom"}, {action() {return this.back();}, text: 'Précédent' }, {action() {return this.next();}, text: 'Suivant'},'nextweek');
+	initStep( tour, currentEventLabel, 'Vous etes sur un créneau horaire', { element: currentEvent, on: "bottom" }, [{action() {return this.back();}, text: 'Précédent' }, {action() { return window.location.replace( currentEventlink );}, text: 'Suivant'},'first');
+	startTour( tour );
+});
+</script>

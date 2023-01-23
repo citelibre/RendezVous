@@ -1,0 +1,21 @@
+/* LUTECE Shepherd styles */
+.lutece.xbox.shepherd-element{ max-width: 500px;}
+.lutece.xxbox.shepherd-element{ max-width: 600px;}
+.lutece.shepherd-element{
+    box-shadow: 7px 9px 101px -5px rgba(0,0,0,0.7);
+    -webkit-box-shadow: 7px 9px 101px -5px rgba(0,0,0,0.7);
+    -moz-box-shadow: 7px 9px 101px -5px rgba(0,0,0,0.7);
+}
+/* .lutece.shepherd-element .shepherd-button {background: #5f4dee; margin-left: 5px }
+.lutece.shepherd-element .shepherd-button:not(:disabled):hover {background: #5f4dee; color: hsla(0, 0%, 100%, 0.75);}
+.lutece.shepherd-element .shepherd-button.shepherd-button-secondary {background: #f1f2f3; color: hsla(0, 0%, 100%, 0.75);}
+.lutece.shepherd-element .shepherd-button.shepherd-button-secondary:not(:disabled):hover {background: #5f4dee; color: hsla(0, 0%, 100%, 0.75);}
+.lutece.shepherd-element .shepherd-cancel-icon {background: transparent;border: none;color: hsla(0, 0%, 100%, 0.75)}
+.lutece.shepherd-element .shepherd-cancel-icon:hover {color: hsla(0, 0%, 100%, 0.75);}
+.lutece.shepherd-element .shepherd-has-title .shepherd-content .shepherd-cancel-icon {color: hsla(0, 0%, 100%, 0.75);}
+.lutece.shepherd-element .shepherd-title {color: #fff;} 
+.lutece.shepherd-element .shepherd-header {background: #5f4dee;}
+.lutece.shepherd-element.shepherd-has-title[data-popper-placement^=bottom]>.shepherd-arrow:before { background-color: #5f4dee; } */
+/* .shepherd-arrow, .shepherd-content{ box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.71); } */
+.navbar-custom .nav-item .nav-link.btn-show-shepherd{ padding: 0 }
+.btn-show-shepherd:hover{ cursor: pointer; color: #fff }

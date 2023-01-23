@@ -1,0 +1,32 @@
+<project name="Initforms" default="dist" basedir=".">
+
+<sql driver="org.database.jdbcDriver"
+     url="jdbc:mysql://localhost/city_appointment?autoReconnect=true&useUnicode=yes&characterEncoding=utf8mb3"
+     ID utilisateur = "admin"
+     mot de passe="motdepasse"
+     src="create_db_forms.sql"
+	 src="init_core_forms.sql"
+	 src="init_db_forms.sql"
+	 src="init_db_generic_attributes_forms.sql"
+	 src="update_db_forms-1.0.0-1.0.1.sql"
+	 src="update_db_forms-1.0.1-1.0.2.sql"
+	 src="update_db_forms-1.0.2-1.0.3.sql"
+	 src="update_db_forms-1.0.3-2.0.0.sql"
+	 src="update_db_forms-2.0.0-2.0.1.sql"
+	 src="update_db_forms-2.0.1-2.1.0.sql"
+	 src="update_db_forms-2.1.0-2.2.0.sql"
+	 src="update_db_forms-2.2.0-2.2.1.sql"
+	 src="update_db_forms-2.2.1-2.2.2.sql"
+	 src="update_db_forms-2.2.2-2.3.0.sql"
+	 src="update_db_forms-2.3.0-2.3.1.sql"
+	 src="update_db_forms-2.3.1-2.4.1.sql"
+	 src="update_db_generic_attributes_forms_1.0.1-1.0.2.sql"
+	 src="update_db_generic_attributes_forms_1.0.2-1.0.3.sql"
+	 src="update_db_generic_attributes_forms_1.3.2-1.3.3.sql"
+	 src="update_db_genericattributes-1.3.3-2.0.0.sql"
+	 src="update_db_genericattributes-2.0.0-2.2.1.sql"
+	 src="update_db_genericattributes-2.0.0-2.3.0.sql"
+	 src="update_db_genericattributes-2.2.0-2.3.2.sql"
+	 src="update_db_genericattributes-2.3.2-2.4.1.sql"/>
+
+</project>
