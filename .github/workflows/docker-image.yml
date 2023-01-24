@@ -1,0 +1,29 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up maven
+      uses: s4u/setup-maven-action@v1.2.1
+      with:
+        java-version: '11'
+        maven-version: '3.6.3'
+    - name: Retrieve version in pom with  Maven
+      run: echo "VERSION=$(cd citelibre-rendezvous && mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | sed -n -e '/^\[.*\]/ !{ /^[0-9]/ { p; q } }')">> $GITHUB_ENV
+    - name: Display version
+      run: echo ${{$VERSION}}
+#   - name: build war
+#      run: cd citelibre-rendezvous && mvn -e lutece:site-assembly -Pdev
+    - name: docker login
+      run: docker login -u citelibre -p ${{secrets.PASSWORD_DOCKER_CITELIBRE}}
