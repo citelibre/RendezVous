@@ -31,7 +31,7 @@ jobs:
       run: cd citelibre-rendezvous && mvn -e lutece:site-assembly -Pdev
       
     - name: retrieve war name
-      run:  echo "WAR_NAME=$(cd citelibre-rendezvous/target; ls *.war)" >> $GITHUB_ENV
+      run:  echo "WAR_NAME=$(cd citelibre-rendezvous/target; ls *.war|sed -e 's/\.war//g')" >> $GITHUB_ENV
       
     - name: build rendezvous
       run: docker build  citelibre-rendezvous  --build-arg site=$WAR_NAME -t citelibre/rendezvous:ihm-$VERSION
