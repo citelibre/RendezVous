@@ -57,4 +57,19 @@ jobs:
         docker push citelibre/rendezvous:fake-smtp-$VERSION
         docker push citelibre/rendezvous:ihm-$VERSION
       
-
+    - name: update docker compose
+      run: |  
+        sed -i -e "s/:fake-smtp.*$/:fake-smtp-$VERSION/g" docker-compose.yml 
+        sed -i -e "s/:solr.*$/:solr-$VERSION/g" docker-compose.yml
+        sed -i -e "s/:matomo.*$/:matomo-$VERSION/g" docker-compose.yml
+        sed -i -e "s/:db.*$/:db-$VERSION/g" docker-compose.yml
+        sed -i -e "s/:ihm.*$/:ihm-$VERSION/g" docker-compose.yml
+        cat docker-compose.yml
+        
+    - name: Commit and push docker compose
+      run: |
+        git config --global user.name "githubaction"
+        git config --global user.email "githubaction"
+        git add docker-compose.yml
+        git commit -m "ci(githubaction): update docker compose with version $VERSION"
+        git push
