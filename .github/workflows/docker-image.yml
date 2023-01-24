@@ -26,11 +26,15 @@ jobs:
 
     - name: Display version
       run: echo "$VERSION"
-#    - name: build war
-#      run: cd citelibre-rendezvous && mvn -e lutece:site-assembly -Pdev
       
-#    - name: build rendezvous
-#     run: docker build  rendezvous -t citelibre/rendezvous:ihm-$VERSION
+    - name: build war ihm
+      run: cd citelibre-rendezvous && mvn -e lutece:site-assembly -Pdev
+      
+    - name: check war
+      run: cd citelibre-rendezvous && ls target/*
+      
+ #  - name: build rendezvous
+ #     run: docker build  rendezvous -t citelibre/rendezvous:ihm-$VERSION
       
     - name: build fakesmtp
       run: docker build  fake-smtp -t citelibre/rendezvous:fake-smtp-$VERSION
@@ -45,8 +49,7 @@ jobs:
     - name: build solr
       run: docker build  solr -t citelibre/rendezvous:solr-$VERSION
       
-    - name: build matomo
+    - name: push images on docker hub
       run: docker push citelibre/rendezvous:solr-$VERSION && 	docker push citelibre/rendezvous:db-$VERSION && docker push citelibre/rendezvous:matomo-$VERSION && docker push citelibre/rendezvous:fake-smtp-$VERSION
       
- #   - name: docker login
- #     run: docker login dockerhub.io -u citelibre -p ${{secrets.PASSWORD_DOCKER_CITELIBRE}}
+
