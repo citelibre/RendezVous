@@ -3,7 +3,7 @@ version: '3.5'
 services:
 
     db:
-        image: citelibre/rendezvous:db
+        image: citelibre/rendezvous:db-1.0.9-SNAPSHOT
         ports:
             - "3307:3306"
         # if you want to persist data uncomment the following 2 lines... don't forget to create the directory mysql-data for sample
@@ -11,7 +11,7 @@ services:
         #    - ./mysql-data:/var/lib/mysql
 
     solr:
-        image: citelibre/rendezvous:solr
+        image: citelibre/rendezvous:solr-1.0.9-SNAPSHOT
         depends_on:
             - db
         ports:
@@ -23,20 +23,20 @@ services:
 
     fake-smtp:
 
-        image: citelibre/rendezvous:fake-smtp
+        image: citelibre/rendezvous:fake-smtp-1.0.9-SNAPSHOT
         ports:
             - "1080:1080"
             - "25:25"
             
     matomo:
-        image: citelibre/rendezvous:matomo
+        image: citelibre/rendezvous:matomo-1.0.9-SNAPSHOT
         ports:
             - "80:80"
         depends_on:
             - solr
 
     citelibre:
-        image: citelibre/rendezvous:ihm
+        image: citelibre/rendezvous:ihm-1.0.9-SNAPSHOT
         ports:
             - 8080:8080
         depends_on:
