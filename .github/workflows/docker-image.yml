@@ -45,5 +45,8 @@ jobs:
     - name: build solr
       run: docker build  solr -t citelibre/rendezvous:solr-$VERSION
       
+    - name: build matomo
+      run: docker push citelibre/rendezvous:solr-$(VERSION) && 	docker push citelibre/rendezvous:db-$(VERSION) && docker push citelibre/rendezvous:matomo-$(VERSION) && docker push citelibre/rendezvous:fake-smtp-$(VERSION)
+      
  #   - name: docker login
  #     run: docker login dockerhub.io -u citelibre -p ${{secrets.PASSWORD_DOCKER_CITELIBRE}}
