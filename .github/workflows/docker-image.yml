@@ -22,7 +22,7 @@ jobs:
     - name: Retrieve version in pom with  Maven
       run: echo "VERSION=$(cd citelibre-rendezvous && mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | sed -n -e '/^\[.*\]/ !{ /^[0-9]/ { p; q } }')">> $GITHUB_ENV
     - name: Display version
-      run: echo ${{$VERSION}}
+      run: echo ${{VERSION}}
 #   - name: build war
 #      run: cd citelibre-rendezvous && mvn -e lutece:site-assembly -Pdev
     - name: docker login
