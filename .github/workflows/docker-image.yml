@@ -34,7 +34,7 @@ jobs:
       run:  echo "WAR_NAME=$(cd citelibre-rendezvous/target; ls *.war)" >> $GITHUB_ENV
       
     - name: build rendezvous
-      run: docker build  rendezvous  --build-arg site=$WAR_NAME -t citelibre/rendezvous:ihm-$VERSION
+      run: docker build  citelibre-rendezvous  --build-arg site=$WAR_NAME -t citelibre/rendezvous:ihm-$VERSION
       
     - name: build fakesmtp
       run: docker build  fake-smtp -t citelibre/rendezvous:fake-smtp-$VERSION
