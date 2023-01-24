@@ -27,4 +27,4 @@ jobs:
 #   - name: build war
 #      run: cd citelibre-rendezvous && mvn -e lutece:site-assembly -Pdev
     - name: docker login
-      run: docker login -u citelibre -p ${{secrets.PASSWORD_DOCKER_CITELIBRE}}
+      run: docker login dockerhub.io -u citelibre -p ${{secrets.PASSWORD_DOCKER_CITELIBRE}}
