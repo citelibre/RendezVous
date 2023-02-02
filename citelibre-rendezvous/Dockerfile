@@ -20,6 +20,9 @@ COPY entrypoint.sh /entrypoint.sh
 
 COPY wait /wait
 
+RUN chmod +x /wait 
+RUN chmod +x /entrypoint.sh
+
 ENV LUTECE_DB_HOST=
 ENV LUTECE_DB_PORT=
 ENV LUTECE_DB_NAME=
