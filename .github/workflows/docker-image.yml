@@ -40,11 +40,11 @@ jobs:
       run: docker build  fake-smtp -t citelibre/rendezvous:fake-smtp-$VERSION
       
     - name: build mysql
-      run: docker build  fake-smtp -t citelibre/rendezvous:db-$VERSION
+      run: docker build  mysql -t citelibre/rendezvous:db-$VERSION
       
       
     - name: build matomo
-      run: docker build  fake-smtp -t citelibre/rendezvous:matomo-$VERSION
+      run: docker build  matomo -t citelibre/rendezvous:matomo-$VERSION
       
     - name: build solr
       run: docker build  solr -t citelibre/rendezvous:solr-$VERSION
