@@ -12,11 +12,11 @@ RUN cd /opt/solr/server/lib/ext/ && curl -O https://repo1.maven.org/maven2/org/l
 
 
 
-ADD schema.xml /tmp
-ADD solrconfig.xml /tmp
+#ADD schema.xml /tmp
+#ADD solrconfig.xml /tmp
 
 WORKDIR /opt/solr/server/solr/
-
+RUN mkdir -p  /var/solr/data/citelibre/conf/managed-schema 
 
 COPY schema.xml /var/solr/data/citelibre/conf/managed-schema
 COPY solrconfig.xml /var/solr/data/citelibre/

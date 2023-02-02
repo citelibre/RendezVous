@@ -7,49 +7,49 @@ then
 
 port="${LUTECE_DB_PORT:-3306}"
 echo "Launch with external database"
-sed -i "s/portal.user=.*/portal\.user=$LUTECE_DB_USER/" ${tomcat}/webapps/appointment/WEB-INF/conf/db.properties
-sed -i "s/portal.password=.*/portal\.password=$LUTECE_DB_PWD/"  ${tomcat}/webapps/appointment/WEB-INF/conf/db.properties
-sed -i "s/lutece/$LUTECE_DB_NAME/" / ${tomcat}/webapps/appointment/WEB-INF/conf/db.properties
-sed -i "s/db:3306/db:$port/"  ${tomcat}/webapps/appointment/WEB-INF/conf/db.properties
-sed -i "s/db:3306/$LUTECE_DB_HOST/"  ${tomcat}/webapps/appointment/WEB-INF/conf/db.properties
+sed -i "s/portal.user=.*/portal\.user=$LUTECE_DB_USER/" ${tomcat}/webapps/rendezvous/WEB-INF/conf/db.properties
+sed -i "s/portal.password=.*/portal\.password=$LUTECE_DB_PWD/"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/db.properties
+sed -i "s/lutece/$LUTECE_DB_NAME/" / ${tomcat}/webapps/rendezvous/WEB-INF/conf/db.properties
+sed -i "s/db:3306/db:$port/"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/db.properties
+sed -i "s/db:3306/$LUTECE_DB_HOST/"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/db.properties
 echo "configure database is "
-cat  ${tomcat}/webapps/appointment/WEB-INF/conf/db.properties
+cat  ${tomcat}/webapps/rendezvous/WEB-INF/conf/db.properties
 fi 
 
 # SMTP
 # Pb with new version => delete this file 
-rm  ${tomcat}/webapps/appointment/WEB-INF/conf/override/config.properties
+rm  ${tomcat}/webapps/rendezvous/WEB-INF/conf/override/config.properties
 if [[  -z "$LUTECE_MAIL_HOST" ]]
 then
 echo "Launch with internal SMTP"
-sed -i "s/mail.server=.*/mail.server=fake-smtp/g"  ${tomcat}/webapps/appointment/WEB-INF/conf/config.properties 
-sed -i "s/mail.username=.*//"  ${tomcat}/webapps/appointment/WEB-INF/conf/config.properties 
-sed -i "s/mail.password=.*//"  ${tomcat}/webapps/appointment/WEB-INF/conf/config.properties 
+sed -i "s/mail.server=.*/mail.server=fake-smtp/g"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/config.properties 
+sed -i "s/mail.username=.*//"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/config.properties 
+sed -i "s/mail.password=.*//"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/config.properties 
 # report in html because after tomcatstarted it will be copied but the params i nconfig are load correctly
 # so it's just for coordonate values
-sed -i "s/mail.server=.*/mail.server=fake-smtp/g"  ${tomcat}/webapps/appointment/WEB-INF/templates/admin/system/config_properties.html
-sed -i "s/mail.username=.*//"  ${tomcat}/webapps/appointment/WEB-INF/templates/admin/system/config_properties.html
-sed -i "s/mail.password=.*//"  ${tomcat}/webapps/appointment/WEB-INF/templates/admin/system/config_properties.html
+sed -i "s/mail.server=.*/mail.server=fake-smtp/g"  ${tomcat}/webapps/rendezvous/WEB-INF/templates/admin/system/config_properties.html
+sed -i "s/mail.username=.*//"  ${tomcat}/webapps/rendezvous/WEB-INF/templates/admin/system/config_properties.html
+sed -i "s/mail.password=.*//"  ${tomcat}/webapps/rendezvous/WEB-INF/templates/admin/system/config_properties.html
 
 else
 echo "Launch with external SMTP"
 portMail="${LUTECE_MAIL_PORT:-25}"
-sed -i "s/mail.server=.*/mail.server=$LUTECE_MAIL_HOST/"  ${tomcat}/webapps/appointment/WEB-INF/conf/config.properties
-sed -i "s/mail.server.port=.*/mail.server.port=$portMail/"  ${tomcat}/webapps/appointment/WEB-INF/conf/config.properties
+sed -i "s/mail.server=.*/mail.server=$LUTECE_MAIL_HOST/"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/config.properties
+sed -i "s/mail.server.port=.*/mail.server.port=$portMail/"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/config.properties
 
-sed -i "s/mail.server=.*/mail.server=$LUTECE_MAIL_HOST/"  ${tomcat}/webapps/appointment/WEB-INF/templates/admin/system/config_properties.html
-sed -i "s/mail.server.port=.*/mail.server.port=$portMail/"  ${tomcat}/webapps/appointment/WEB-INF/templates/admin/system/config_properties.html
+sed -i "s/mail.server=.*/mail.server=$LUTECE_MAIL_HOST/"  ${tomcat}/webapps/rendezvous/WEB-INF/templates/admin/system/config_properties.html
+sed -i "s/mail.server.port=.*/mail.server.port=$portMail/"  ${tomcat}/webapps/rendezvous/WEB-INF/templates/admin/system/config_properties.html
 
 if [[  ! -z "$LUTECE_MAIL_USER" ]]
 then
-sed -i "s/mail.username=.*//" ${tomcat}/webapps/appointment/WEB-INF/conf/config.properties
-sed -i "s/mail.password=.*//"  ${tomcat}/webapps/appointment/WEB-INF/conf/config.properties
-sed -i "s/mail.username=.*//"  ${tomcat}/webapps/appointment/WEB-INF/templates/admin/system/config_properties.html
-sed -i "s/mail.password=.*//"  ${tomcat}/webapps/appointment/WEB-INF/templates/admin/system/config_properties.html
-sed -i "s/mail.username=.*/mail.username=$LUTECE_MAIL_USER/"  ${tomcat}/webapps/appointment/WEB-INF/conf/config.properties
-sed -i "s/mail.password=.*/mail.password=$LUTECE_MAIL_PWD/"  ${tomcat}/webapps/appointment/WEB-INF/conf/config.properties
-sed -i "s/mail.username=.*/mail.username=$LUTECE_MAIL_USER/"  ${tomcat}/webapps/appointment/WEB-INF/templates/admin/system/config_properties.html
-sed -i "s/mail.password=.*/mail.password=$LUTECE_MAIL_PWD/"  ${tomcat}/webapps/appointment/WEB-INF/templates/admin/system/config_properties.html
+sed -i "s/mail.username=.*//" ${tomcat}/webapps/rendezvous/WEB-INF/conf/config.properties
+sed -i "s/mail.password=.*//"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/config.properties
+sed -i "s/mail.username=.*//"  ${tomcat}/webapps/rendezvous/WEB-INF/templates/admin/system/config_properties.html
+sed -i "s/mail.password=.*//"  ${tomcat}/webapps/rendezvous/WEB-INF/templates/admin/system/config_properties.html
+sed -i "s/mail.username=.*/mail.username=$LUTECE_MAIL_USER/"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/config.properties
+sed -i "s/mail.password=.*/mail.password=$LUTECE_MAIL_PWD/"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/config.properties
+sed -i "s/mail.username=.*/mail.username=$LUTECE_MAIL_USER/"  ${tomcat}/webapps/rendezvous/WEB-INF/templates/admin/system/config_properties.html
+sed -i "s/mail.password=.*/mail.password=$LUTECE_MAIL_PWD/"  ${tomcat}/webapps/rendezvous/WEB-INF/templates/admin/system/config_properties.html
 fi
 fi
 
