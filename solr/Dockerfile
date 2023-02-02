@@ -17,7 +17,7 @@ RUN cd /opt/solr/server/lib/ext/ && curl -O https://repo1.maven.org/maven2/org/l
 
 WORKDIR /opt/solr/server/solr/
 RUN mkdir -p  /var/solr/data/citelibre/conf/managed-schema 
-
+RUN mkdir -p /var/solr/data/citelibre/data
 COPY schema.xml /var/solr/data/citelibre/conf/managed-schema
 COPY solrconfig.xml /var/solr/data/citelibre/
 COPY core.properties /var/solr/data/citelibre/
