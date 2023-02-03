@@ -12,6 +12,8 @@ services:
 
     solr:
         image: citelibre/rendezvous:solr-1.0.9-SNAPSHOT
+        user: root
+        command: -force
         depends_on:
             - db
         ports:
