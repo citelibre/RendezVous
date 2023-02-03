@@ -54,7 +54,12 @@ fi
 fi
 
 
+if [[ ! -z "$LUTECE_DB_HOST"  && ! -z "$LUTECE_DB_USER" && ! -z "$LUTECE_DB_PWD" && ! -z "$LUTECE_DB_NAME" ]]
+then
+export WAIT_HOSTS=$LUTECE_DB_HOST:${LUTECE_DB_PORT:-3306}
+else
 export WAIT_HOSTS=db:3306
+fi
 export WAIT_HOSTS_TIMEOUT=300
 export WAIT_SLEEP_INTERVAL=30
 export WAIT_HOST_CONNECT_TIMEOUT=30
