@@ -9,7 +9,7 @@ port="${LUTECE_DB_PORT:-3306}"
 echo "Launch with external database"
 sed -i "s/portal.user=.*/portal\.user=$LUTECE_DB_USER/" ${tomcat}/webapps/rendezvous/WEB-INF/conf/db.properties
 sed -i "s/portal.password=.*/portal\.password=$LUTECE_DB_PWD/"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/db.properties
-sed -i "s/lutece/$LUTECE_DB_NAME/" / ${tomcat}/webapps/rendezvous/WEB-INF/conf/db.properties
+sed -i "s/lutece/$LUTECE_DB_NAME/" ${tomcat}/webapps/rendezvous/WEB-INF/conf/db.properties
 sed -i "s/db:3306/db:$port/"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/db.properties
 sed -i "s/db:3306/$LUTECE_DB_HOST/"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/db.properties
 echo "configure database is "
