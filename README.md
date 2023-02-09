@@ -138,7 +138,44 @@ Load dump (dump.sql) to populate data with the following command :
 	SOURCE dump.sql;
 ```
 
-create a database for matomo with the following command :
+**Important**
+If the database is hosted on the same server, make sure you don't use *localhost* as it will use the container's localhost, instead use the IP address of the server.
+
+To check that the database is accessible through the container network, open a terminal on the app container and type the following command ...
+```bash
+    Openssl s_client -connect <IP_or_host>:<PORT>
+```
+
+...the output should look like...
+```bash
+    CONNECTED(00000003)
+    140278331168064:error:1408F10B:SSL routines:ssl3_get_record:wrong version number:../ssl/record/ssl3_record.c:331:
+    ---
+    no peer certificate available
+    ---
+    No client certificate CA names sent
+    ---
+    SSL handshake has read 5 bytes and written 283 bytes
+    Verification: OK
+    ---
+    New, (NONE), Cipher is (NONE)
+    Secure Renegotiation IS NOT supported
+    Compression: NONE
+    Expansion: NONE
+    No ALPN negotiated
+    Early data was not sent
+    Verify return code: 0 (ok)
+    ---
+```
+
+... or it will look like 
+```bash
+    140418660095296:error:0200206F:system library:connect:Connection refused:../crypto/bio/b_sock2.c:110:
+    140418660095296:error:2008A067:BIO routines:BIO_connect:connect error:../crypto/bio/b_sock2.c:111:
+    connect:errno=111
+```
+
+Create a database for matomo with the following command :
 
 ```sql
     CREATE DATABASE matomo
