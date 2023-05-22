@@ -117,6 +117,28 @@ You can then launch docker compose
 in the local directory mysql-data and solr-data you will see some files and directory being created.
 
 
+## Keycloack
+
+By default keycloak use mysql for his database.
+
+If you want to use an external keycloak or an another OpenID provider please modify oauth2_context.xml in
+citelibre-rendez/webapp/WEB-INF/conf/override/plugins (for change callbackurl, client id, client secret...)
+and in docker compose delete keycloak entry
+
+
+You can access to keycloak via http://localhost:8081/ => admin / admin1234
+
+For test openid connection launch the following url :
+
+http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=oauth2
+
+and click on oauth2 image.
+
+Users can be created in keycloak backend => Manage / Client
+or for demo you can use user demo : test@paris.fr / test1234=TEST1234 
+
+
+
 ## Matomo
 
 In matomo by default is displayed the day after today. Remember to change with the current date of the day if you want see the actual data
