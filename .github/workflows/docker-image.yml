@@ -49,6 +49,9 @@ jobs:
     - name: build solr
       run: docker build  solr -t citelibre/rendezvous:solr-$VERSION
       
+    - name: build keycloak
+      run: docker build  solr -t citelibre/rendezvous:keycloak-$VERSION
+      
     - name: push images on docker hub
       run: |
         docker push citelibre/rendezvous:solr-$VERSION
