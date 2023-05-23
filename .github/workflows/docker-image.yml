@@ -58,6 +58,7 @@ jobs:
         docker push citelibre/rendezvous:db-$VERSION
         docker push citelibre/rendezvous:matomo-$VERSION
         docker push citelibre/rendezvous:fake-smtp-$VERSION
+        docker push citelibre/rendezvous:keycloak-$VERSION
         docker push citelibre/rendezvous:ihm-$VERSION
       
     - name: update docker compose
@@ -67,6 +68,7 @@ jobs:
         sed -i -e "s/:matomo.*$/:matomo-$VERSION/g" docker-compose.yml
         sed -i -e "s/:db.*$/:db-$VERSION/g" docker-compose.yml
         sed -i -e "s/:ihm.*$/:ihm-$VERSION/g" docker-compose.yml
+        sed -i -e "s/:keycloak.*$/:keycloak-$VERSION/g" docker-compose.yml
         cat docker-compose.yml
         
     - name: Commit and push docker compose
