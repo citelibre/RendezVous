@@ -10,6 +10,7 @@ services:
         #volumes:
         #    - ./mysql-data:/var/lib/mysql
 
+
     solr:
         image: citelibre/rendezvous:solr-1.0.9-SNAPSHOT
         command: -force
@@ -35,6 +36,17 @@ services:
             - "80:80"
         depends_on:
             - solr
+
+    keycloak:
+        image: citelibre/rendezvous:keycloak-1.0.9-SNAPSHOT
+        ports:
+            - "8081:8080"
+        depends_on:
+            - citelibre
+
+
+            
+
 
     citelibre:
         image: citelibre/rendezvous:ihm-1.0.9-SNAPSHOT

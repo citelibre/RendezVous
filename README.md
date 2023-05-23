@@ -23,7 +23,13 @@ need to be set in the `.env` file (key with = as separator):
  * LUTECE_MAIL_PORT : Set the SMTP port
  * LUTECE_MAIL_USER : Set user authentification if your SMTP proivder required an authent
  * LUTECE_MAIL_PWD  : Set password authentification if your SMTP proivder required an authent
-
+ * KEYCLOAK_USER    : Set user admin for keycloak (default is admin)
+ * KEYCLOAK_PASSWORD: Set admin password (default admin1234)
+ * DB_VENDOR        : db type for keycloak (default mysql)
+ * DB_ADDR          : db host (by default we use db container)
+ * DB_DATABASE      : database name for keycloak (default keycloak)
+ * DB_USER:         : database user for keycloak 
+ * DB_PASSWORD:     : database password for keycloak 
 
 ## Getting started
 
