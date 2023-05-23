@@ -49,12 +49,16 @@ jobs:
     - name: build solr
       run: docker build  solr -t citelibre/rendezvous:solr-$VERSION
       
+    - name: build keycloak
+      run: docker build  keycloak -t citelibre/rendezvous:keycloak-$VERSION
+      
     - name: push images on docker hub
       run: |
         docker push citelibre/rendezvous:solr-$VERSION
         docker push citelibre/rendezvous:db-$VERSION
         docker push citelibre/rendezvous:matomo-$VERSION
         docker push citelibre/rendezvous:fake-smtp-$VERSION
+        docker push citelibre/rendezvous:keycloak-$VERSION
         docker push citelibre/rendezvous:ihm-$VERSION
       
     - name: update docker compose
@@ -64,6 +68,7 @@ jobs:
         sed -i -e "s/:matomo.*$/:matomo-$VERSION/g" docker-compose.yml
         sed -i -e "s/:db.*$/:db-$VERSION/g" docker-compose.yml
         sed -i -e "s/:ihm.*$/:ihm-$VERSION/g" docker-compose.yml
+        sed -i -e "s/:keycloak.*$/:keycloak-$VERSION/g" docker-compose.yml
         cat docker-compose.yml
         
     - name: Commit and push docker compose
