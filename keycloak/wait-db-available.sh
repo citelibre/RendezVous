@@ -1,0 +1,8 @@
+#!/bin/bash
+
+export WAIT_HOSTS=$DB_HOST:$DB_ADDR
+export WAIT_HOSTS_TIMEOUT=300
+export WAIT_SLEEP_INTERVAL=30
+export WAIT_HOST_CONNECT_TIMEOUT=30
+
+/tmp/wait 
