@@ -4,6 +4,7 @@ services:
 
     db:
         image: citelibre/rendezvous:db-1.0.9-SNAPSHOT
+        container_name: db
         ports:
             - "3307:3306"
         # if you want to persist data uncomment the following 2 lines... don't forget to create the directory mysql-data for sample
@@ -13,6 +14,7 @@ services:
 
     solr:
         image: citelibre/rendezvous:solr-1.0.9-SNAPSHOT
+	container_name: solr
         command: -force
         depends_on:
             - db
@@ -24,13 +26,14 @@ services:
 
 
     fake-smtp:
-
+	container_name: fake-smtp
         image: citelibre/rendezvous:fake-smtp-1.0.9-SNAPSHOT
         ports:
             - "1080:1080"
             - "25:25"
             
     matomo:
+	container_name: matomo
         image: citelibre/rendezvous:matomo-1.0.9-SNAPSHOT
         ports:
             - "80:80"
@@ -38,6 +41,7 @@ services:
             - solr
 
     keycloak:
+	container_name: keycloak
         image: citelibre/rendezvous:keycloak-1.0.9-SNAPSHOT
         ports:
             - "8081:8080"
@@ -49,6 +53,7 @@ services:
 
 
     citelibre:
+	container_name: citelibre
         image: citelibre/rendezvous:ihm-1.0.9-SNAPSHOT
         ports:
             - 8080:8080

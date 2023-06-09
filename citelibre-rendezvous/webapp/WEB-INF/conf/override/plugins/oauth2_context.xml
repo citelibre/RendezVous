@@ -13,8 +13,8 @@
     <bean id="oauth2.server" class="fr.paris.lutece.plugins.oauth2.business.AuthServerConf">
         <property name="issuer" value="http://fcp.integ01.dev-oauth2.fr"/>
         <property name="authorizationEndpointUri" value="http://localhost:8081/auth/realms/paris/protocol/openid-connect/auth"/>
-        <property name="tokenEndpointUri" value="http://localhost:8081/auth/realms/paris/protocol/openid-connect/token"/>
-        <property name="logoutEndpointUri" value="http://localhost:8081/auth/realms/paris/protocol/openid-connect/logout?redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Frendezvous%2F"/>
+        <property name="tokenEndpointUri" value="http://keycloak:8081/auth/realms/paris/protocol/openid-connect/token"/>
+        <property name="logoutEndpointUri" value="http://keycloak:8081/auth/realms/paris/protocol/openid-connect/logout?redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Frendezvous%2F"/>
         <property name="enableJwtParser" value="false"/>
     </bean> 
     
