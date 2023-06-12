@@ -1,7 +1,6 @@
 version: '3.5'
 
 services:
-
     db:
         image: citelibre/rendezvous:db-1.0.9-SNAPSHOT
         container_name: db
@@ -14,7 +13,7 @@ services:
 
     solr:
         image: citelibre/rendezvous:solr-1.0.9-SNAPSHOT
-	container_name: solr
+        container_name: solr
         command: -force
         depends_on:
             - db
@@ -26,35 +25,33 @@ services:
 
 
     fake-smtp:
-	container_name: fake-smtp
         image: citelibre/rendezvous:fake-smtp-1.0.9-SNAPSHOT
+        container_name: fake-smtp
         ports:
             - "1080:1080"
             - "25:25"
             
     matomo:
-	container_name: matomo
         image: citelibre/rendezvous:matomo-1.0.9-SNAPSHOT
+        container_name: matomo
         ports:
             - "80:80"
         depends_on:
             - solr
 
     keycloak:
-	container_name: keycloak
         image: citelibre/rendezvous:keycloak-1.0.9-SNAPSHOT
+        container_name: keycloak
         ports:
-            - "8081:8080"
+            - "8081:8081"
+        command: ["-Djboss.http.port=8081"]
         depends_on:
             - citelibre
 
 
-            
-
-
     citelibre:
-	container_name: citelibre
         image: citelibre/rendezvous:ihm-1.0.9-SNAPSHOT
+        container_name: citelibre
         ports:
             - 8080:8080
         depends_on:
