@@ -1,6 +1,6 @@
 #!/bin/bash
 
-tomcat=/var/lib/tomcat9/
+tomcat=/usr/local/tomcat
 
 if [[ ! -z "$LUTECE_DB_HOST"  && ! -z "$LUTECE_DB_USER" && ! -z "$LUTECE_DB_PWD" && ! -z "$LUTECE_DB_NAME" ]]
 then
