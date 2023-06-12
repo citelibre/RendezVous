@@ -63,6 +63,4 @@ export WAIT_HOSTS_TIMEOUT=300
 export WAIT_SLEEP_INTERVAL=30
 export WAIT_HOST_CONNECT_TIMEOUT=30
 
-/wait && ${tomcat}/bin/startup.sh
-
-#/usr/lib/jvm/default-java/bin/java -Dmail.session.debug=true -Dmail.smtp.starttls.enable=false -Djava.util.logging.config.file=${tomcat}/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.awt.headless=true -Xms512m -Xmx2048m -Djdk.tls.ephemeralDHKeySize=2048 -classpath ${tomcat}/bin/bootstrap.jar:/usr/share/tomcat9/bin/tomcat-juli.jar -Dcatalina.base=/var/lib/tomcat9 -Dcatalina.home=/usr/share/tomcat9 -Djava.io.tmpdir=/tmp/tomcat9-tomcat9-tmp org.apache.catalina.startup.Bootstrap start
+/wait && /opt/java/openjdk/bin/java -Djava.util.logging.config.file=${tomcat}/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0027 -Dignore.endorsed.dirs= -classpath ${tomcat}/bin/bootstrap.jar:${tomcat}/bin/tomcat-juli.jar -Dcatalina.base=${tomcat} -Dcatalina.home=${tomcat} -Djava.io.tmpdir=${tomcat}/temp org.apache.catalina.startup.Bootstrap start
