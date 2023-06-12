@@ -1,12 +1,11 @@
-FROM debian:stable-slim
+FROM tomcat:9.0
 
-RUN apt-get update && apt-get dist-upgrade -y &&  apt-get install -y  default-jdk  tomcat9 --no-install-recommends
+
 
 ARG site=site-citelibre-rendezvous-1.0.9
 
-ARG tomcat=/var/lib/tomcat9/
+ARG tomcat=/usr/local/tomcat
 WORKDIR ${tomcat}
-#COPY --from=builder /app/target/${site}.war  /var/lib/tomcat9/webapps
 COPY target/${site}.war webapps
 
 RUN cd webapps && mkdir rendezvous &&  mv ${site}.war rendezvous/rendezvous.war  && cd rendezvous && jar xvf rendezvous.war && rm rendezvous.war
