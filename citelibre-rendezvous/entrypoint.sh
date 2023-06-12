@@ -63,4 +63,6 @@ export WAIT_HOSTS_TIMEOUT=300
 export WAIT_SLEEP_INTERVAL=30
 export WAIT_HOST_CONNECT_TIMEOUT=30
 
-/wait && /usr/lib/jvm/default-java/bin/java -Dmail.session.debug=true -Dmail.smtp.starttls.enable=false -Djava.util.logging.config.file=/var/lib/tomcat9/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.awt.headless=true -Xms512m -Xmx2048m -Djdk.tls.ephemeralDHKeySize=2048 -classpath /usr/share/tomcat9/bin/bootstrap.jar:/usr/share/tomcat9/bin/tomcat-juli.jar -Dcatalina.base=/var/lib/tomcat9 -Dcatalina.home=/usr/share/tomcat9 -Djava.io.tmpdir=/tmp/tomcat9-tomcat9-tmp org.apache.catalina.startup.Bootstrap start
+/wait && ${tomcat}/bin/startup.sh
+
+#/usr/lib/jvm/default-java/bin/java -Dmail.session.debug=true -Dmail.smtp.starttls.enable=false -Djava.util.logging.config.file=${tomcat}/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.awt.headless=true -Xms512m -Xmx2048m -Djdk.tls.ephemeralDHKeySize=2048 -classpath ${tomcat}/bin/bootstrap.jar:/usr/share/tomcat9/bin/tomcat-juli.jar -Dcatalina.base=/var/lib/tomcat9 -Dcatalina.home=/usr/share/tomcat9 -Djava.io.tmpdir=/tmp/tomcat9-tomcat9-tmp org.apache.catalina.startup.Bootstrap start
