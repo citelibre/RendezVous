@@ -60,9 +60,9 @@ If you have created an env file named external-database.env start the following
 If you create an `.env` file, docker compose use it without using --env-file 
 
 
-1. Open UI at <http://localhost:8080/rendezvous>.
+1. Open UI at <http://localhost:8081/rendezvous>.
 
-Back end is available at : <http://localhost:8080/rendezvous/jsp/admin/AdminLogin.jsp>
+Back end is available at : <http://localhost:8081/rendezvous/jsp/admin/AdminLogin.jsp>
 
 Defaut login is `admin` anbd password is `adminadmin`
 
@@ -132,7 +132,7 @@ citelibre-rendez/webapp/WEB-INF/conf/override/plugins (for change callbackurl, c
 and in docker compose delete keycloak entry
 
 
-You can access to keycloak via http://localhost:8081/ => admin / admin1234
+You can access to keycloak via http://localhost:8080/ => admin / admin1234
 
 For test openid connection launch the following url :
 
