@@ -18,7 +18,7 @@
         class="fr.paris.lutece.plugins.librarynotifygru.rs.service.NotificationTransportRest">
         <property name="notificationEndPoint">
    
-            <value>http://localhost:8080/rendezvous/rest/grusupply/notification</value>
+            <value>http://localhost:8081/rendezvous/rest/grusupply/notification</value>
        
         </property>
     </bean>
