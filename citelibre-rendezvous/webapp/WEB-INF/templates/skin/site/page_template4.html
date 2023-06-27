@@ -1,0 +1,23 @@
+<@cContainer hasHeader=false>
+    <@cRow>
+        <@cCol>
+            ${page_content_col1}
+        </@cCol>
+    </@cRow>
+    <@cRow>
+        <@cCol cols='6'>
+            ${page_content_col2}
+        </@cCol>
+        <@cCol cols='6'>
+            ${page_content_col3}
+        </@cCol>
+    </@cRow>
+</@cContainer>
+<script src="js/util/shepherd/lutece-shepherd.js"></script>
+<script>
+$( function(){ 
+	const tour = initTour('lutece');
+	initStep( tour, 'Hello', 'Bienvenue dans la demo', { element: ".btn-solid-lg", on: "bottom"},[{action(){ const el=document.querySelector( this.currentStep.options.attachTo.element ); const loc = el.getAttribute('href'); return window.location.replace( loc );}, text: 'Suivant'}], 'home', true );
+	startTour( tour );
+});
+</script>
