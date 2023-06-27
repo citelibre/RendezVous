@@ -6,8 +6,7 @@
 }
 
 .login-pf body {
-    background: url("../img/keycloak-bg.png") no-repeat center center fixed;
-    background-size: cover;
+    background: none;
     height: 100%;
 }
 
@@ -227,19 +226,18 @@ div.kc-logo-text span {
     display: none;
 }
 
+.header{
+  margin-top: 5vh
+}
+
 #kc-header {
-    color: #ededed;
-    overflow: visible;
-    white-space: nowrap;
+  color: #ededed;
+  overflow: visible;
+  white-space: nowrap;
 }
 
 #kc-header-wrapper {
-    font-size: 29px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    line-height: 1.2em;
-    padding: 62px 10px 20px;
-    white-space: normal;
+  display: none !important;
 }
 
 #kc-content {
@@ -543,6 +541,7 @@ ul#kc-totp-supported-apps {
 .card-pf form.form-actions .btn {
     float: right;
     margin-left: 10px;
+  
 }
 
 #kc-form-buttons {

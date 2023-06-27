@@ -1,6 +1,8 @@
 <#import "template.ftl" as layout>
 <@layout.registrationLayout displayMessage=!messagesPerField.existsError('firstName','lastName','email','username','password','password-confirm'); section>
     <#if section = "header">
+		<h1>CITELIBRE</h1>
+		<p class="text-center mb-3"><img src="${url.resourcesPath}/img/logo.png" alt="" aria-hidden="true"></p>
         ${msg("registerTitle")}
     <#elseif section = "form">
         <form id="kc-register-form" class="${properties.kcFormClass!}" action="${url.registrationAction}" method="post">
