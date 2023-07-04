@@ -11,6 +11,12 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
+      actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
+
 
     steps:
     - uses: actions/checkout@v3
@@ -35,6 +41,22 @@ jobs:
       
     - name: build rendezvous
       run: docker build  citelibre-rendezvous  --build-arg site=$WAR_NAME -t citelibre/rendezvous:ihm-$VERSION
+    
+    - name: build rendezvous  
+      run: docker save -o citelibre-rendezvous.tar citelibre/rendezvous:ihm-$VERSION
+      
+    - name: Run Trivy vulnerability scanner in tarball mode of rendez vous image
+      uses: aquasecurity/trivy-action@master
+      with:
+        input: /github/workspace/citelibre-rendezvous.tar
+        severity: 'CRITICAL,HIGH'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+        
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: 'trivy-results.sarif'
       
     - name: build fakesmtp
       run: docker build  fake-smtp -t citelibre/rendezvous:fake-smtp-$VERSION
