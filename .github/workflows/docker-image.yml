@@ -34,7 +34,7 @@ jobs:
       run: echo "version $VERSION"
       
     - name: build war ihm
-      run: cd citelibre-rendezvous && mvn clean &&  mvn -X -e lutece:site-assembly -Pdev
+      run: cd citelibre-rendezvous &&   mvn -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=180 -e lutece:site-assembly -Pdev
       
     - name: retrieve war name
       run:  echo "WAR_NAME=$(cd citelibre-rendezvous/target; ls *.war|sed -e 's/\.war//g')" >> $GITHUB_ENV
