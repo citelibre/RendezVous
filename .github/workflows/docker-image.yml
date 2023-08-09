@@ -28,7 +28,7 @@ jobs:
     - name: docker login
       run: docker login -u=citelibre -p="${{ secrets.PASSWORD_DOCKER_CITELIBRE }}"
     - name: Retrieve version in pom with  Maven
-      run: echo "VERSION=$(cd citelibre-rendezvous && mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | sed -n -e '/^\[.*\]/ !{ /^[0-9]/ { p; q } }')">> $GITHUB_ENV
+      run: echo "VERSION=$(cd citelibre-rendezvous && curl http://dev.lutece.paris.fr/maven_repository/fr/paris/lutece/lutece-core/7.0.8/lutece-core-7.0.8-webapp.zip -o $HOME/.m2/repository/fr/paris/lutece/lutece-core/7.0.8/lutece-core-7.0.8-webapp.zip  && mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | sed -n -e '/^\[.*\]/ !{ /^[0-9]/ { p; q } }')">> $GITHUB_ENV
 
     - name: Display version
       run: echo "version $VERSION"
