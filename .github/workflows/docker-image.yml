@@ -34,10 +34,10 @@ jobs:
       run: echo "version $VERSION"
 
     - name: Webapp display
-      run: curl -v  https://dev.lutece.paris.fr/maven_repository/fr/paris/lutece/lutece-core/7.0.8/lutece-core-7.0.8-webapp.zip -o test.zip && cat test.zip
+      run: curl -v --http1.0 https://dev.lutece.paris.fr/maven_repository/fr/paris/lutece/lutece-core/7.0.8/lutece-core-7.0.8-webapp.zip -o test.zip && cat test.zip
       
     - name: build war ihm
-      run: cd citelibre-rendezvous &&  mkdir -p $HOME/.m2/repository/fr/paris/lutece/lutece-core/7.0.8/ && curl -L http://dev.lutece.paris.fr/maven_repository/fr/paris/lutece/lutece-core/7.0.8/lutece-core-7.0.8-webapp.zip -o $HOME/.m2/repository/fr/paris/lutece/lutece-core/7.0.8/lutece-core-7.0.8-webapp.zip   &&   mvn -e lutece:site-assembly -Pdev
+      run: cd citelibre-rendezvous &&  mkdir -p $HOME/.m2/repository/fr/paris/lutece/lutece-core/7.0.8/ && curl --http1.0 -L https://dev.lutece.paris.fr/maven_repository/fr/paris/lutece/lutece-core/7.0.8/lutece-core-7.0.8-webapp.zip -o $HOME/.m2/repository/fr/paris/lutece/lutece-core/7.0.8/lutece-core-7.0.8-webapp.zip   &&   mvn -e lutece:site-assembly -Pdev
       
     - name: retrieve war name
       run:  echo "WAR_NAME=$(cd citelibre-rendezvous/target; ls *.war|sed -e 's/\.war//g')" >> $GITHUB_ENV
