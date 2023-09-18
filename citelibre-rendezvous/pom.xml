@@ -342,7 +342,7 @@
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-appointment</artifactId>
-            <version>[3.0.7-SNAPSHOT]</version>
+            <version>[3.0.6]</version>
             <type>lutece-plugin</type>
         </dependency>
         <dependency>
@@ -384,7 +384,7 @@
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>module-notifygru-appointment</artifactId>
-            <version>[3.0.2-SNAPSHOT]</version>
+            <version>[3.0.1]</version>
             <type>lutece-plugin</type>
         </dependency>
         <dependency>
