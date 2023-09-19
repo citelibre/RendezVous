@@ -2,14 +2,17 @@ version: '3.5'
 
 services:
     db:
+        # if you want to build the image with dumps you have in the ./mysql folder uncomment the "build" lines and comment the "image" line and and "docker compose build"
         image: citelibre/rendezvous:db-1.0.9-SNAPSHOT
+        # build:
+        #   context: ./mysql
+        #    dockerfile: Dockerfile
         container_name: db
         ports:
             - "3307:3306"
         # if you want to persist data uncomment the following 2 lines... don't forget to create the directory mysql-data for sample
         #volumes:
-        #    - ./mysql-data:/var/lib/mysql
-
+        #   - ./mysql-data:/var/lib/mysql
 
     solr:
         image: citelibre/rendezvous:solr-1.0.9-SNAPSHOT
@@ -50,7 +53,12 @@ services:
 
 
     citelibre:
+        # if you want to build the image with the .war you have in the ./target folder uncomment the "build" line and comment the "image" line
+        # make sure you .war is named "site-citelibre-rendezvous-1.0.9 and "docker compose build"
         image: citelibre/rendezvous:ihm-1.0.9-SNAPSHOT
+         #   build:
+         #   context: ./citelibre-rendezvous
+         #   dockerfile: Dockerfile
         container_name: citelibre
         ports:
             - 8080:8080
