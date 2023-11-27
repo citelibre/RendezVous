@@ -13,10 +13,10 @@
     <version>1.0.9-SNAPSHOT</version>
     <description></description>
     <scm>
-        <connection>scm:git:https://dev.lutece.paris.fr/gitlab/bild/x42/site-pack-city-agenda.git</connection>
-        <developerConnection>scm:git:https://dev.lutece.paris.fr/gitlab/bild/x42/site-pack-city-agenda.git</developerConnection>
+        <connection>scm:git:https://github.com/citelibre/RendezVous.git</connection>
+        <developerConnection>scm:git:https://github.com/citelibre/RendezVous.git</developerConnection>
         <tag>HEAD</tag>
-        <url>https://dev.lutece.paris.fr/gitlab/bild/x42/site-pack-city-agenda.git</url>
+        <url>https://github.com/citelibre/RendezVous.git</url>
     </scm>
     <repositories>
         <repository>
@@ -478,14 +478,9 @@
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.themes</groupId>
-            <artifactId>site-theme-city</artifactId>
-            <version>[1.0.2-SNAPSHOT]</version>
+            <artifactId>site-theme-citelibre</artifactId>
+            <version>[1.0.0-SNAPSHOT]</version>
             <type>lutece-site</type>
         </dependency>
     </dependencies>
-    <properties>
-        <componentName>Site Pack City Forms</componentName>
-        <jiraProjectName>THEMECITY</jiraProjectName>
-        <jiraComponentId/>
-    </properties>
 </project>
