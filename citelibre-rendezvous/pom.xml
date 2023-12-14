@@ -83,7 +83,7 @@
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-workflow</artifactId>
-            <version>[5.3.2]</version>
+            <version>[6.0.1]</version>
             <type>lutece-plugin</type>
         </dependency>
         <dependency>
@@ -108,6 +108,7 @@
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>library-workflow-core</artifactId>
             <version>[3.0.1]</version>
+	    <type>jar</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
@@ -125,6 +126,7 @@
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>library-jwt</artifactId>
             <version>[2.0.2]</version>
+	    <type>jar</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
@@ -184,6 +186,7 @@
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>library-elastic</artifactId>
             <version>[1.1.1]</version>
+	    <type>jar</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
@@ -201,6 +204,7 @@
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>library-httpaccess</artifactId>
             <version>[3.0.1]</version>
+	    <type>jar</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
@@ -330,7 +334,7 @@
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-solr</artifactId>
-            <version>[4.0.2]</version>
+            <version>[4.0.3]</version>
             <type>lutece-plugin</type>
         </dependency>
         <dependency>
@@ -342,19 +346,19 @@
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-appointment</artifactId>
-            <version>[3.0.6]</version>
+            <version>[3.0.7]</version>
             <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>module-appointment-solrsearchapp</artifactId>
-            <version>[3.0.3]</version>
+            <version>[3.0.4]</version>
             <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>module-appointment-solr</artifactId>
-            <version>[3.0.1]</version>
+            <version>[3.0.2]</version>
             <type>lutece-plugin</type>
         </dependency>
         <dependency>
