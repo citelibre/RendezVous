@@ -28,7 +28,7 @@
             </snapshots>
             <id>lutece</id>
             <name>luteceRepository</name>
-            <url>http://dev.lutece.paris.fr/maven_repository</url>
+            <url>https://dev.lutece.paris.fr/maven_repository</url>
         </repository>
         <repository>
             <snapshots>
@@ -36,7 +36,7 @@
             </snapshots>
             <id>luteceSnapshot</id>
             <name>luteceSnapshot</name>
-            <url>http://dev.lutece.paris.fr/snapshot_repository</url>
+            <url>https://dev.lutece.paris.fr/snapshot_repository</url>
         </repository>
     </repositories>
     <pluginRepositories>
@@ -46,7 +46,7 @@
             </snapshots>
             <id>luteceSnapshot</id>
             <name>luteceSnapshot</name>
-            <url>http://${serverUrl}/snapshot_repository</url>
+            <url>https://${serverUrl}/snapshot_repository</url>
         </pluginRepository>
     </pluginRepositories>
     <dependencies>
