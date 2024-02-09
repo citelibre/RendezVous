@@ -51,10 +51,10 @@
     </pluginRepositories>
     <dependencies>
 	<dependency>
-            <groupId>fr.paris.lutece</groupId>
-            <artifactId>lutece-core</artifactId>
-            <version>[7.0.10]</version>
-            <type>lutece-core</type>
+		<groupId>fr.paris.lutece</groupId>
+		<artifactId>lutece-core</artifactId>
+		<version>[7.0.12]</version>
+		<type>lutece-core</type>
 	</dependency>
 	<dependency>
 		<groupId>fr.paris.lutece.plugins</groupId>
