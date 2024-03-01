@@ -917,7 +917,7 @@ CREATE TABLE `matomo_site` (
 
 LOCK TABLES `matomo_site` WRITE;
 /*!40000 ALTER TABLE `matomo_site` DISABLE KEYS */;
-INSERT INTO `matomo_site` VALUES (1,'cityagenda','http://localhost:8080/appointment','2022-10-24 12:53:29',0,1,'','','Europe/Paris','USD',0,'','','','','','website',0,'anonymous');
+INSERT INTO `matomo_site` VALUES (1,'Cité Libre RendezVous','http://localhost:8080/rendezvous','2022-10-24 12:53:29',0,1,'','','Europe/Paris','USD',0,'','','','','','website',0,'anonymous');
 /*!40000 ALTER TABLE `matomo_site` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1134,7 +1134,7 @@ CREATE TABLE `matomo_user_token_auth` (
 
 LOCK TABLES `matomo_user_token_auth` WRITE;
 /*!40000 ALTER TABLE `matomo_user_token_auth` DISABLE KEYS */;
-INSERT INTO `matomo_user_token_auth` VALUES (1,'anonymous','anonymous default token','e17f271371f48c16efa434763caade541d4425ccceda758d728f74a11e791dbac57000c47d0d21b41564f3b2910194232c4c3361a2770150674df3777ece742b','sha512',0,'2022-10-26 12:45:41','2022-10-24 14:51:23',NULL),(2,'admin','city-agenda','e94d7d3c290690b297e09b8dc7f6580f5e58dd09cdc43b95a5738ab457b6f79301266c8af272c7b28ee0699cb912404a00d6742417fe60602f3580bd45b33f49','sha512',0,NULL,'2022-10-24 16:01:10',NULL),(3,'citelibre','cite-libre','3c409da9e0edcc765157faa8f178d614c4646d2df3fb037561ab7a195abb3ebda8a4b9cbe5e11c6d26a5162ea46ef4d22e42f17b92c484a7d4f6da2ce228ae83','sha512',0,'2022-11-18 07:28:14','2022-11-18 06:28:14',NULL);
+INSERT INTO `matomo_user_token_auth` VALUES (1,'anonymous','anonymous default token','e17f271371f48c16efa434763caade541d4425ccceda758d728f74a11e791dbac57000c47d0d21b41564f3b2910194232c4c3361a2770150674df3777ece742b','sha512',0,'2022-10-26 12:45:41','2022-10-24 14:51:23',NULL),(2,'admin','rendezvous','e94d7d3c290690b297e09b8dc7f6580f5e58dd09cdc43b95a5738ab457b6f79301266c8af272c7b28ee0699cb912404a00d6742417fe60602f3580bd45b33f49','sha512',0,NULL,'2022-10-24 16:01:10',NULL),(3,'citelibre','cite-libre','3c409da9e0edcc765157faa8f178d614c4646d2df3fb037561ab7a195abb3ebda8a4b9cbe5e11c6d26a5162ea46ef4d22e42f17b92c484a7d4f6da2ce228ae83','sha512',0,'2022-11-18 07:28:14','2022-11-18 06:28:14',NULL);
 /*!40000 ALTER TABLE `matomo_user_token_auth` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
