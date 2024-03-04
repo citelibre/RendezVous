@@ -1148,29 +1148,3 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2022-11-10 17:24:19
-
-
--- migration to latest Matomo version
-DELETE FROM `matomo_archive_numeric_2022_10` WHERE ts_archived is null;
-ALTER TABLE `matomo_archive_numeric_2022_10` DROP INDEX `index_idsite_dates_period`;
-ALTER TABLE `matomo_archive_numeric_2022_10` ADD INDEX index_idsite_dates_period (`idsite`, `date1`, `date2`, `period`, `name` (6));
-DELETE FROM `matomo_archive_numeric_2022_11` WHERE ts_archived is null;
-ALTER TABLE `matomo_archive_numeric_2022_11` DROP INDEX `index_idsite_dates_period`;
-ALTER TABLE `matomo_archive_numeric_2022_11` ADD INDEX index_idsite_dates_period (`idsite`, `date1`, `date2`, `period`, `name` (6));
-DELETE FROM `matomo_archive_numeric_2022_12` WHERE ts_archived is null;
-ALTER TABLE `matomo_archive_numeric_2022_12` DROP INDEX `index_idsite_dates_period`;
-ALTER TABLE `matomo_archive_numeric_2022_12` ADD INDEX index_idsite_dates_period (`idsite`, `date1`, `date2`, `period`, `name` (6));
-ALTER TABLE `matomo_user_token_auth` ADD COLUMN `post_only` TINYINT(2) UNSIGNED NOT NULL DEFAULT '0';
-ALTER TABLE `matomo_log_conversion` ADD COLUMN `pageviews_before` SMALLINT UNSIGNED DEFAULT NULL;
-# Ces commandes de la console seront exécutées : 
-./console core:calculate-conversion-pages --dates=yesterday,today
-# Ces requêtes SQL seront exécutées : 
-ALTER TABLE `matomo_log_visit` RENAME INDEX `index_idsite_idvisitor` TO `index_idsite_idvisitor_time`;
-ALTER TABLE `matomo_log_visit` ADD INDEX `index_idsite_idvisitor_time` (`idsite`, `idvisitor`, `visit_last_action_time` DESC);
-ALTER TABLE `matomo_log_visit` DROP INDEX `index_idsite_idvisitor`;
-# Ces commandes de la console seront exécutées : 
-./console plugin:activate "JsTrackerInstallCheck"
-# Ces requêtes SQL seront exécutées : 
-ALTER TABLE `matomo_user_token_auth` CHANGE `post_only` `secure_only` TINYINT(2) UNSIGNED NOT NULL DEFAULT '0';
-ALTER TABLE `matomo_user` ADD COLUMN `ts_changes_shown` TIMESTAMP NULL;
-ALTER TABLE `matomo_log_conversion` ADD COLUMN `pageviews_before` SMALLINT UNSIGNED DEFAULT NULL;
