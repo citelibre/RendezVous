@@ -24,8 +24,5 @@
     <!-- Notifyers -->
     <bean id="grusupply.mailNotifyer" class="fr.paris.lutece.plugins.grusupply.service.notifyers.SendEmailService"/>
     <bean id="grusupply.crmNotifyer" class="fr.paris.lutece.plugins.grusupply.service.notifyers.NotifyCrmService"/>
-    <bean id="grusupply.smsNotifyer" class="fr.paris.lutece.plugins.grusupply.service.notifyers.SendSmsService"/>
-    <bean id="grusupply.statsNotifyer" class="fr.paris.lutece.plugins.grusupply.service.notifyers.SendStatisticsService"/>
     
 </beans>
-
