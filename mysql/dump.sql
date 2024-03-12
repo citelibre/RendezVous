@@ -1522,7 +1522,7 @@ CREATE TABLE `core_stylesheet` (
   `file_name` varchar(255) DEFAULT NULL,
   `source` mediumblob DEFAULT NULL,
   PRIMARY KEY (`id_stylesheet`)
-) AUTO_INCREMENT=311
+) AUTO_INCREMENT=311;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
