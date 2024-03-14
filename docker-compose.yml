@@ -43,8 +43,7 @@ services:
         image: citelibre/rendezvous:keycloak-1.0.9-SNAPSHOT
         container_name: rdv_keycloak
         ports:
-            - "8081:8081"
-        command: ["-Djboss.http.port=8081"]
+            - "8081:8080"
         depends_on:
             - citelibre
 

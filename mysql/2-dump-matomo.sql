@@ -34,7 +34,7 @@ CREATE TABLE `matomo_access` (
   `access` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idaccess`),
   KEY `index_loginidsite` (`login`,`idsite`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +68,7 @@ CREATE TABLE `matomo_archive_invalidations` (
   `report` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`idinvalidation`),
   KEY `index_idsite_dates_period_name` (`idsite`,`date1`,`period`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +99,7 @@ CREATE TABLE `matomo_archive_numeric_2022_10` (
   PRIMARY KEY (`idarchive`,`name`),
   KEY `index_idsite_dates_period` (`idsite`,`date1`,`date2`,`period`,`ts_archived`),
   KEY `index_period_archived` (`period`,`ts_archived`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,7 +130,7 @@ CREATE TABLE `matomo_archive_numeric_2022_11` (
   PRIMARY KEY (`idarchive`,`name`),
   KEY `index_idsite_dates_period` (`idsite`,`date1`,`date2`,`period`,`ts_archived`),
   KEY `index_period_archived` (`period`,`ts_archived`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -161,7 +161,7 @@ CREATE TABLE `matomo_archive_numeric_2022_12` (
   PRIMARY KEY (`idarchive`,`name`),
   KEY `index_idsite_dates_period` (`idsite`,`date1`,`date2`,`period`,`ts_archived`),
   KEY `index_period_archived` (`period`,`ts_archived`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -187,7 +187,7 @@ CREATE TABLE `matomo_brute_force_log` (
   `login` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_brute_force_log`),
   KEY `index_ip_address` (`ip_address`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -218,7 +218,7 @@ CREATE TABLE `matomo_changes` (
   `link` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`idchange`),
   UNIQUE KEY `unique_plugin_version_title` (`plugin_name`,`version`,`title`(100))
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -249,7 +249,7 @@ CREATE TABLE `matomo_custom_dimensions` (
   `case_sensitive` tinyint unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`idcustomdimension`,`idsite`),
   UNIQUE KEY `uniq_hash` (`idsite`,`scope`,`index`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -282,7 +282,7 @@ CREATE TABLE `matomo_goal` (
   `deleted` tinyint NOT NULL DEFAULT '0',
   `event_value_as_revenue` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`idsite`,`idgoal`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -306,7 +306,7 @@ CREATE TABLE `matomo_locks` (
   `value` varchar(255) DEFAULT NULL,
   `expiry_time` bigint unsigned DEFAULT '9999999999',
   PRIMARY KEY (`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -333,7 +333,7 @@ CREATE TABLE `matomo_log_action` (
   `url_prefix` tinyint DEFAULT NULL,
   PRIMARY KEY (`idaction`),
   KEY `index_type_hash` (`type`,`hash`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -394,7 +394,7 @@ CREATE TABLE `matomo_log_conversion` (
   PRIMARY KEY (`idvisit`,`idgoal`,`buster`),
   UNIQUE KEY `unique_idsite_idorder` (`idsite`,`idorder`),
   KEY `index_idsite_datetime` (`idsite`,`server_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -431,7 +431,7 @@ CREATE TABLE `matomo_log_conversion_item` (
   `deleted` tinyint unsigned NOT NULL,
   PRIMARY KEY (`idvisit`,`idorder`,`idaction_sku`),
   KEY `index_idsite_servertime` (`idsite`,`server_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -495,7 +495,7 @@ CREATE TABLE `matomo_log_link_visit_action` (
   PRIMARY KEY (`idlink_va`),
   KEY `index_idvisit` (`idvisit`),
   KEY `index_idsite_servertime` (`idsite`,`server_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -521,7 +521,7 @@ CREATE TABLE `matomo_log_profiling` (
   `idprofiling` bigint unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`idprofiling`),
   UNIQUE KEY `query` (`query`(100))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -605,7 +605,7 @@ CREATE TABLE `matomo_log_visit` (
   KEY `index_idsite_config_datetime` (`idsite`,`config_id`,`visit_last_action_time`),
   KEY `index_idsite_datetime` (`idsite`,`visit_last_action_time`),
   KEY `index_idsite_idvisitor` (`idsite`,`idvisitor`,`visit_last_action_time` DESC)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -631,7 +631,7 @@ CREATE TABLE `matomo_logger_message` (
   `level` varchar(16) DEFAULT NULL,
   `message` text,
   PRIMARY KEY (`idlogger_message`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -656,7 +656,7 @@ CREATE TABLE `matomo_option` (
   `autoload` tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`option_name`),
   KEY `autoload` (`autoload`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -685,7 +685,7 @@ CREATE TABLE `matomo_plugin_setting` (
   `idplugin_setting` bigint unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`idplugin_setting`),
   KEY `plugin_name` (`plugin_name`,`user_login`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -721,7 +721,7 @@ CREATE TABLE `matomo_privacy_logdata_anonymizations` (
   `requester` varchar(100) NOT NULL DEFAULT '',
   PRIMARY KEY (`idlogdata_anonymization`),
   KEY `job_start_date` (`job_start_date`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -759,7 +759,7 @@ CREATE TABLE `matomo_report` (
   `evolution_graph_period_n` int NOT NULL,
   `period_param` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`idreport`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -786,7 +786,7 @@ CREATE TABLE `matomo_report_subscriptions` (
   `ts_unsubscribed` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`idreport`,`email`),
   UNIQUE KEY `unique_token` (`token`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -818,7 +818,7 @@ CREATE TABLE `matomo_segment` (
   `ts_last_edit` timestamp NULL DEFAULT NULL,
   `deleted` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`idsegment`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -841,7 +841,7 @@ CREATE TABLE `matomo_sequence` (
   `name` varchar(120) NOT NULL,
   `value` bigint unsigned NOT NULL,
   PRIMARY KEY (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -867,7 +867,7 @@ CREATE TABLE `matomo_session` (
   `lifetime` int DEFAULT NULL,
   `data` mediumtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -908,7 +908,7 @@ CREATE TABLE `matomo_site` (
   `keep_url_fragment` tinyint NOT NULL DEFAULT '0',
   `creator_login` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idsite`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -937,7 +937,7 @@ CREATE TABLE `matomo_site_setting` (
   `idsite_setting` bigint unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`idsite_setting`),
   KEY `idsite` (`idsite`,`plugin_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -960,7 +960,7 @@ CREATE TABLE `matomo_site_url` (
   `idsite` int unsigned NOT NULL,
   `url` varchar(190) NOT NULL,
   PRIMARY KEY (`idsite`,`url`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -985,7 +985,7 @@ CREATE TABLE `matomo_tracking_failure` (
   `date_first_occurred` datetime NOT NULL,
   `request_url` mediumtext NOT NULL,
   PRIMARY KEY (`idsite`,`idfailure`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1009,7 +1009,7 @@ CREATE TABLE `matomo_twofactor_recovery_code` (
   `login` varchar(100) NOT NULL,
   `recovery_code` varchar(40) NOT NULL,
   PRIMARY KEY (`idrecoverycode`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1044,7 +1044,7 @@ CREATE TABLE `matomo_user` (
   `invite_accept_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`login`),
   UNIQUE KEY `uniq_email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1070,7 +1070,7 @@ CREATE TABLE `matomo_user_dashboard` (
   `name` varchar(100) DEFAULT NULL,
   `layout` text NOT NULL,
   PRIMARY KEY (`login`,`iddashboard`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1094,7 +1094,7 @@ CREATE TABLE `matomo_user_language` (
   `language` varchar(10) NOT NULL,
   `use_12_hour_clock` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`login`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1125,7 +1125,7 @@ CREATE TABLE `matomo_user_token_auth` (
   `date_expired` datetime DEFAULT NULL,
   PRIMARY KEY (`idusertokenauth`),
   UNIQUE KEY `uniq_password` (`password`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
