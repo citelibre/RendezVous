@@ -1,13 +1,13 @@
--- MariaDB dump 10.19  Distrib 10.5.23-MariaDB, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.1.0, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: lutece
+-- Host: localhost    Database: lutece
 -- ------------------------------------------------------
--- Server version	10.5.23-MariaDB
+-- Server version	8.1.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -15,29 +15,26 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-CREATE DATABASE lutece;
-USE lutece;
-
 --
 -- Table structure for table `appointment_appointment`
 --
 
 DROP TABLE IF EXISTS `appointment_appointment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment_appointment` (
-  `id_appointment` int(11) NOT NULL AUTO_INCREMENT,
+  `id_appointment` int NOT NULL AUTO_INCREMENT,
   `reference` varchar(45) DEFAULT NULL,
-  `nb_places` int(11) NOT NULL DEFAULT 0,
-  `is_cancelled` tinyint(1) NOT NULL DEFAULT 0,
-  `id_action_cancelled` int(11) DEFAULT NULL,
-  `id_action_reported` int(11) DEFAULT NULL,
-  `notification` int(11) NOT NULL DEFAULT 0,
-  `id_admin_user` int(11) DEFAULT 0,
-  `date_appointment_create` timestamp NOT NULL DEFAULT current_timestamp(),
+  `nb_places` int NOT NULL DEFAULT '0',
+  `is_cancelled` tinyint(1) NOT NULL DEFAULT '0',
+  `id_action_cancelled` int DEFAULT NULL,
+  `id_action_reported` int DEFAULT NULL,
+  `notification` int NOT NULL DEFAULT '0',
+  `id_admin_user` int DEFAULT '0',
+  `date_appointment_create` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `admin_access_code_create` varchar(100) DEFAULT NULL,
-  `id_user` int(11) NOT NULL,
-  `is_surbooked` tinyint(1) NOT NULL DEFAULT 0,
+  `id_user` int NOT NULL,
+  `is_surbooked` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_appointment`),
   UNIQUE KEY `reference_idx` (`reference`),
   KEY `fk_appointment_appointment_appointment_user_idx` (`id_user`)
@@ -48,8 +45,10 @@ CREATE TABLE `appointment_appointment` (
 -- Dumping data for table `appointment_appointment`
 --
 
+LOCK TABLES `appointment_appointment` WRITE;
 /*!40000 ALTER TABLE `appointment_appointment` DISABLE KEYS */;
 /*!40000 ALTER TABLE `appointment_appointment` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `appointment_appointment_response`
@@ -57,11 +56,11 @@ CREATE TABLE `appointment_appointment` (
 
 DROP TABLE IF EXISTS `appointment_appointment_response`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment_appointment_response` (
-  `id_appointment_response` int(11) NOT NULL AUTO_INCREMENT,
-  `id_response` int(11) NOT NULL,
-  `id_appointment` int(11) NOT NULL,
+  `id_appointment_response` int NOT NULL AUTO_INCREMENT,
+  `id_response` int NOT NULL,
+  `id_appointment` int NOT NULL,
   PRIMARY KEY (`id_appointment_response`),
   UNIQUE KEY `appointment_appointment_response_unique` (`id_appointment`,`id_response`),
   KEY `fk_appointment_appointment_response_appointment_appointment_idx` (`id_appointment`)
@@ -72,8 +71,10 @@ CREATE TABLE `appointment_appointment_response` (
 -- Dumping data for table `appointment_appointment_response`
 --
 
+LOCK TABLES `appointment_appointment_response` WRITE;
 /*!40000 ALTER TABLE `appointment_appointment_response` DISABLE KEYS */;
 /*!40000 ALTER TABLE `appointment_appointment_response` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `appointment_appointment_slot`
@@ -81,11 +82,11 @@ CREATE TABLE `appointment_appointment_response` (
 
 DROP TABLE IF EXISTS `appointment_appointment_slot`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment_appointment_slot` (
-  `id_appointment` int(11) NOT NULL,
-  `id_slot` int(11) NOT NULL,
-  `nb_places` int(11) NOT NULL,
+  `id_appointment` int NOT NULL,
+  `id_slot` int NOT NULL,
+  `nb_places` int NOT NULL,
   PRIMARY KEY (`id_appointment`,`id_slot`),
   KEY `fk_appointment_appointment_slot_slot` (`id_slot`),
   KEY `idx_appointment_slot` (`id_appointment`,`id_slot`)
@@ -96,8 +97,10 @@ CREATE TABLE `appointment_appointment_slot` (
 -- Dumping data for table `appointment_appointment_slot`
 --
 
+LOCK TABLES `appointment_appointment_slot` WRITE;
 /*!40000 ALTER TABLE `appointment_appointment_slot` DISABLE KEYS */;
 /*!40000 ALTER TABLE `appointment_appointment_slot` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `appointment_calendar_template`
@@ -105,9 +108,9 @@ CREATE TABLE `appointment_appointment_slot` (
 
 DROP TABLE IF EXISTS `appointment_calendar_template`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment_calendar_template` (
-  `id_calendar_template` int(11) NOT NULL AUTO_INCREMENT,
+  `id_calendar_template` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `template_path` varchar(255) NOT NULL,
@@ -119,9 +122,11 @@ CREATE TABLE `appointment_calendar_template` (
 -- Dumping data for table `appointment_calendar_template`
 --
 
+LOCK TABLES `appointment_calendar_template` WRITE;
 /*!40000 ALTER TABLE `appointment_calendar_template` DISABLE KEYS */;
 INSERT INTO `appointment_calendar_template` VALUES (1,'Calendrier','Calendrier des créneaux disponibles et indisponibles','skin/plugins/appointment/calendar/appointment_form_calendar.html'),(2,'Calendrier jours ouverts','Calendrier des créneaux disponibles et indisponibles (jours ouverts)','skin/plugins/appointment/calendar/appointment_form_calendar_opendays.html'),(3,'Liste des creneaux disponibles','Liste des créneaux disponibles','skin/plugins/appointment/calendar/appointment_form_list_open_slots.html'),(4,'Liste des creneaux disponibles jours ouverts','Liste des créneaux disponibles (jours ouverts)','skin/plugins/appointment/calendar/appointment_form_list_open_slots_opendays.html'),(5,'Liste des creneaux disponible regroupés','Liste des creneaux disponible regroupés','skin/plugins/appointment/calendar/appointment_form_list_open_slots_grouped.html');
 /*!40000 ALTER TABLE `appointment_calendar_template` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `appointment_category`
@@ -129,11 +134,11 @@ INSERT INTO `appointment_calendar_template` VALUES (1,'Calendrier','Calendrier d
 
 DROP TABLE IF EXISTS `appointment_category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment_category` (
-  `id_category` int(11) NOT NULL AUTO_INCREMENT,
+  `id_category` int NOT NULL AUTO_INCREMENT,
   `label` varchar(255) NOT NULL,
-  `nb_max_appointments_per_user` int(11) NOT NULL DEFAULT 0,
+  `nb_max_appointments_per_user` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_category`),
   UNIQUE KEY `appointment_category_unique_label` (`label`)
 );
@@ -143,8 +148,10 @@ CREATE TABLE `appointment_category` (
 -- Dumping data for table `appointment_category`
 --
 
+LOCK TABLES `appointment_category` WRITE;
 /*!40000 ALTER TABLE `appointment_category` DISABLE KEYS */;
 /*!40000 ALTER TABLE `appointment_category` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `appointment_closing_day`
@@ -152,11 +159,11 @@ CREATE TABLE `appointment_category` (
 
 DROP TABLE IF EXISTS `appointment_closing_day`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment_closing_day` (
-  `id_closing_day` int(11) NOT NULL AUTO_INCREMENT,
+  `id_closing_day` int NOT NULL AUTO_INCREMENT,
   `date_of_closing_day` date NOT NULL,
-  `id_form` int(11) NOT NULL,
+  `id_form` int NOT NULL,
   PRIMARY KEY (`id_closing_day`),
   UNIQUE KEY `appointment_closing_day_unique` (`id_form`,`date_of_closing_day`),
   KEY `fk_appointment_closing_day_appointment_form_idx` (`id_form`),
@@ -168,8 +175,10 @@ CREATE TABLE `appointment_closing_day` (
 -- Dumping data for table `appointment_closing_day`
 --
 
+LOCK TABLES `appointment_closing_day` WRITE;
 /*!40000 ALTER TABLE `appointment_closing_day` DISABLE KEYS */;
 /*!40000 ALTER TABLE `appointment_closing_day` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `appointment_comment`
@@ -177,10 +186,10 @@ CREATE TABLE `appointment_closing_day` (
 
 DROP TABLE IF EXISTS `appointment_comment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment_comment` (
-  `id_comment` int(11) NOT NULL AUTO_INCREMENT,
-  `id_form` int(11) NOT NULL DEFAULT 0,
+  `id_comment` int NOT NULL AUTO_INCREMENT,
+  `id_form` int NOT NULL DEFAULT '0',
   `starting_validity_date` date NOT NULL,
   `starting_validity_time` time DEFAULT NULL,
   `ending_validity_date` date NOT NULL,
@@ -197,8 +206,10 @@ CREATE TABLE `appointment_comment` (
 -- Dumping data for table `appointment_comment`
 --
 
+LOCK TABLES `appointment_comment` WRITE;
 /*!40000 ALTER TABLE `appointment_comment` DISABLE KEYS */;
 /*!40000 ALTER TABLE `appointment_comment` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `appointment_comment_notification_cf`
@@ -206,12 +217,12 @@ CREATE TABLE `appointment_comment` (
 
 DROP TABLE IF EXISTS `appointment_comment_notification_cf`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment_comment_notification_cf` (
   `notify_type` varchar(45) NOT NULL,
   `sender_name` varchar(255) DEFAULT NULL,
   `subject` varchar(255) DEFAULT NULL,
-  `message` mediumtext DEFAULT NULL
+  `message` mediumtext
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -219,9 +230,11 @@ CREATE TABLE `appointment_comment_notification_cf` (
 -- Dumping data for table `appointment_comment_notification_cf`
 --
 
+LOCK TABLES `appointment_comment_notification_cf` WRITE;
 /*!40000 ALTER TABLE `appointment_comment_notification_cf` DISABLE KEYS */;
 INSERT INTO `appointment_comment_notification_cf` VALUES ('CREATE','noreplay','Notification comment appointment',' '),('DELETE','noreplay','Notification comment appointment',' '),('UPDATE','noreplay','Notification comment appointment',' ');
 /*!40000 ALTER TABLE `appointment_comment_notification_cf` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `appointment_display`
@@ -229,16 +242,16 @@ INSERT INTO `appointment_comment_notification_cf` VALUES ('CREATE','noreplay','N
 
 DROP TABLE IF EXISTS `appointment_display`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment_display` (
-  `id_display` int(11) NOT NULL AUTO_INCREMENT,
-  `display_title_fo` tinyint(1) NOT NULL DEFAULT 0,
-  `icon_form_content` mediumblob DEFAULT NULL,
+  `id_display` int NOT NULL AUTO_INCREMENT,
+  `display_title_fo` tinyint(1) NOT NULL DEFAULT '0',
+  `icon_form_content` mediumblob,
   `icon_form_mime_type` varchar(255) DEFAULT NULL,
-  `nb_weeks_to_display` int(11) NOT NULL DEFAULT 0,
-  `is_displayed_on_portlet` tinyint(1) NOT NULL DEFAULT 1,
-  `id_calendar_template` int(11) NOT NULL,
-  `id_form` int(11) NOT NULL,
+  `nb_weeks_to_display` int NOT NULL DEFAULT '0',
+  `is_displayed_on_portlet` tinyint(1) NOT NULL DEFAULT '1',
+  `id_calendar_template` int NOT NULL,
+  `id_form` int NOT NULL,
   PRIMARY KEY (`id_display`),
   UNIQUE KEY `appointment_display_unique` (`id_form`),
   KEY `fk_appointment_display_appointment_calendar_template_idx` (`id_calendar_template`)
@@ -249,8 +262,10 @@ CREATE TABLE `appointment_display` (
 -- Dumping data for table `appointment_display`
 --
 
+LOCK TABLES `appointment_display` WRITE;
 /*!40000 ALTER TABLE `appointment_display` DISABLE KEYS */;
 /*!40000 ALTER TABLE `appointment_display` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `appointment_form`
@@ -258,23 +273,23 @@ CREATE TABLE `appointment_display` (
 
 DROP TABLE IF EXISTS `appointment_form`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment_form` (
-  `id_form` int(11) NOT NULL AUTO_INCREMENT,
+  `id_form` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `reference` varchar(255) DEFAULT NULL,
-  `id_category` int(11) DEFAULT NULL,
+  `id_category` int DEFAULT NULL,
   `starting_validity_date` date DEFAULT NULL,
   `ending_validity_date` date DEFAULT NULL,
-  `is_active` tinyint(1) NOT NULL DEFAULT 0,
-  `id_workflow` int(11) DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT '0',
+  `id_workflow` int DEFAULT NULL,
   `workgroup` varchar(255) DEFAULT NULL,
-  `is_multislot_appointment` tinyint(1) NOT NULL DEFAULT 0,
+  `is_multislot_appointment` tinyint(1) NOT NULL DEFAULT '0',
   `role_fo` varchar(255) DEFAULT NULL,
-  `capacity_per_slot` int(11) NOT NULL DEFAULT 0,
-  `nb_consecutive_slots` int(11) NOT NULL DEFAULT 1,
-  `is_anonymizable` tinyint(1) NOT NULL DEFAULT 0,
+  `capacity_per_slot` int NOT NULL DEFAULT '0',
+  `nb_consecutive_slots` int NOT NULL DEFAULT '1',
+  `is_anonymizable` tinyint(1) NOT NULL DEFAULT '0',
   `anonymization_pattern` varchar(2) DEFAULT NULL,
   PRIMARY KEY (`id_form`),
   KEY `starting_validity_date_idx` (`starting_validity_date`),
@@ -287,8 +302,10 @@ CREATE TABLE `appointment_form` (
 -- Dumping data for table `appointment_form`
 --
 
+LOCK TABLES `appointment_form` WRITE;
 /*!40000 ALTER TABLE `appointment_form` DISABLE KEYS */;
 /*!40000 ALTER TABLE `appointment_form` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `appointment_form_message`
@@ -296,9 +313,9 @@ CREATE TABLE `appointment_form` (
 
 DROP TABLE IF EXISTS `appointment_form_message`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment_form_message` (
-  `id_form_message` int(11) NOT NULL AUTO_INCREMENT,
+  `id_form_message` int NOT NULL AUTO_INCREMENT,
   `calendar_title` varchar(255) NOT NULL,
   `field_firstname_title` varchar(255) NOT NULL,
   `field_firstname_help` varchar(255) NOT NULL,
@@ -316,7 +333,7 @@ CREATE TABLE `appointment_form_message` (
   `calendar_description` mediumtext NOT NULL,
   `calendar_reserve_label` varchar(255) NOT NULL,
   `calendar_full_label` varchar(255) NOT NULL,
-  `id_form` int(11) NOT NULL,
+  `id_form` int NOT NULL,
   PRIMARY KEY (`id_form_message`),
   KEY `fk_appointment_form_message_appointment_form_idx` (`id_form`)
 );
@@ -326,8 +343,10 @@ CREATE TABLE `appointment_form_message` (
 -- Dumping data for table `appointment_form_message`
 --
 
+LOCK TABLES `appointment_form_message` WRITE;
 /*!40000 ALTER TABLE `appointment_form_message` DISABLE KEYS */;
 /*!40000 ALTER TABLE `appointment_form_message` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `appointment_form_portlet`
@@ -335,10 +354,10 @@ CREATE TABLE `appointment_form_message` (
 
 DROP TABLE IF EXISTS `appointment_form_portlet`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment_form_portlet` (
-  `id_portlet` int(11) NOT NULL,
-  `id_form` int(11) NOT NULL,
+  `id_portlet` int NOT NULL,
+  `id_form` int NOT NULL,
   PRIMARY KEY (`id_portlet`,`id_form`),
   KEY `fk_appointment_form_portlet_appointment_form_idx` (`id_form`)
 );
@@ -348,8 +367,10 @@ CREATE TABLE `appointment_form_portlet` (
 -- Dumping data for table `appointment_form_portlet`
 --
 
+LOCK TABLES `appointment_form_portlet` WRITE;
 /*!40000 ALTER TABLE `appointment_form_portlet` DISABLE KEYS */;
 /*!40000 ALTER TABLE `appointment_form_portlet` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `appointment_form_rule`
@@ -357,18 +378,18 @@ CREATE TABLE `appointment_form_portlet` (
 
 DROP TABLE IF EXISTS `appointment_form_rule`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment_form_rule` (
-  `id_form_rule` int(11) NOT NULL AUTO_INCREMENT,
-  `is_captcha_enabled` tinyint(1) NOT NULL DEFAULT 0,
-  `is_mandatory_email_enabled` tinyint(1) NOT NULL DEFAULT 0,
-  `is_active_authentication` tinyint(1) NOT NULL DEFAULT 0,
-  `nb_days_before_new_appointment` int(11) NOT NULL DEFAULT 0,
-  `min_time_before_appointment` int(11) NOT NULL DEFAULT 0,
-  `nb_max_appointments_per_user` int(11) NOT NULL DEFAULT 0,
-  `nb_days_for_max_appointments_per_user` int(11) NOT NULL DEFAULT 0,
-  `bo_overbooking` tinyint(1) NOT NULL DEFAULT 0,
-  `id_form` int(11) NOT NULL,
+  `id_form_rule` int NOT NULL AUTO_INCREMENT,
+  `is_captcha_enabled` tinyint(1) NOT NULL DEFAULT '0',
+  `is_mandatory_email_enabled` tinyint(1) NOT NULL DEFAULT '0',
+  `is_active_authentication` tinyint(1) NOT NULL DEFAULT '0',
+  `nb_days_before_new_appointment` int NOT NULL DEFAULT '0',
+  `min_time_before_appointment` int NOT NULL DEFAULT '0',
+  `nb_max_appointments_per_user` int NOT NULL DEFAULT '0',
+  `nb_days_for_max_appointments_per_user` int NOT NULL DEFAULT '0',
+  `bo_overbooking` tinyint(1) NOT NULL DEFAULT '0',
+  `id_form` int NOT NULL,
   PRIMARY KEY (`id_form_rule`),
   UNIQUE KEY `appointment_form_rule_unique` (`id_form`)
 );
@@ -378,8 +399,10 @@ CREATE TABLE `appointment_form_rule` (
 -- Dumping data for table `appointment_form_rule`
 --
 
+LOCK TABLES `appointment_form_rule` WRITE;
 /*!40000 ALTER TABLE `appointment_form_rule` DISABLE KEYS */;
 /*!40000 ALTER TABLE `appointment_form_rule` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `appointment_localization`
@@ -387,13 +410,13 @@ CREATE TABLE `appointment_form_rule` (
 
 DROP TABLE IF EXISTS `appointment_localization`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment_localization` (
-  `id_localization` int(11) NOT NULL AUTO_INCREMENT,
+  `id_localization` int NOT NULL AUTO_INCREMENT,
   `longitude` float DEFAULT NULL,
   `latitude` float DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
-  `id_form` int(11) NOT NULL,
+  `id_form` int NOT NULL,
   PRIMARY KEY (`id_localization`),
   KEY `fk_appointment_localization_appointment_form_idx` (`id_form`)
 );
@@ -403,8 +426,10 @@ CREATE TABLE `appointment_localization` (
 -- Dumping data for table `appointment_localization`
 --
 
+LOCK TABLES `appointment_localization` WRITE;
 /*!40000 ALTER TABLE `appointment_localization` DISABLE KEYS */;
 /*!40000 ALTER TABLE `appointment_localization` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `appointment_reservation_rule`
@@ -412,17 +437,17 @@ CREATE TABLE `appointment_localization` (
 
 DROP TABLE IF EXISTS `appointment_reservation_rule`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment_reservation_rule` (
-  `id_reservation_rule` int(11) NOT NULL AUTO_INCREMENT,
+  `id_reservation_rule` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `color` varchar(255) DEFAULT NULL,
-  `enable` tinyint(1) NOT NULL DEFAULT 1,
-  `max_capacity_per_slot` int(11) NOT NULL DEFAULT 0,
-  `max_people_per_appointment` int(11) NOT NULL DEFAULT 0,
-  `duration_appointments` int(11) NOT NULL DEFAULT 15,
-  `id_form` int(11) NOT NULL,
+  `enable` tinyint(1) NOT NULL DEFAULT '1',
+  `max_capacity_per_slot` int NOT NULL DEFAULT '0',
+  `max_people_per_appointment` int NOT NULL DEFAULT '0',
+  `duration_appointments` int NOT NULL DEFAULT '15',
+  `id_form` int NOT NULL,
   PRIMARY KEY (`id_reservation_rule`),
   KEY `fk_appointment_reservation_rule_appointment_form_idx` (`id_form`),
   KEY `fk_appointment_working_day_appointment_reservation_rule_idx` (`id_reservation_rule`)
@@ -433,8 +458,10 @@ CREATE TABLE `appointment_reservation_rule` (
 -- Dumping data for table `appointment_reservation_rule`
 --
 
+LOCK TABLES `appointment_reservation_rule` WRITE;
 /*!40000 ALTER TABLE `appointment_reservation_rule` DISABLE KEYS */;
 /*!40000 ALTER TABLE `appointment_reservation_rule` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `appointment_slot`
@@ -442,18 +469,18 @@ CREATE TABLE `appointment_reservation_rule` (
 
 DROP TABLE IF EXISTS `appointment_slot`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment_slot` (
-  `id_slot` int(11) NOT NULL AUTO_INCREMENT,
+  `id_slot` int NOT NULL AUTO_INCREMENT,
   `starting_date_time` timestamp NULL DEFAULT NULL,
   `ending_date_time` timestamp NULL DEFAULT NULL,
-  `is_open` tinyint(1) NOT NULL DEFAULT 1,
-  `is_specific` tinyint(1) NOT NULL DEFAULT 0,
-  `max_capacity` int(11) NOT NULL DEFAULT 0,
-  `nb_remaining_places` int(11) NOT NULL DEFAULT 0,
-  `nb_potential_remaining_places` int(11) NOT NULL DEFAULT 0,
-  `nb_places_taken` int(11) NOT NULL DEFAULT 0,
-  `id_form` int(11) NOT NULL,
+  `is_open` tinyint(1) NOT NULL DEFAULT '1',
+  `is_specific` tinyint(1) NOT NULL DEFAULT '0',
+  `max_capacity` int NOT NULL DEFAULT '0',
+  `nb_remaining_places` int NOT NULL DEFAULT '0',
+  `nb_potential_remaining_places` int NOT NULL DEFAULT '0',
+  `nb_places_taken` int NOT NULL DEFAULT '0',
+  `id_form` int NOT NULL,
   PRIMARY KEY (`id_slot`),
   UNIQUE KEY `appointment_slot_unique_starting` (`id_form`,`starting_date_time`),
   UNIQUE KEY `appointment_slot_unique_ending` (`id_form`,`ending_date_time`),
@@ -467,8 +494,10 @@ CREATE TABLE `appointment_slot` (
 -- Dumping data for table `appointment_slot`
 --
 
+LOCK TABLES `appointment_slot` WRITE;
 /*!40000 ALTER TABLE `appointment_slot` DISABLE KEYS */;
 /*!40000 ALTER TABLE `appointment_slot` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `appointment_time_slot`
@@ -476,14 +505,14 @@ CREATE TABLE `appointment_slot` (
 
 DROP TABLE IF EXISTS `appointment_time_slot`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment_time_slot` (
-  `id_time_slot` int(11) NOT NULL AUTO_INCREMENT,
+  `id_time_slot` int NOT NULL AUTO_INCREMENT,
   `starting_time` time NOT NULL,
   `ending_time` time NOT NULL,
-  `is_open` tinyint(1) NOT NULL DEFAULT 1,
-  `max_capacity` int(11) NOT NULL DEFAULT 0,
-  `id_working_day` int(11) NOT NULL,
+  `is_open` tinyint(1) NOT NULL DEFAULT '1',
+  `max_capacity` int NOT NULL DEFAULT '0',
+  `id_working_day` int NOT NULL,
   PRIMARY KEY (`id_time_slot`),
   UNIQUE KEY `appointment_time_slot_unique_starting` (`id_working_day`,`starting_time`),
   UNIQUE KEY `appointment_time_slot_unique_ending` (`id_working_day`,`ending_time`),
@@ -497,8 +526,10 @@ CREATE TABLE `appointment_time_slot` (
 -- Dumping data for table `appointment_time_slot`
 --
 
+LOCK TABLES `appointment_time_slot` WRITE;
 /*!40000 ALTER TABLE `appointment_time_slot` DISABLE KEYS */;
 /*!40000 ALTER TABLE `appointment_time_slot` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `appointment_user`
@@ -506,9 +537,9 @@ CREATE TABLE `appointment_time_slot` (
 
 DROP TABLE IF EXISTS `appointment_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment_user` (
-  `id_user` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int NOT NULL AUTO_INCREMENT,
   `guid` varchar(255) DEFAULT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
@@ -523,8 +554,10 @@ CREATE TABLE `appointment_user` (
 -- Dumping data for table `appointment_user`
 --
 
+LOCK TABLES `appointment_user` WRITE;
 /*!40000 ALTER TABLE `appointment_user` DISABLE KEYS */;
 /*!40000 ALTER TABLE `appointment_user` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `appointment_week_definition`
@@ -532,10 +565,10 @@ CREATE TABLE `appointment_user` (
 
 DROP TABLE IF EXISTS `appointment_week_definition`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment_week_definition` (
-  `id_week_definition` int(11) NOT NULL AUTO_INCREMENT,
-  `id_reservation_rule` int(11) NOT NULL,
+  `id_week_definition` int NOT NULL AUTO_INCREMENT,
+  `id_reservation_rule` int NOT NULL,
   `date_of_apply` date NOT NULL,
   `ending_date_of_apply` date NOT NULL,
   PRIMARY KEY (`id_week_definition`),
@@ -548,8 +581,10 @@ CREATE TABLE `appointment_week_definition` (
 -- Dumping data for table `appointment_week_definition`
 --
 
+LOCK TABLES `appointment_week_definition` WRITE;
 /*!40000 ALTER TABLE `appointment_week_definition` DISABLE KEYS */;
 /*!40000 ALTER TABLE `appointment_week_definition` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `appointment_working_day`
@@ -557,11 +592,11 @@ CREATE TABLE `appointment_week_definition` (
 
 DROP TABLE IF EXISTS `appointment_working_day`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment_working_day` (
-  `id_working_day` int(11) NOT NULL AUTO_INCREMENT,
-  `day_of_week` int(11) NOT NULL,
-  `id_reservation_rule` int(11) NOT NULL,
+  `id_working_day` int NOT NULL AUTO_INCREMENT,
+  `day_of_week` int NOT NULL,
+  `id_reservation_rule` int NOT NULL,
   PRIMARY KEY (`id_working_day`),
   UNIQUE KEY `appointment_working_day_unique` (`id_reservation_rule`,`day_of_week`)
 );
@@ -571,8 +606,10 @@ CREATE TABLE `appointment_working_day` (
 -- Dumping data for table `appointment_working_day`
 --
 
+LOCK TABLES `appointment_working_day` WRITE;
 /*!40000 ALTER TABLE `appointment_working_day` DISABLE KEYS */;
 /*!40000 ALTER TABLE `appointment_working_day` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `appointmentgru_`
@@ -580,11 +617,11 @@ CREATE TABLE `appointment_working_day` (
 
 DROP TABLE IF EXISTS `appointmentgru_`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointmentgru_` (
-  `id_appointmentgru` int(11) NOT NULL,
+  `id_appointmentgru` int NOT NULL,
   `guid` varchar(50) NOT NULL DEFAULT '',
-  `cuid` int(11) NOT NULL DEFAULT 0,
+  `cuid` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_appointmentgru`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -593,8 +630,10 @@ CREATE TABLE `appointmentgru_` (
 -- Dumping data for table `appointmentgru_`
 --
 
+LOCK TABLES `appointmentgru_` WRITE;
 /*!40000 ALTER TABLE `appointmentgru_` DISABLE KEYS */;
 /*!40000 ALTER TABLE `appointmentgru_` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_admin_dashboard`
@@ -602,11 +641,11 @@ CREATE TABLE `appointmentgru_` (
 
 DROP TABLE IF EXISTS `core_admin_dashboard`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_admin_dashboard` (
   `dashboard_name` varchar(100) NOT NULL,
-  `dashboard_column` int(11) NOT NULL,
-  `dashboard_order` int(11) NOT NULL,
+  `dashboard_column` int NOT NULL,
+  `dashboard_order` int NOT NULL,
   PRIMARY KEY (`dashboard_name`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -615,9 +654,11 @@ CREATE TABLE `core_admin_dashboard` (
 -- Dumping data for table `core_admin_dashboard`
 --
 
+LOCK TABLES `core_admin_dashboard` WRITE;
 /*!40000 ALTER TABLE `core_admin_dashboard` DISABLE KEYS */;
 INSERT INTO `core_admin_dashboard` VALUES ('usersAdminDashboardComponent',1,1),('searchAdminDashboardComponent',1,2),('editorAdminDashboardComponent',1,3),('autoIncludesAdminDashboardComponent',1,4),('featuresAdminDashboardComponent',1,5),('xslExportAdminDashboardComponent',1,6),('myluteceAuthenticationFilterAdminDashboardComponent',1,3),('workflowAdminDashboardComponent',1,1);
 /*!40000 ALTER TABLE `core_admin_dashboard` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_admin_mailinglist`
@@ -625,9 +666,9 @@ INSERT INTO `core_admin_dashboard` VALUES ('usersAdminDashboardComponent',1,1),(
 
 DROP TABLE IF EXISTS `core_admin_mailinglist`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_admin_mailinglist` (
-  `id_mailinglist` int(11) NOT NULL AUTO_INCREMENT,
+  `id_mailinglist` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `description` varchar(255) NOT NULL,
   `workgroup` varchar(50) NOT NULL,
@@ -639,9 +680,11 @@ CREATE TABLE `core_admin_mailinglist` (
 -- Dumping data for table `core_admin_mailinglist`
 --
 
+LOCK TABLES `core_admin_mailinglist` WRITE;
 /*!40000 ALTER TABLE `core_admin_mailinglist` DISABLE KEYS */;
 INSERT INTO `core_admin_mailinglist` VALUES (1,'admin','admin','all');
 /*!40000 ALTER TABLE `core_admin_mailinglist` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_admin_mailinglist_filter`
@@ -649,9 +692,9 @@ INSERT INTO `core_admin_mailinglist` VALUES (1,'admin','admin','all');
 
 DROP TABLE IF EXISTS `core_admin_mailinglist_filter`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_admin_mailinglist_filter` (
-  `id_mailinglist` int(11) NOT NULL DEFAULT 0,
+  `id_mailinglist` int NOT NULL DEFAULT '0',
   `workgroup` varchar(50) NOT NULL,
   `role` varchar(50) NOT NULL,
   PRIMARY KEY (`id_mailinglist`,`workgroup`,`role`)
@@ -662,9 +705,11 @@ CREATE TABLE `core_admin_mailinglist_filter` (
 -- Dumping data for table `core_admin_mailinglist_filter`
 --
 
+LOCK TABLES `core_admin_mailinglist_filter` WRITE;
 /*!40000 ALTER TABLE `core_admin_mailinglist_filter` DISABLE KEYS */;
 INSERT INTO `core_admin_mailinglist_filter` VALUES (1,'all','super_admin');
 /*!40000 ALTER TABLE `core_admin_mailinglist_filter` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_admin_right`
@@ -672,20 +717,20 @@ INSERT INTO `core_admin_mailinglist_filter` VALUES (1,'all','super_admin');
 
 DROP TABLE IF EXISTS `core_admin_right`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_admin_right` (
   `id_right` varchar(255) NOT NULL DEFAULT '',
   `name` varchar(255) DEFAULT NULL,
-  `level_right` smallint(6) DEFAULT NULL,
+  `level_right` smallint DEFAULT NULL,
   `admin_url` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `is_updatable` int(11) NOT NULL DEFAULT 0,
+  `is_updatable` int NOT NULL DEFAULT '0',
   `plugin_name` varchar(50) DEFAULT NULL,
   `id_feature_group` varchar(50) DEFAULT NULL,
   `icon_url` varchar(255) DEFAULT NULL,
   `documentation_url` varchar(255) DEFAULT NULL,
-  `id_order` int(11) DEFAULT NULL,
-  `is_external_feature` smallint(6) DEFAULT 0,
+  `id_order` int DEFAULT NULL,
+  `is_external_feature` smallint DEFAULT '0',
   PRIMARY KEY (`id_right`),
   KEY `index_right` (`level_right`,`admin_url`)
 );
@@ -695,9 +740,11 @@ CREATE TABLE `core_admin_right` (
 -- Dumping data for table `core_admin_right`
 --
 
+LOCK TABLES `core_admin_right` WRITE;
 /*!40000 ALTER TABLE `core_admin_right` DISABLE KEYS */;
 INSERT INTO `core_admin_right` VALUES ('CORE_ADMIN_SITE','portal.site.adminFeature.admin_site.name',2,'jsp/admin/site/AdminSite.jsp','portal.site.adminFeature.admin_site.description',1,NULL,'SITE','ti ti-home-edit','jsp/admin/documentation/AdminDocumentation.jsp?doc=admin-site',1,0),('CORE_ADMINDASHBOARD_MANAGEMENT','portal.admindashboard.adminFeature.right_management.name',0,NULL,'portal.admindashboard.adminFeature.right_management.description',0,'','SYSTEM','ti ti-dashboard',NULL,8,0),('CORE_CACHE_MANAGEMENT','portal.system.adminFeature.cache_management.name',0,'jsp/admin/system/ManageCaches.jsp','portal.system.adminFeature.cache_management.description',1,'','SYSTEM','ti ti-clock-edit',NULL,1,0),('CORE_DAEMONS_MANAGEMENT','portal.system.adminFeature.daemons_management.name',0,'jsp/admin/system/ManageDaemons.jsp','portal.system.adminFeature.daemons_management.description',0,'','SYSTEM','ti ti-timeline-event',NULL,7,0),('CORE_DASHBOARD_MANAGEMENT','portal.dashboard.adminFeature.dashboard_management.name',0,NULL,'portal.dashboard.adminFeature.dashboard_management.description',0,'','SYSTEM','ti ti-layout-dashboard',NULL,9,0),('CORE_EDITORS_MANAGEMENT','portal.admindashboard.editorManagement.right.name',2,NULL,'portal.admindashboard.editorManagement.right.description',1,'','SYSTEM','ti ti-tools',NULL,10,0),('CORE_FEATURES_MANAGEMENT','portal.admin.adminFeature.features_management.name',0,NULL,'portal.admin.adminFeature.features_management.description',0,'','SYSTEM','ti ti-apps',NULL,6,0),('CORE_LEVEL_RIGHT_MANAGEMENT','portal.users.adminFeature.level_right_management.name',2,NULL,'portal.users.adminFeature.level_right_management.description',0,'','MANAGERS','ti ti-list-detail',NULL,4,0),('CORE_LINK_SERVICE_MANAGEMENT','portal.insert.adminFeature.linkService_management.name',2,NULL,'portal.insert.adminFeature.linkService_management.description',0,NULL,NULL,'ti ti-link',NULL,1,0),('CORE_LOGS_VISUALISATION','portal.system.adminFeature.logs_visualisation.name',0,'jsp/admin/system/ManageFilesSystem.jsp','portal.system.adminFeature.logs_visualisation.description',1,'','SYSTEM','ti ti-list-search',NULL,4,0),('CORE_MAILINGLISTS_MANAGEMENT','portal.mailinglist.adminFeature.mailinglists_management.name',2,'jsp/admin/mailinglist/ManageMailingLists.jsp','portal.mailinglist.adminFeature.mailinglists_management.description',0,'','MANAGERS','ti ti-mail-cog',NULL,5,0),('CORE_PAGE_TEMPLATE_MANAGEMENT','portal.style.adminFeature.page_template_management.name',0,'jsp/admin/style/ManagePageTemplates.jsp','portal.style.adminFeature.page_template_management.description',0,'','STYLE','ti ti-layout-board',NULL,1,0),('CORE_PLUGINS_MANAGEMENT','portal.system.adminFeature.plugins_management.name',0,'jsp/admin/system/ManagePlugins.jsp','portal.system.adminFeature.plugins_management.description',1,'','SYSTEM','ti ti-apps-filled',NULL,5,0),('CORE_PROPERTIES_MANAGEMENT','portal.site.adminFeature.properties_management.name',2,'jsp/admin/ManageProperties.jsp','portal.site.adminFeature.properties_management.description',0,NULL,'SITE','ti ti-checklist','jsp/admin/documentation/AdminDocumentation.jsp?doc=admin-properties',2,0),('CORE_RBAC_MANAGEMENT','portal.rbac.adminFeature.rbac_management.name',0,'jsp/admin/rbac/ManageRoles.jsp','portal.rbac.adminFeature.rbac_management.description',0,'','MANAGERS','ti ti-user-check',NULL,1,0),('CORE_RIGHT_MANAGEMENT','portal.users.adminFeature.right_management.name',0,'jsp/admin/features/ManageRights.jsp','portal.users.adminFeature.right_management.description',0,'','MANAGERS','ti ti-gavel',NULL,6,0),('CORE_ROLES_MANAGEMENT','portal.role.adminFeature.roles_management.name',2,'jsp/admin/role/ManagePageRole.jsp','portal.role.adminFeature.roles_management.description',0,'','USERS','ti ti-list-check',NULL,2,0),('CORE_SEARCH_INDEXATION','portal.search.adminFeature.indexer.name',0,'jsp/admin/search/ManageSearchIndexation.jsp','portal.search.adminFeature.indexer.description',0,'','SYSTEM','ti ti-settings-search',NULL,2,0),('CORE_SEARCH_MANAGEMENT','portal.search.adminFeature.search_management.name',0,NULL,'portal.search.adminFeature.search_management.description',0,'','SYSTEM','ti ti-database-search',NULL,3,0),('CORE_STYLES_MANAGEMENT','portal.style.adminFeature.styles_management.name',0,'jsp/admin/style/ManageStyles.jsp','portal.style.adminFeature.styles_management.description',1,'','STYLE','ti ti-brush',NULL,3,0),('CORE_STYLESHEET_MANAGEMENT','portal.style.adminFeature.stylesheet_management.name',0,'jsp/admin/style/ManageStyleSheets.jsp','portal.style.adminFeature.stylesheet_management.description',1,'','STYLE','ti ti-file-code',NULL,2,0),('CORE_TEMPLATES_AUTO_INCLUDES_MANAGEMENT','portal.templates.adminFeature.ManageAutoIncludes.name',1,NULL,'portal.templates.adminFeature.ManageAutoIncludes.description',1,'','STYLE','ti ti-code-circle-2',NULL,4,0),('CORE_USERS_MANAGEMENT','portal.users.adminFeature.users_management.name',2,'jsp/admin/user/ManageUsers.jsp','portal.users.adminFeature.users_management.description',1,'','MANAGERS','ti ti-users',NULL,2,0),('CORE_WORKGROUPS_MANAGEMENT','portal.workgroup.adminFeature.workgroups_management.name',2,'jsp/admin/workgroup/ManageWorkgroups.jsp','portal.workgroup.adminFeature.workgroups_management.description',0,'','MANAGERS','ti ti-users-group',NULL,3,0),('CORE_XSL_EXPORT_MANAGEMENT','portal.xsl.adminFeature.xsl_export_management.name',2,NULL,'portal.xsl.adminFeature.xsl_export_management.description',1,'','SYSTEM','ti ti-file-export',NULL,11,0),('APPOINTMENT_FORM_MANAGEMENT','appointment.adminFeature.ManageAppointmentForm.name',1,'jsp/admin/plugins/appointment/ManageAppointmentForms.jsp','appointment.adminFeature.ManageAppointmentForm.description',0,'appointment','APPLICATIONS',NULL,NULL,4,0),('APPOINTMENT_CALENDAR_TEMPLATE','appointment.adminFeature.manageCalendarTemplates.name',0,'jsp/admin/plugins/appointment/ManageCalendarTemplates.jsp','appointment.adminFeature.manageCalendarTemplates.name',0,'appointment','APPLICATIONS',NULL,NULL,5,0),('APPOINTMENT_CATEGORY_MANAGEMENT','appointment.adminFeature.manageCategories.name',1,'jsp/admin/plugins/appointment/ManageAppointmentCategory.jsp','appointment.adminFeature.manageCategories.description',0,'appointment','SYSTEM',NULL,NULL,4,0),('MULTIVIEW_APPOINTMENT','module.appointment.management.adminFeature.MultiviewAppointment.name',2,'jsp/admin/plugins/appointment/modules/management/MultiviewAppointment.jsp','module.appointment.management.adminFeature.MultiviewAppointment.description',0,'appointment-management',NULL,NULL,NULL,4,0),('ELASTICDATA_MANAGEMENT','elasticdata.adminFeature.ManageElasticData.name',1,'jsp/admin/plugins/elasticdata/ManageElasticData.jsp','elasticdata.adminFeature.ManageElasticData.description',0,'elasticdata',NULL,NULL,NULL,4,0),('VIEW_TEMP_FILES','filegenerator.adminFeature.temporary_files.name',2,'jsp/admin/plugins/filegenerator/ManageMyFiles.jsp','filegenerator.adminFeature.temporary_files.description',0,NULL,'SYSTEM',NULL,NULL,3,0),('ENTRY_TYPE_MANAGEMENT','genericattributes.adminFeature.manageEntryType.name',1,'jsp/admin/plugins/genericattributes/ManageEntryType.jsp','genericattributes.adminFeature.manageEntryType.description',0,'genericattributes',NULL,NULL,NULL,5,0),('HTMLPAGE_MANAGEMENT','htmlpage.adminFeature.htmlpage_management.name',3,'jsp/admin/plugins/htmlpage/ManageHtmlPage.jsp','htmlpage.adminFeature.htmlpage_management.description',0,'htmlpage','APPLICATIONS',NULL,NULL,NULL,0),('IDENTITYSTORE_MANAGEMENT','identitystore.adminFeature.ManageIdentities.name',1,'jsp/admin/plugins/identitystore/ManageIdentities.jsp','identitystore.adminFeature.ManageIdentities.description',0,'identitystore',NULL,NULL,NULL,4,0),('IDENTITYSTORE_ADMIN_MANAGEMENT','identitystore.adminFeature.AdminIdentities.name',1,'jsp/admin/plugins/identitystore/ManageClientApplications.jsp','identitystore.adminFeature.AdminIdentities.description',0,'identitystore',NULL,NULL,NULL,4,0),('KIBANA_MANAGEMENT','kibana.adminFeature.KibanaDashboard.name',1,'jsp/admin/plugins/kibana/KibanaDashboard.jsp','kibana.adminFeature.KibanaDashboard.description',0,'kibana',NULL,NULL,NULL,4,0),('KIBANA_RBAC_MANAGEMENT','kibana.adminFeature.ManageKibana.name',1,'jsp/admin/plugins/kibana/ManageDashboards.jsp','kibana.adminFeature.ManageKibana.description',0,'kibana',NULL,NULL,NULL,4,0),('MATOMO_MANAGEMENT','matomo.adminFeature.ManageMatomo.name',1,'jsp/admin/plugins/matomo/Matomo.jsp','matomo.adminFeature.ManageMatomo.description',0,'matomo',NULL,NULL,NULL,4,0),('MODULENOTIFYGRUMAPPINGMANAGER_MANAGEMENT','modulenotifygrumappingmanager.adminFeature.ManageModulenotifygrumappingmanager.name',1,'jsp/admin/plugins/modulenotifygrumappingmanager/ManageNotifygruMappingManagers.jsp','modulenotifygrumappingmanager.adminFeature.ManageModulenotifygrumappingmanager.description',0,'modulenotifygrumappingmanager',NULL,NULL,NULL,4,0),('MYDASHBOARD_PANEL_MANAGEMENT','mydashboard.adminFeature.ManageMydashboardPanel.name',1,'jsp/admin/plugins/mydashboard/ManageMyDashboardPanel.jsp','mydashboard.adminFeature.ManageMydashboardPanel.description',0,'mydashboard',NULL,NULL,NULL,4,0),('MYLUTECE_MANAGEMENT','mylutece.adminFeature.mylutece_management.name',2,'jsp/admin/plugins/mylutece/ManageMylutece.jsp','mylutece.adminFeature.mylutece_management.description',0,'mylutece','USERS',NULL,NULL,NULL,0),('MYLUTECE_MANAGE_AUTHENTICATION_FILTER','mylutece.adminFeature.mylutece_management_authentication_filter.name',2,'jsp/admin/plugins/mylutece/security/ManageAuthenticationFilter.jsp','mylutece.adminFeature.mylutece_management_authentication_filter.description',0,'mylutece','USERS',NULL,NULL,NULL,0),('PROFILES_MANAGEMENT','profiles.adminFeature.profiles_management.name',0,'jsp/admin/plugins/profiles/ManageProfiles.jsp','profiles.adminFeature.profiles_management.description',0,'profiles','MANAGERS','images/admin/skin/plugins/profiles/profiles.png',NULL,NULL,0),('PROFILES_VIEWS_MANAGEMENT','profiles.adminFeature.views_management.name',0,'jsp/admin/plugins/profiles/ManageViews.jsp','profiles.adminFeature.views_management.description',0,'profiles','MANAGERS','images/admin/skin/plugins/profiles/views.png',NULL,NULL,0),('REFERENCELIST_MANAGEMENT','referencelist.adminFeature.ReferenceListManage.name',1,'jsp/admin/plugins/referencelist/ManageReferences.jsp','referencelist.adminFeature.ReferenceListManage.description',0,'referencelist',NULL,NULL,NULL,4,0),('REGULAR_EXPRESSION_MANAGEMENT','regularexpression.adminFeature.regularexpression_management.name',0,'jsp/admin/plugins/regularexpression/ManageRegularExpression.jsp','regularexpression.adminFeature.regularexpression_management.description',0,'regularexpression','SYSTEM','images/admin/skin/plugins/regularexpression/regularexpression.png',NULL,NULL,0),('SITELABELS_MANAGEMENT','sitelabels.adminFeature.ManageSiteLabels.name',0,'jsp/admin/plugins/sitelabels/ManageLabels.jsp','sitelabels.adminFeature.ManageSiteLabels.description',0,'sitelabels',NULL,NULL,NULL,4,0),('SOLR_INDEX_MANAGEMENT','search.solr.adminFeature.title',1,'jsp/admin/search/solr/ManageSearchIndexation.jsp','search.solr.adminFeature.description',0,'solr','SYSTEM','images/admin/skin/plugins/search/solr_FC.jpg',NULL,NULL,0),('SOLR_CONFIGURATION_MANAGEMENT','search.solr.adminFeature.configuration.title',1,'jsp/admin/search/solr/ManageSearchConfiguration.jsp','search.solr.adminFeature.configuration.description',0,'solr','SYSTEM','images/admin/skin/plugins/search/solr_FC.jpg',NULL,NULL,0),('SOLR_FIELDS_MANAGEMENT','search.solr.adminFeature.fields.title',1,'jsp/admin/search/solr/ManageSolrFields.jsp','search.solr.adminFeature.fields.description',0,'solr','SYSTEM','images/admin/skin/plugins/search/solr_FC.jpg',NULL,NULL,0),('SYSTEMINFO_MANAGEMENT','systeminfo.adminFeature.systeminfo_management.name',0,'jsp/admin/plugins/systeminfo/ManageSystemInfo.jsp','systeminfo.adminFeature.systeminfo_management.description',0,'systeminfo','SYSTEM',NULL,NULL,NULL,0),('WORKFLOW_MANAGEMENT','workflow.adminFeature.workflow_management.name',2,'jsp/admin/plugins/workflow/ManageWorkflow.jsp','workflow.adminFeature.workflow_management.description',0,'workflow','APPLICATIONS','images/admin/skin/plugins/workflow/workflow.png','jsp/admin/documentation/AdminDocumentation.jsp?doc=admin-workflow',NULL,0);
 /*!40000 ALTER TABLE `core_admin_right` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_admin_role`
@@ -705,7 +752,7 @@ INSERT INTO `core_admin_right` VALUES ('CORE_ADMIN_SITE','portal.site.adminFeatu
 
 DROP TABLE IF EXISTS `core_admin_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_admin_role` (
   `role_key` varchar(50) NOT NULL DEFAULT '',
   `role_description` varchar(100) NOT NULL DEFAULT '',
@@ -717,9 +764,11 @@ CREATE TABLE `core_admin_role` (
 -- Dumping data for table `core_admin_role`
 --
 
+LOCK TABLES `core_admin_role` WRITE;
 /*!40000 ALTER TABLE `core_admin_role` DISABLE KEYS */;
 INSERT INTO `core_admin_role` VALUES ('all_site_manager','Site Manager'),('super_admin','Super Administrateur'),('kibana_dashboards_manager','Gestion des tableaux de bords Kibana'),('assign_roles','Assigner des roles aux utilisateurs'),('assign_groups','Assigner des groupes aux utilisateurs'),('mylutece_manager','Gérer les patramètres avancés Mylutece'),('profiles_manager','Profiles management'),('profiles_views_manager','Profiles Views management'),('CREATE_REFERENCE_IMPORT','Import csv file'),('workflow_manager','Workflow management');
 /*!40000 ALTER TABLE `core_admin_role` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_admin_role_resource`
@@ -727,9 +776,9 @@ INSERT INTO `core_admin_role` VALUES ('all_site_manager','Site Manager'),('super
 
 DROP TABLE IF EXISTS `core_admin_role_resource`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_admin_role_resource` (
-  `rbac_id` int(11) NOT NULL AUTO_INCREMENT,
+  `rbac_id` int NOT NULL AUTO_INCREMENT,
   `role_key` varchar(50) NOT NULL DEFAULT '',
   `resource_type` varchar(50) NOT NULL DEFAULT '',
   `resource_id` varchar(50) NOT NULL DEFAULT '',
@@ -742,9 +791,11 @@ CREATE TABLE `core_admin_role_resource` (
 -- Dumping data for table `core_admin_role_resource`
 --
 
+LOCK TABLES `core_admin_role_resource` WRITE;
 /*!40000 ALTER TABLE `core_admin_role_resource` DISABLE KEYS */;
 INSERT INTO `core_admin_role_resource` VALUES (1,'all_site_manager','PAGE','*','VIEW'),(2,'all_site_manager','PAGE','*','MANAGE'),(3,'super_admin','INSERT_SERVICE','*','*'),(4,'all_site_manager','PORTLET_TYPE','*','*'),(5,'all_site_manager','ADMIN_USER','*','*'),(6,'all_site_manager','SEARCH_SERVICE','*','*'),(7,'all_site_manager','XSL_EXPORT','*','*'),(1026,'super_admin','APPOINTMENT_FORM','*','*'),(1029,'super_admin','APPOINTMENT_FORM_CREATE','*','*'),(1030,'kibana_dashboards_manager','kibana_dashboard','*','*'),(205,'assign_roles','ROLE_TYPE','*','ASSIGN_ROLE'),(207,'mylutece_manager','MYLUTECE','*','*'),(150,'profiles_manager','PROFILES','*','*'),(151,'profiles_views_manager','PROFILES_VIEWS','*','*'),(165,'CREATE_REFERENCE_IMPORT','REFERENCE_IMPORT','*','*'),(912,'workflow_manager','WORKFLOW_ACTION_TYPE','*','*'),(923,'workflow_manager','WORKFLOW_STATE_TYPE','*','*');
 /*!40000 ALTER TABLE `core_admin_role_resource` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_admin_user`
@@ -752,23 +803,23 @@ INSERT INTO `core_admin_role_resource` VALUES (1,'all_site_manager','PAGE','*','
 
 DROP TABLE IF EXISTS `core_admin_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_admin_user` (
-  `id_user` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int NOT NULL AUTO_INCREMENT,
   `access_code` varchar(100) NOT NULL DEFAULT '',
   `last_name` varchar(100) NOT NULL DEFAULT '',
   `first_name` varchar(100) NOT NULL DEFAULT '',
   `email` varchar(256) NOT NULL DEFAULT '0',
-  `status` smallint(6) NOT NULL DEFAULT 0,
-  `password` mediumtext DEFAULT NULL,
+  `status` smallint NOT NULL DEFAULT '0',
+  `password` mediumtext,
   `locale` varchar(10) NOT NULL DEFAULT 'fr',
-  `level_user` smallint(6) NOT NULL DEFAULT 0,
-  `reset_password` smallint(6) NOT NULL DEFAULT 0,
-  `accessibility_mode` smallint(6) NOT NULL DEFAULT 0,
+  `level_user` smallint NOT NULL DEFAULT '0',
+  `reset_password` smallint NOT NULL DEFAULT '0',
+  `accessibility_mode` smallint NOT NULL DEFAULT '0',
   `password_max_valid_date` timestamp NULL DEFAULT NULL,
-  `account_max_valid_date` bigint(20) DEFAULT NULL,
-  `nb_alerts_sent` int(11) NOT NULL DEFAULT 0,
-  `last_login` timestamp NOT NULL DEFAULT '1979-12-31 23:00:00',
+  `account_max_valid_date` bigint DEFAULT NULL,
+  `nb_alerts_sent` int NOT NULL DEFAULT '0',
+  `last_login` timestamp NULL DEFAULT '1980-01-01 00:00:00',
   `workgroup_key` varchar(50) DEFAULT 'all',
   PRIMARY KEY (`id_user`)
 ) AUTO_INCREMENT=5;
@@ -778,9 +829,11 @@ CREATE TABLE `core_admin_user` (
 -- Dumping data for table `core_admin_user`
 --
 
+LOCK TABLES `core_admin_user` WRITE;
 /*!40000 ALTER TABLE `core_admin_user` DISABLE KEYS */;
-INSERT INTO `core_admin_user` VALUES (1,'admin','Admin','admin','admin@lutece.fr',0,'PLAINTEXT:adminadmin','fr',0,0,0,'1979-12-31 23:00:00',NULL,0,'1979-12-31 23:00:00','all'),(2,'lutece','Lutece','lutece','lutece@lutece.fr',1,'PLAINTEXT:adminadmin','fr',1,0,0,'1979-12-31 23:00:00',NULL,0,'1979-12-31 23:00:00','all'),(3,'redac','redac','redac','redac@lutece.fr',1,'PLAINTEXT:adminadmin','fr',2,0,0,'1979-12-31 23:00:00',NULL,0,'1979-12-31 23:00:00','all'),(4,'valid','valid','valid','valid@lutece.fr',1,'PLAINTEXT:adminadmin','fr',3,0,0,'1979-12-31 23:00:00',NULL,0,'1979-12-31 23:00:00','all');
+INSERT INTO `core_admin_user` VALUES (1,'admin','Admin','admin','admin@lutece.fr',0,'PLAINTEXT:adminadmin','fr',0,0,0,'1980-01-01 00:00:00',NULL,0,'1980-01-01 00:00:00','all'),(2,'lutece','Lutece','lutece','lutece@lutece.fr',1,'PLAINTEXT:adminadmin','fr',1,0,0,'1980-01-01 00:00:00',NULL,0,'1980-01-01 00:00:00','all'),(3,'redac','redac','redac','redac@lutece.fr',1,'PLAINTEXT:adminadmin','fr',2,0,0,'1980-01-01 00:00:00',NULL,0,'1980-01-01 00:00:00','all'),(4,'valid','valid','valid','valid@lutece.fr',1,'PLAINTEXT:adminadmin','fr',3,0,0,'1980-01-01 00:00:00',NULL,0,'1980-01-01 00:00:00','all');
 /*!40000 ALTER TABLE `core_admin_user` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_admin_user_anonymize_field`
@@ -788,10 +841,10 @@ INSERT INTO `core_admin_user` VALUES (1,'admin','Admin','admin','admin@lutece.fr
 
 DROP TABLE IF EXISTS `core_admin_user_anonymize_field`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_admin_user_anonymize_field` (
   `field_name` varchar(100) NOT NULL,
-  `anonymize` smallint(6) NOT NULL,
+  `anonymize` smallint NOT NULL,
   PRIMARY KEY (`field_name`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -800,9 +853,11 @@ CREATE TABLE `core_admin_user_anonymize_field` (
 -- Dumping data for table `core_admin_user_anonymize_field`
 --
 
+LOCK TABLES `core_admin_user_anonymize_field` WRITE;
 /*!40000 ALTER TABLE `core_admin_user_anonymize_field` DISABLE KEYS */;
 INSERT INTO `core_admin_user_anonymize_field` VALUES ('access_code',1),('last_name',1),('first_name',1),('email',1);
 /*!40000 ALTER TABLE `core_admin_user_anonymize_field` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_admin_user_field`
@@ -810,14 +865,14 @@ INSERT INTO `core_admin_user_anonymize_field` VALUES ('access_code',1),('last_na
 
 DROP TABLE IF EXISTS `core_admin_user_field`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_admin_user_field` (
-  `id_user_field` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user` int(11) DEFAULT NULL,
-  `id_attribute` int(11) DEFAULT NULL,
-  `id_field` int(11) DEFAULT NULL,
-  `id_file` int(11) DEFAULT NULL,
-  `user_field_value` mediumtext DEFAULT NULL,
+  `id_user_field` int NOT NULL AUTO_INCREMENT,
+  `id_user` int DEFAULT NULL,
+  `id_attribute` int DEFAULT NULL,
+  `id_field` int DEFAULT NULL,
+  `id_file` int DEFAULT NULL,
+  `user_field_value` mediumtext,
   PRIMARY KEY (`id_user_field`),
   KEY `core_admin_user_field_idx_file` (`id_file`)
 );
@@ -827,8 +882,10 @@ CREATE TABLE `core_admin_user_field` (
 -- Dumping data for table `core_admin_user_field`
 --
 
+LOCK TABLES `core_admin_user_field` WRITE;
 /*!40000 ALTER TABLE `core_admin_user_field` DISABLE KEYS */;
 /*!40000 ALTER TABLE `core_admin_user_field` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_admin_user_preferences`
@@ -836,11 +893,11 @@ CREATE TABLE `core_admin_user_field` (
 
 DROP TABLE IF EXISTS `core_admin_user_preferences`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_admin_user_preferences` (
   `id_user` varchar(100) NOT NULL,
   `pref_key` varchar(100) NOT NULL,
-  `pref_value` mediumtext DEFAULT NULL,
+  `pref_value` mediumtext,
   PRIMARY KEY (`id_user`,`pref_key`),
   KEY `index_admin_user_preferences` (`id_user`)
 );
@@ -850,8 +907,10 @@ CREATE TABLE `core_admin_user_preferences` (
 -- Dumping data for table `core_admin_user_preferences`
 --
 
+LOCK TABLES `core_admin_user_preferences` WRITE;
 /*!40000 ALTER TABLE `core_admin_user_preferences` DISABLE KEYS */;
 /*!40000 ALTER TABLE `core_admin_user_preferences` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_admin_workgroup`
@@ -859,7 +918,7 @@ CREATE TABLE `core_admin_user_preferences` (
 
 DROP TABLE IF EXISTS `core_admin_workgroup`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_admin_workgroup` (
   `workgroup_key` varchar(50) NOT NULL,
   `workgroup_description` varchar(255) DEFAULT NULL,
@@ -871,8 +930,10 @@ CREATE TABLE `core_admin_workgroup` (
 -- Dumping data for table `core_admin_workgroup`
 --
 
+LOCK TABLES `core_admin_workgroup` WRITE;
 /*!40000 ALTER TABLE `core_admin_workgroup` DISABLE KEYS */;
 /*!40000 ALTER TABLE `core_admin_workgroup` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_admin_workgroup_user`
@@ -880,10 +941,10 @@ CREATE TABLE `core_admin_workgroup` (
 
 DROP TABLE IF EXISTS `core_admin_workgroup_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_admin_workgroup_user` (
   `workgroup_key` varchar(50) NOT NULL,
-  `id_user` int(11) NOT NULL,
+  `id_user` int NOT NULL,
   PRIMARY KEY (`workgroup_key`,`id_user`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -892,8 +953,10 @@ CREATE TABLE `core_admin_workgroup_user` (
 -- Dumping data for table `core_admin_workgroup_user`
 --
 
+LOCK TABLES `core_admin_workgroup_user` WRITE;
 /*!40000 ALTER TABLE `core_admin_workgroup_user` DISABLE KEYS */;
 /*!40000 ALTER TABLE `core_admin_workgroup_user` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_attribute`
@@ -901,19 +964,19 @@ CREATE TABLE `core_admin_workgroup_user` (
 
 DROP TABLE IF EXISTS `core_attribute`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_attribute` (
-  `id_attribute` int(11) NOT NULL AUTO_INCREMENT,
+  `id_attribute` int NOT NULL AUTO_INCREMENT,
   `type_class_name` varchar(255) DEFAULT NULL,
-  `title` mediumtext DEFAULT NULL,
-  `help_message` mediumtext DEFAULT NULL,
-  `is_mandatory` smallint(6) DEFAULT 0,
-  `is_shown_in_search` smallint(6) DEFAULT 0,
-  `is_shown_in_result_list` smallint(6) DEFAULT 0,
-  `is_field_in_line` smallint(6) DEFAULT 0,
-  `attribute_position` int(11) DEFAULT 0,
+  `title` mediumtext,
+  `help_message` mediumtext,
+  `is_mandatory` smallint DEFAULT '0',
+  `is_shown_in_search` smallint DEFAULT '0',
+  `is_shown_in_result_list` smallint DEFAULT '0',
+  `is_field_in_line` smallint DEFAULT '0',
+  `attribute_position` int DEFAULT '0',
   `plugin_name` varchar(255) DEFAULT NULL,
-  `anonymize` smallint(6) DEFAULT NULL,
+  `anonymize` smallint DEFAULT NULL,
   PRIMARY KEY (`id_attribute`)
 ) AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -922,9 +985,11 @@ CREATE TABLE `core_attribute` (
 -- Dumping data for table `core_attribute`
 --
 
+LOCK TABLES `core_attribute` WRITE;
 /*!40000 ALTER TABLE `core_attribute` DISABLE KEYS */;
 INSERT INTO `core_attribute` VALUES (1,'fr.paris.lutece.portal.business.user.attribute.AttributeComboBox','Profil','',0,0,0,0,0,'profiles',NULL);
 /*!40000 ALTER TABLE `core_attribute` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_attribute_field`
@@ -932,18 +997,18 @@ INSERT INTO `core_attribute` VALUES (1,'fr.paris.lutece.portal.business.user.att
 
 DROP TABLE IF EXISTS `core_attribute_field`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_attribute_field` (
-  `id_field` int(11) NOT NULL AUTO_INCREMENT,
-  `id_attribute` int(11) DEFAULT NULL,
+  `id_field` int NOT NULL AUTO_INCREMENT,
+  `id_attribute` int DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
-  `DEFAULT_value` mediumtext DEFAULT NULL,
-  `is_DEFAULT_value` smallint(6) DEFAULT 0,
-  `height` int(11) DEFAULT NULL,
-  `width` int(11) DEFAULT NULL,
-  `max_size_enter` int(11) DEFAULT NULL,
-  `is_multiple` smallint(6) DEFAULT 0,
-  `field_position` int(11) DEFAULT NULL,
+  `DEFAULT_value` mediumtext,
+  `is_DEFAULT_value` smallint DEFAULT '0',
+  `height` int DEFAULT NULL,
+  `width` int DEFAULT NULL,
+  `max_size_enter` int DEFAULT NULL,
+  `is_multiple` smallint DEFAULT '0',
+  `field_position` int DEFAULT NULL,
   PRIMARY KEY (`id_field`)
 ) AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -952,9 +1017,11 @@ CREATE TABLE `core_attribute_field` (
 -- Dumping data for table `core_attribute_field`
 --
 
+LOCK TABLES `core_attribute_field` WRITE;
 /*!40000 ALTER TABLE `core_attribute_field` DISABLE KEYS */;
 INSERT INTO `core_attribute_field` VALUES (1,1,NULL,NULL,0,0,0,0,1,1);
 /*!40000 ALTER TABLE `core_attribute_field` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_connections_log`
@@ -962,12 +1029,12 @@ INSERT INTO `core_attribute_field` VALUES (1,1,NULL,NULL,0,0,0,0,1,1);
 
 DROP TABLE IF EXISTS `core_connections_log`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_connections_log` (
   `access_code` varchar(100) DEFAULT NULL,
   `ip_address` varchar(63) DEFAULT NULL,
-  `date_login` timestamp NOT NULL DEFAULT current_timestamp(),
-  `login_status` int(11) DEFAULT NULL,
+  `date_login` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `login_status` int DEFAULT NULL,
   KEY `index_connections_log` (`ip_address`,`date_login`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -976,8 +1043,10 @@ CREATE TABLE `core_connections_log` (
 -- Dumping data for table `core_connections_log`
 --
 
+LOCK TABLES `core_connections_log` WRITE;
 /*!40000 ALTER TABLE `core_connections_log` DISABLE KEYS */;
 /*!40000 ALTER TABLE `core_connections_log` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_dashboard`
@@ -985,11 +1054,11 @@ CREATE TABLE `core_connections_log` (
 
 DROP TABLE IF EXISTS `core_dashboard`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_dashboard` (
   `dashboard_name` varchar(100) NOT NULL,
-  `dashboard_column` int(11) NOT NULL,
-  `dashboard_order` int(11) NOT NULL,
+  `dashboard_column` int NOT NULL,
+  `dashboard_order` int NOT NULL,
   PRIMARY KEY (`dashboard_name`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -998,9 +1067,11 @@ CREATE TABLE `core_dashboard` (
 -- Dumping data for table `core_dashboard`
 --
 
+LOCK TABLES `core_dashboard` WRITE;
 /*!40000 ALTER TABLE `core_dashboard` DISABLE KEYS */;
 INSERT INTO `core_dashboard` VALUES ('CORE_SYSTEM',1,2),('CORE_USERS',1,1),('CORE_USER',4,1),('CORE_PAGES',2,1),('APPOINTMENT_FORM',3,2),('WORKFLOW',3,1);
 /*!40000 ALTER TABLE `core_dashboard` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_datastore`
@@ -1008,10 +1079,10 @@ INSERT INTO `core_dashboard` VALUES ('CORE_SYSTEM',1,2),('CORE_USERS',1,1),('COR
 
 DROP TABLE IF EXISTS `core_datastore`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_datastore` (
   `entity_key` varchar(255) NOT NULL,
-  `entity_value` mediumtext DEFAULT NULL,
+  `entity_value` mediumtext,
   PRIMARY KEY (`entity_key`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1020,9 +1091,11 @@ CREATE TABLE `core_datastore` (
 -- Dumping data for table `core_datastore`
 --
 
+LOCK TABLES `core_datastore` WRITE;
 /*!40000 ALTER TABLE `core_datastore` DISABLE KEYS */;
-INSERT INTO `core_datastore` VALUES ('core.advanced_parameters.password_duration','120'),('core.advanced_parameters.default_user_level','0'),('core.advanced_parameters.default_user_notification','1'),('core.advanced_parameters.default_user_language','fr'),('core.advanced_parameters.default_user_status','0'),('core.advanced_parameters.email_pattern','^[\\w_.\\-!\\#\\$\\%\\&\'\\*\\+\\/\\=\\?\\^\\\\}\\{\\|\\~]+@[\\w_.\\-]+\\.[\\w]+$'),('core.advanced_parameters.email_pattern_verify_by',''),('core.advanced_parameters.force_change_password_reinit','false'),('core.advanced_parameters.password_minimum_length','8'),('core.advanced_parameters.password_format_upper_lower_case','false'),('core.advanced_parameters.password_format_numero','false'),('core.advanced_parameters.password_format_special_characters','false'),('core.advanced_parameters.password_history_size',''),('core.advanced_parameters.maximum_number_password_change',''),('core.advanced_parameters.tsw_size_password_change',''),('core.advanced_parameters.use_advanced_security_parameters',''),('core.advanced_parameters.account_life_time','12'),('core.advanced_parameters.time_before_alert_account','30'),('core.advanced_parameters.nb_alert_account','2'),('core.advanced_parameters.time_between_alerts_account','10'),('core.advanced_parameters.access_failures_max','3'),('core.advanced_parameters.access_failures_interval','10'),('core.advanced_parameters.expired_alert_mail_sender','lutece@nowhere.com'),('core.advanced_parameters.expired_alert_mail_subject','Votre compte a expiré'),('core.advanced_parameters.first_alert_mail_sender','lutece@nowhere.com'),('core.advanced_parameters.first_alert_mail_subject','Votre compte va bientôt expirer'),('core.advanced_parameters.other_alert_mail_sender','lutece@nowhere.com'),('core.advanced_parameters.other_alert_mail_subject','Votre compte va bientôt expirer'),('core.advanced_parameters.account_reactivated_mail_sender','lutece@nowhere.com'),('core.advanced_parameters.account_reactivated_mail_subject','Votre compte a bien été réactivé'),('core.advanced_parameters.access_failures_captcha','1'),('core.advanced_parameters.notify_user_password_expired',''),('core.advanced_parameters.password_expired_mail_sender','lutece@nowhere.com'),('core.advanced_parameters.password_expired_mail_subject','Votre mot de passe a expiré'),('core.advanced_parameters.reset_token_validity','60'),('core.advanced_parameters.lock_reset_token_to_session','false'),('core.backOffice.defaultEditor','tinymce'),('core.frontOffice.defaultEditor','sceeditor'),('core_banned_domain_names','yopmail.com'),('portal.site.site_property.name','LUTECE'),('portal.site.site_property.meta.author','<author>'),('portal.site.site_property.meta.copyright','<copyright>'),('portal.site.site_property.meta.description','<description>'),('portal.site.site_property.meta.keywords','<keywords>'),('portal.site.site_property.email','<webmaster email>'),('portal.site.site_property.noreply_email','no-reply@mydomain.com'),('portal.site.site_property.home_url','jsp/site/Portal.jsp'),('portal.site.site_property.admin_home_url','jsp/admin/AdminMenu.jsp'),('portal.site.site_property.popup_credits.textblock','&lt;credits text&gt;'),('portal.site.site_property.popup_legal_info.copyright.textblock','&lt;copyright text&gt;'),('portal.site.site_property.popup_legal_info.privacy.textblock','&lt;privacy text&gt;'),('portal.site.site_property.logo_url','themes/admin/shared/images/logo-header-icon.svg'),('portal.site.site_property.locale.default','fr'),('portal.site.site_property.avatar_default','themes/admin/shared/images/unknown.svg'),('portal.site.site_property.portlet.title.maxlength','75'),('portal.site.site_property.back_images','themes/admin/tabler/images/bg_login1.svg, themes/admin/tabler/images/bg_login2.svg'),('portal.site.site_property.bo.showXs.checkbox','1'),('portal.site.site_property.bo.showXsWarning.checkbox','0'),('portal.site.site_property.login.image',''),('portal.site.site_property.layout.menu.checkbox','0'),('portal.site.site_property.layout.darkmode.checkbox','0'),('portal.site.site_property.layout.readmode.checkbox','0'),('portal.site.site_property.layout.user.readmode.show.checkbox','0'),('portal.site.site_property.layout.user.darkmode.show.checkbox','1'),('portal.site.site_property.layout.user.menumode.show.checkbox','1'),('core.cache.status.appointment.appointmentFormCacheService.enabled','1'),('appointment.site_property.nbplaces','5'),('core.cache.status.EntryTypeServiceManagerCache.enabled','1'),('core.plugins.status.identitystore.installed','true'),('leaflet.icon.icons.default.installed','true'),('leaflet.icon.icons.red.installed','true'),('leaflet.icon.icons.yellow.installed','true'),('leaflet.icon.icons.green.installed','true'),('mylutece.security.public_url.mylutece.url.login.page','jsp/site/Portal.jsp?page=mylutece&action=login'),('mylutece.security.public_url.mylutece.url.doLogin','jsp/site/plugins/mylutece/DoMyLuteceLogin.jsp'),('mylutece.security.public_url.mylutece.url.doLogout','jsp/site/plugins/mylutece/DoMyLuteceLogout.jsp'),('mylutece.security.public_url.mylutece.url.createAccount.page','jsp/site/Portal.jsp?page=mylutece&action=createAccount'),('mylutece.security.public_url.mylutece.url.modifyAccount.page','jsp/site/Portal.jsp?page=mylutece&action=modifyAccount'),('mylutece.security.public_url.mylutece.url.lostPassword.page','jsp/site/Portal.jsp?page=mylutece&action=lostPassword'),('mylutece.security.public_url.mylutece.url.lostLogin.page','jsp/site/Portal.jsp?page=mylutecedatabase&action=lostLogin'),('mylutece.security.public_url.mylutece.url.doActionsAll','jsp/site/plugins/mylutece/Do*'),('themecitelibre.site_property.footer.cookieLink','#cookiecitelibrepack'),('themecitelibre.site_property.footer.cookieLabel','Cookies management'),('themecitelibre.site_property.footer.about.title','A propos'),('themecitelibre.site_property.footer.about','CiteLibre is made for cities, by cities, upon open source principals. <br> <a class=\"btn btn-link ps-0\" href=\"//:lutece.paris.fr\" title=\"[#i18n{portal.site.portal_footer.newWindow}] LUTECE website\" target=\"_blank><img src=\"images/poweredby.png\" alt=\"Powered by LUTECE\"></a> '),('themecitelibre.site_property.bannerMessage.Type','info'),('themecitelibre.site_property.bannerMessage.Title',''),('themecitelibre.site_property.bannerMessage.Position','bottom-right'),('themecitelibre.site_property.bannerMessage.htmlblock',''),('themecitelibre.site_property.bannerMessage.CloseButton.checkbox','1'),('themecitelibre.site_property.footer.links.title','Liens importants'),('themecitelibre.site_property.robotIndex.checkbox','1');
+INSERT INTO `core_datastore` VALUES ('core.advanced_parameters.password_duration','120'),('core.advanced_parameters.default_user_level','0'),('core.advanced_parameters.default_user_notification','1'),('core.advanced_parameters.default_user_language','fr'),('core.advanced_parameters.default_user_status','0'),('core.advanced_parameters.email_pattern','^[\\w_.\\-!\\#\\$\\%\\&\'\\*\\+\\/\\=\\?\\^\\\\}\\{\\|\\~]+@[\\w_.\\-]+\\.[\\w]+$'),('core.advanced_parameters.email_pattern_verify_by',''),('core.advanced_parameters.force_change_password_reinit','false'),('core.advanced_parameters.password_minimum_length','8'),('core.advanced_parameters.password_format_upper_lower_case','false'),('core.advanced_parameters.password_format_numero','false'),('core.advanced_parameters.password_format_special_characters','false'),('core.advanced_parameters.password_history_size',''),('core.advanced_parameters.maximum_number_password_change',''),('core.advanced_parameters.tsw_size_password_change',''),('core.advanced_parameters.use_advanced_security_parameters',''),('core.advanced_parameters.account_life_time','12'),('core.advanced_parameters.time_before_alert_account','30'),('core.advanced_parameters.nb_alert_account','2'),('core.advanced_parameters.time_between_alerts_account','10'),('core.advanced_parameters.access_failures_max','3'),('core.advanced_parameters.access_failures_interval','10'),('core.advanced_parameters.expired_alert_mail_sender','lutece@nowhere.com'),('core.advanced_parameters.expired_alert_mail_subject','Votre compte a expiré'),('core.advanced_parameters.first_alert_mail_sender','lutece@nowhere.com'),('core.advanced_parameters.first_alert_mail_subject','Votre compte va bientôt expirer'),('core.advanced_parameters.other_alert_mail_sender','lutece@nowhere.com'),('core.advanced_parameters.other_alert_mail_subject','Votre compte va bientôt expirer'),('core.advanced_parameters.account_reactivated_mail_sender','lutece@nowhere.com'),('core.advanced_parameters.account_reactivated_mail_subject','Votre compte a bien été réactivé'),('core.advanced_parameters.access_failures_captcha','1'),('core.advanced_parameters.notify_user_password_expired',''),('core.advanced_parameters.password_expired_mail_sender','lutece@nowhere.com'),('core.advanced_parameters.password_expired_mail_subject','Votre mot de passe a expiré'),('core.advanced_parameters.reset_token_validity','60'),('core.advanced_parameters.lock_reset_token_to_session','false'),('core.backOffice.defaultEditor','tinymce'),('core.frontOffice.defaultEditor','sceeditor'),('core_banned_domain_names','yopmail.com'),('portal.site.site_property.name','LUTECE'),('portal.site.site_property.meta.author','<author>'),('portal.site.site_property.meta.copyright','<copyright>'),('portal.site.site_property.meta.description','<description>'),('portal.site.site_property.meta.keywords','<keywords>'),('portal.site.site_property.email','<webmaster email>'),('portal.site.site_property.noreply_email','no-reply@mydomain.com'),('portal.site.site_property.home_url','jsp/site/Portal.jsp'),('portal.site.site_property.admin_home_url','jsp/admin/AdminMenu.jsp'),('portal.site.site_property.popup_credits.textblock','&lt;credits text&gt;'),('portal.site.site_property.popup_legal_info.copyright.textblock','&lt;copyright text&gt;'),('portal.site.site_property.popup_legal_info.privacy.textblock','&lt;privacy text&gt;'),('portal.site.site_property.logo_url','themes/admin/shared/images/logo-header-icon.svg'),('portal.site.site_property.locale.default','fr'),('portal.site.site_property.avatar_default','themes/admin/shared/images/unknown.svg'),('portal.site.site_property.portlet.title.maxlength','75'),('portal.site.site_property.back_images','themes/admin/tabler/images/bg_login1.svg, themes/admin/tabler/images/bg_login2.svg'),('portal.site.site_property.bo.showXs.checkbox','1'),('portal.site.site_property.bo.showXsWarning.checkbox','0'),('portal.site.site_property.login.image',''),('portal.site.site_property.layout.menu.checkbox','0'),('portal.site.site_property.layout.darkmode.checkbox','0'),('portal.site.site_property.layout.readmode.checkbox','0'),('portal.site.site_property.layout.user.readmode.show.checkbox','0'),('portal.site.site_property.layout.user.darkmode.show.checkbox','1'),('portal.site.site_property.layout.user.menumode.show.checkbox','1'),('core.cache.status.appointment.appointmentFormCacheService.enabled','1'),('appointment.site_property.nbplaces','5'),('core.cache.status.EntryTypeServiceManagerCache.enabled','1'),('core.plugins.status.identitystore.installed','true'),('leaflet.icon.icons.default.installed','true'),('leaflet.icon.icons.red.installed','true'),('leaflet.icon.icons.yellow.installed','true'),('leaflet.icon.icons.green.installed','true'),('mylutece.security.public_url.mylutece.url.login.page','jsp/site/Portal.jsp?page=mylutece&action=login'),('mylutece.security.public_url.mylutece.url.doLogin','jsp/site/plugins/mylutece/DoMyLuteceLogin.jsp'),('mylutece.security.public_url.mylutece.url.doLogout','jsp/site/plugins/mylutece/DoMyLuteceLogout.jsp'),('mylutece.security.public_url.mylutece.url.createAccount.page','jsp/site/Portal.jsp?page=mylutece&action=createAccount'),('mylutece.security.public_url.mylutece.url.modifyAccount.page','jsp/site/Portal.jsp?page=mylutece&action=modifyAccount'),('mylutece.security.public_url.mylutece.url.lostPassword.page','jsp/site/Portal.jsp?page=mylutece&action=lostPassword'),('mylutece.security.public_url.mylutece.url.lostLogin.page','jsp/site/Portal.jsp?page=mylutecedatabase&action=lostLogin'),('mylutece.security.public_url.mylutece.url.doActionsAll','jsp/site/plugins/mylutece/Do*'),('themecitelibre.site_property.footer.cookieLink','#cookiecitelibrepack'),('themecitelibre.site_property.footer.cookieLabel','Cookies management'),('themecitelibre.site_property.footer.about.title','A propos'),('themecitelibre.site_property.footer.about','CiteLibre is made for cities, by cities, upon open source principals. <br> <a class=\"btn btn-link ps-0\" href=\"//:lutece.paris.fr\" title=\"[#i18n{portal.site.portal_footer.newWindow}] LUTECE website\" target=\"_blank><img src=\"images/poweredby.png\" alt=\"Powered by LUTECE\"></a> '),('themecitelibre.site_property.bannerMessage.Type','info'),('themecitelibre.site_property.bannerMessage.Title',''),('themecitelibre.site_property.bannerMessage.Position','bottom-right'),('themecitelibre.site_property.bannerMessage.CloseButton.checkbox','1'),('themecitelibre.site_property.bannerMessage.htmlblock',''),('themecitelibre.site_property.footer.links.title','Liens importants'),('themecitelibre.site_property.robotIndex.checkbox','1');
 /*!40000 ALTER TABLE `core_datastore` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_feature_group`
@@ -1030,12 +1103,12 @@ INSERT INTO `core_datastore` VALUES ('core.advanced_parameters.password_duration
 
 DROP TABLE IF EXISTS `core_feature_group`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_feature_group` (
   `id_feature_group` varchar(50) NOT NULL DEFAULT '',
   `feature_group_description` varchar(255) DEFAULT NULL,
   `feature_group_label` varchar(100) DEFAULT NULL,
-  `feature_group_order` int(11) DEFAULT NULL,
+  `feature_group_order` int DEFAULT NULL,
   `feature_group_icon` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_feature_group`)
 );
@@ -1045,9 +1118,11 @@ CREATE TABLE `core_feature_group` (
 -- Dumping data for table `core_feature_group`
 --
 
+LOCK TABLES `core_feature_group` WRITE;
 /*!40000 ALTER TABLE `core_feature_group` DISABLE KEYS */;
 INSERT INTO `core_feature_group` VALUES ('CONTENT','portal.features.group.content.description','portal.features.group.content.label',1,'ti ti-files'),('APPLICATIONS','portal.features.group.applications.description','portal.features.group.applications.label',3,'ti ti-apps'),('SYSTEM','portal.features.group.system.description','portal.features.group.system.label',7,'ti ti-shield-lock '),('SITE','portal.features.group.site.description','portal.features.group.site.label',2,'ti ti-world'),('STYLE','portal.features.group.charter.description','portal.features.group.charter.label',6,'ti ti-brush'),('USERS','portal.features.group.users.description','portal.features.group.users.label',4,'ti ti-users'),('MANAGERS','portal.features.group.managers.description','portal.features.group.managers.label',5,'ti ti-user-shield');
 /*!40000 ALTER TABLE `core_feature_group` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_file`
@@ -1055,12 +1130,12 @@ INSERT INTO `core_feature_group` VALUES ('CONTENT','portal.features.group.conten
 
 DROP TABLE IF EXISTS `core_file`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_file` (
-  `id_file` int(11) NOT NULL AUTO_INCREMENT,
-  `title` mediumtext DEFAULT NULL,
-  `id_physical_file` int(11) DEFAULT NULL,
-  `file_size` int(11) DEFAULT NULL,
+  `id_file` int NOT NULL AUTO_INCREMENT,
+  `title` mediumtext,
+  `id_physical_file` int DEFAULT NULL,
+  `file_size` int DEFAULT NULL,
   `mime_type` varchar(255) DEFAULT NULL,
   `date_creation` timestamp NULL DEFAULT NULL,
   `origin` varchar(255) DEFAULT NULL,
@@ -1072,9 +1147,11 @@ CREATE TABLE `core_file` (
 -- Dumping data for table `core_file`
 --
 
+LOCK TABLES `core_file` WRITE;
 /*!40000 ALTER TABLE `core_file` DISABLE KEYS */;
-INSERT INTO `core_file` VALUES (125,'export_users_csv.xml',125,2523,'application/xml','2005-10-10 08:10:10','INIT_CORE'),(126,'export_users_xml.xml',126,259,'application/xml','2005-10-10 08:10:10','INIT_CORE');
+INSERT INTO `core_file` VALUES (125,'export_users_csv.xml',125,2523,'application/xml','2005-10-10 10:10:10','INIT_CORE'),(126,'export_users_xml.xml',126,259,'application/xml','2005-10-10 10:10:10','INIT_CORE');
 /*!40000 ALTER TABLE `core_file` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_id_generator`
@@ -1082,10 +1159,10 @@ INSERT INTO `core_file` VALUES (125,'export_users_csv.xml',125,2523,'application
 
 DROP TABLE IF EXISTS `core_id_generator`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_id_generator` (
   `class_name` varchar(250) NOT NULL DEFAULT '',
-  `current_value` int(11) NOT NULL DEFAULT 0,
+  `current_value` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`class_name`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1094,8 +1171,10 @@ CREATE TABLE `core_id_generator` (
 -- Dumping data for table `core_id_generator`
 --
 
+LOCK TABLES `core_id_generator` WRITE;
 /*!40000 ALTER TABLE `core_id_generator` DISABLE KEYS */;
 /*!40000 ALTER TABLE `core_id_generator` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_indexer_action`
@@ -1103,13 +1182,13 @@ CREATE TABLE `core_id_generator` (
 
 DROP TABLE IF EXISTS `core_indexer_action`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_indexer_action` (
-  `id_action` int(11) NOT NULL AUTO_INCREMENT,
+  `id_action` int NOT NULL AUTO_INCREMENT,
   `id_document` varchar(255) NOT NULL,
-  `id_task` int(11) NOT NULL DEFAULT 0,
+  `id_task` int NOT NULL DEFAULT '0',
   `indexer_name` varchar(255) NOT NULL,
-  `id_portlet` int(11) NOT NULL DEFAULT 0,
+  `id_portlet` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_action`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1118,8 +1197,10 @@ CREATE TABLE `core_indexer_action` (
 -- Dumping data for table `core_indexer_action`
 --
 
+LOCK TABLES `core_indexer_action` WRITE;
 /*!40000 ALTER TABLE `core_indexer_action` DISABLE KEYS */;
 /*!40000 ALTER TABLE `core_indexer_action` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_level_right`
@@ -1127,9 +1208,9 @@ CREATE TABLE `core_indexer_action` (
 
 DROP TABLE IF EXISTS `core_level_right`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_level_right` (
-  `id_level` smallint(6) NOT NULL DEFAULT 0,
+  `id_level` smallint NOT NULL DEFAULT '0',
   `name` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`id_level`)
 );
@@ -1139,9 +1220,11 @@ CREATE TABLE `core_level_right` (
 -- Dumping data for table `core_level_right`
 --
 
+LOCK TABLES `core_level_right` WRITE;
 /*!40000 ALTER TABLE `core_level_right` DISABLE KEYS */;
 INSERT INTO `core_level_right` VALUES (0,'Level 0 - Technical administrator'),(1,'Level 1 - Fonctionnal administrator'),(2,'Level 2 - Site Manager - Webmaster'),(3,'Level 3 - Contributor');
 /*!40000 ALTER TABLE `core_level_right` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_mail_item`
@@ -1149,10 +1232,10 @@ INSERT INTO `core_level_right` VALUES (0,'Level 0 - Technical administrator'),(1
 
 DROP TABLE IF EXISTS `core_mail_item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_mail_item` (
-  `id_mail_queue` int(11) NOT NULL DEFAULT 0,
-  `mail_item` mediumblob DEFAULT NULL,
+  `id_mail_queue` int NOT NULL DEFAULT '0',
+  `mail_item` mediumblob,
   PRIMARY KEY (`id_mail_queue`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1161,8 +1244,10 @@ CREATE TABLE `core_mail_item` (
 -- Dumping data for table `core_mail_item`
 --
 
+LOCK TABLES `core_mail_item` WRITE;
 /*!40000 ALTER TABLE `core_mail_item` DISABLE KEYS */;
 /*!40000 ALTER TABLE `core_mail_item` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_mail_queue`
@@ -1170,10 +1255,10 @@ CREATE TABLE `core_mail_item` (
 
 DROP TABLE IF EXISTS `core_mail_queue`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_mail_queue` (
-  `id_mail_queue` int(11) NOT NULL AUTO_INCREMENT,
-  `is_locked` smallint(6) DEFAULT 0,
+  `id_mail_queue` int NOT NULL AUTO_INCREMENT,
+  `is_locked` smallint DEFAULT '0',
   PRIMARY KEY (`id_mail_queue`),
   KEY `is_locked_core_mail_queue` (`is_locked`)
 );
@@ -1183,8 +1268,10 @@ CREATE TABLE `core_mail_queue` (
 -- Dumping data for table `core_mail_queue`
 --
 
+LOCK TABLES `core_mail_queue` WRITE;
 /*!40000 ALTER TABLE `core_mail_queue` DISABLE KEYS */;
 /*!40000 ALTER TABLE `core_mail_queue` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_mode`
@@ -1192,9 +1279,9 @@ CREATE TABLE `core_mail_queue` (
 
 DROP TABLE IF EXISTS `core_mode`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_mode` (
-  `id_mode` int(11) NOT NULL DEFAULT 0,
+  `id_mode` int NOT NULL DEFAULT '0',
   `description_mode` varchar(255) DEFAULT NULL,
   `path` varchar(50) NOT NULL DEFAULT '',
   `output_xsl_method` varchar(50) DEFAULT NULL,
@@ -1212,9 +1299,11 @@ CREATE TABLE `core_mode` (
 -- Dumping data for table `core_mode`
 --
 
+LOCK TABLES `core_mode` WRITE;
 /*!40000 ALTER TABLE `core_mode` DISABLE KEYS */;
 INSERT INTO `core_mode` VALUES (0,'Normal','normal/','xml','1.0','text/xml','UTF-8','yes','yes',NULL),(1,'Administration','admin/','xml','1.0','text/xml','UTF-8','yes','yes',NULL),(2,'Wap','wml/','xml','1.0','text/xml','UTF-8','yes','yes',NULL);
 /*!40000 ALTER TABLE `core_mode` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_page`
@@ -1222,27 +1311,27 @@ INSERT INTO `core_mode` VALUES (0,'Normal','normal/','xml','1.0','text/xml','UTF
 
 DROP TABLE IF EXISTS `core_page`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_page` (
-  `id_page` int(11) NOT NULL AUTO_INCREMENT,
-  `id_parent` int(11) DEFAULT 0,
+  `id_page` int NOT NULL AUTO_INCREMENT,
+  `id_parent` int DEFAULT '0',
   `name` varchar(50) NOT NULL DEFAULT '',
-  `description` mediumtext DEFAULT NULL,
-  `date_update` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` smallint(6) DEFAULT NULL,
-  `page_order` int(11) DEFAULT 0,
-  `id_template` int(11) DEFAULT NULL,
+  `description` mediumtext,
+  `date_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` smallint DEFAULT NULL,
+  `page_order` int DEFAULT '0',
+  `id_template` int DEFAULT NULL,
   `date_creation` timestamp NULL DEFAULT NULL,
   `role` varchar(50) DEFAULT NULL,
   `code_theme` varchar(80) DEFAULT NULL,
-  `node_status` smallint(6) NOT NULL DEFAULT 1,
-  `image_content` mediumblob DEFAULT NULL,
+  `node_status` smallint NOT NULL DEFAULT '1',
+  `image_content` mediumblob,
   `mime_type` varchar(255) DEFAULT 'NULL',
   `meta_keywords` varchar(255) DEFAULT NULL,
   `meta_description` varchar(255) DEFAULT NULL,
-  `id_authorization_node` int(11) DEFAULT NULL,
-  `display_date_update` smallint(6) NOT NULL DEFAULT 0,
-  `is_manual_date_update` smallint(6) NOT NULL DEFAULT 0,
+  `id_authorization_node` int DEFAULT NULL,
+  `display_date_update` smallint NOT NULL DEFAULT '0',
+  `is_manual_date_update` smallint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_page`),
   KEY `index_page` (`id_template`,`id_parent`),
   KEY `index_childpage` (`id_parent`,`page_order`)
@@ -1253,9 +1342,11 @@ CREATE TABLE `core_page` (
 -- Dumping data for table `core_page`
 --
 
+LOCK TABLES `core_page` WRITE;
 /*!40000 ALTER TABLE `core_page` DISABLE KEYS */;
-INSERT INTO `core_page` VALUES (1,0,'Home','Home Page','2024-03-11 10:53:40',1,1,1,'2024-03-11 10:53:40','none','default',0,'','application/octet-stream',NULL,NULL,1,0,0),(2,1,'Page 1','A child page','2024-03-11 10:53:40',0,1,2,'2024-03-11 10:53:40','none','default',1,NULL,'application/octet-stream',NULL,NULL,1,0,0);
+INSERT INTO `core_page` VALUES (1,0,'Home','Home Page','2024-03-14 13:42:18',1,1,1,'2024-03-14 13:42:18','none','default',0,'','application/octet-stream',NULL,NULL,1,0,0),(2,1,'Page 1','A child page','2024-03-14 13:42:18',0,1,2,'2024-03-14 13:42:18','none','default',1,NULL,'application/octet-stream',NULL,NULL,1,0,0);
 /*!40000 ALTER TABLE `core_page` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_page_template`
@@ -1263,9 +1354,9 @@ INSERT INTO `core_page` VALUES (1,0,'Home','Home Page','2024-03-11 10:53:40',1,1
 
 DROP TABLE IF EXISTS `core_page_template`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_page_template` (
-  `id_template` int(11) NOT NULL AUTO_INCREMENT,
+  `id_template` int NOT NULL AUTO_INCREMENT,
   `description` varchar(50) DEFAULT NULL,
   `file_name` varchar(100) DEFAULT NULL,
   `picture` varchar(50) DEFAULT NULL,
@@ -1277,9 +1368,11 @@ CREATE TABLE `core_page_template` (
 -- Dumping data for table `core_page_template`
 --
 
+LOCK TABLES `core_page_template` WRITE;
 /*!40000 ALTER TABLE `core_page_template` DISABLE KEYS */;
 INSERT INTO `core_page_template` VALUES (1,'Home page','skin/site/page_home_demo.html','layout-home.svg'),(2,'One column','skin/site/page_template1.html','layout-one.svg'),(3,'Two columns','skin/site/page_template2.html','layout-two.svg'),(4,'1 + 2 columns','skin/site/page_template4.html','layout-three.svg'),(5,'Two equal columns','skin/site/page_template5.html','layout-four.svg');
 /*!40000 ALTER TABLE `core_page_template` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_physical_file`
@@ -1287,10 +1380,10 @@ INSERT INTO `core_page_template` VALUES (1,'Home page','skin/site/page_home_demo
 
 DROP TABLE IF EXISTS `core_physical_file`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_physical_file` (
-  `id_physical_file` int(11) NOT NULL AUTO_INCREMENT,
-  `file_value` mediumblob DEFAULT NULL,
+  `id_physical_file` int NOT NULL AUTO_INCREMENT,
+  `file_value` mediumblob,
   PRIMARY KEY (`id_physical_file`)
 ) AUTO_INCREMENT=127;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1299,9 +1392,11 @@ CREATE TABLE `core_physical_file` (
 -- Dumping data for table `core_physical_file`
 --
 
+LOCK TABLES `core_physical_file` WRITE;
 /*!40000 ALTER TABLE `core_physical_file` DISABLE KEYS */;
-INSERT INTO `core_physical_file` VALUES (125,0x3C3F786D6C2076657273696F6E3D22312E30223F3E0D0A3C78736C3A7374796C6573686565742076657273696F6E3D22312E302220786D6C6E733A78736C3D22687474703A2F2F7777772E77332E6F72672F313939392F58534C2F5472616E73666F726D223E0D0A093C78736C3A6F7574707574206D6574686F643D2274657874222F3E0D0A090D0A093C78736C3A74656D706C617465206D617463683D227573657273223E0D0A09093C78736C3A6170706C792D74656D706C617465732073656C6563743D227573657222202F3E0D0A093C2F78736C3A74656D706C6174653E0D0A090D0A093C78736C3A74656D706C617465206D617463683D2275736572223E0D0A09093C78736C3A746578743E223C2F78736C3A746578743E0D0A09093C78736C3A76616C75652D6F662073656C6563743D226163636573735F636F646522202F3E0D0A09093C78736C3A746578743E223B223C2F78736C3A746578743E0D0A09093C78736C3A76616C75652D6F662073656C6563743D226C6173745F6E616D6522202F3E0D0A09093C78736C3A746578743E223B223C2F78736C3A746578743E0D0A09093C78736C3A76616C75652D6F662073656C6563743D2266697273745F6E616D6522202F3E0D0A09093C78736C3A746578743E223B223C2F78736C3A746578743E0D0A09093C78736C3A76616C75652D6F662073656C6563743D22656D61696C22202F3E0D0A09093C78736C3A746578743E223B223C2F78736C3A746578743E0D0A09093C78736C3A76616C75652D6F662073656C6563743D2273746174757322202F3E0D0A09093C78736C3A746578743E223B223C2F78736C3A746578743E0D0A09093C78736C3A76616C75652D6F662073656C6563743D226C6F63616C6522202F3E0D0A09093C78736C3A746578743E223B223C2F78736C3A746578743E0D0A09093C78736C3A76616C75652D6F662073656C6563743D226C6576656C22202F3E0D0A09093C78736C3A746578743E223B223C2F78736C3A746578743E0D0A09093C78736C3A76616C75652D6F662073656C6563743D226D7573745F6368616E67655F70617373776F726422202F3E0D0A09093C78736C3A746578743E223B223C2F78736C3A746578743E0D0A09093C78736C3A76616C75652D6F662073656C6563743D226163636573736962696C6974795F6D6F646522202F3E0D0A09093C78736C3A746578743E223B223C2F78736C3A746578743E0D0A09093C78736C3A76616C75652D6F662073656C6563743D2270617373776F72645F6D61785F76616C69645F6461746522202F3E0D0A09093C78736C3A746578743E223B223C2F78736C3A746578743E0D0A09093C78736C3A76616C75652D6F662073656C6563743D226163636F756E745F6D61785F76616C69645F6461746522202F3E0D0A09093C78736C3A746578743E223B223C2F78736C3A746578743E0D0A09093C78736C3A76616C75652D6F662073656C6563743D22646174655F6C6173745F6C6F67696E22202F3E0D0A09093C78736C3A746578743E223C2F78736C3A746578743E0D0A09093C78736C3A6170706C792D74656D706C617465732073656C6563743D22726F6C657322202F3E0D0A09093C78736C3A6170706C792D74656D706C617465732073656C6563743D2272696768747322202F3E0D0A09093C78736C3A6170706C792D74656D706C617465732073656C6563743D22776F726B67726F75707322202F3E0D0A09093C78736C3A6170706C792D74656D706C617465732073656C6563743D226174747269627574657322202F3E0D0A09093C78736C3A746578743E262331303B3C2F78736C3A746578743E0D0A093C2F78736C3A74656D706C6174653E0D0A090D0A093C78736C3A74656D706C617465206D617463683D22726F6C6573223E0D0A09093C78736C3A6170706C792D74656D706C617465732073656C6563743D22726F6C6522202F3E0D0A093C2F78736C3A74656D706C6174653E0D0A090D0A093C78736C3A74656D706C617465206D617463683D22726F6C65223E0D0A09093C78736C3A746578743E3B22726F6C653A3C2F78736C3A746578743E0D0A09093C78736C3A76616C75652D6F662073656C6563743D2263757272656E74282922202F3E0D0A09093C78736C3A746578743E223C2F78736C3A746578743E0D0A093C2F78736C3A74656D706C6174653E0D0A090D0A093C78736C3A74656D706C617465206D617463683D22726967687473223E0D0A09093C78736C3A6170706C792D74656D706C617465732073656C6563743D22726967687422202F3E0D0A093C2F78736C3A74656D706C6174653E0D0A090D0A093C78736C3A74656D706C617465206D617463683D227269676874223E0D0A09093C78736C3A746578743E3B2272696768743A3C2F78736C3A746578743E0D0A09093C78736C3A76616C75652D6F662073656C6563743D2263757272656E74282922202F3E0D0A09093C78736C3A746578743E223C2F78736C3A746578743E0D0A093C2F78736C3A74656D706C6174653E0D0A090D0A093C78736C3A74656D706C617465206D617463683D22776F726B67726F757073223E0D0A09093C78736C3A6170706C792D74656D706C617465732073656C6563743D22776F726B67726F757022202F3E0D0A093C2F78736C3A74656D706C6174653E0D0A090D0A093C78736C3A74656D706C617465206D617463683D22776F726B67726F7570223E0D0A09093C78736C3A746578743E3B22776F726B67726F75703A3C2F78736C3A746578743E0D0A09093C78736C3A76616C75652D6F662073656C6563743D2263757272656E74282922202F3E0D0A09093C78736C3A746578743E223C2F78736C3A746578743E0D0A093C2F78736C3A74656D706C6174653E0D0A090D0A093C78736C3A74656D706C617465206D617463683D2261747472696275746573223E0D0A09093C78736C3A6170706C792D74656D706C617465732073656C6563743D2261747472696275746522202F3E0D0A093C2F78736C3A74656D706C6174653E0D0A090D0A093C78736C3A74656D706C617465206D617463683D22617474726962757465223E0D0A09093C78736C3A746578743E3B223C2F78736C3A746578743E0D0A09093C78736C3A76616C75652D6F662073656C6563743D226174747269627574652D696422202F3E0D0A09093C78736C3A746578743E3A3C2F78736C3A746578743E0D0A09093C78736C3A76616C75652D6F662073656C6563743D226174747269627574652D6669656C642D696422202F3E0D0A09093C78736C3A746578743E3A3C2F78736C3A746578743E0D0A09093C78736C3A76616C75652D6F662073656C6563743D226174747269627574652D76616C756522202F3E0D0A09093C78736C3A746578743E223C2F78736C3A746578743E0D0A093C2F78736C3A74656D706C6174653E0D0A090D0A3C2F78736C3A7374796C6573686565743E),(126,0x3C3F786D6C2076657273696F6E3D22312E3022203F3E0D0A3C78736C3A7374796C6573686565742076657273696F6E3D22312E302220786D6C6E733A78736C3D22687474703A2F2F7777772E77332E6F72672F313939392F58534C2F5472616E73666F726D223E0D0A093C78736C3A74656D706C617465206D617463683D222F207C20402A207C206E6F64652829223E0D0A09093C78736C3A636F70793E0D0A0909093C78736C3A6170706C792D74656D706C617465732073656C6563743D22402A207C206E6F6465282922202F3E0D0A09093C2F78736C3A636F70793E0D0A093C2F78736C3A74656D706C6174653E0D0A3C2F78736C3A7374796C6573686565743E);
+INSERT INTO `core_physical_file` VALUES (125,_binary '<?xml version=\"1.0\"?>\r\n<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\r\n	<xsl:output method=\"text\"/>\r\n	\r\n	<xsl:template match=\"users\">\r\n		<xsl:apply-templates select=\"user\" />\r\n	</xsl:template>\r\n	\r\n	<xsl:template match=\"user\">\r\n		<xsl:text>\"</xsl:text>\r\n		<xsl:value-of select=\"access_code\" />\r\n		<xsl:text>\";\"</xsl:text>\r\n		<xsl:value-of select=\"last_name\" />\r\n		<xsl:text>\";\"</xsl:text>\r\n		<xsl:value-of select=\"first_name\" />\r\n		<xsl:text>\";\"</xsl:text>\r\n		<xsl:value-of select=\"email\" />\r\n		<xsl:text>\";\"</xsl:text>\r\n		<xsl:value-of select=\"status\" />\r\n		<xsl:text>\";\"</xsl:text>\r\n		<xsl:value-of select=\"locale\" />\r\n		<xsl:text>\";\"</xsl:text>\r\n		<xsl:value-of select=\"level\" />\r\n		<xsl:text>\";\"</xsl:text>\r\n		<xsl:value-of select=\"must_change_password\" />\r\n		<xsl:text>\";\"</xsl:text>\r\n		<xsl:value-of select=\"accessibility_mode\" />\r\n		<xsl:text>\";\"</xsl:text>\r\n		<xsl:value-of select=\"password_max_valid_date\" />\r\n		<xsl:text>\";\"</xsl:text>\r\n		<xsl:value-of select=\"account_max_valid_date\" />\r\n		<xsl:text>\";\"</xsl:text>\r\n		<xsl:value-of select=\"date_last_login\" />\r\n		<xsl:text>\"</xsl:text>\r\n		<xsl:apply-templates select=\"roles\" />\r\n		<xsl:apply-templates select=\"rights\" />\r\n		<xsl:apply-templates select=\"workgroups\" />\r\n		<xsl:apply-templates select=\"attributes\" />\r\n		<xsl:text>&#10;</xsl:text>\r\n	</xsl:template>\r\n	\r\n	<xsl:template match=\"roles\">\r\n		<xsl:apply-templates select=\"role\" />\r\n	</xsl:template>\r\n	\r\n	<xsl:template match=\"role\">\r\n		<xsl:text>;\"role:</xsl:text>\r\n		<xsl:value-of select=\"current()\" />\r\n		<xsl:text>\"</xsl:text>\r\n	</xsl:template>\r\n	\r\n	<xsl:template match=\"rights\">\r\n		<xsl:apply-templates select=\"right\" />\r\n	</xsl:template>\r\n	\r\n	<xsl:template match=\"right\">\r\n		<xsl:text>;\"right:</xsl:text>\r\n		<xsl:value-of select=\"current()\" />\r\n		<xsl:text>\"</xsl:text>\r\n	</xsl:template>\r\n	\r\n	<xsl:template match=\"workgroups\">\r\n		<xsl:apply-templates select=\"workgroup\" />\r\n	</xsl:template>\r\n	\r\n	<xsl:template match=\"workgroup\">\r\n		<xsl:text>;\"workgroup:</xsl:text>\r\n		<xsl:value-of select=\"current()\" />\r\n		<xsl:text>\"</xsl:text>\r\n	</xsl:template>\r\n	\r\n	<xsl:template match=\"attributes\">\r\n		<xsl:apply-templates select=\"attribute\" />\r\n	</xsl:template>\r\n	\r\n	<xsl:template match=\"attribute\">\r\n		<xsl:text>;\"</xsl:text>\r\n		<xsl:value-of select=\"attribute-id\" />\r\n		<xsl:text>:</xsl:text>\r\n		<xsl:value-of select=\"attribute-field-id\" />\r\n		<xsl:text>:</xsl:text>\r\n		<xsl:value-of select=\"attribute-value\" />\r\n		<xsl:text>\"</xsl:text>\r\n	</xsl:template>\r\n	\r\n</xsl:stylesheet>'),(126,_binary '<?xml version=\"1.0\" ?>\r\n<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\r\n	<xsl:template match=\"/ | @* | node()\">\r\n		<xsl:copy>\r\n			<xsl:apply-templates select=\"@* | node()\" />\r\n		</xsl:copy>\r\n	</xsl:template>\r\n</xsl:stylesheet>');
 /*!40000 ALTER TABLE `core_physical_file` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_portal_component`
@@ -1309,9 +1404,9 @@ INSERT INTO `core_physical_file` VALUES (125,0x3C3F786D6C2076657273696F6E3D22312
 
 DROP TABLE IF EXISTS `core_portal_component`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_portal_component` (
-  `id_portal_component` int(11) NOT NULL DEFAULT 0,
+  `id_portal_component` int NOT NULL DEFAULT '0',
   `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_portal_component`)
 );
@@ -1321,9 +1416,11 @@ CREATE TABLE `core_portal_component` (
 -- Dumping data for table `core_portal_component`
 --
 
+LOCK TABLES `core_portal_component` WRITE;
 /*!40000 ALTER TABLE `core_portal_component` DISABLE KEYS */;
 INSERT INTO `core_portal_component` VALUES (0,'Portlet'),(1,'Article'),(2,'Article List Portlet'),(3,'Menu Init'),(4,'Main Menu'),(5,'Breadcrum'),(6,'Site Map'),(7,'Tree View'),(8,'Site Map (Admin mode)');
 /*!40000 ALTER TABLE `core_portal_component` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_portlet`
@@ -1331,22 +1428,22 @@ INSERT INTO `core_portal_component` VALUES (0,'Portlet'),(1,'Article'),(2,'Artic
 
 DROP TABLE IF EXISTS `core_portlet`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_portlet` (
-  `id_portlet` int(11) NOT NULL AUTO_INCREMENT,
+  `id_portlet` int NOT NULL AUTO_INCREMENT,
   `id_portlet_type` varchar(50) DEFAULT NULL,
-  `id_page` int(11) DEFAULT NULL,
+  `id_page` int DEFAULT NULL,
   `name` varchar(70) DEFAULT NULL,
-  `date_update` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` smallint(6) NOT NULL DEFAULT 0,
-  `portlet_order` int(11) DEFAULT NULL,
-  `column_no` int(11) DEFAULT NULL,
-  `id_style` int(11) DEFAULT NULL,
-  `accept_alias` smallint(6) DEFAULT NULL,
+  `date_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` smallint NOT NULL DEFAULT '0',
+  `portlet_order` int DEFAULT NULL,
+  `column_no` int DEFAULT NULL,
+  `id_style` int DEFAULT NULL,
+  `accept_alias` smallint DEFAULT NULL,
   `date_creation` timestamp NULL DEFAULT NULL,
-  `display_portlet_title` int(11) NOT NULL DEFAULT 0,
+  `display_portlet_title` int NOT NULL DEFAULT '0',
   `role` varchar(50) DEFAULT NULL,
-  `device_display_flags` int(11) NOT NULL DEFAULT 15,
+  `device_display_flags` int NOT NULL DEFAULT '15',
   PRIMARY KEY (`id_portlet`),
   KEY `index_portlet` (`id_page`,`id_portlet_type`,`id_style`)
 ) AUTO_INCREMENT=6;
@@ -1356,9 +1453,11 @@ CREATE TABLE `core_portlet` (
 -- Dumping data for table `core_portlet`
 --
 
+LOCK TABLES `core_portlet` WRITE;
 /*!40000 ALTER TABLE `core_portlet` DISABLE KEYS */;
-INSERT INTO `core_portlet` VALUES (1,'HTML_PORTLET',1,'Qu\'est-ce que Lutece ?','2019-05-31 14:28:04',0,2,1,100,0,'2011-03-14 12:13:39',1,'none',273),(2,'HTML_PORTLET',1,'Infos','2019-05-31 13:51:57',0,1,3,100,0,'2015-05-15 13:26:01',1,'none',273),(4,'HTML_PORTLET',1,'Lutece','2019-06-03 08:23:25',0,1,4,100,0,'2019-05-31 09:55:16',1,'none',4369),(5,'HTML_PORTLET',1,'Autres informations','2019-05-31 14:51:33',0,1,5,100,0,'2019-05-31 13:01:47',1,'none',4369);
+INSERT INTO `core_portlet` VALUES (1,'HTML_PORTLET',1,'Qu\'est-ce que Lutece ?','2019-05-31 16:28:04',0,2,1,100,0,'2011-03-14 13:13:39',1,'none',273),(2,'HTML_PORTLET',1,'Infos','2019-05-31 15:51:57',0,1,3,100,0,'2015-05-15 15:26:01',1,'none',273),(4,'HTML_PORTLET',1,'Lutece','2019-06-03 10:23:25',0,1,4,100,0,'2019-05-31 11:55:16',1,'none',4369),(5,'HTML_PORTLET',1,'Autres informations','2019-05-31 16:51:33',0,1,5,100,0,'2019-05-31 15:01:47',1,'none',4369);
 /*!40000 ALTER TABLE `core_portlet` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_portlet_alias`
@@ -1366,10 +1465,10 @@ INSERT INTO `core_portlet` VALUES (1,'HTML_PORTLET',1,'Qu\'est-ce que Lutece ?',
 
 DROP TABLE IF EXISTS `core_portlet_alias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_portlet_alias` (
-  `id_portlet` int(11) NOT NULL DEFAULT 0,
-  `id_alias` int(11) NOT NULL DEFAULT 0,
+  `id_portlet` int NOT NULL DEFAULT '0',
+  `id_alias` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_portlet`,`id_alias`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1378,8 +1477,10 @@ CREATE TABLE `core_portlet_alias` (
 -- Dumping data for table `core_portlet_alias`
 --
 
+LOCK TABLES `core_portlet_alias` WRITE;
 /*!40000 ALTER TABLE `core_portlet_alias` DISABLE KEYS */;
 /*!40000 ALTER TABLE `core_portlet_alias` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_portlet_type`
@@ -1387,7 +1488,7 @@ CREATE TABLE `core_portlet_alias` (
 
 DROP TABLE IF EXISTS `core_portlet_type`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_portlet_type` (
   `id_portlet_type` varchar(50) NOT NULL DEFAULT '0',
   `name` varchar(255) DEFAULT NULL,
@@ -1412,9 +1513,11 @@ CREATE TABLE `core_portlet_type` (
 -- Dumping data for table `core_portlet_type`
 --
 
+LOCK TABLES `core_portlet_type` WRITE;
 /*!40000 ALTER TABLE `core_portlet_type` DISABLE KEYS */;
 INSERT INTO `core_portlet_type` VALUES ('ALIAS_PORTLET','portal.site.portletAlias.name','plugins/alias/CreatePortletAlias.jsp','plugins/alias/ModifyPortletAlias.jsp','fr.paris.lutece.portal.business.portlet.AliasPortletHome','alias','plugins/alias/DoCreatePortletAlias.jsp','/admin/portlet/script_create_portlet.html','/admin/portlet/alias/create_portlet_alias.html','','plugins/alias/DoModifyPortletAlias.jsp','/admin/portlet/script_modify_portlet.html','/admin/portlet/alias/modify_portlet_alias.html','','circles-relation'),('HTML_PORTLET','html.portlet.name','plugins/html/CreatePortletHtml.jsp','plugins/html/ModifyPortletHtml.jsp','fr.paris.lutece.plugins.html.business.portlet.HtmlPortletHome','html','plugins/html/DoCreatePortletHtml.jsp','/admin/portlet/script_create_portlet.html','/admin/plugins/html/portlet_html.html','','plugins/html/DoModifyPortletHtml.jsp','/admin/portlet/script_modify_portlet.html','/admin/plugins/html/portlet_html.html','',NULL),('HTML_UNTRANSFORMED_PORTLET','html.portlet.untransformed.name','plugins/html/CreatePortletHtml.jsp','plugins/html/ModifyPortletHtml.jsp','fr.paris.lutece.plugins.html.business.portlet.UntransformedHtmlPortletHome','html','plugins/html/DoCreatePortletHtml.jsp','/admin/portlet/script_create_portlet.html','/admin/plugins/html/portlet_html.html','','plugins/html/DoModifyPortletHtml.jsp','/admin/portlet/script_modify_portlet.html','/admin/plugins/html/portlet_html.html','',NULL),('MYDASHBOARD_PORTLET','mydashboard.portlet.myDashboardPortlet.name','plugins/mydashboard/GetCreateMyDashboardPortlet.jsp','plugins/mydashboard/GetModifyMyDashboardPortlet.jsp','fr.paris.lutece.plugins.mydashboard.business.portlet.MyDashboardPortletHome','mydashboard','plugins/mydashboard/DoCreateMyDashboardPortlet.jsp','/admin/portlet/script_create_portlet.html','/admin/plugins/mydashboard/portlet/create_portlet_mydashboard.html','','plugins/mydashboard/DoModifyMyDashboardPortlet.jsp','/admin/portlet/script_modify_portlet.html','/admin/plugins/mydashboard/portlet/modify_portlet_mydashboard.html','',NULL),('MYLUTECE_PORTLET','mylutece.portlet.name','plugins/mylutece/CreatePortletMyLutece.jsp','plugins/mylutece/ModifyPortletMyLutece.jsp','fr.paris.lutece.plugins.mylutece.business.portlet.MyLutecePortletHome','mylutece','plugins/mylutece/DoCreatePortletMyLutece.jsp','/admin/portlet/script_create_portlet.html','','','plugins/mylutece/DoModifyPortletMyLutece.jsp','/admin/portlet/script_modify_portlet.html','','',NULL),('APPOINTMENT_PORTLET','appointment.myAppointments.name','plugins/appointment/CreatePortletAppointment.jsp','plugins/appointment/ModifyPortletAppointment.jsp','fr.paris.lutece.plugins.appointment.business.portlet.AppointmentPortletHome','appointment','plugins/appointment/DoCreatePortletAppointment.jsp','/admin/portlet/script_create_portlet.html','/admin/plugins/appointment/portlet/create_portletappointment.html','','plugins/appointment/DoModifyPortletAppointment.jsp','/admin/portlet/script_modify_portlet.html','/admin/plugins/appointment/portlet/modify_portletappointment.html','',''),('APPOINTMENT_FORM_PORTLET','appointment.appointmentForm.name','plugins/appointment/CreatePortletAppointmentForm.jsp','plugins/appointment/ModifyPortletAppointmentForm.jsp','fr.paris.lutece.plugins.appointment.business.portlet.AppointmentFormPortletHome','appointment','plugins/appointment/DoCreatePortletAppointmentForm.jsp','/admin/portlet/script_create_portlet.html','/admin/plugins/appointment/portlet/create_portletappointmentform.html','','plugins/appointment/DoModifyPortletAppointmentForm.jsp','/admin/portlet/script_modify_portlet.html','/admin/plugins/appointment/portlet/modify_portletappointmentform.html','',''),('APPOINTMENT_FORM_LIST_PORTLET','appointment.portlet.appointmentFormListPortlet.name','plugins/appointment/CreatePortletAppointmentFormList.jsp','plugins/appointment/ModifyPortletAppointmentFormList.jsp','fr.paris.lutece.plugins.appointment.business.portlet.AppointmentFormListPortletHome','appointment','plugins/appointment/DoCreatePortletAppointmentFormList.jsp','/admin/portlet/script_create_portlet.html','/admin/plugins/appointment/portlet/create_portletappointmentformlist.html','','plugins/appointment/DoModifyPortletAppointmentFormList.jsp','/admin/portlet/script_modify_portlet.html','/admin/plugins/appointment/portlet/modify_portletappointmentformlist.html','','');
 /*!40000 ALTER TABLE `core_portlet_type` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_role`
@@ -1422,7 +1525,7 @@ INSERT INTO `core_portlet_type` VALUES ('ALIAS_PORTLET','portal.site.portletAlia
 
 DROP TABLE IF EXISTS `core_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_role` (
   `role` varchar(50) NOT NULL DEFAULT '',
   `role_description` varchar(255) DEFAULT NULL,
@@ -1435,8 +1538,10 @@ CREATE TABLE `core_role` (
 -- Dumping data for table `core_role`
 --
 
+LOCK TABLES `core_role` WRITE;
 /*!40000 ALTER TABLE `core_role` DISABLE KEYS */;
 /*!40000 ALTER TABLE `core_role` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_search_parameter`
@@ -1444,10 +1549,10 @@ CREATE TABLE `core_role` (
 
 DROP TABLE IF EXISTS `core_search_parameter`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_search_parameter` (
   `parameter_key` varchar(100) NOT NULL,
-  `parameter_value` mediumtext DEFAULT NULL,
+  `parameter_value` mediumtext,
   PRIMARY KEY (`parameter_key`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1456,9 +1561,11 @@ CREATE TABLE `core_search_parameter` (
 -- Dumping data for table `core_search_parameter`
 --
 
+LOCK TABLES `core_search_parameter` WRITE;
 /*!40000 ALTER TABLE `core_search_parameter` DISABLE KEYS */;
 INSERT INTO `core_search_parameter` VALUES ('type_filter','none'),('default_operator','OR'),('help_message','Message d aide pour la recherche'),('date_filter','0'),('tag_filter','0'),('taglist',NULL);
 /*!40000 ALTER TABLE `core_search_parameter` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_style`
@@ -1466,12 +1573,12 @@ INSERT INTO `core_search_parameter` VALUES ('type_filter','none'),('default_oper
 
 DROP TABLE IF EXISTS `core_style`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_style` (
-  `id_style` int(11) NOT NULL DEFAULT 0,
+  `id_style` int NOT NULL DEFAULT '0',
   `description_style` varchar(100) NOT NULL DEFAULT '',
   `id_portlet_type` varchar(50) DEFAULT NULL,
-  `id_portal_component` int(11) NOT NULL DEFAULT 0,
+  `id_portal_component` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_style`),
   KEY `index_style` (`id_portlet_type`)
 );
@@ -1481,9 +1588,11 @@ CREATE TABLE `core_style` (
 -- Dumping data for table `core_style`
 --
 
+LOCK TABLES `core_style` WRITE;
 /*!40000 ALTER TABLE `core_style` DISABLE KEYS */;
 INSERT INTO `core_style` VALUES (3,'Menu Init','',3),(4,'Main Menu','',4),(5,'Breadcrumb','',5),(6,'Site Map','',6),(7,'Tree View Menu','',7),(8,'Site Map (Admin mode)',NULL,8),(100,'Défaut','HTML_PORTLET',0),(101,'Fond coloré','HTML_PORTLET',0),(200,'Défaut','MYLUTECE_PORTLET',0);
 /*!40000 ALTER TABLE `core_style` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_style_mode_stylesheet`
@@ -1491,11 +1600,11 @@ INSERT INTO `core_style` VALUES (3,'Menu Init','',3),(4,'Main Menu','',4),(5,'Br
 
 DROP TABLE IF EXISTS `core_style_mode_stylesheet`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_style_mode_stylesheet` (
-  `id_style` int(11) NOT NULL DEFAULT 0,
-  `id_mode` int(11) NOT NULL DEFAULT 0,
-  `id_stylesheet` int(11) NOT NULL DEFAULT 0,
+  `id_style` int NOT NULL DEFAULT '0',
+  `id_mode` int NOT NULL DEFAULT '0',
+  `id_stylesheet` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_style`,`id_mode`,`id_stylesheet`),
   KEY `index_style_mode_stylesheet` (`id_stylesheet`,`id_mode`)
 );
@@ -1505,9 +1614,11 @@ CREATE TABLE `core_style_mode_stylesheet` (
 -- Dumping data for table `core_style_mode_stylesheet`
 --
 
+LOCK TABLES `core_style_mode_stylesheet` WRITE;
 /*!40000 ALTER TABLE `core_style_mode_stylesheet` DISABLE KEYS */;
 INSERT INTO `core_style_mode_stylesheet` VALUES (3,0,211),(4,0,213),(5,0,215),(6,0,217),(7,0,253),(8,1,279),(100,0,10),(101,0,285),(200,0,310);
 /*!40000 ALTER TABLE `core_style_mode_stylesheet` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_stylesheet`
@@ -1515,12 +1626,12 @@ INSERT INTO `core_style_mode_stylesheet` VALUES (3,0,211),(4,0,213),(5,0,215),(6
 
 DROP TABLE IF EXISTS `core_stylesheet`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_stylesheet` (
-  `id_stylesheet` int(11) NOT NULL AUTO_INCREMENT,
+  `id_stylesheet` int NOT NULL AUTO_INCREMENT,
   `description` varchar(255) DEFAULT NULL,
   `file_name` varchar(255) DEFAULT NULL,
-  `source` mediumblob DEFAULT NULL,
+  `source` mediumblob,
   PRIMARY KEY (`id_stylesheet`)
 ) AUTO_INCREMENT=311;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1529,9 +1640,11 @@ CREATE TABLE `core_stylesheet` (
 -- Dumping data for table `core_stylesheet`
 --
 
+LOCK TABLES `core_stylesheet` WRITE;
 /*!40000 ALTER TABLE `core_stylesheet` DISABLE KEYS */;
-INSERT INTO `core_stylesheet` VALUES (211,'Menu Init','menu_init.xsl',0x3C3F786D6C2076657273696F6E3D22312E30223F3E0D0A3C78736C3A7374796C6573686565742076657273696F6E3D22312E302220786D6C6E733A78736C3D22687474703A2F2F7777772E77332E6F72672F313939392F58534C2F5472616E73666F726D223E0D0A0D0A3C78736C3A706172616D206E616D653D22736974652D70617468222073656C6563743D22736974652D7061746822202F3E0D0A0D0A3C78736C3A74656D706C617465206D617463683D226D656E752D6C697374223E0D0A3C6272202F3E3C6272202F3E0D0A093C6469762069643D226D656E752D696E6974223E0D0A09093C6469762069643D226D656E752D696E69742D636F6E74656E74223E0D0A2020202020202020202020203C756C2069643D226D656E752D7665727469223E0D0A202020202020202020202020202020203C78736C3A6170706C792D74656D706C617465732073656C6563743D226D656E7522202F3E0D0A2020202020202020202020203C2F756C3E0D0A20202020202020203C2F6469763E0D0A20202020203C2F6469763E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A0D0A3C78736C3A74656D706C617465206D617463683D226D656E75223E0D0A202020203C78736C3A7661726961626C65206E616D653D22696E646578223E0D0A20202020093C78736C3A6E756D626572206C6576656C3D2273696E676C65222076616C75653D22706F736974696F6E282922202F3E0D0A202020203C2F78736C3A7661726961626C653E0D0A0D0A202020203C78736C3A696620746573743D2224696E646578202667743B2037223E0D0A20202020202020203C6C6920636C6173733D2266697273742D7665727469223E0D0A2020202020202020093C6120687265663D227B24736974652D706174687D3F706167655F69643D7B706167652D69647D22207461726765743D225F746F70223E0D0A2020202020202020202009093C78736C3A76616C75652D6F662073656C6563743D22706167652D6E616D6522202F3E0D0A0920202020202020203C2F613E0D0A2020202009202020203C78736C3A6170706C792D74656D706C617465732073656C6563743D227375626C6576656C2D6D656E752D6C69737422202F3E0D0A20202020202020203C2F6C693E0D0A2020203C2F78736C3A69663E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A3C78736C3A74656D706C617465206D617463683D227375626C6576656C2D6D656E752D6C69737422203E0D0A093C756C3E0D0A20202020093C6C6920636C6173733D226C6173742D7665727469223E0D0A090920093C78736C3A6170706C792D74656D706C617465732073656C6563743D227375626C6576656C2D6D656E7522202F3E0D0A2009202020203C2F6C693E0D0A202020203C2F756C3E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A3C78736C3A74656D706C617465206D617463683D227375626C6576656C2D6D656E75223E0D0A2020203C78736C3A7661726961626C65206E616D653D22696E6465785F736F75735F6D656E75223E0D0A2020202020202020203C78736C3A6E756D626572206C6576656C3D2273696E676C65222076616C75653D22706F736974696F6E282922202F3E0D0A2020203C2F78736C3A7661726961626C653E0D0A0D0A2020203C6120687265663D227B24736974652D706174687D3F706167655F69643D7B706167652D69647D22207461726765743D225F746F70223E0D0A09093C7370616E3E3C78736C3A76616C75652D6F662073656C6563743D22706167652D6E616D6522202F3E3C2F7370616E3E0D0A2020203C2F613E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A3C2F78736C3A7374796C6573686565743E0D0A),(213,'Main Menu','menu_main.xsl',0x3C3F786D6C2076657273696F6E3D22312E30223F3E0D0A3C78736C3A7374796C6573686565742076657273696F6E3D22312E302220786D6C6E733A78736C3D22687474703A2F2F7777772E77332E6F72672F313939392F58534C2F5472616E73666F726D223E0D0A202020203C78736C3A706172616D206E616D653D22736974652D70617468222073656C6563743D22736974652D7061746822202F3E0D0A202020203C78736C3A74656D706C617465206D617463683D226D656E752D6C697374223E0D0A20202020202020203C78736C3A6170706C792D74656D706C617465732073656C6563743D226D656E7522202F3E0D0A202020203C2F78736C3A74656D706C6174653E0D0A202020203C78736C3A74656D706C617465206D617463683D226D656E75223E0D0A20202020202020203C6C6920636C6173733D226E61762D6974656D223E0D0A2020202020202020202020203C6120687265663D227B24736974652D706174687D3F706167655F69643D7B706167652D69647D2220636C6173733D226E61762D6C696E6B22207461726765743D225F746F70223E0D0A202020202020202020202020202020203C78736C3A76616C75652D6F662073656C6563743D22706167652D6E616D6522202F3E0D0A2020202020202020202020203C2F613E0D0A20202020202020203C2F6C693E0D0A202020203C2F78736C3A74656D706C6174653E0D0A3C2F78736C3A7374796C6573686565743E),(215,'Breadcrumb','page_path.xsl',0x3C3F786D6C2076657273696F6E3D22312E30223F3E0D0A3C78736C3A7374796C6573686565742076657273696F6E3D22312E302220786D6C6E733A78736C3D22687474703A2F2F7777772E77332E6F72672F313939392F58534C2F5472616E73666F726D223E0D0A0D0A3C78736C3A706172616D206E616D653D22736974652D70617468222073656C6563743D22736974652D7061746822202F3E0D0A0D0A0D0A3C78736C3A74656D706C617465206D617463683D2270616765223E0D0A09093C78736C3A696620746573743D22706F736974696F6E2829213D6C61737428292D31223E0D0A0909093C6120687265663D227B24736974652D706174687D3F706167655F69643D7B706167652D69647D22207461726765743D225F746F70223E3C78736C3A76616C75652D6F662073656C6563743D22706167652D6E616D6522202F3E3C2F613E203E0D0A09093C2F78736C3A69663E0D0A09093C78736C3A696620746573743D22706F736974696F6E28293D6C61737428292D31223E0D0A0909093C78736C3A76616C75652D6F662073656C6563743D22706167652D6E616D6522202F3E0D0A09093C2F78736C3A69663E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A0D0A3C78736C3A74656D706C617465206D617463683D22706167655F6C696E6B223E0D0A09093C78736C3A696620746573743D22706F736974696F6E2829213D6C61737428292D31223E0D0A0909093C6120687265663D227B24736974652D706174687D3F7B706167652D75726C7D22207461726765743D225F746F70223E3C78736C3A76616C75652D6F662073656C6563743D22706167652D6E616D6522202F3E3C2F613E203E0D0A09093C2F78736C3A69663E0D0A09093C78736C3A696620746573743D22706F736974696F6E28293D6C61737428292D31223E0D0A0909093C78736C3A76616C75652D6F662073656C6563743D22706167652D6E616D6522202F3E0D0A09093C2F78736C3A69663E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A0D0A3C2F78736C3A7374796C6573686565743E),(217,'Site Map','site_map.xsl',0x3C3F786D6C2076657273696F6E3D22312E30223F3E203C78736C3A7374796C6573686565742076657273696F6E3D22312E302220786D6C6E733A78736C3D22687474703A2F2F7777772E77332E6F72672F313939392F58534C2F5472616E73666F726D223E20093C78736C3A706172616D206E616D653D22736974652D70617468222073656C6563743D22736974652D7061746822202F3E20093C78736C3A7661726961626C65206E616D653D2263757272656E742D706167652D6964222073656C6563743D2263757272656E742D706167652D696422202F3E20093C78736C3A74656D706C617465206D617463683D22706167655B706167652D6C6576656C3D305D223E2009093C6469762069643D226C75746563652D6D61702D747265652220636C6173733D226C75746563652D74726565223E200909093C756C3E20090909093C6C692069643D226E6F64652D7B706167652D69647D2220636C6173733D226C75746563652D747265652D6E6F64652220646174612D747265652D69636F6E3D22686F6D65223E2009090909093C78736C3A76616C75652D6F662073656C6563743D22706167652D6E616D6522202F3E2009090909093C78736C3A696620746573743D226E6F7428737472696E6728706167652D726F6C65293D276E6F6E652729223E200909090909093C7374726F6E673E20090909090909093C78736C3A746578742064697361626C652D6F75747075742D6573636170696E673D22796573223E2D20236931386E7B706F7274616C2E736974652E61646D696E5F706167652E74616241646D696E4D6170526F6C6552657365727665647D3C2F78736C3A746578743E20090909090909093C78736C3A76616C75652D6F662073656C6563743D22706167652D726F6C6522202F3E200909090909093C2F7374726F6E673E2009090909093C2F78736C3A69663E2009090909093C6120687265663D227B24736974652D706174687D3F706167655F69643D7B706167652D69647D22207469746C653D227B706167652D6465736372697074696F6E7D223E3C7370616E20636C6173733D2274692074692D686F6D652D6C696E6B206D732D32223E3C2F7370616E3E3C2F613E2009090909093C756C3E200909090909093C78736C3A6170706C792D74656D706C617465732073656C6563743D226368696C642D70616765732D6C69737422202F3E2009090909093C2F756C3E20090909093C2F6C693E200909093C2F756C3E2009093C2F6469763E20093C2F78736C3A74656D706C6174653E20093C78736C3A74656D706C617465206D617463683D22706167655B706167652D6C6576656C3E305D223E2009093C78736C3A7661726961626C65206E616D653D22696E646578222073656C6563743D22706167652D696422202F3E2009093C78736C3A7661726961626C65206E616D653D226465736372697074696F6E222073656C6563743D22706167652D6465736372697074696F6E22202F3E2009093C78736C3A63686F6F73653E200909093C78736C3A7768656E20746573743D22636F756E74286368696C642D70616765732D6C6973742F2A293E30223E200909093C6C692069643D226E6F64652D7B24696E6465787D2220636C6173733D226C75746563652D747265652D6E6F64652220646174612D747265652D69636F6E3D22666F6C646572223E20090909093C7370616E20636C6173733D226E6F64652D6E616D65223E2009090909093C78736C3A76616C75652D6F662073656C6563743D22706167652D6E616D6522202F3E2009090909093C78736C3A696620746573743D226E6F7428737472696E6728706167652D726F6C65293D276E6F6E652729223E200909090909093C7374726F6E673E20090909090909093C78736C3A746578742064697361626C652D6F75747075742D6573636170696E673D22796573223E236931386E7B706F7274616C2E736974652E61646D696E5F706167652E74616241646D696E4D6170526F6C6552657365727665647D3C2F78736C3A746578743E20090909090909093C78736C3A76616C75652D6F662073656C6563743D22706167652D726F6C6522202F3E200909090909093C2F7374726F6E673E2009090909093C2F78736C3A69663E2009090909093C6120687265663D227B24736974652D706174687D3F706167655F69643D7B706167652D69647D22207469746C653D227B706167652D6E616D65207D202D207B246465736372697074696F6E7D223E3C7370616E20636C6173733D2274692074692D6C696E6B206D782D32223E3C2F7370616E3E3C2F613E20090909093C2F7370616E3E20090909093C756C3E2009090909093C78736C3A6170706C792D74656D706C617465732073656C6563743D226368696C642D70616765732D6C69737422202F3E20090909093C2F756C3E200909093C2F6C693E200909093C2F78736C3A7768656E3E200909093C78736C3A6F74686572776973653E20090909093C6C692069643D226E6F64652D7B24696E6465787D2220636C6173733D226C75746563652D747265652D6974656D2220646174612D747265652D69636F6E3D2266696C652D73796D6C696E6B223E2009090909093C6120687265663D227B24736974652D706174687D3F706167655F69643D7B706167652D69647D22207469746C653D227B246465736372697074696F6E7D223E200909090909093C7370616E20636C6173733D226C6561662D6E616D65223E3C78736C3A76616C75652D6F662073656C6563743D22706167652D6E616D6522202F3E3C2F7370616E3E200909090909093C78736C3A696620746573743D226E6F7428737472696E6728706167652D726F6C65293D276E6F6E652729223E20090909090909093C7374726F6E673E2009090909090909093C78736C3A746578742064697361626C652D6F75747075742D6573636170696E673D22796573223E236931386E7B706F7274616C2E736974652E61646D696E5F706167652E74616241646D696E4D6170526F6C6552657365727665647D3C2F78736C3A746578743E2009090909090909093C78736C3A76616C75652D6F662073656C6563743D22706167652D726F6C6522202F3E20090909090909093C2F7374726F6E673E200909090909093C2F78736C3A69663E2009090909093C2F613E20090909093C2F6C693E202020200909093C2F78736C3A6F74686572776973653E2009093C2F78736C3A63686F6F73653E20093C2F78736C3A74656D706C6174653E20093C78736C3A74656D706C617465206D617463683D226368696C642D70616765732D6C697374223E2009093C78736C3A6170706C792D74656D706C617465732073656C6563743D227061676522202F3E20093C2F78736C3A74656D706C6174653E203C2F78736C3A7374796C6573686565743E),(253,'Tree View Menu','menu_tree.xsl',0x3C3F786D6C2076657273696F6E3D22312E30223F3E0D0A3C78736C3A7374796C6573686565742076657273696F6E3D22312E302220786D6C6E733A78736C3D22687474703A2F2F7777772E77332E6F72672F313939392F58534C2F5472616E73666F726D223E0D0A0D0A3C78736C3A706172616D206E616D653D22736974652D70617468222073656C6563743D22736974652D7061746822202F3E0D0A0D0A3C78736C3A74656D706C617465206D617463683D226D656E752D6C697374223E0D0A093C78736C3A7661726961626C65206E616D653D226D656E752D6C697374222073656C6563743D226D656E7522202F3E0D0A0D0A093C73637269707420747970653D22746578742F6A617661736372697074223E0D0A09092428646F63756D656E74292E72656164792866756E6374696F6E28297B0D0A090909242822237472656522292E7472656576696577287B0D0A09090909616E696D617465643A202266617374222C0D0A09090909636F6C6C61707365643A2066616C73652C0D0A09090909756E697175653A20747275652C0D0A09090909706572736973743A2022636F6F6B6965220D0A0909097D293B0D0A09090D0A09097D293B0D0A093C2F7363726970743E202020200D0A090D0A093C78736C3A696620746573743D226E6F7428737472696E67286D656E75293D272729223E0D0A09202020203C78736C3A746578742064697361626C652D6F75747075742D6573636170696E673D22796573223E0909202020200D0A2020202020202020202020203C64697620636C6173733D227472656534223E09090D0A0909093C68323E26233136303B3C2F68323E0D0A0909093C756C2069643D22747265652220636C6173733D227472656534223E0D0A202020202020202020202020202020203C78736C3A6170706C792D74656D706C617465732073656C6563743D226D656E7522202F3E20202020202020200D0A0909093C2F756C3E090D0A0909093C2F6469763E0D0A09092009203C6272202F3E0D0A09093C2F78736C3A746578743E200D0A093C2F78736C3A69663E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A0D0A3C78736C3A74656D706C617465206D617463683D226D656E75223E0D0A202020203C78736C3A7661726961626C65206E616D653D22696E646578223E0D0A20202020093C78736C3A6E756D626572206C6576656C3D2273696E676C65222076616C75653D22706F736974696F6E282922202F3E0D0A202020203C2F78736C3A7661726961626C653E0D0A09093C6C693E0D0A202020202020202020203C6120687265663D227B24736974652D706174687D3F706167655F69643D7B706167652D69647D22207461726765743D225F746F7022203E0D0A2020202020202020202020202020203C78736C3A76616C75652D6F662073656C6563743D22706167652D6E616D6522202F3E0D0A20202020202020202020203C2F613E092020200D0A09092020203C6272202F3E0D0A09092020203C78736C3A76616C75652D6F662073656C6563743D22706167652D6465736372697074696F6E22202F3E0D0A0909093C78736C3A6170706C792D74656D706C617465732073656C6563743D227375626C6576656C2D6D656E752D6C69737422202F3E200D0A0909090D0A09093C2F6C693E20090D0A09090D0A3C2F78736C3A74656D706C6174653E0D0A0D0A3C78736C3A74656D706C617465206D617463683D227375626C6576656C2D6D656E752D6C69737422203E200D0A090D0A093C78736C3A6170706C792D74656D706C617465732073656C6563743D227375626C6576656C2D6D656E7522202F3E200920202020090D0A0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A0D0A3C78736C3A74656D706C617465206D617463683D227375626C6576656C2D6D656E75223E0D0A2020203C78736C3A7661726961626C65206E616D653D22696E6465785F736F75735F6D656E75223E0D0A2020202020202020203C78736C3A6E756D626572206C6576656C3D2273696E676C65222076616C75653D22706F736974696F6E282922202F3E0D0A2020203C2F78736C3A7661726961626C653E0D0A0909203C756C203E0D0A0909093C6C693E0D0A090909093C6120687265663D227B24736974652D706174687D3F706167655F69643D7B706167652D69647D22207461726765743D225F746F70223E0D0A09090909093C78736C3A76616C75652D6F662073656C6563743D22706167652D6E616D6522202F3E0D0A090909093C2F613E0D0A0909093C2F6C693E0909090D0A09093C2F756C3E0D0A09090D0A2020200D0A3C2F78736C3A74656D706C6174653E0D0A0D0A3C2F78736C3A7374796C6573686565743E0D0A),(279,'Site Map (Admin mode)','admin_site_map_admin.xsl',0x3C3F786D6C2076657273696F6E3D22312E30223F3E0D0A3C78736C3A7374796C6573686565742076657273696F6E3D22312E302220786D6C6E733A78736C3D22687474703A2F2F7777772E77332E6F72672F313939392F58534C2F5472616E73666F726D223E0D0A202020203C78736C3A706172616D206E616D653D22736974652D70617468222073656C6563743D22736974652D7061746822202F3E0D0A202020203C78736C3A7661726961626C65206E616D653D2263757272656E742D706167652D6964222073656C6563743D2263757272656E742D706167652D696422202F3E0D0A202020203C78736C3A74656D706C617465206D617463683D22706167655B706167652D6C6576656C3D305D223E0D0A20202020202020203C6469762069643D226C75746563652D6D61702D747265652220636C6173733D226C75746563652D74726565223E0D0A2020202020202020202020203C756C3E0D0A202020202020202020202020202020203C6C6920636C6173733D226C75746563652D747265652D6E6F64652220646174612D747265652D69636F6E3D22686F6D65223E0D0A20202020202020202020202020202020202020203C78736C3A76616C75652D6F662073656C6563743D22706167652D6E616D6522202F3E0D0A20202020202020202020202020202020202020203C78736C3A696620746573743D226E6F7428737472696E6728706167652D726F6C65293D276E6F6E652729223E0D0A2020202020202020202020202020202020202020202020203C7374726F6E673E0D0A202020202020202020202020202020202020202020202020202020203C78736C3A746578742064697361626C652D6F75747075742D6573636170696E673D22796573223E2D20236931386E7B706F7274616C2E736974652E61646D696E5F706167652E74616241646D696E4D6170526F6C6552657365727665647D3C2F78736C3A746578743E0D0A202020202020202020202020202020202020202020202020202020203C78736C3A76616C75652D6F662073656C6563743D22706167652D726F6C6522202F3E0D0A2020202020202020202020202020202020202020202020203C2F7374726F6E673E0D0A20202020202020202020202020202020202020203C2F78736C3A69663E0D0A20202020202020202020202020202020202020203C6120687265663D227B24736974652D706174687D3F706167655F69643D7B706167652D69647D22207469746C653D227B706167652D6465736372697074696F6E7D223E3C7370616E20636C6173733D2274692074692D6C696E6B223E3C2F7370616E3E3C2F613E0D0A20202020202020202020202020202020202020203C756C3E0D0A2020202020202020202020202020202020202020202020203C78736C3A6170706C792D74656D706C617465732073656C6563743D226368696C642D70616765732D6C69737422202F3E0D0A20202020202020202020202020202020202020203C2F756C3E0D0A202020202020202020202020202020203C2F6C693E0D0A2020202020202020202020203C2F756C3E0D0A20202020202020203C2F6469763E0D0A202020203C2F78736C3A74656D706C6174653E0D0A202020203C78736C3A74656D706C617465206D617463683D22706167655B706167652D6C6576656C3E305D223E0D0A20202020202020203C78736C3A7661726961626C65206E616D653D22696E646578222073656C6563743D22706167652D696422202F3E0D0A20202020202020203C78736C3A7661726961626C65206E616D653D226465736372697074696F6E222073656C6563743D22706167652D6465736372697074696F6E22202F3E0D0A20202020202020203C78736C3A63686F6F73653E0D0A2020202020202020202020203C78736C3A7768656E20746573743D22636F756E74286368696C642D70616765732D6C6973742F2A293E30223E0D0A2020202020202020202020203C6C692069643D226E6F64652D7B24696E6465787D2220636C6173733D226C75746563652D747265652D6E6F64652220646174612D747265652D69636F6E3D22666F6C646572223E0D0A202020202020202020202020202020203C78736C3A76616C75652D6F662073656C6563743D22706167652D6E616D6522202F3E0D0A202020202020202020202020202020203C78736C3A696620746573743D226E6F7428737472696E6728706167652D726F6C65293D276E6F6E652729223E0D0A20202020202020202020202020202020202020203C7374726F6E673E0D0A2020202020202020202020202020202020202020202020203C78736C3A746578742064697361626C652D6F75747075742D6573636170696E673D22796573223E236931386E7B706F7274616C2E736974652E61646D696E5F706167652E74616241646D696E4D6170526F6C6552657365727665647D3C2F78736C3A746578743E0D0A2020202020202020202020202020202020202020202020203C78736C3A76616C75652D6F662073656C6563743D22706167652D726F6C6522202F3E0D0A20202020202020202020202020202020202020203C2F7374726F6E673E0D0A202020202020202020202020202020203C2F78736C3A69663E0D0A202020202020202020202020202020203C6120687265663D227B24736974652D706174687D3F706167655F69643D7B706167652D69647D22207469746C653D227B246465736372697074696F6E7D223E3C7370616E20636C6173733D2274692074692D6C696E6B223E3C2F7370616E3E3C2F613E0D0A202020202020202020202020202020203C756C3E0D0A20202020202020202020202020202020202020203C78736C3A6170706C792D74656D706C617465732073656C6563743D226368696C642D70616765732D6C69737422202F3E0D0A202020202020202020202020202020203C2F756C3E0D0A202020202020202020202020202020203C2F6C693E2020200D0A2020202020202020202020203C2F78736C3A7768656E3E0D0A2020202020202020202020203C78736C3A6F74686572776973653E0D0A2020202020202020202020203C6C692069643D226E6F64652D7B24696E6465787D2220636C6173733D226C75746563652D747265652D6974656D2220646174612D747265652D69636F6E3D2266696C65223E0D0A202020202020202020202020202020203C78736C3A76616C75652D6F662073656C6563743D22706167652D6E616D6522202F3E0D0A202020202020202020202020202020203C78736C3A696620746573743D226E6F7428737472696E6728706167652D726F6C65293D276E6F6E652729223E0D0A20202020202020202020202020202020202020203C7374726F6E673E0D0A2020202020202020202020202020202020202020202020203C78736C3A746578742064697361626C652D6F75747075742D6573636170696E673D22796573223E236931386E7B706F7274616C2E736974652E61646D696E5F706167652E74616241646D696E4D6170526F6C6552657365727665647D3C2F78736C3A746578743E0D0A2020202020202020202020202020202020202020202020203C78736C3A76616C75652D6F662073656C6563743D22706167652D726F6C6522202F3E0D0A20202020202020202020202020202020202020203C2F7374726F6E673E0D0A202020202020202020202020202020203C2F78736C3A69663E0D0A202020202020202020202020202020203C6120687265663D227B24736974652D706174687D3F706167655F69643D7B706167652D69647D22207469746C653D227B246465736372697074696F6E7D223E3C7370616E20636C6173733D2274692074692D6C696E6B223E3C2F7370616E3E3C2F613E0D0A202020202020202020202020202020203C78736C3A6170706C792D74656D706C617465732073656C6563743D226368696C642D70616765732D6C69737422202F3E0D0A2020202020202020202020203C2F6C693E202020200D0A2020202020202020202020203C2F78736C3A6F74686572776973653E0D0A20202020202020203C2F78736C3A63686F6F73653E0D0A202020203C2F78736C3A74656D706C6174653E0D0A202020203C78736C3A74656D706C617465206D617463683D226368696C642D70616765732D6C697374223E0D0A20202020202020203C78736C3A6170706C792D74656D706C617465732073656C6563743D227061676522202F3E0D0A202020203C2F78736C3A74656D706C6174653E0D0A3C2F78736C3A7374796C6573686565743E),(10,'Rubrique HTML - Défaut','portlet_html.xsl',0x3C3F786D6C2076657273696F6E3D22312E30223F3E0D0A3C78736C3A7374796C6573686565742076657273696F6E3D22312E302220786D6C6E733A78736C3D22687474703A2F2F7777772E77332E6F72672F313939392F58534C2F5472616E73666F726D223E0D0A3C78736C3A6F7574707574206D6574686F643D2268746D6C2220696E64656E743D22796573222F3E0D0A0D0A3C78736C3A74656D706C617465206D617463683D22706F72746C6574223E0D0A3C78736C3A7661726961626C65206E616D653D226465766963655F636C617373223E0D0A3C78736C3A63686F6F73653E0D0A093C78736C3A7768656E20746573743D22737472696E6728646973706C61792D6F6E2D736D616C6C2D646576696365293D273027223E68696464656E2D70686F6E653C2F78736C3A7768656E3E0D0A093C78736C3A7768656E20746573743D22737472696E6728646973706C61792D6F6E2D6E6F726D616C2D646576696365293D273027223E68696464656E2D7461626C65743C2F78736C3A7768656E3E0D0A093C78736C3A7768656E20746573743D22737472696E6728646973706C61792D6F6E2D6C617267652D646576696365293D273027223E68696464656E2D6465736B746F703C2F78736C3A7768656E3E0D0A093C78736C3A6F74686572776973653E3C2F78736C3A6F74686572776973653E0D0A3C2F78736C3A63686F6F73653E0D0A3C2F78736C3A7661726961626C653E0D0A0D0A093C64697620636C6173733D22706F72746C6574207B246465766963655F636C6173737D223E0D0A093C78736C3A63686F6F73653E0D0A093C78736C3A7768656E20746573743D226E6F7428737472696E6728646973706C61792D706F72746C65742D7469746C65293D27312729223E0D0A093C68333E3C78736C3A76616C75652D6F662064697361626C652D6F75747075742D6573636170696E673D22796573222073656C6563743D22706F72746C65742D6E616D6522202F3E3C2F68333E0D0A093C78736C3A6170706C792D74656D706C617465732073656C6563743D2268746D6C2D706F72746C657422202F3E0D0A093C2F78736C3A7768656E3E0D0A093C78736C3A6F74686572776973653E0D0A093C78736C3A6170706C792D74656D706C617465732073656C6563743D2268746D6C2D706F72746C657422202F3E0D0A093C2F78736C3A6F74686572776973653E0D0A3C2F78736C3A63686F6F73653E0D0A3C2F6469763E0D0A3C2F78736C3A74656D706C6174653E0D0A090D0A3C78736C3A74656D706C617465206D617463683D2268746D6C2D706F72746C6574223E0D0A093C78736C3A6170706C792D74656D706C617465732073656C6563743D2268746D6C2D706F72746C65742D636F6E74656E7422202F3E0D0A3C2F78736C3A74656D706C6174653E0D0A090D0A3C78736C3A74656D706C617465206D617463683D2268746D6C2D706F72746C65742D636F6E74656E74223E0D0A093C78736C3A76616C75652D6F662064697361626C652D6F75747075742D6573636170696E673D22796573222073656C6563743D222E22202F3E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A3C2F78736C3A7374796C6573686565743E0D0A0D0A0D0A0D0A0D0A),(285,'Rubrique HTML - Fond coloré','portlet_html_background.xsl',0x3C3F786D6C2076657273696F6E3D22312E30223F3E0D0A3C78736C3A7374796C6573686565742076657273696F6E3D22312E302220786D6C6E733A78736C3D22687474703A2F2F7777772E77332E6F72672F313939392F58534C2F5472616E73666F726D223E0D0A0D0A3C78736C3A6F7574707574206D6574686F643D2268746D6C2220696E64656E743D22796573222F3E0D0A0D0A3C78736C3A74656D706C617465206D617463683D22706F72746C6574223E0D0A0D0A093C78736C3A7661726961626C65206E616D653D226465766963655F636C617373223E0D0A093C78736C3A63686F6F73653E0D0A09093C78736C3A7768656E20746573743D22737472696E6728646973706C61792D6F6E2D736D616C6C2D646576696365293D273027223E68696464656E2D70686F6E653C2F78736C3A7768656E3E0D0A09093C78736C3A7768656E20746573743D22737472696E6728646973706C61792D6F6E2D6E6F726D616C2D646576696365293D273027223E68696464656E2D7461626C65743C2F78736C3A7768656E3E0D0A09093C78736C3A7768656E20746573743D22737472696E6728646973706C61792D6F6E2D6C617267652D646576696365293D273027223E68696464656E2D6465736B746F703C2F78736C3A7768656E3E0D0A09093C78736C3A6F74686572776973653E3C2F78736C3A6F74686572776973653E0D0A093C2F78736C3A63686F6F73653E0D0A093C2F78736C3A7661726961626C653E0D0A090D0A093C64697620636C6173733D22706F72746C6574207B246465766963655F636C6173737D223E0D0A09093C64697620636C6173733D2277656C6C223E0D0A09093C78736C3A63686F6F73653E0D0A0909093C78736C3A7768656E20746573743D226E6F7428737472696E6728646973706C61792D706F72746C65742D7469746C65293D27312729223E0D0A090909093C68323E0D0A09090909093C78736C3A76616C75652D6F662064697361626C652D6F75747075742D6573636170696E673D22796573222073656C6563743D22706F72746C65742D6E616D6522202F3E0D0A090909093C2F68323E0D0A090909093C64697620636C6173733D22706F72746C65742D6261636B67726F756E642D636F6E74656E74202D6C75746563652D626F726465722D7261646975732D626F74746F6D223E0D0A09090909093C78736C3A6170706C792D74656D706C617465732073656C6563743D2268746D6C2D706F72746C657422202F3E0D0A090909093C2F6469763E0D0A0909093C2F78736C3A7768656E3E0D0A0909093C78736C3A6F74686572776973653E0D0A090909093C64697620636C6173733D22706F72746C65742D6261636B67726F756E642D636F6E74656E74202D6C75746563652D626F726465722D726164697573223E0D0A09090909093C78736C3A6170706C792D74656D706C617465732073656C6563743D2268746D6C2D706F72746C657422202F3E0D0A090909093C2F6469763E0D0A0909093C2F78736C3A6F74686572776973653E0D0A09093C2F78736C3A63686F6F73653E0D0A09093C2F6469763E0D0A202020203C2F6469763E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A3C78736C3A74656D706C617465206D617463683D2268746D6C2D706F72746C6574223E0D0A093C78736C3A6170706C792D74656D706C617465732073656C6563743D2268746D6C2D706F72746C65742D636F6E74656E7422202F3E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A3C78736C3A74656D706C617465206D617463683D2268746D6C2D706F72746C65742D636F6E74656E74223E0D0A093C78736C3A76616C75652D6F662064697361626C652D6F75747075742D6573636170696E673D22796573222073656C6563743D222E22202F3E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A3C2F78736C3A7374796C6573686565743E),(310,'Rubrique MyLutece - Défaut','portlet_mylutece.xsl',0x3C3F786D6C2076657273696F6E3D22312E30223F3E0D0A3C78736C3A7374796C6573686565742076657273696F6E3D22312E302220786D6C6E733A78736C3D22687474703A2F2F7777772E77332E6F72672F313939392F58534C2F5472616E73666F726D223E0D0A0D0A3C78736C3A74656D706C617465206D617463683D22706F72746C6574223E0D0A0D0A093C78736C3A7661726961626C65206E616D653D226465766963655F636C617373223E0D0A093C78736C3A63686F6F73653E0D0A09093C78736C3A7768656E20746573743D22737472696E6728646973706C61792D6F6E2D736D616C6C2D646576696365293D273027223E68696464656E2D70686F6E653C2F78736C3A7768656E3E0D0A09093C78736C3A7768656E20746573743D22737472696E6728646973706C61792D6F6E2D6E6F726D616C2D646576696365293D273027223E68696464656E2D7461626C65743C2F78736C3A7768656E3E0D0A09093C78736C3A7768656E20746573743D22737472696E6728646973706C61792D6F6E2D6C617267652D646576696365293D273027223E68696464656E2D6465736B746F703C2F78736C3A7768656E3E0D0A09093C78736C3A6F74686572776973653E3C2F78736C3A6F74686572776973653E0D0A093C2F78736C3A63686F6F73653E0D0A093C2F78736C3A7661726961626C653E0D0A0D0A093C64697620636C6173733D22706F72746C6574207B246465766963655F636C6173737D223E0D0A09093C64697620636C6173733D2277656C6C223E0D0A0909093C78736C3A63686F6F73653E0D0A0920202020202020203C78736C3A7768656E20746573743D226E6F7428737472696E6728646973706C61792D706F72746C65742D7469746C65293D27312729223E0D0A090909093C68333E3C78736C3A76616C75652D6F662064697361626C652D6F75747075742D6573636170696E673D22796573222073656C6563743D22706F72746C65742D6E616D6522202F3E3C2F68333E0D0A090909093C78736C3A6170706C792D74656D706C617465732073656C6563743D226D796C75746563652D706F72746C657422202F3E0D0A0920202020202020203C2F78736C3A7768656E3E0D0A0920202020202020203C78736C3A6F74686572776973653E0D0A090909093C78736C3A6170706C792D74656D706C617465732073656C6563743D226D796C75746563652D706F72746C657422202F3E0D0A0920202020202020203C2F78736C3A6F74686572776973653E0D0A0909093C2F78736C3A63686F6F73653E0D0A0909093C64697620636C6173733D22636C656172666978223E26233136303B3C2F6469763E0D0A09093C2F6469763E0D0A093C2F6469763E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A0D0A3C78736C3A74656D706C617465206D617463683D226D796C75746563652D706F72746C6574223E0D0A093C78736C3A6170706C792D74656D706C617465732073656C6563743D22757365722D6E6F742D7369676E656422202F3E0D0A093C78736C3A6170706C792D74656D706C617465732073656C6563743D226C75746563652D7573657222202F3E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A0D0A3C78736C3A74656D706C617465206D617463683D22757365722D6E6F742D7369676E6564223E0D0A093C666F726D20636C6173733D22666F726D2220616374696F6E3D226A73702F736974652F706C7567696E732F6D796C75746563652F446F4D794C75746563654C6F67696E2E6A737022206D6574686F643D22706F7374223E0D0A09093C78736C3A6170706C792D74656D706C617465732073656C6563743D226C75746563652D757365722D61757468656E7469636174696F6E2D736572766963655B4064656C6567617465643D2774727565275D22202F3E0D0A09093C78736C3A6170706C792D74656D706C617465732073656C6563743D226C75746563652D757365722D61757468656E7469636174696F6E2D736572766963655B406C6F67696E70617373776F72642D72657175697265643D2774727565275D22202F3E0D0A09093C78736C3A696620746573743D22636F756E74286C75746563652D757365722D61757468656E7469636174696F6E2D736572766963655B406C6F67696E70617373776F72642D72657175697265643D2774727565275D29202667743B3D2031223E0D0A0909093C6C6162656C20666F723D22757365726E616D65223E436F646520642761636326233233323B73203A3C2F6C6162656C3E0D0A0909093C696E707574206E616D653D22757365726E616D652220636C6173733D22696E7075742D6E6F726D616C222069643D22757365726E616D6522206175746F636F6D706C6574653D226F66662220746162696E6465783D22312220747970653D2274657874222F3E3C6272202F3E0D0A0909093C6C6162656C20666F723D2270617373776F7264223E4D6F74206465207061737365203A3C2F6C6162656C3E0D0A0909093C696E707574206E616D653D2270617373776F72642220636C6173733D22696E7075742D6E6F726D616C222069643D2270617373776F726422206175746F636F6D706C6574653D226F66662220746162696E6465783D22322220747970653D2270617373776F726422202F3E0D0A0909093C627574746F6E20636C6173733D2262746E2062746E2D736D616C6C2220746162696E6465783D22332220747970653D227375626D6974223E3C6920636C6173733D2269636F6E2D75736572223E26233136303B3C2F693E26233136303B436F6E6E6578696F6E3C2F627574746F6E3E0D0A09093C2F78736C3A69663E0D0A093C2F666F726D3E0D0A093C78736C3A6170706C792D74656D706C617465732073656C6563743D226C75746563652D757365722D6E65772D6163636F756E742D75726C22202F3E0D0A093C78736C3A6170706C792D74656D706C617465732073656C6563743D226C75746563652D757365722D6C6F73742D70617373776F72642D75726C22202F3E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A3C78736C3A74656D706C617465206D617463683D226C75746563652D757365722D61757468656E7469636174696F6E2D736572766963655B406C6F67696E70617373776F72642D72657175697265643D2774727565275D223E0D0A093C6C6162656C20636C6173733D22726164696F2220666F723D22617574685F70726F766964657222203E0D0A09093C696E70757420747970653D22726164696F22206E616D653D22617574685F70726F7669646572222076616C75653D227B6E616D657D2220636865636B65643D22636865636B656422202F3E0D0A09093C78736C3A76616C75652D6F662073656C6563743D22646973706C61792D6E616D6522202F3E0D0A093C2F6C6162656C3E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A3C78736C3A74656D706C617465206D617463683D226C75746563652D757365722D61757468656E7469636174696F6E2D736572766963655B4064656C6567617465643D2774727565275D223E0D0A093C6120687265663D227B75726C7D3F617574685F70726F76696465723D7B6E616D657D223E0D0A09093C696D67207372633D227B69636F6E2D75726C7D2220616C743D227B646973706C61792D6E616D657D22207469746C653D227B646973706C61792D6E616D657D222F3E0D0A093C2F613E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A0D0A3C78736C3A74656D706C617465206D617463683D226C75746563652D75736572223E0D0A202020203C703E0D0A093C7374726F6E673E4269656E76656E756526233136303B0D0A09093C78736C3A76616C75652D6F662064697361626C652D6F75747075742D6573636170696E673D22796573222073656C6563743D226C75746563652D757365722D6E616D652D676976656E22202F3E26233136303B0D0A09093C78736C3A76616C75652D6F662064697361626C652D6F75747075742D6573636170696E673D22796573222073656C6563743D226C75746563652D757365722D6E616D652D66616D696C7922202F3E0D0A093C2F7374726F6E673E0D0A093C2F703E0D0A202020203C78736C3A6170706C792D74656D706C617465732073656C6563743D226C75746563652D757365722D6C6F676F75742D75726C22202F3E0D0A202020203C78736C3A6170706C792D74656D706C617465732073656C6563743D226C75746563652D757365722D766965772D6163636F756E742D75726C22202F3E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A0D0A3C78736C3A74656D706C617465206D617463683D226C75746563652D757365722D6C6F676F75742D75726C223E0D0A2020203C666F726D20636C6173733D22666F726D2D696E6C696E652070756C6C2D6C65667422206E616D653D226C6F676F75742220616374696F6E3D227B2E7D22206D6574686F643D22706F7374223E0D0A202020093C627574746F6E20747970653D227375626D69742220636C6173733D2262746E223E3C6920636C6173733D2269636F6E2D6F6666223E26233136303B3C2F693E26233136303B4426233233333B636F6E6E6578696F6E3C2F627574746F6E3E26233136303B0D0A2020203C2F666F726D3E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A0D0A3C78736C3A74656D706C617465206D617463683D226C75746563652D757365722D6E65772D6163636F756E742D75726C223E0D0A093C666F726D20636C6173733D22666F726D2D696E6C696E652070756C6C2D6C65667422206E616D653D226C6F676F75742220616374696F6E3D227B2E7D22206D6574686F643D22706F7374223E0D0A09093C627574746F6E20747970653D227375626D69742220636C6173733D2262746E223E3C6920636C6173733D2269636F6E2D706C7573223E26233136303B3C2F693E26233136303B437226233233333B657220756E20636F6D7074653C2F627574746F6E3E26233136303B0D0A202020203C2F666F726D3E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A0D0A3C78736C3A74656D706C617465206D617463683D226C75746563652D757365722D6C6F73742D70617373776F72642D75726C223E0D0A093C666F726D20636C6173733D22666F726D2D696E6C696E652070756C6C2D6C65667422206E616D653D226C6F676F75742220616374696F6E3D227B2E7D22206D6574686F643D22706F7374223E0D0A09202020093C627574746F6E20747970653D227375626D69742220636C6173733D2262746E223E3C6920636C6173733D2269636F6E2D6C6F636B223E26233136303B3C2F693E26233136303B4D6F742064652070617373652070657264753C2F627574746F6E3E26233136303B0D0A2020203C2F666F726D3E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A3C78736C3A74656D706C617465206D617463683D226C75746563652D757365722D766965772D6163636F756E742D75726C223E0D0A093C666F726D20636C6173733D22666F726D2D696E6C696E652070756C6C2D6C65667422206E616D653D226C6F676F75742220616374696F6E3D227B2E7D22206D6574686F643D22706F7374223E0D0A09202020093C627574746F6E20747970653D227375626D69742220636C6173733D2262746E223E3C6920636C6173733D2269636F6E2D65646974223E26233136303B3C2F693E26233136303B566F6972206D6F6E20636F6D7074653C2F627574746F6E3E26233136303B0D0A093C2F666F726D3E0D0A3C2F78736C3A74656D706C6174653E0D0A0D0A3C2F78736C3A7374796C6573686565743E0D0A0D0A);
+INSERT INTO `core_stylesheet` VALUES (211,'Menu Init','menu_init.xsl',_binary '<?xml version=\"1.0\"?>\r\n<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\r\n\r\n<xsl:param name=\"site-path\" select=\"site-path\" />\r\n\r\n<xsl:template match=\"menu-list\">\r\n<br /><br />\r\n	<div id=\"menu-init\">\r\n		<div id=\"menu-init-content\">\r\n            <ul id=\"menu-verti\">\r\n                <xsl:apply-templates select=\"menu\" />\r\n            </ul>\r\n        </div>\r\n     </div>\r\n</xsl:template>\r\n\r\n\r\n<xsl:template match=\"menu\">\r\n    <xsl:variable name=\"index\">\r\n    	<xsl:number level=\"single\" value=\"position()\" />\r\n    </xsl:variable>\r\n\r\n    <xsl:if test=\"$index &gt; 7\">\r\n        <li class=\"first-verti\">\r\n        	<a href=\"{$site-path}?page_id={page-id}\" target=\"_top\">\r\n          		<xsl:value-of select=\"page-name\" />\r\n	        </a>\r\n    	    <xsl:apply-templates select=\"sublevel-menu-list\" />\r\n        </li>\r\n   </xsl:if>\r\n</xsl:template>\r\n\r\n<xsl:template match=\"sublevel-menu-list\" >\r\n	<ul>\r\n    	<li class=\"last-verti\">\r\n		 	<xsl:apply-templates select=\"sublevel-menu\" />\r\n 	    </li>\r\n    </ul>\r\n</xsl:template>\r\n\r\n<xsl:template match=\"sublevel-menu\">\r\n   <xsl:variable name=\"index_sous_menu\">\r\n         <xsl:number level=\"single\" value=\"position()\" />\r\n   </xsl:variable>\r\n\r\n   <a href=\"{$site-path}?page_id={page-id}\" target=\"_top\">\r\n		<span><xsl:value-of select=\"page-name\" /></span>\r\n   </a>\r\n</xsl:template>\r\n\r\n</xsl:stylesheet>\r\n'),(213,'Main Menu','menu_main.xsl',_binary '<?xml version=\"1.0\"?>\r\n<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\r\n    <xsl:param name=\"site-path\" select=\"site-path\" />\r\n    <xsl:template match=\"menu-list\">\r\n        <xsl:apply-templates select=\"menu\" />\r\n    </xsl:template>\r\n    <xsl:template match=\"menu\">\r\n        <li class=\"nav-item\">\r\n            <a href=\"{$site-path}?page_id={page-id}\" class=\"nav-link\" target=\"_top\">\r\n                <xsl:value-of select=\"page-name\" />\r\n            </a>\r\n        </li>\r\n    </xsl:template>\r\n</xsl:stylesheet>'),(215,'Breadcrumb','page_path.xsl',_binary '<?xml version=\"1.0\"?>\r\n<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\r\n\r\n<xsl:param name=\"site-path\" select=\"site-path\" />\r\n\r\n\r\n<xsl:template match=\"page\">\r\n		<xsl:if test=\"position()!=last()-1\">\r\n			<a href=\"{$site-path}?page_id={page-id}\" target=\"_top\"><xsl:value-of select=\"page-name\" /></a> >\r\n		</xsl:if>\r\n		<xsl:if test=\"position()=last()-1\">\r\n			<xsl:value-of select=\"page-name\" />\r\n		</xsl:if>\r\n</xsl:template>\r\n\r\n\r\n<xsl:template match=\"page_link\">\r\n		<xsl:if test=\"position()!=last()-1\">\r\n			<a href=\"{$site-path}?{page-url}\" target=\"_top\"><xsl:value-of select=\"page-name\" /></a> >\r\n		</xsl:if>\r\n		<xsl:if test=\"position()=last()-1\">\r\n			<xsl:value-of select=\"page-name\" />\r\n		</xsl:if>\r\n</xsl:template>\r\n\r\n\r\n</xsl:stylesheet>'),(217,'Site Map','site_map.xsl',_binary '<?xml version=\"1.0\"?> <xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\"> 	<xsl:param name=\"site-path\" select=\"site-path\" /> 	<xsl:variable name=\"current-page-id\" select=\"current-page-id\" /> 	<xsl:template match=\"page[page-level=0]\"> 		<div id=\"lutece-map-tree\" class=\"lutece-tree\"> 			<ul> 				<li id=\"node-{page-id}\" class=\"lutece-tree-node\" data-tree-icon=\"home\"> 					<xsl:value-of select=\"page-name\" /> 					<xsl:if test=\"not(string(page-role)=\'none\')\"> 						<strong> 							<xsl:text disable-output-escaping=\"yes\">- #i18n{portal.site.admin_page.tabAdminMapRoleReserved}</xsl:text> 							<xsl:value-of select=\"page-role\" /> 						</strong> 					</xsl:if> 					<a href=\"{$site-path}?page_id={page-id}\" title=\"{page-description}\"><span class=\"ti ti-home-link ms-2\"></span></a> 					<ul> 						<xsl:apply-templates select=\"child-pages-list\" /> 					</ul> 				</li> 			</ul> 		</div> 	</xsl:template> 	<xsl:template match=\"page[page-level>0]\"> 		<xsl:variable name=\"index\" select=\"page-id\" /> 		<xsl:variable name=\"description\" select=\"page-description\" /> 		<xsl:choose> 			<xsl:when test=\"count(child-pages-list/*)>0\"> 			<li id=\"node-{$index}\" class=\"lutece-tree-node\" data-tree-icon=\"folder\"> 				<span class=\"node-name\"> 					<xsl:value-of select=\"page-name\" /> 					<xsl:if test=\"not(string(page-role)=\'none\')\"> 						<strong> 							<xsl:text disable-output-escaping=\"yes\">#i18n{portal.site.admin_page.tabAdminMapRoleReserved}</xsl:text> 							<xsl:value-of select=\"page-role\" /> 						</strong> 					</xsl:if> 					<a href=\"{$site-path}?page_id={page-id}\" title=\"{page-name } - {$description}\"><span class=\"ti ti-link mx-2\"></span></a> 				</span> 				<ul> 					<xsl:apply-templates select=\"child-pages-list\" /> 				</ul> 			</li> 			</xsl:when> 			<xsl:otherwise> 				<li id=\"node-{$index}\" class=\"lutece-tree-item\" data-tree-icon=\"file-symlink\"> 					<a href=\"{$site-path}?page_id={page-id}\" title=\"{$description}\"> 						<span class=\"leaf-name\"><xsl:value-of select=\"page-name\" /></span> 						<xsl:if test=\"not(string(page-role)=\'none\')\"> 							<strong> 								<xsl:text disable-output-escaping=\"yes\">#i18n{portal.site.admin_page.tabAdminMapRoleReserved}</xsl:text> 								<xsl:value-of select=\"page-role\" /> 							</strong> 						</xsl:if> 					</a> 				</li>    			</xsl:otherwise> 		</xsl:choose> 	</xsl:template> 	<xsl:template match=\"child-pages-list\"> 		<xsl:apply-templates select=\"page\" /> 	</xsl:template> </xsl:stylesheet>'),(253,'Tree View Menu','menu_tree.xsl',_binary '<?xml version=\"1.0\"?>\r\n<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\r\n\r\n<xsl:param name=\"site-path\" select=\"site-path\" />\r\n\r\n<xsl:template match=\"menu-list\">\r\n	<xsl:variable name=\"menu-list\" select=\"menu\" />\r\n\r\n	<script type=\"text/javascript\">\r\n		$(document).ready(function(){\r\n			$(\"#tree\").treeview({\r\n				animated: \"fast\",\r\n				collapsed: false,\r\n				unique: true,\r\n				persist: \"cookie\"\r\n			});\r\n		\r\n		});\r\n	</script>    \r\n	\r\n	<xsl:if test=\"not(string(menu)=\'\')\">\r\n	    <xsl:text disable-output-escaping=\"yes\">		    \r\n            <div class=\"tree4\">		\r\n			<h2>&#160;</h2>\r\n			<ul id=\"tree\" class=\"tree4\">\r\n                <xsl:apply-templates select=\"menu\" />        \r\n			</ul>	\r\n			</div>\r\n		 	 <br />\r\n		</xsl:text> \r\n	</xsl:if>\r\n</xsl:template>\r\n\r\n\r\n<xsl:template match=\"menu\">\r\n    <xsl:variable name=\"index\">\r\n    	<xsl:number level=\"single\" value=\"position()\" />\r\n    </xsl:variable>\r\n		<li>\r\n          <a href=\"{$site-path}?page_id={page-id}\" target=\"_top\" >\r\n               <xsl:value-of select=\"page-name\" />\r\n           </a>	   \r\n		   <br />\r\n		   <xsl:value-of select=\"page-description\" />\r\n			<xsl:apply-templates select=\"sublevel-menu-list\" /> \r\n			\r\n		</li> 	\r\n		\r\n</xsl:template>\r\n\r\n<xsl:template match=\"sublevel-menu-list\" > \r\n	\r\n	<xsl:apply-templates select=\"sublevel-menu\" /> 	    	\r\n\r\n</xsl:template>\r\n\r\n\r\n<xsl:template match=\"sublevel-menu\">\r\n   <xsl:variable name=\"index_sous_menu\">\r\n         <xsl:number level=\"single\" value=\"position()\" />\r\n   </xsl:variable>\r\n		 <ul >\r\n			<li>\r\n				<a href=\"{$site-path}?page_id={page-id}\" target=\"_top\">\r\n					<xsl:value-of select=\"page-name\" />\r\n				</a>\r\n			</li>			\r\n		</ul>\r\n		\r\n   \r\n</xsl:template>\r\n\r\n</xsl:stylesheet>\r\n'),(279,'Site Map (Admin mode)','admin_site_map_admin.xsl',_binary '<?xml version=\"1.0\"?>\r\n<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\r\n    <xsl:param name=\"site-path\" select=\"site-path\" />\r\n    <xsl:variable name=\"current-page-id\" select=\"current-page-id\" />\r\n    <xsl:template match=\"page[page-level=0]\">\r\n        <div id=\"lutece-map-tree\" class=\"lutece-tree\">\r\n            <ul>\r\n                <li class=\"lutece-tree-node\" data-tree-icon=\"home\">\r\n                    <xsl:value-of select=\"page-name\" />\r\n                    <xsl:if test=\"not(string(page-role)=\'none\')\">\r\n                        <strong>\r\n                            <xsl:text disable-output-escaping=\"yes\">- #i18n{portal.site.admin_page.tabAdminMapRoleReserved}</xsl:text>\r\n                            <xsl:value-of select=\"page-role\" />\r\n                        </strong>\r\n                    </xsl:if>\r\n                    <a href=\"{$site-path}?page_id={page-id}\" title=\"{page-description}\"><span class=\"ti ti-link\"></span></a>\r\n                    <ul>\r\n                        <xsl:apply-templates select=\"child-pages-list\" />\r\n                    </ul>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </xsl:template>\r\n    <xsl:template match=\"page[page-level>0]\">\r\n        <xsl:variable name=\"index\" select=\"page-id\" />\r\n        <xsl:variable name=\"description\" select=\"page-description\" />\r\n        <xsl:choose>\r\n            <xsl:when test=\"count(child-pages-list/*)>0\">\r\n            <li id=\"node-{$index}\" class=\"lutece-tree-node\" data-tree-icon=\"folder\">\r\n                <xsl:value-of select=\"page-name\" />\r\n                <xsl:if test=\"not(string(page-role)=\'none\')\">\r\n                    <strong>\r\n                        <xsl:text disable-output-escaping=\"yes\">#i18n{portal.site.admin_page.tabAdminMapRoleReserved}</xsl:text>\r\n                        <xsl:value-of select=\"page-role\" />\r\n                    </strong>\r\n                </xsl:if>\r\n                <a href=\"{$site-path}?page_id={page-id}\" title=\"{$description}\"><span class=\"ti ti-link\"></span></a>\r\n                <ul>\r\n                    <xsl:apply-templates select=\"child-pages-list\" />\r\n                </ul>\r\n                </li>   \r\n            </xsl:when>\r\n            <xsl:otherwise>\r\n            <li id=\"node-{$index}\" class=\"lutece-tree-item\" data-tree-icon=\"file\">\r\n                <xsl:value-of select=\"page-name\" />\r\n                <xsl:if test=\"not(string(page-role)=\'none\')\">\r\n                    <strong>\r\n                        <xsl:text disable-output-escaping=\"yes\">#i18n{portal.site.admin_page.tabAdminMapRoleReserved}</xsl:text>\r\n                        <xsl:value-of select=\"page-role\" />\r\n                    </strong>\r\n                </xsl:if>\r\n                <a href=\"{$site-path}?page_id={page-id}\" title=\"{$description}\"><span class=\"ti ti-link\"></span></a>\r\n                <xsl:apply-templates select=\"child-pages-list\" />\r\n            </li>    \r\n            </xsl:otherwise>\r\n        </xsl:choose>\r\n    </xsl:template>\r\n    <xsl:template match=\"child-pages-list\">\r\n        <xsl:apply-templates select=\"page\" />\r\n    </xsl:template>\r\n</xsl:stylesheet>'),(10,'Rubrique HTML - Défaut','portlet_html.xsl',_binary '<?xml version=\"1.0\"?>\r\n<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\r\n<xsl:output method=\"html\" indent=\"yes\"/>\r\n\r\n<xsl:template match=\"portlet\">\r\n<xsl:variable name=\"device_class\">\r\n<xsl:choose>\r\n	<xsl:when test=\"string(display-on-small-device)=\'0\'\">hidden-phone</xsl:when>\r\n	<xsl:when test=\"string(display-on-normal-device)=\'0\'\">hidden-tablet</xsl:when>\r\n	<xsl:when test=\"string(display-on-large-device)=\'0\'\">hidden-desktop</xsl:when>\r\n	<xsl:otherwise></xsl:otherwise>\r\n</xsl:choose>\r\n</xsl:variable>\r\n\r\n	<div class=\"portlet {$device_class}\">\r\n	<xsl:choose>\r\n	<xsl:when test=\"not(string(display-portlet-title)=\'1\')\">\r\n	<h3><xsl:value-of disable-output-escaping=\"yes\" select=\"portlet-name\" /></h3>\r\n	<xsl:apply-templates select=\"html-portlet\" />\r\n	</xsl:when>\r\n	<xsl:otherwise>\r\n	<xsl:apply-templates select=\"html-portlet\" />\r\n	</xsl:otherwise>\r\n</xsl:choose>\r\n</div>\r\n</xsl:template>\r\n	\r\n<xsl:template match=\"html-portlet\">\r\n	<xsl:apply-templates select=\"html-portlet-content\" />\r\n</xsl:template>\r\n	\r\n<xsl:template match=\"html-portlet-content\">\r\n	<xsl:value-of disable-output-escaping=\"yes\" select=\".\" />\r\n</xsl:template>\r\n\r\n</xsl:stylesheet>\r\n\r\n\r\n\r\n\r\n'),(285,'Rubrique HTML - Fond coloré','portlet_html_background.xsl',_binary '<?xml version=\"1.0\"?>\r\n<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\r\n\r\n<xsl:output method=\"html\" indent=\"yes\"/>\r\n\r\n<xsl:template match=\"portlet\">\r\n\r\n	<xsl:variable name=\"device_class\">\r\n	<xsl:choose>\r\n		<xsl:when test=\"string(display-on-small-device)=\'0\'\">hidden-phone</xsl:when>\r\n		<xsl:when test=\"string(display-on-normal-device)=\'0\'\">hidden-tablet</xsl:when>\r\n		<xsl:when test=\"string(display-on-large-device)=\'0\'\">hidden-desktop</xsl:when>\r\n		<xsl:otherwise></xsl:otherwise>\r\n	</xsl:choose>\r\n	</xsl:variable>\r\n	\r\n	<div class=\"portlet {$device_class}\">\r\n		<div class=\"well\">\r\n		<xsl:choose>\r\n			<xsl:when test=\"not(string(display-portlet-title)=\'1\')\">\r\n				<h2>\r\n					<xsl:value-of disable-output-escaping=\"yes\" select=\"portlet-name\" />\r\n				</h2>\r\n				<div class=\"portlet-background-content -lutece-border-radius-bottom\">\r\n					<xsl:apply-templates select=\"html-portlet\" />\r\n				</div>\r\n			</xsl:when>\r\n			<xsl:otherwise>\r\n				<div class=\"portlet-background-content -lutece-border-radius\">\r\n					<xsl:apply-templates select=\"html-portlet\" />\r\n				</div>\r\n			</xsl:otherwise>\r\n		</xsl:choose>\r\n		</div>\r\n    </div>\r\n</xsl:template>\r\n\r\n<xsl:template match=\"html-portlet\">\r\n	<xsl:apply-templates select=\"html-portlet-content\" />\r\n</xsl:template>\r\n\r\n<xsl:template match=\"html-portlet-content\">\r\n	<xsl:value-of disable-output-escaping=\"yes\" select=\".\" />\r\n</xsl:template>\r\n\r\n</xsl:stylesheet>'),(310,'Rubrique MyLutece - Défaut','portlet_mylutece.xsl',_binary '<?xml version=\"1.0\"?>\r\n<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\r\n\r\n<xsl:template match=\"portlet\">\r\n\r\n	<xsl:variable name=\"device_class\">\r\n	<xsl:choose>\r\n		<xsl:when test=\"string(display-on-small-device)=\'0\'\">hidden-phone</xsl:when>\r\n		<xsl:when test=\"string(display-on-normal-device)=\'0\'\">hidden-tablet</xsl:when>\r\n		<xsl:when test=\"string(display-on-large-device)=\'0\'\">hidden-desktop</xsl:when>\r\n		<xsl:otherwise></xsl:otherwise>\r\n	</xsl:choose>\r\n	</xsl:variable>\r\n\r\n	<div class=\"portlet {$device_class}\">\r\n		<div class=\"well\">\r\n			<xsl:choose>\r\n	        <xsl:when test=\"not(string(display-portlet-title)=\'1\')\">\r\n				<h3><xsl:value-of disable-output-escaping=\"yes\" select=\"portlet-name\" /></h3>\r\n				<xsl:apply-templates select=\"mylutece-portlet\" />\r\n	        </xsl:when>\r\n	        <xsl:otherwise>\r\n				<xsl:apply-templates select=\"mylutece-portlet\" />\r\n	        </xsl:otherwise>\r\n			</xsl:choose>\r\n			<div class=\"clearfix\">&#160;</div>\r\n		</div>\r\n	</div>\r\n</xsl:template>\r\n\r\n\r\n<xsl:template match=\"mylutece-portlet\">\r\n	<xsl:apply-templates select=\"user-not-signed\" />\r\n	<xsl:apply-templates select=\"lutece-user\" />\r\n</xsl:template>\r\n\r\n\r\n<xsl:template match=\"user-not-signed\">\r\n	<form class=\"form\" action=\"jsp/site/plugins/mylutece/DoMyLuteceLogin.jsp\" method=\"post\">\r\n		<xsl:apply-templates select=\"lutece-user-authentication-service[@delegated=\'true\']\" />\r\n		<xsl:apply-templates select=\"lutece-user-authentication-service[@loginpassword-required=\'true\']\" />\r\n		<xsl:if test=\"count(lutece-user-authentication-service[@loginpassword-required=\'true\']) &gt;= 1\">\r\n			<label for=\"username\">Code d\'acc&#232;s :</label>\r\n			<input name=\"username\" class=\"input-normal\" id=\"username\" autocomplete=\"off\" tabindex=\"1\" type=\"text\"/><br />\r\n			<label for=\"password\">Mot de passe :</label>\r\n			<input name=\"password\" class=\"input-normal\" id=\"password\" autocomplete=\"off\" tabindex=\"2\" type=\"password\" />\r\n			<button class=\"btn btn-small\" tabindex=\"3\" type=\"submit\"><i class=\"icon-user\">&#160;</i>&#160;Connexion</button>\r\n		</xsl:if>\r\n	</form>\r\n	<xsl:apply-templates select=\"lutece-user-new-account-url\" />\r\n	<xsl:apply-templates select=\"lutece-user-lost-password-url\" />\r\n</xsl:template>\r\n\r\n<xsl:template match=\"lutece-user-authentication-service[@loginpassword-required=\'true\']\">\r\n	<label class=\"radio\" for=\"auth_provider\" >\r\n		<input type=\"radio\" name=\"auth_provider\" value=\"{name}\" checked=\"checked\" />\r\n		<xsl:value-of select=\"display-name\" />\r\n	</label>\r\n</xsl:template>\r\n\r\n<xsl:template match=\"lutece-user-authentication-service[@delegated=\'true\']\">\r\n	<a href=\"{url}?auth_provider={name}\">\r\n		<img src=\"{icon-url}\" alt=\"{display-name}\" title=\"{display-name}\"/>\r\n	</a>\r\n</xsl:template>\r\n\r\n\r\n<xsl:template match=\"lutece-user\">\r\n    <p>\r\n	<strong>Bienvenue&#160;\r\n		<xsl:value-of disable-output-escaping=\"yes\" select=\"lutece-user-name-given\" />&#160;\r\n		<xsl:value-of disable-output-escaping=\"yes\" select=\"lutece-user-name-family\" />\r\n	</strong>\r\n	</p>\r\n    <xsl:apply-templates select=\"lutece-user-logout-url\" />\r\n    <xsl:apply-templates select=\"lutece-user-view-account-url\" />\r\n</xsl:template>\r\n\r\n\r\n<xsl:template match=\"lutece-user-logout-url\">\r\n   <form class=\"form-inline pull-left\" name=\"logout\" action=\"{.}\" method=\"post\">\r\n   	<button type=\"submit\" class=\"btn\"><i class=\"icon-off\">&#160;</i>&#160;D&#233;connexion</button>&#160;\r\n   </form>\r\n</xsl:template>\r\n\r\n\r\n<xsl:template match=\"lutece-user-new-account-url\">\r\n	<form class=\"form-inline pull-left\" name=\"logout\" action=\"{.}\" method=\"post\">\r\n		<button type=\"submit\" class=\"btn\"><i class=\"icon-plus\">&#160;</i>&#160;Cr&#233;er un compte</button>&#160;\r\n    </form>\r\n</xsl:template>\r\n\r\n\r\n<xsl:template match=\"lutece-user-lost-password-url\">\r\n	<form class=\"form-inline pull-left\" name=\"logout\" action=\"{.}\" method=\"post\">\r\n	   	<button type=\"submit\" class=\"btn\"><i class=\"icon-lock\">&#160;</i>&#160;Mot de passe perdu</button>&#160;\r\n   </form>\r\n</xsl:template>\r\n\r\n<xsl:template match=\"lutece-user-view-account-url\">\r\n	<form class=\"form-inline pull-left\" name=\"logout\" action=\"{.}\" method=\"post\">\r\n	   	<button type=\"submit\" class=\"btn\"><i class=\"icon-edit\">&#160;</i>&#160;Voir mon compte</button>&#160;\r\n	</form>\r\n</xsl:template>\r\n\r\n</xsl:stylesheet>\r\n\r\n');
 /*!40000 ALTER TABLE `core_stylesheet` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_template`
@@ -1539,10 +1652,10 @@ INSERT INTO `core_stylesheet` VALUES (211,'Menu Init','menu_init.xsl',0x3C3F786D
 
 DROP TABLE IF EXISTS `core_template`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_template` (
   `template_name` varchar(100) NOT NULL,
-  `template_value` mediumtext DEFAULT NULL,
+  `template_value` mediumtext,
   PRIMARY KEY (`template_name`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1551,9 +1664,11 @@ CREATE TABLE `core_template` (
 -- Dumping data for table `core_template`
 --
 
+LOCK TABLES `core_template` WRITE;
 /*!40000 ALTER TABLE `core_template` DISABLE KEYS */;
 INSERT INTO `core_template` VALUES ('core_first_alert_mail','Bonjour ${first_name} ! Votre compte utilisateur arrive à expiration. Pour prolonger sa validité, veuillez <a href=\"${url}\">cliquer ici</a>.</br>Si vous ne le faites pas avant le ${date_valid}, il sera désactivé.'),('core_expiration_mail','Bonjour ${first_name} ! Votre compte a expiré. Vous ne pourrez plus vous connecter avec, et les données vous concernant ont été anonymisées'),('core_other_alert_mail','Bonjour ${first_name} ! Votre compte utilisateur arrive à expiration. Pour prolonger sa validité, veuillez <a href=\"${url}\">cliquer ici</a>.</br>Si vous ne le faites pas avant le ${date_valid}, il sera désactivé.'),('core_account_reactivated_mail','Bonjour ${first_name} ! Votre compte utilisateur a bien été réactivé. Il est désormais valable jusqu\'au ${date_valid}.'),('core_password_expired','Bonjour ! Votre mot de passe a expiré. Lors de votre prochaine connexion, vous pourrez le changer.');
 /*!40000 ALTER TABLE `core_template` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_text_editor`
@@ -1561,11 +1676,11 @@ INSERT INTO `core_template` VALUES ('core_first_alert_mail','Bonjour ${first_nam
 
 DROP TABLE IF EXISTS `core_text_editor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_text_editor` (
   `editor_name` varchar(255) NOT NULL,
   `editor_description` varchar(255) NOT NULL,
-  `backOffice` smallint(6) NOT NULL,
+  `backOffice` smallint NOT NULL,
   PRIMARY KEY (`editor_name`,`backOffice`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1574,9 +1689,11 @@ CREATE TABLE `core_text_editor` (
 -- Dumping data for table `core_text_editor`
 --
 
+LOCK TABLES `core_text_editor` WRITE;
 /*!40000 ALTER TABLE `core_text_editor` DISABLE KEYS */;
 INSERT INTO `core_text_editor` VALUES ('tinymce','portal.admindashboard.editors.labelBackTinyMCE',1),('tinymce5','portal.admindashboard.editors.labelBackTinyMCE5',1),('','portal.admindashboard.editors.labelBackNoEditor',1),('','portal.admindashboard.editors.labelFrontNoEditor',0),('sceeditor','portal.admindashboard.editors.labelFrontSceEditor',0);
 /*!40000 ALTER TABLE `core_text_editor` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_user_password_history`
@@ -1584,11 +1701,11 @@ INSERT INTO `core_text_editor` VALUES ('tinymce','portal.admindashboard.editors.
 
 DROP TABLE IF EXISTS `core_user_password_history`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_user_password_history` (
-  `id_user` int(11) NOT NULL,
+  `id_user` int NOT NULL,
   `password` mediumtext NOT NULL,
-  `date_password_change` timestamp NOT NULL DEFAULT current_timestamp(),
+  `date_password_change` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_user`,`date_password_change`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1597,8 +1714,10 @@ CREATE TABLE `core_user_password_history` (
 -- Dumping data for table `core_user_password_history`
 --
 
+LOCK TABLES `core_user_password_history` WRITE;
 /*!40000 ALTER TABLE `core_user_password_history` DISABLE KEYS */;
 /*!40000 ALTER TABLE `core_user_password_history` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_user_preferences`
@@ -1606,11 +1725,11 @@ CREATE TABLE `core_user_password_history` (
 
 DROP TABLE IF EXISTS `core_user_preferences`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_user_preferences` (
   `id_user` varchar(100) NOT NULL,
   `pref_key` varchar(100) NOT NULL,
-  `pref_value` mediumtext DEFAULT NULL,
+  `pref_value` mediumtext,
   PRIMARY KEY (`id_user`,`pref_key`),
   KEY `index_user_preferences` (`id_user`)
 );
@@ -1620,8 +1739,10 @@ CREATE TABLE `core_user_preferences` (
 -- Dumping data for table `core_user_preferences`
 --
 
+LOCK TABLES `core_user_preferences` WRITE;
 /*!40000 ALTER TABLE `core_user_preferences` DISABLE KEYS */;
 /*!40000 ALTER TABLE `core_user_preferences` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_user_right`
@@ -1629,10 +1750,10 @@ CREATE TABLE `core_user_preferences` (
 
 DROP TABLE IF EXISTS `core_user_right`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_user_right` (
   `id_right` varchar(255) NOT NULL DEFAULT '',
-  `id_user` int(11) NOT NULL DEFAULT 0,
+  `id_user` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_right`,`id_user`),
   KEY `index_user_right` (`id_user`)
 );
@@ -1642,9 +1763,11 @@ CREATE TABLE `core_user_right` (
 -- Dumping data for table `core_user_right`
 --
 
+LOCK TABLES `core_user_right` WRITE;
 /*!40000 ALTER TABLE `core_user_right` DISABLE KEYS */;
 INSERT INTO `core_user_right` VALUES ('APPOINTMENT_CALENDAR_TEMPLATE',1),('APPOINTMENT_CATEGORY_MANAGEMENT',1),('APPOINTMENT_FORM_MANAGEMENT',1),('CORE_ADMIN_SITE',1),('CORE_ADMIN_SITE',2),('CORE_ADMINDASHBOARD_MANAGEMENT',1),('CORE_CACHE_MANAGEMENT',1),('CORE_DAEMONS_MANAGEMENT',1),('CORE_DASHBOARD_MANAGEMENT',1),('CORE_EDITORS_MANAGEMENT',1),('CORE_FEATURES_MANAGEMENT',1),('CORE_LEVEL_RIGHT_MANAGEMENT',1),('CORE_LINK_SERVICE_MANAGEMENT',1),('CORE_LINK_SERVICE_MANAGEMENT',2),('CORE_LOGS_VISUALISATION',1),('CORE_MAILINGLISTS_MANAGEMENT',1),('CORE_MODES_MANAGEMENT',1),('CORE_PAGE_TEMPLATE_MANAGEMENT',1),('CORE_PAGE_TEMPLATE_MANAGEMENT',2),('CORE_PLUGINS_MANAGEMENT',1),('CORE_PROPERTIES_MANAGEMENT',1),('CORE_PROPERTIES_MANAGEMENT',2),('CORE_RBAC_MANAGEMENT',1),('CORE_RIGHT_MANAGEMENT',1),('CORE_ROLES_MANAGEMENT',1),('CORE_ROLES_MANAGEMENT',2),('CORE_SEARCH_INDEXATION',1),('CORE_SEARCH_INDEXATION',2),('CORE_SEARCH_MANAGEMENT',1),('CORE_SEARCH_MANAGEMENT',2),('CORE_STYLES_MANAGEMENT',1),('CORE_STYLESHEET_MANAGEMENT',1),('CORE_TEMPLATES_AUTO_INCLUDES_MANAGEMENT',1),('CORE_USERS_MANAGEMENT',1),('CORE_USERS_MANAGEMENT',2),('CORE_WORKGROUPS_MANAGEMENT',1),('CORE_WORKGROUPS_MANAGEMENT',2),('CORE_XSL_EXPORT_MANAGEMENT',1),('ELASTICDATA_MANAGEMENT',1),('ENTRY_TYPE_MANAGEMENT',1),('HTMLPAGE_MANAGEMENT',1),('HTMLPAGE_MANAGEMENT',2),('HTMLPAGE_MANAGEMENT',3),('IDENTITYSTORE_ADMIN_MANAGEMENT',1),('IDENTITYSTORE_MANAGEMENT',1),('KIBANA_MANAGEMENT',1),('KIBANA_RBAC_MANAGEMENT',1),('MATOMO_MANAGEMENT',1),('MODULENOTIFYGRUMAPPINGMANAGER_MANAGEMENT',1),('MULTIVIEW_APPOINTMENT',1),('MYLUTECE_MANAGE_AUTHENTICATION_FILTER',1),('MYLUTECE_MANAGEMENT',1),('PROFILES_MANAGEMENT',1),('PROFILES_VIEWS_MANAGEMENT',1),('REFERENCELIST_MANAGEMENT',1),('SITELABELS_MANAGEMENT',1),('SITELABELS_MANAGEMENT',2),('SOLR_CONFIGURATION_MANAGEMENT',2),('SOLR_FIELDS_MANAGEMENT',1),('SOLR_FIELDS_MANAGEMENT',2),('SOLR_INDEX_MANAGEMENT',1),('SOLR_INDEX_MANAGEMENT',2),('SYSTEMINFO_MANAGEMENT',1),('WORKFLOW_MANAGEMENT',1),('WORKFLOW_MANAGEMENT',2);
 /*!40000 ALTER TABLE `core_user_right` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_user_role`
@@ -1652,10 +1775,10 @@ INSERT INTO `core_user_right` VALUES ('APPOINTMENT_CALENDAR_TEMPLATE',1),('APPOI
 
 DROP TABLE IF EXISTS `core_user_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_user_role` (
   `role_key` varchar(50) NOT NULL DEFAULT '',
-  `id_user` int(11) NOT NULL DEFAULT 0,
+  `id_user` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`role_key`,`id_user`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1664,9 +1787,11 @@ CREATE TABLE `core_user_role` (
 -- Dumping data for table `core_user_role`
 --
 
+LOCK TABLES `core_user_role` WRITE;
 /*!40000 ALTER TABLE `core_user_role` DISABLE KEYS */;
 INSERT INTO `core_user_role` VALUES ('all_site_manager',1),('all_site_manager',2),('assign_groups',1),('assign_groups',2),('assign_groups',3),('assign_roles',1),('assign_roles',2),('assign_roles',3),('CREATE_REFERENCE_IMPORT',1),('kibana_dashboards_manager',1),('mylutece_manager',1),('profiles_manager',1),('profiles_views_manager',1),('super_admin',1),('super_admin',2),('workflow_manager',1),('workflow_manager',2);
 /*!40000 ALTER TABLE `core_user_role` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `core_xsl_export`
@@ -1674,13 +1799,13 @@ INSERT INTO `core_user_role` VALUES ('all_site_manager',1),('all_site_manager',2
 
 DROP TABLE IF EXISTS `core_xsl_export`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `core_xsl_export` (
-  `id_xsl_export` int(11) NOT NULL AUTO_INCREMENT,
+  `id_xsl_export` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `extension` varchar(255) DEFAULT NULL,
-  `id_file` int(11) DEFAULT NULL,
+  `id_file` int DEFAULT NULL,
   `plugin` varchar(255) DEFAULT '',
   PRIMARY KEY (`id_xsl_export`)
 ) AUTO_INCREMENT=127;
@@ -1690,9 +1815,11 @@ CREATE TABLE `core_xsl_export` (
 -- Dumping data for table `core_xsl_export`
 --
 
+LOCK TABLES `core_xsl_export` WRITE;
 /*!40000 ALTER TABLE `core_xsl_export` DISABLE KEYS */;
 INSERT INTO `core_xsl_export` VALUES (125,'Core - Export users to a CSV file','Export back office users to a CSV file','csv',125,'core'),(126,'Core - Export users to a XML file','Export back office users to a XML file','xml',126,'core');
 /*!40000 ALTER TABLE `core_xsl_export` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `crm_client_crm_item`
@@ -1700,10 +1827,10 @@ INSERT INTO `core_xsl_export` VALUES (125,'Core - Export users to a CSV file','E
 
 DROP TABLE IF EXISTS `crm_client_crm_item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `crm_client_crm_item` (
-  `id_crm_queue` int(11) NOT NULL DEFAULT 0,
-  `crm_item` mediumblob DEFAULT NULL,
+  `id_crm_queue` int NOT NULL DEFAULT '0',
+  `crm_item` mediumblob,
   PRIMARY KEY (`id_crm_queue`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1712,8 +1839,10 @@ CREATE TABLE `crm_client_crm_item` (
 -- Dumping data for table `crm_client_crm_item`
 --
 
+LOCK TABLES `crm_client_crm_item` WRITE;
 /*!40000 ALTER TABLE `crm_client_crm_item` DISABLE KEYS */;
 /*!40000 ALTER TABLE `crm_client_crm_item` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `crm_client_crm_queue`
@@ -1721,10 +1850,10 @@ CREATE TABLE `crm_client_crm_item` (
 
 DROP TABLE IF EXISTS `crm_client_crm_queue`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `crm_client_crm_queue` (
-  `id_crm_queue` int(11) NOT NULL DEFAULT 0,
-  `is_locked` smallint(6) DEFAULT 0,
+  `id_crm_queue` int NOT NULL DEFAULT '0',
+  `is_locked` smallint DEFAULT '0',
   PRIMARY KEY (`id_crm_queue`),
   KEY `is_locked_crm_client_crm_queue` (`is_locked`)
 );
@@ -1734,8 +1863,10 @@ CREATE TABLE `crm_client_crm_queue` (
 -- Dumping data for table `crm_client_crm_queue`
 --
 
+LOCK TABLES `crm_client_crm_queue` WRITE;
 /*!40000 ALTER TABLE `crm_client_crm_queue` DISABLE KEYS */;
 /*!40000 ALTER TABLE `crm_client_crm_queue` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `elastic_mapping`
@@ -1743,11 +1874,11 @@ CREATE TABLE `crm_client_crm_queue` (
 
 DROP TABLE IF EXISTS `elastic_mapping`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `elastic_mapping` (
-  `id_mapping` int(11) NOT NULL,
-  `id_customer` int(11) NOT NULL,
-  `id_user` int(11) DEFAULT NULL,
+  `id_mapping` int NOT NULL,
+  `id_customer` int NOT NULL,
+  `id_user` int DEFAULT NULL,
   PRIMARY KEY (`id_mapping`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1756,8 +1887,10 @@ CREATE TABLE `elastic_mapping` (
 -- Dumping data for table `elastic_mapping`
 --
 
+LOCK TABLES `elastic_mapping` WRITE;
 /*!40000 ALTER TABLE `elastic_mapping` DISABLE KEYS */;
 /*!40000 ALTER TABLE `elastic_mapping` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `elasticdata_indexer_action`
@@ -1765,11 +1898,11 @@ CREATE TABLE `elastic_mapping` (
 
 DROP TABLE IF EXISTS `elasticdata_indexer_action`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `elasticdata_indexer_action` (
-  `id_action` int(11) NOT NULL AUTO_INCREMENT,
+  `id_action` int NOT NULL AUTO_INCREMENT,
   `id_resource` varchar(255) NOT NULL,
-  `id_task` int(11) NOT NULL DEFAULT 0,
+  `id_task` int NOT NULL DEFAULT '0',
   `id_datasource` varchar(255) NOT NULL,
   PRIMARY KEY (`id_action`)
 );
@@ -1779,8 +1912,10 @@ CREATE TABLE `elasticdata_indexer_action` (
 -- Dumping data for table `elasticdata_indexer_action`
 --
 
+LOCK TABLES `elasticdata_indexer_action` WRITE;
 /*!40000 ALTER TABLE `elasticdata_indexer_action` DISABLE KEYS */;
 /*!40000 ALTER TABLE `elasticdata_indexer_action` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `filegen_temporary_file`
@@ -1788,16 +1923,16 @@ CREATE TABLE `elasticdata_indexer_action` (
 
 DROP TABLE IF EXISTS `filegen_temporary_file`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `filegen_temporary_file` (
-  `id_file` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user` int(11) NOT NULL DEFAULT 0,
-  `title` mediumtext DEFAULT NULL,
-  `description` mediumtext DEFAULT NULL,
+  `id_file` int NOT NULL AUTO_INCREMENT,
+  `id_user` int NOT NULL DEFAULT '0',
+  `title` mediumtext,
+  `description` mediumtext,
   `id_physical_file` varchar(255) DEFAULT NULL,
-  `file_size` int(11) DEFAULT NULL,
+  `file_size` int DEFAULT NULL,
   `mime_type` varchar(255) DEFAULT NULL,
-  `date_creation` timestamp NOT NULL DEFAULT current_timestamp(),
+  `date_creation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_file`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1806,8 +1941,10 @@ CREATE TABLE `filegen_temporary_file` (
 -- Dumping data for table `filegen_temporary_file`
 --
 
+LOCK TABLES `filegen_temporary_file` WRITE;
 /*!40000 ALTER TABLE `filegen_temporary_file` DISABLE KEYS */;
 /*!40000 ALTER TABLE `filegen_temporary_file` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `genatt_entry`
@@ -1815,27 +1952,27 @@ CREATE TABLE `filegen_temporary_file` (
 
 DROP TABLE IF EXISTS `genatt_entry`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `genatt_entry` (
-  `id_entry` int(11) NOT NULL AUTO_INCREMENT,
-  `id_resource` int(11) NOT NULL DEFAULT 0,
+  `id_entry` int NOT NULL AUTO_INCREMENT,
+  `id_resource` int NOT NULL DEFAULT '0',
   `resource_type` varchar(255) NOT NULL,
-  `id_type` int(11) NOT NULL DEFAULT 0,
-  `id_parent` int(11) DEFAULT NULL,
-  `title` mediumtext DEFAULT NULL,
+  `id_type` int NOT NULL DEFAULT '0',
+  `id_parent` int DEFAULT NULL,
+  `title` mediumtext,
   `code` varchar(100) DEFAULT NULL,
-  `help_message` mediumtext DEFAULT NULL,
-  `comment` mediumtext DEFAULT NULL,
-  `mandatory` smallint(6) DEFAULT NULL,
-  `fields_in_line` smallint(6) DEFAULT NULL,
-  `pos` int(11) DEFAULT NULL,
-  `id_field_depend` int(11) DEFAULT NULL,
-  `field_unique` smallint(6) DEFAULT NULL,
+  `help_message` mediumtext,
+  `comment` mediumtext,
+  `mandatory` smallint DEFAULT NULL,
+  `fields_in_line` smallint DEFAULT NULL,
+  `pos` int DEFAULT NULL,
+  `id_field_depend` int DEFAULT NULL,
+  `field_unique` smallint DEFAULT NULL,
   `css_class` varchar(255) DEFAULT NULL,
-  `pos_conditional` int(11) DEFAULT 0,
-  `error_message` mediumtext DEFAULT NULL,
-  `is_only_display_back` smallint(6) DEFAULT 0,
-  `is_indexed` smallint(6) DEFAULT 0,
+  `pos_conditional` int DEFAULT '0',
+  `error_message` mediumtext,
+  `is_only_display_back` smallint DEFAULT '0',
+  `is_indexed` smallint DEFAULT '0',
   PRIMARY KEY (`id_entry`),
   KEY `index_genatt_entry_resource` (`id_resource`),
   KEY `index_genatt_entry_parent` (`id_parent`),
@@ -1848,8 +1985,10 @@ CREATE TABLE `genatt_entry` (
 -- Dumping data for table `genatt_entry`
 --
 
+LOCK TABLES `genatt_entry` WRITE;
 /*!40000 ALTER TABLE `genatt_entry` DISABLE KEYS */;
 /*!40000 ALTER TABLE `genatt_entry` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `genatt_entry_type`
@@ -1857,18 +1996,18 @@ CREATE TABLE `genatt_entry` (
 
 DROP TABLE IF EXISTS `genatt_entry_type`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `genatt_entry_type` (
-  `id_type` int(11) NOT NULL DEFAULT 0,
+  `id_type` int NOT NULL DEFAULT '0',
   `title` varchar(255) DEFAULT NULL,
-  `is_group` smallint(6) DEFAULT NULL,
-  `is_comment` int(11) DEFAULT NULL,
-  `is_mylutece_user` smallint(6) DEFAULT NULL,
+  `is_group` smallint DEFAULT NULL,
+  `is_comment` int DEFAULT NULL,
+  `is_mylutece_user` smallint DEFAULT NULL,
   `class_name` varchar(255) DEFAULT NULL,
   `icon_name` varchar(255) DEFAULT NULL,
   `plugin` varchar(255) NOT NULL,
-  `display_order` int(11) DEFAULT 0,
-  `inactive` int(11) DEFAULT 0,
+  `display_order` int DEFAULT '0',
+  `inactive` int DEFAULT '0',
   PRIMARY KEY (`id_type`),
   KEY `index_genatt_entry_type_plugin` (`plugin`)
 );
@@ -1878,9 +2017,11 @@ CREATE TABLE `genatt_entry_type` (
 -- Dumping data for table `genatt_entry_type`
 --
 
+LOCK TABLES `genatt_entry_type` WRITE;
 /*!40000 ALTER TABLE `genatt_entry_type` DISABLE KEYS */;
 INSERT INTO `genatt_entry_type` VALUES (123,'Bouton radio',0,0,0,'appointment.entryTypeRadioButton','dot-circle','appointment',1,0),(124,'Case à cocher',0,0,0,'appointment.entryTypeCheckBox','check-square','appointment',2,0),(125,'Commentaire',0,1,0,'appointment.entryTypeComment','comment','appointment',3,0),(126,'Date',0,0,0,'appointment.entryTypeDate','calendar','appointment',4,0),(127,'Liste déroulante',0,0,0,'appointment.entryTypeSelect','list-alt','appointment',5,0),(128,'Zone de texte court',0,0,0,'appointment.entryTypeText','file-alt','appointment',6,0),(129,'Zone de texte long',0,0,0,'appointment.entryTypeTextArea','sticky-note','appointment',7,0),(130,'Numérotation',0,0,0,'appointment.entryTypeNumbering','hashtag','appointment',8,0),(131,'Regroupement',1,0,0,'appointment.entryTypeGroup','indent','appointment',9,0),(132,'Liste déroulante SQL',0,0,0,'appointment.entryTypeSelectSQL','list-alt','appointment',10,0),(133,'Géolocalisation',0,0,0,'appointment.entryTypeGeolocation','map-marked-alt','appointment',11,0),(134,'Session',0,0,0,'appointment.entryTypeSession','user','appointment',12,0),(135,'Utilisateur MyLutece',0,0,1,'appointment.entryTypeMyLuteceUser','user','appointment',13,0),(136,'Image',0,0,0,'appointment.entryTypeImage','image','appointment',14,0),(137,'Fichier',0,0,0,'appointment.entryTypeFile','file','appointment',15,0),(138,'Numéro de téléphone',0,0,0,'appointment.entryTypePhone','phone-square','appointment',16,1);
 /*!40000 ALTER TABLE `genatt_entry_type` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `genatt_field`
@@ -1888,18 +2029,18 @@ INSERT INTO `genatt_entry_type` VALUES (123,'Bouton radio',0,0,0,'appointment.en
 
 DROP TABLE IF EXISTS `genatt_field`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `genatt_field` (
-  `id_field` int(11) NOT NULL AUTO_INCREMENT,
-  `id_entry` int(11) NOT NULL DEFAULT 0,
+  `id_field` int NOT NULL AUTO_INCREMENT,
+  `id_entry` int NOT NULL DEFAULT '0',
   `title` varchar(255) DEFAULT NULL,
   `code` varchar(100) DEFAULT NULL,
-  `value` mediumtext DEFAULT NULL,
-  `default_value` smallint(6) DEFAULT NULL,
-  `pos` int(11) DEFAULT NULL,
+  `value` mediumtext,
+  `default_value` smallint DEFAULT NULL,
+  `pos` int DEFAULT NULL,
   `value_type_date` date DEFAULT NULL,
-  `no_display_title` smallint(6) DEFAULT NULL,
-  `comment` mediumtext DEFAULT NULL,
+  `no_display_title` smallint DEFAULT NULL,
+  `comment` mediumtext,
   PRIMARY KEY (`id_field`),
   KEY `index_genatt_field_entry` (`id_entry`)
 );
@@ -1909,8 +2050,10 @@ CREATE TABLE `genatt_field` (
 -- Dumping data for table `genatt_field`
 --
 
+LOCK TABLES `genatt_field` WRITE;
 /*!40000 ALTER TABLE `genatt_field` DISABLE KEYS */;
 /*!40000 ALTER TABLE `genatt_field` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `genatt_referenceitem_field`
@@ -1918,10 +2061,10 @@ CREATE TABLE `genatt_field` (
 
 DROP TABLE IF EXISTS `genatt_referenceitem_field`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `genatt_referenceitem_field` (
-  `id_field` int(11) NOT NULL DEFAULT 0,
-  `id_item` int(11) NOT NULL DEFAULT 0,
+  `id_field` int NOT NULL DEFAULT '0',
+  `id_item` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_field`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1930,8 +2073,10 @@ CREATE TABLE `genatt_referenceitem_field` (
 -- Dumping data for table `genatt_referenceitem_field`
 --
 
+LOCK TABLES `genatt_referenceitem_field` WRITE;
 /*!40000 ALTER TABLE `genatt_referenceitem_field` DISABLE KEYS */;
 /*!40000 ALTER TABLE `genatt_referenceitem_field` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `genatt_response`
@@ -1939,15 +2084,15 @@ CREATE TABLE `genatt_referenceitem_field` (
 
 DROP TABLE IF EXISTS `genatt_response`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `genatt_response` (
-  `id_response` int(11) NOT NULL AUTO_INCREMENT,
-  `response_value` mediumtext DEFAULT NULL,
-  `id_entry` int(11) DEFAULT NULL,
-  `iteration_number` int(11) DEFAULT -1,
-  `id_field` int(11) DEFAULT NULL,
-  `id_file` int(11) DEFAULT NULL,
-  `status` smallint(6) DEFAULT 1,
+  `id_response` int NOT NULL AUTO_INCREMENT,
+  `response_value` mediumtext,
+  `id_entry` int DEFAULT NULL,
+  `iteration_number` int DEFAULT '-1',
+  `id_field` int DEFAULT NULL,
+  `id_file` int DEFAULT NULL,
+  `status` smallint DEFAULT '1',
   PRIMARY KEY (`id_response`),
   KEY `index_genatt_response_entry` (`id_entry`)
 );
@@ -1957,8 +2102,10 @@ CREATE TABLE `genatt_response` (
 -- Dumping data for table `genatt_response`
 --
 
+LOCK TABLES `genatt_response` WRITE;
 /*!40000 ALTER TABLE `genatt_response` DISABLE KEYS */;
 /*!40000 ALTER TABLE `genatt_response` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `genatt_verify_by`
@@ -1966,10 +2113,10 @@ CREATE TABLE `genatt_response` (
 
 DROP TABLE IF EXISTS `genatt_verify_by`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `genatt_verify_by` (
-  `id_field` int(11) NOT NULL DEFAULT 0,
-  `id_expression` int(11) NOT NULL DEFAULT 0,
+  `id_field` int NOT NULL DEFAULT '0',
+  `id_expression` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_field`,`id_expression`),
   KEY `index_genatt_verify_by_field` (`id_field`)
 );
@@ -1979,8 +2126,10 @@ CREATE TABLE `genatt_verify_by` (
 -- Dumping data for table `genatt_verify_by`
 --
 
+LOCK TABLES `genatt_verify_by` WRITE;
 /*!40000 ALTER TABLE `genatt_verify_by` DISABLE KEYS */;
 /*!40000 ALTER TABLE `genatt_verify_by` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `html_portlet`
@@ -1988,10 +2137,10 @@ CREATE TABLE `genatt_verify_by` (
 
 DROP TABLE IF EXISTS `html_portlet`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `html_portlet` (
-  `id_portlet` int(11) NOT NULL DEFAULT 0,
-  `html` mediumtext DEFAULT NULL,
+  `id_portlet` int NOT NULL DEFAULT '0',
+  `html` mediumtext,
   PRIMARY KEY (`id_portlet`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2000,9 +2149,11 @@ CREATE TABLE `html_portlet` (
 -- Dumping data for table `html_portlet`
 --
 
+LOCK TABLES `html_portlet` WRITE;
 /*!40000 ALTER TABLE `html_portlet` DISABLE KEYS */;
 INSERT INTO `html_portlet` VALUES (1,''),(2,'<ul class=\"features\"> \n <li>Lutece is FreeSoftware. Full OpenSource licensed under BSD.</li> \n <li>Full responsive design Back and Front</li> \n <li>Compliant with Twitter Bootstrap themes</li> \n <li>Very modular and flexible architecture based on plugins, APIs, IoC</li> \n <li>Over 300 plugins available for many needs : Content Management, Collaborative, Workflows, ...</li> \n <li>Runs on Java Platform and rely on powerful build tools such as Apache Maven</li> \n <li>Uses best of breed Java Open Source stacks : Lucene, Spring, Ehcache, Freemarker, ...</li> \n</ul> \n<p class=\"logo\">&nbsp;</p>'),(4,'<h2>Get into the Back Office of this demo site</h2> \n<p class=\"mb20\">Sign in as administrator with <em>admin/adminadmin</em>.</p> \n<p><a class=\"btn btn-primary\" title=\"Access to admin [Open  in new window]\" href=\"jsp/admin/AdminLogin.jsp\" target=\"\"><span class=\"fa fa-door-open\">&nbsp;</span> Enter Back Office</a></p> \n<p>&nbsp;</p>'),(5,'<h3>Resources</h3> \n<hr> \n<div class=\"row\"> \n <div class=\"col-xs-12 col-sm-6\"> \n  <div class=\"media\"> \n   <div class=\"media-left\">\n    <a title=\"GitHub site [Open  in new window]\" href=\"https://github.com/lutece-platform\" target=\"_blank\"><img class=\"media-object\" src=\"images/local/skin/github-logo.png\" alt=\"Github logo\" width=\"100px\"> </a>\n   </div> \n   <div class=\"media-body\"> \n    <h4 class=\"media-heading\">Access to our code repository</h4> \n   </div> \n  </div> \n  <div class=\"media\"> \n   <div class=\"media-left\">\n    <a title=\"Docker Hub site [Open  in new window]\" href=\"https://hub.docker.com/u/lutece\" target=\"_blank\"><img class=\"media-object\" src=\"images/local/skin/docker-logo.png\" alt=\"Docker images\" width=\"100px\"> </a>\n   </div> \n   <div class=\"media-body\"> \n    <h4 class=\"media-heading\">Grab some Docker images to run demos</h4> \n   </div> \n  </div> \n </div> \n <div class=\"col-xs-12 col-sm-6\"> \n  <div class=\"media\"> \n   <div class=\"media-left\">\n    <a title=\"Lutece Wiki site [Open  in new window]\" href=\"https://fr.lutece.paris.fr/fr/jsp/site/Portal.jsp?page=wiki&amp;action=changeLanguage&amp;page_name=home&amp;language=en\" target=\"_blank\"> <img class=\"media-object\" src=\"images/local/skin/wiki-logo.png\" alt=\"WIKI\" width=\"100px\"> </a>\n   </div> \n   <div class=\"media-body\"> \n    <h4 class=\"media-heading\">Read our technical documentation</h4> \n   </div> \n  </div> \n  <div class=\"media\"> \n   <div class=\"media-left\">\n    <a title=\" Twitter Site [Open  in new window]\" href=\"https://twitter.com/LuteceNews\" target=\"_blank\"> <img class=\"media-object\" src=\"images/local/skin/twitter-logo.png\" alt=\"Twitter logo\" width=\"100px\"> </a>\n   </div> \n   <div class=\"media-body\"> \n    <h4 class=\"media-heading\">Follow us on Twitter</h4> \n   </div> \n  </div> \n </div> \n</div>');
 /*!40000 ALTER TABLE `html_portlet` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `htmlpage`
@@ -2010,12 +2161,12 @@ INSERT INTO `html_portlet` VALUES (1,''),(2,'<ul class=\"features\"> \n <li>Lute
 
 DROP TABLE IF EXISTS `htmlpage`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `htmlpage` (
-  `id_htmlpage` int(11) NOT NULL DEFAULT 0,
+  `id_htmlpage` int NOT NULL DEFAULT '0',
   `description` varchar(255) NOT NULL DEFAULT '',
-  `html_content` mediumtext DEFAULT NULL,
-  `status` int(11) NOT NULL DEFAULT 0,
+  `html_content` mediumtext,
+  `status` int NOT NULL DEFAULT '0',
   `workgroup_key` varchar(50) NOT NULL DEFAULT 'all',
   `role` varchar(50) NOT NULL DEFAULT 'none',
   PRIMARY KEY (`id_htmlpage`)
@@ -2026,8 +2177,10 @@ CREATE TABLE `htmlpage` (
 -- Dumping data for table `htmlpage`
 --
 
+LOCK TABLES `htmlpage` WRITE;
 /*!40000 ALTER TABLE `htmlpage` DISABLE KEYS */;
 /*!40000 ALTER TABLE `htmlpage` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `identitystore_attribute`
@@ -2035,13 +2188,13 @@ CREATE TABLE `htmlpage` (
 
 DROP TABLE IF EXISTS `identitystore_attribute`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `identitystore_attribute` (
-  `id_attribute` int(6) NOT NULL,
+  `id_attribute` int NOT NULL,
   `name` varchar(100) NOT NULL DEFAULT '',
   `key_name` varchar(100) NOT NULL DEFAULT '',
-  `description` mediumtext DEFAULT NULL,
-  `key_type` int(11) NOT NULL DEFAULT 0,
+  `description` mediumtext,
+  `key_type` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_attribute`),
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `key_name` (`key_name`)
@@ -2052,9 +2205,11 @@ CREATE TABLE `identitystore_attribute` (
 -- Dumping data for table `identitystore_attribute`
 --
 
+LOCK TABLES `identitystore_attribute` WRITE;
 /*!40000 ALTER TABLE `identitystore_attribute` DISABLE KEYS */;
 INSERT INTO `identitystore_attribute` VALUES (1,'Genre','gender','0:Non défini /  1:Homme / 2:Femme',0),(2,'Email','email','',0),(3,'Date de naissance','birthdate','au format DD/MM/YYYY',0),(4,'Lieu de naissance','birthplace','',0),(5,'Téléphone portable','mobile_phone','Réservé pour l\'envoi de SMS',0),(6,'Téléphone fixe','fixed_phone','',0),(7,'Téléphone fixe ou mobile','phone','',0),(8,'Nom usuel','preferred_username','',0),(9,'Adresse postale','address','',0),(10,'Prénom','first_name','Prénom usuel',0),(11,'Nom de famille de naissance','family_name','',0),(12,'Numéro de rue','address_number','Champ d\'adresse : numéro de rue ',0),(13,'Suffixe','address_suffix','Champ d\'adresse : suffixe de numéro (bis,ter...)',0),(14,'Rue','address_street','Champ d\'adresse :  rue, avenue...',0),(15,'Immeuble','address_building','Champ d\'adresse : immeuble, résidence...',0),(16,'Etage','address_stair','Champ d\'adresse : Etage, Numéro d appartement',0),(17,'Code postal','address_postal_code','Champ d\'adresse : code postal',0),(18,'Ville','address_city','Champ d\'adresse : ville',0),(19,'Pays de naissance','birthcountry','',0),(30,'(FC) Prénoms','fc_given_name','Format Pivot FranceConnect - Liste des prénoms',0),(31,'(FC) Nom de naissance','fc_family_name','Format Pivot FranceConnect',0),(32,'(FC) Date de naissance','fc_birthdate','Format Pivot FranceConnect - format YYYY-MM-DD',0),(33,'(FC) Genre','fc_gender','Format Pivot FranceConnect - male / female',0),(34,'(FC) Lieu de naissance','fc_birthplace','Format Pivot FranceConnect - Code INSEE du lieu de naissance (ou une chaîne vide si la personne est née à l\'étranger)',0),(35,'(FC) Pays de naissance','fc_birthcountry','Format Pivot FranceConnect - Code INSEE du pays de naissance',0);
 /*!40000 ALTER TABLE `identitystore_attribute` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `identitystore_attribute_certificate`
@@ -2062,12 +2217,12 @@ INSERT INTO `identitystore_attribute` VALUES (1,'Genre','gender','0:Non défini 
 
 DROP TABLE IF EXISTS `identitystore_attribute_certificate`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `identitystore_attribute_certificate` (
-  `id_attribute_certificate` int(11) NOT NULL AUTO_INCREMENT,
+  `id_attribute_certificate` int NOT NULL AUTO_INCREMENT,
   `certifier_code` varchar(255) NOT NULL DEFAULT '',
-  `certificate_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `certificate_level` int(11) NOT NULL DEFAULT 0,
+  `certificate_date` timestamp NOT NULL,
+  `certificate_level` int NOT NULL DEFAULT '0',
   `expiration_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_attribute_certificate`)
 );
@@ -2077,8 +2232,10 @@ CREATE TABLE `identitystore_attribute_certificate` (
 -- Dumping data for table `identitystore_attribute_certificate`
 --
 
+LOCK TABLES `identitystore_attribute_certificate` WRITE;
 /*!40000 ALTER TABLE `identitystore_attribute_certificate` DISABLE KEYS */;
 /*!40000 ALTER TABLE `identitystore_attribute_certificate` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `identitystore_attribute_right`
@@ -2086,14 +2243,14 @@ CREATE TABLE `identitystore_attribute_certificate` (
 
 DROP TABLE IF EXISTS `identitystore_attribute_right`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `identitystore_attribute_right` (
-  `id_client_app` int(6) NOT NULL,
-  `id_attribute` int(6) NOT NULL,
-  `readable` int(1) NOT NULL DEFAULT 0,
-  `writable` int(1) NOT NULL DEFAULT 0,
-  `certifiable` int(1) NOT NULL DEFAULT 0,
-  `searchable` int(1) NOT NULL DEFAULT 0,
+  `id_client_app` int NOT NULL,
+  `id_attribute` int NOT NULL,
+  `readable` int NOT NULL DEFAULT '0',
+  `writable` int NOT NULL DEFAULT '0',
+  `certifiable` int NOT NULL DEFAULT '0',
+  `searchable` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_client_app`,`id_attribute`),
   KEY `fk_attribute_right_id_attribute` (`id_attribute`)
 );
@@ -2103,9 +2260,11 @@ CREATE TABLE `identitystore_attribute_right` (
 -- Dumping data for table `identitystore_attribute_right`
 --
 
+LOCK TABLES `identitystore_attribute_right` WRITE;
 /*!40000 ALTER TABLE `identitystore_attribute_right` DISABLE KEYS */;
 INSERT INTO `identitystore_attribute_right` VALUES (1,1,1,1,0,0),(1,2,1,1,0,0),(1,3,1,1,0,0),(1,4,1,1,0,0),(1,5,1,1,0,0),(1,6,1,1,0,0),(1,7,1,1,0,0),(1,8,1,1,0,0),(1,9,1,1,0,0),(1,10,1,1,0,0),(1,11,1,1,0,0),(1,12,1,1,0,0),(1,13,1,1,0,0),(1,14,1,1,0,0),(1,15,1,1,0,0),(1,16,1,1,0,0),(1,17,1,1,0,0),(1,18,1,1,0,0);
 /*!40000 ALTER TABLE `identitystore_attribute_right` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `identitystore_client_application`
@@ -2113,12 +2272,12 @@ INSERT INTO `identitystore_attribute_right` VALUES (1,1,1,1,0,0),(1,2,1,1,0,0),(
 
 DROP TABLE IF EXISTS `identitystore_client_application`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `identitystore_client_application` (
-  `id_client_app` int(6) NOT NULL,
+  `id_client_app` int NOT NULL,
   `name` varchar(100) NOT NULL,
   `code` varchar(100) NOT NULL,
-  `is_application_authorized_to_delete_value` int(1) NOT NULL DEFAULT 0,
+  `is_application_authorized_to_delete_value` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_client_app`),
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `code` (`code`)
@@ -2129,9 +2288,11 @@ CREATE TABLE `identitystore_client_application` (
 -- Dumping data for table `identitystore_client_application`
 --
 
+LOCK TABLES `identitystore_client_application` WRITE;
 /*!40000 ALTER TABLE `identitystore_client_application` DISABLE KEYS */;
 INSERT INTO `identitystore_client_application` VALUES (1,'My Application','MyApplication',0);
 /*!40000 ALTER TABLE `identitystore_client_application` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `identitystore_client_application_certifiers`
@@ -2139,9 +2300,9 @@ INSERT INTO `identitystore_client_application` VALUES (1,'My Application','MyApp
 
 DROP TABLE IF EXISTS `identitystore_client_application_certifiers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `identitystore_client_application_certifiers` (
-  `id_client_app` int(6) NOT NULL,
+  `id_client_app` int NOT NULL,
   `certifier_code` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id_client_app`,`certifier_code`),
   KEY `id_client_app` (`id_client_app`)
@@ -2152,8 +2313,10 @@ CREATE TABLE `identitystore_client_application_certifiers` (
 -- Dumping data for table `identitystore_client_application_certifiers`
 --
 
+LOCK TABLES `identitystore_client_application_certifiers` WRITE;
 /*!40000 ALTER TABLE `identitystore_client_application_certifiers` DISABLE KEYS */;
 /*!40000 ALTER TABLE `identitystore_client_application_certifiers` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `identitystore_history_identity_attribute`
@@ -2161,20 +2324,20 @@ CREATE TABLE `identitystore_client_application_certifiers` (
 
 DROP TABLE IF EXISTS `identitystore_history_identity_attribute`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `identitystore_history_identity_attribute` (
-  `id_history` int(11) NOT NULL AUTO_INCREMENT,
-  `change_type` int(3) NOT NULL,
-  `id_identity` int(11) NOT NULL,
+  `id_history` int NOT NULL AUTO_INCREMENT,
+  `change_type` int NOT NULL,
+  `id_identity` int NOT NULL,
   `identity_connection_id` varchar(100) DEFAULT NULL,
   `attribute_key` varchar(50) NOT NULL,
   `attribute_new_value` varchar(255) NOT NULL DEFAULT '',
   `attribute_old_value` varchar(255) NOT NULL DEFAULT '',
   `author_id` varchar(255) DEFAULT '',
-  `author_type` int(2) NOT NULL,
+  `author_type` int NOT NULL,
   `author_application` varchar(255) DEFAULT '',
   `certifier_name` varchar(255) DEFAULT '',
-  `modification_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_history`),
   KEY `fk_history_identity_attribute_id_identity` (`id_identity`)
 );
@@ -2184,8 +2347,10 @@ CREATE TABLE `identitystore_history_identity_attribute` (
 -- Dumping data for table `identitystore_history_identity_attribute`
 --
 
+LOCK TABLES `identitystore_history_identity_attribute` WRITE;
 /*!40000 ALTER TABLE `identitystore_history_identity_attribute` DISABLE KEYS */;
 /*!40000 ALTER TABLE `identitystore_history_identity_attribute` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `identitystore_identity`
@@ -2193,13 +2358,13 @@ CREATE TABLE `identitystore_history_identity_attribute` (
 
 DROP TABLE IF EXISTS `identitystore_identity`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `identitystore_identity` (
-  `id_identity` int(11) NOT NULL AUTO_INCREMENT,
+  `id_identity` int NOT NULL AUTO_INCREMENT,
   `connection_id` varchar(100) DEFAULT NULL,
   `customer_id` varchar(50) DEFAULT NULL,
-  `date_create` timestamp NOT NULL DEFAULT current_timestamp(),
-  `is_deleted` smallint(6) DEFAULT 0,
+  `date_create` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_deleted` smallint DEFAULT '0',
   `date_delete` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_identity`),
   UNIQUE KEY `connection_id` (`connection_id`),
@@ -2213,9 +2378,11 @@ CREATE TABLE `identitystore_identity` (
 -- Dumping data for table `identitystore_identity`
 --
 
+LOCK TABLES `identitystore_identity` WRITE;
 /*!40000 ALTER TABLE `identitystore_identity` DISABLE KEYS */;
-INSERT INTO `identitystore_identity` VALUES (1,'azerty','3F2504E0-4F89-11D3-9A0C-0305E82C3301','2024-03-11 10:53:52',0,'2024-03-11 10:53:52');
+INSERT INTO `identitystore_identity` VALUES (1,'azerty','3F2504E0-4F89-11D3-9A0C-0305E82C3301','2024-03-14 13:43:29',0,'2024-03-14 13:43:29');
 /*!40000 ALTER TABLE `identitystore_identity` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `identitystore_identity_attribute`
@@ -2223,14 +2390,14 @@ INSERT INTO `identitystore_identity` VALUES (1,'azerty','3F2504E0-4F89-11D3-9A0C
 
 DROP TABLE IF EXISTS `identitystore_identity_attribute`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `identitystore_identity_attribute` (
-  `id_identity` int(11) NOT NULL DEFAULT 0,
-  `id_attribute` int(11) NOT NULL DEFAULT 0,
-  `attribute_value` mediumtext DEFAULT NULL,
-  `id_certification` int(11) NOT NULL DEFAULT 0,
-  `id_file` int(11) DEFAULT 0,
-  `lastupdate_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `id_identity` int NOT NULL DEFAULT '0',
+  `id_attribute` int NOT NULL DEFAULT '0',
+  `attribute_value` mediumtext,
+  `id_certification` int NOT NULL DEFAULT '0',
+  `id_file` int DEFAULT '0',
+  `lastupdate_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `lastupdate_application` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_identity`,`id_attribute`),
   KEY `fk_identity_attribute_id_attribute` (`id_attribute`),
@@ -2242,9 +2409,11 @@ CREATE TABLE `identitystore_identity_attribute` (
 -- Dumping data for table `identitystore_identity_attribute`
 --
 
+LOCK TABLES `identitystore_identity_attribute` WRITE;
 /*!40000 ALTER TABLE `identitystore_identity_attribute` DISABLE KEYS */;
-INSERT INTO `identitystore_identity_attribute` VALUES (1,1,'M',0,0,'2024-03-11 10:53:52',NULL),(1,2,'john.doe@gmail.com',0,0,'2024-03-11 10:53:52',NULL),(1,3,'11/10/1970',0,0,'2024-03-11 10:53:52',NULL),(1,4,'Paris',0,0,'2024-03-11 10:53:52',NULL),(1,5,'0623457896',0,0,'2024-03-11 10:53:52',NULL),(1,6,'0123457896',0,0,'2024-03-11 10:53:52',NULL),(1,7,'0123457896',0,0,'2024-03-11 10:53:52',NULL),(1,8,'Joe',0,0,'2024-03-11 10:53:52',NULL),(1,9,'Rue de Rennes',0,0,'2024-03-11 10:53:52',NULL),(1,10,'John',0,0,'2024-03-11 10:53:52',NULL),(1,11,'Doe',0,0,'2024-03-11 10:53:52',NULL),(1,12,'8',0,0,'2024-03-11 10:53:52',NULL),(1,13,'Bis',0,0,'2024-03-11 10:53:52',NULL),(1,14,'Rue de Rennes',0,0,'2024-03-11 10:53:52',NULL),(1,15,'Escalier B',0,0,'2024-03-11 10:53:52',NULL),(1,16,'Etage 4',0,0,'2024-03-11 10:53:52',NULL),(1,17,'75018',0,0,'2024-03-11 10:53:52',NULL),(1,18,'Paris',0,0,'2024-03-11 10:53:52',NULL);
+INSERT INTO `identitystore_identity_attribute` VALUES (1,1,'M',0,0,'2024-03-14 13:43:29',NULL),(1,2,'john.doe@gmail.com',0,0,'2024-03-14 13:43:29',NULL),(1,3,'11/10/1970',0,0,'2024-03-14 13:43:29',NULL),(1,4,'Paris',0,0,'2024-03-14 13:43:29',NULL),(1,5,'0623457896',0,0,'2024-03-14 13:43:29',NULL),(1,6,'0123457896',0,0,'2024-03-14 13:43:29',NULL),(1,7,'0123457896',0,0,'2024-03-14 13:43:29',NULL),(1,8,'Joe',0,0,'2024-03-14 13:43:29',NULL),(1,9,'Rue de Rennes',0,0,'2024-03-14 13:43:29',NULL),(1,10,'John',0,0,'2024-03-14 13:43:29',NULL),(1,11,'Doe',0,0,'2024-03-14 13:43:29',NULL),(1,12,'8',0,0,'2024-03-14 13:43:29',NULL),(1,13,'Bis',0,0,'2024-03-14 13:43:29',NULL),(1,14,'Rue de Rennes',0,0,'2024-03-14 13:43:29',NULL),(1,15,'Escalier B',0,0,'2024-03-14 13:43:29',NULL),(1,16,'Etage 4',0,0,'2024-03-14 13:43:29',NULL),(1,17,'75018',0,0,'2024-03-14 13:43:29',NULL),(1,18,'Paris',0,0,'2024-03-14 13:43:29',NULL);
 /*!40000 ALTER TABLE `identitystore_identity_attribute` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `kibana_dashboard`
@@ -2252,12 +2421,12 @@ INSERT INTO `identitystore_identity_attribute` VALUES (1,1,'M',0,0,'2024-03-11 1
 
 DROP TABLE IF EXISTS `kibana_dashboard`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `kibana_dashboard` (
-  `id_dashboard` int(6) NOT NULL,
+  `id_dashboard` int NOT NULL,
   `idkibanadashboard` varchar(255) NOT NULL DEFAULT '',
   `title` mediumtext NOT NULL,
-  `dataSourceName` mediumtext DEFAULT NULL,
+  `dataSourceName` mediumtext,
   PRIMARY KEY (`id_dashboard`),
   UNIQUE KEY `idkibanadashboard` (`idkibanadashboard`)
 );
@@ -2267,8 +2436,10 @@ CREATE TABLE `kibana_dashboard` (
 -- Dumping data for table `kibana_dashboard`
 --
 
+LOCK TABLES `kibana_dashboard` WRITE;
 /*!40000 ALTER TABLE `kibana_dashboard` DISABLE KEYS */;
 /*!40000 ALTER TABLE `kibana_dashboard` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `mydashboard_configuration`
@@ -2276,12 +2447,12 @@ CREATE TABLE `kibana_dashboard` (
 
 DROP TABLE IF EXISTS `mydashboard_configuration`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mydashboard_configuration` (
   `my_dashboard_component_id` varchar(50) NOT NULL,
   `id_config` varchar(255) NOT NULL,
-  `dashboard_order` int(11) NOT NULL,
-  `hide_dashboard` smallint(6) NOT NULL,
+  `dashboard_order` int NOT NULL,
+  `hide_dashboard` smallint NOT NULL,
   PRIMARY KEY (`my_dashboard_component_id`,`id_config`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2290,8 +2461,10 @@ CREATE TABLE `mydashboard_configuration` (
 -- Dumping data for table `mydashboard_configuration`
 --
 
+LOCK TABLES `mydashboard_configuration` WRITE;
 /*!40000 ALTER TABLE `mydashboard_configuration` DISABLE KEYS */;
 /*!40000 ALTER TABLE `mydashboard_configuration` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `mydashboard_dashboard_association`
@@ -2299,12 +2472,12 @@ CREATE TABLE `mydashboard_configuration` (
 
 DROP TABLE IF EXISTS `mydashboard_dashboard_association`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mydashboard_dashboard_association` (
-  `id_dashboard_association` int(11) NOT NULL,
+  `id_dashboard_association` int NOT NULL,
   `id_dashboard` varchar(50) NOT NULL DEFAULT '0',
-  `id_panel` int(11) NOT NULL DEFAULT 0,
-  `position` int(11) NOT NULL DEFAULT 0,
+  `id_panel` int NOT NULL DEFAULT '0',
+  `position` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_dashboard_association`),
   KEY `fk_id_panel` (`id_panel`)
 );
@@ -2314,8 +2487,10 @@ CREATE TABLE `mydashboard_dashboard_association` (
 -- Dumping data for table `mydashboard_dashboard_association`
 --
 
+LOCK TABLES `mydashboard_dashboard_association` WRITE;
 /*!40000 ALTER TABLE `mydashboard_dashboard_association` DISABLE KEYS */;
 /*!40000 ALTER TABLE `mydashboard_dashboard_association` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `mydashboard_panel`
@@ -2323,13 +2498,13 @@ CREATE TABLE `mydashboard_dashboard_association` (
 
 DROP TABLE IF EXISTS `mydashboard_panel`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mydashboard_panel` (
-  `id_panel` int(11) NOT NULL,
+  `id_panel` int NOT NULL,
   `code` varchar(50) NOT NULL DEFAULT '',
   `title` varchar(255) NOT NULL DEFAULT '',
-  `description` mediumtext DEFAULT NULL,
-  `is_default` smallint(6) NOT NULL,
+  `description` mediumtext,
+  `is_default` smallint NOT NULL,
   PRIMARY KEY (`id_panel`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2338,8 +2513,10 @@ CREATE TABLE `mydashboard_panel` (
 -- Dumping data for table `mydashboard_panel`
 --
 
+LOCK TABLES `mydashboard_panel` WRITE;
 /*!40000 ALTER TABLE `mydashboard_panel` DISABLE KEYS */;
 /*!40000 ALTER TABLE `mydashboard_panel` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `mydashboard_portlet_panel`
@@ -2347,10 +2524,10 @@ CREATE TABLE `mydashboard_panel` (
 
 DROP TABLE IF EXISTS `mydashboard_portlet_panel`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mydashboard_portlet_panel` (
-  `id_portlet` int(11) NOT NULL,
-  `id_panel` int(11) NOT NULL DEFAULT 0,
+  `id_portlet` int NOT NULL,
+  `id_panel` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_portlet`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2359,8 +2536,10 @@ CREATE TABLE `mydashboard_portlet_panel` (
 -- Dumping data for table `mydashboard_portlet_panel`
 --
 
+LOCK TABLES `mydashboard_portlet_panel` WRITE;
 /*!40000 ALTER TABLE `mydashboard_portlet_panel` DISABLE KEYS */;
 /*!40000 ALTER TABLE `mydashboard_portlet_panel` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `mylutece_attribute`
@@ -2368,17 +2547,17 @@ CREATE TABLE `mydashboard_portlet_panel` (
 
 DROP TABLE IF EXISTS `mylutece_attribute`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mylutece_attribute` (
-  `id_attribute` int(11) NOT NULL DEFAULT 0,
+  `id_attribute` int NOT NULL DEFAULT '0',
   `type_class_name` varchar(255) DEFAULT NULL,
-  `title` mediumtext DEFAULT NULL,
-  `help_message` mediumtext DEFAULT NULL,
-  `is_mandatory` smallint(6) DEFAULT 0,
-  `is_shown_in_search` smallint(6) DEFAULT 0,
-  `attribute_position` int(11) DEFAULT 0,
+  `title` mediumtext,
+  `help_message` mediumtext,
+  `is_mandatory` smallint DEFAULT '0',
+  `is_shown_in_search` smallint DEFAULT '0',
+  `attribute_position` int DEFAULT '0',
   `plugin_name` varchar(255) DEFAULT NULL,
-  `anonymize` smallint(6) DEFAULT NULL,
+  `anonymize` smallint DEFAULT NULL,
   PRIMARY KEY (`id_attribute`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2387,8 +2566,10 @@ CREATE TABLE `mylutece_attribute` (
 -- Dumping data for table `mylutece_attribute`
 --
 
+LOCK TABLES `mylutece_attribute` WRITE;
 /*!40000 ALTER TABLE `mylutece_attribute` DISABLE KEYS */;
 /*!40000 ALTER TABLE `mylutece_attribute` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `mylutece_attribute_field`
@@ -2396,18 +2577,18 @@ CREATE TABLE `mylutece_attribute` (
 
 DROP TABLE IF EXISTS `mylutece_attribute_field`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mylutece_attribute_field` (
-  `id_field` int(11) NOT NULL DEFAULT 0,
-  `id_attribute` int(11) DEFAULT NULL,
+  `id_field` int NOT NULL DEFAULT '0',
+  `id_attribute` int DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
-  `DEFAULT_value` mediumtext DEFAULT NULL,
-  `is_DEFAULT_value` smallint(6) DEFAULT 0,
-  `height` int(11) DEFAULT NULL,
-  `width` int(11) DEFAULT NULL,
-  `max_size_enter` int(11) DEFAULT NULL,
-  `is_multiple` smallint(6) DEFAULT 0,
-  `field_position` int(11) DEFAULT NULL,
+  `DEFAULT_value` mediumtext,
+  `is_DEFAULT_value` smallint DEFAULT '0',
+  `height` int DEFAULT NULL,
+  `width` int DEFAULT NULL,
+  `max_size_enter` int DEFAULT NULL,
+  `is_multiple` smallint DEFAULT '0',
+  `field_position` int DEFAULT NULL,
   PRIMARY KEY (`id_field`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2416,8 +2597,10 @@ CREATE TABLE `mylutece_attribute_field` (
 -- Dumping data for table `mylutece_attribute_field`
 --
 
+LOCK TABLES `mylutece_attribute_field` WRITE;
 /*!40000 ALTER TABLE `mylutece_attribute_field` DISABLE KEYS */;
 /*!40000 ALTER TABLE `mylutece_attribute_field` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `mylutece_connections_log`
@@ -2425,11 +2608,11 @@ CREATE TABLE `mylutece_attribute_field` (
 
 DROP TABLE IF EXISTS `mylutece_connections_log`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mylutece_connections_log` (
   `ip_address` varchar(63) DEFAULT NULL,
-  `date_login` timestamp NOT NULL DEFAULT current_timestamp(),
-  `login_status` int(11) DEFAULT NULL
+  `date_login` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `login_status` int DEFAULT NULL
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2437,8 +2620,10 @@ CREATE TABLE `mylutece_connections_log` (
 -- Dumping data for table `mylutece_connections_log`
 --
 
+LOCK TABLES `mylutece_connections_log` WRITE;
 /*!40000 ALTER TABLE `mylutece_connections_log` DISABLE KEYS */;
 /*!40000 ALTER TABLE `mylutece_connections_log` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `mylutece_user_anonymize_field`
@@ -2446,10 +2631,10 @@ CREATE TABLE `mylutece_connections_log` (
 
 DROP TABLE IF EXISTS `mylutece_user_anonymize_field`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mylutece_user_anonymize_field` (
   `field_name` varchar(100) NOT NULL,
-  `anonymize` smallint(6) NOT NULL,
+  `anonymize` smallint NOT NULL,
   PRIMARY KEY (`field_name`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2458,8 +2643,10 @@ CREATE TABLE `mylutece_user_anonymize_field` (
 -- Dumping data for table `mylutece_user_anonymize_field`
 --
 
+LOCK TABLES `mylutece_user_anonymize_field` WRITE;
 /*!40000 ALTER TABLE `mylutece_user_anonymize_field` DISABLE KEYS */;
 /*!40000 ALTER TABLE `mylutece_user_anonymize_field` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `mylutece_user_field`
@@ -2467,13 +2654,13 @@ CREATE TABLE `mylutece_user_anonymize_field` (
 
 DROP TABLE IF EXISTS `mylutece_user_field`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mylutece_user_field` (
-  `id_user_field` int(11) NOT NULL DEFAULT 0,
-  `id_user` int(11) DEFAULT NULL,
-  `id_attribute` int(11) DEFAULT NULL,
-  `id_field` int(11) DEFAULT NULL,
-  `user_field_value` mediumtext DEFAULT NULL,
+  `id_user_field` int NOT NULL DEFAULT '0',
+  `id_user` int DEFAULT NULL,
+  `id_attribute` int DEFAULT NULL,
+  `id_field` int DEFAULT NULL,
+  `user_field_value` mediumtext,
   PRIMARY KEY (`id_user_field`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2482,8 +2669,10 @@ CREATE TABLE `mylutece_user_field` (
 -- Dumping data for table `mylutece_user_field`
 --
 
+LOCK TABLES `mylutece_user_field` WRITE;
 /*!40000 ALTER TABLE `mylutece_user_field` DISABLE KEYS */;
 /*!40000 ALTER TABLE `mylutece_user_field` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `notifygru_alert_update_resource_state_queue`
@@ -2491,19 +2680,19 @@ CREATE TABLE `mylutece_user_field` (
 
 DROP TABLE IF EXISTS `notifygru_alert_update_resource_state_queue`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `notifygru_alert_update_resource_state_queue` (
-  `id_resource_queue` int(11) NOT NULL AUTO_INCREMENT,
-  `id_resource` int(11) NOT NULL,
-  `id_resource_history` int(11) NOT NULL,
-  `id_task` int(11) NOT NULL,
+  `id_resource_queue` int NOT NULL AUTO_INCREMENT,
+  `id_resource` int NOT NULL,
+  `id_resource_history` int NOT NULL,
+  `id_task` int NOT NULL,
   `resource_type` varchar(255) NOT NULL DEFAULT '',
-  `id_external_parent` int(11) NOT NULL DEFAULT 0,
-  `id_workflow` int(11) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 0,
-  `creation_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `alert_reference_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `id_state` int(11) NOT NULL,
+  `id_external_parent` int NOT NULL DEFAULT '0',
+  `id_workflow` int NOT NULL,
+  `status` int NOT NULL DEFAULT '0',
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `alert_reference_date` timestamp NOT NULL,
+  `id_state` int NOT NULL,
   PRIMARY KEY (`id_resource_queue`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2512,8 +2701,10 @@ CREATE TABLE `notifygru_alert_update_resource_state_queue` (
 -- Dumping data for table `notifygru_alert_update_resource_state_queue`
 --
 
+LOCK TABLES `notifygru_alert_update_resource_state_queue` WRITE;
 /*!40000 ALTER TABLE `notifygru_alert_update_resource_state_queue` DISABLE KEYS */;
 /*!40000 ALTER TABLE `notifygru_alert_update_resource_state_queue` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `profile_action`
@@ -2521,9 +2712,9 @@ CREATE TABLE `notifygru_alert_update_resource_state_queue` (
 
 DROP TABLE IF EXISTS `profile_action`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `profile_action` (
-  `id_action` int(11) NOT NULL DEFAULT 0,
+  `id_action` int NOT NULL DEFAULT '0',
   `name_key` varchar(100) DEFAULT NULL,
   `description_key` varchar(100) DEFAULT NULL,
   `action_url` varchar(255) DEFAULT NULL,
@@ -2537,9 +2728,11 @@ CREATE TABLE `profile_action` (
 -- Dumping data for table `profile_action`
 --
 
+LOCK TABLES `profile_action` WRITE;
 /*!40000 ALTER TABLE `profile_action` DISABLE KEYS */;
 INSERT INTO `profile_action` VALUES (1,'profiles.action.modify_profile.name','profiles.action.modify_profile.description','jsp/admin/plugins/profiles/ModifyProfile.jsp','edit','MODIFY_PROFILE'),(2,'profiles.action.delete_profile.name','profiles.action.delete_profile.description','jsp/admin/plugins/profiles/RemoveProfile.jsp','trash','DELETE_DELETE'),(3,'profiles.action.manage_users_assignment.name','profiles.action.manage_users_assignment.description','jsp/admin/plugins/profiles/AssignUsersProfile.jsp','user','MANAGE_USERS_ASSIGNMENT'),(4,'profiles.action.manage_rights_assignment.name','profiles.action.manage_rights_assignment.description','jsp/admin/plugins/profiles/AssignRightsProfile.jsp','lock','MANAGE_RIGHTS_ASSIGNMENT'),(5,'profiles.action.manage_roles_assignment.name','profiles.action.manage_roles_assignment.description','jsp/admin/plugins/profiles/AssignRolesProfile.jsp','th-list','MANAGE_ROLES_ASSIGNMENT'),(6,'profiles.action.manage_workgroups_assignment.name','profiles.action.manage_workgroups_assignment.description','jsp/admin/plugins/profiles/AssignWorkgroupsProfile.jsp','group','MANAGE_WORKGROUPS_ASSIGNMENT'),(7,'profiles.action.manage_view_assignment.name','profiles.action.manage_view_assignment.description','jsp/admin/plugins/profiles/AssignViewProfile.jsp','eye','MANAGE_VIEW_ASSIGNMENT');
 /*!40000 ALTER TABLE `profile_action` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `profile_profile`
@@ -2547,7 +2740,7 @@ INSERT INTO `profile_action` VALUES (1,'profiles.action.modify_profile.name','pr
 
 DROP TABLE IF EXISTS `profile_profile`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `profile_profile` (
   `profile_key` varchar(50) NOT NULL DEFAULT '',
   `profile_description` varchar(255) DEFAULT NULL,
@@ -2559,8 +2752,10 @@ CREATE TABLE `profile_profile` (
 -- Dumping data for table `profile_profile`
 --
 
+LOCK TABLES `profile_profile` WRITE;
 /*!40000 ALTER TABLE `profile_profile` DISABLE KEYS */;
 /*!40000 ALTER TABLE `profile_profile` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `profile_right`
@@ -2568,7 +2763,7 @@ CREATE TABLE `profile_profile` (
 
 DROP TABLE IF EXISTS `profile_right`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `profile_right` (
   `profile_key` varchar(50) NOT NULL DEFAULT '',
   `id_right` varchar(50) NOT NULL DEFAULT '',
@@ -2580,8 +2775,10 @@ CREATE TABLE `profile_right` (
 -- Dumping data for table `profile_right`
 --
 
+LOCK TABLES `profile_right` WRITE;
 /*!40000 ALTER TABLE `profile_right` DISABLE KEYS */;
 /*!40000 ALTER TABLE `profile_right` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `profile_role`
@@ -2589,7 +2786,7 @@ CREATE TABLE `profile_right` (
 
 DROP TABLE IF EXISTS `profile_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `profile_role` (
   `profile_key` varchar(50) NOT NULL DEFAULT '',
   `role_key` varchar(50) NOT NULL DEFAULT '',
@@ -2601,8 +2798,10 @@ CREATE TABLE `profile_role` (
 -- Dumping data for table `profile_role`
 --
 
+LOCK TABLES `profile_role` WRITE;
 /*!40000 ALTER TABLE `profile_role` DISABLE KEYS */;
 /*!40000 ALTER TABLE `profile_role` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `profile_user`
@@ -2610,10 +2809,10 @@ CREATE TABLE `profile_role` (
 
 DROP TABLE IF EXISTS `profile_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `profile_user` (
   `profile_key` varchar(50) NOT NULL DEFAULT '',
-  `id_user` int(11) NOT NULL DEFAULT 0,
+  `id_user` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`profile_key`,`id_user`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2622,8 +2821,10 @@ CREATE TABLE `profile_user` (
 -- Dumping data for table `profile_user`
 --
 
+LOCK TABLES `profile_user` WRITE;
 /*!40000 ALTER TABLE `profile_user` DISABLE KEYS */;
 /*!40000 ALTER TABLE `profile_user` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `profile_view`
@@ -2631,7 +2832,7 @@ CREATE TABLE `profile_user` (
 
 DROP TABLE IF EXISTS `profile_view`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `profile_view` (
   `view_key` varchar(50) NOT NULL DEFAULT '',
   `view_description` varchar(255) DEFAULT NULL,
@@ -2643,8 +2844,10 @@ CREATE TABLE `profile_view` (
 -- Dumping data for table `profile_view`
 --
 
+LOCK TABLES `profile_view` WRITE;
 /*!40000 ALTER TABLE `profile_view` DISABLE KEYS */;
 /*!40000 ALTER TABLE `profile_view` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `profile_view_action`
@@ -2652,9 +2855,9 @@ CREATE TABLE `profile_view` (
 
 DROP TABLE IF EXISTS `profile_view_action`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `profile_view_action` (
-  `id_action` int(11) NOT NULL DEFAULT 0,
+  `id_action` int NOT NULL DEFAULT '0',
   `name_key` varchar(100) DEFAULT NULL,
   `description_key` varchar(100) DEFAULT NULL,
   `action_url` varchar(255) DEFAULT NULL,
@@ -2668,9 +2871,11 @@ CREATE TABLE `profile_view_action` (
 -- Dumping data for table `profile_view_action`
 --
 
+LOCK TABLES `profile_view_action` WRITE;
 /*!40000 ALTER TABLE `profile_view_action` DISABLE KEYS */;
 INSERT INTO `profile_view_action` VALUES (1,'profiles.action.modify_view.name','profiles.action.modify_view.description','jsp/admin/plugins/profiles/ModifyView.jsp','edit','MODIFY_VIEW'),(2,'profiles.action.delete_view.name','profiles.action.delete_view.description','jsp/admin/plugins/profiles/RemoveView.jsp','trash','DELETE_VIEW'),(3,'profiles.action.manage_views_assignment.name','profiles.action.manage_views_assignment.description','jsp/admin/plugins/profiles/AssignProfilesView.jsp','user-tag','MANAGE_PROFILES_ASSIGNMENT'),(4,'profiles.action.manage_dashboards.name','profiles.action.manage_dashboards.description','jsp/admin/plugins/profiles/ManageDashboards.jsp','wrench','MANAGE_DASHBOARDS');
 /*!40000 ALTER TABLE `profile_view_action` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `profile_view_dashboard`
@@ -2678,12 +2883,12 @@ INSERT INTO `profile_view_action` VALUES (1,'profiles.action.modify_view.name','
 
 DROP TABLE IF EXISTS `profile_view_dashboard`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `profile_view_dashboard` (
   `view_key` varchar(50) NOT NULL DEFAULT '',
   `dashboard_name` varchar(100) NOT NULL,
-  `dashboard_column` int(11) NOT NULL,
-  `dashboard_order` int(11) NOT NULL,
+  `dashboard_column` int NOT NULL,
+  `dashboard_order` int NOT NULL,
   PRIMARY KEY (`view_key`,`dashboard_name`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2692,8 +2897,10 @@ CREATE TABLE `profile_view_dashboard` (
 -- Dumping data for table `profile_view_dashboard`
 --
 
+LOCK TABLES `profile_view_dashboard` WRITE;
 /*!40000 ALTER TABLE `profile_view_dashboard` DISABLE KEYS */;
 /*!40000 ALTER TABLE `profile_view_dashboard` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `profile_view_profile`
@@ -2701,7 +2908,7 @@ CREATE TABLE `profile_view_dashboard` (
 
 DROP TABLE IF EXISTS `profile_view_profile`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `profile_view_profile` (
   `view_key` varchar(50) NOT NULL DEFAULT '',
   `profile_key` varchar(50) NOT NULL DEFAULT '',
@@ -2713,8 +2920,10 @@ CREATE TABLE `profile_view_profile` (
 -- Dumping data for table `profile_view_profile`
 --
 
+LOCK TABLES `profile_view_profile` WRITE;
 /*!40000 ALTER TABLE `profile_view_profile` DISABLE KEYS */;
 /*!40000 ALTER TABLE `profile_view_profile` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `profile_workgroup`
@@ -2722,7 +2931,7 @@ CREATE TABLE `profile_view_profile` (
 
 DROP TABLE IF EXISTS `profile_workgroup`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `profile_workgroup` (
   `profile_key` varchar(50) NOT NULL DEFAULT '',
   `workgroup_key` varchar(50) NOT NULL DEFAULT '',
@@ -2734,8 +2943,10 @@ CREATE TABLE `profile_workgroup` (
 -- Dumping data for table `profile_workgroup`
 --
 
+LOCK TABLES `profile_workgroup` WRITE;
 /*!40000 ALTER TABLE `profile_workgroup` DISABLE KEYS */;
 /*!40000 ALTER TABLE `profile_workgroup` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `referencelist_item`
@@ -2743,12 +2954,12 @@ CREATE TABLE `profile_workgroup` (
 
 DROP TABLE IF EXISTS `referencelist_item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `referencelist_item` (
-  `id_reference_item` int(11) NOT NULL AUTO_INCREMENT,
+  `id_reference_item` int NOT NULL AUTO_INCREMENT,
   `name` mediumtext NOT NULL,
   `code` mediumtext NOT NULL,
-  `idreference` int(11) NOT NULL DEFAULT 0,
+  `idreference` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_reference_item`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2757,8 +2968,10 @@ CREATE TABLE `referencelist_item` (
 -- Dumping data for table `referencelist_item`
 --
 
+LOCK TABLES `referencelist_item` WRITE;
 /*!40000 ALTER TABLE `referencelist_item` DISABLE KEYS */;
 /*!40000 ALTER TABLE `referencelist_item` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `referencelist_reference`
@@ -2766,9 +2979,9 @@ CREATE TABLE `referencelist_item` (
 
 DROP TABLE IF EXISTS `referencelist_reference`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `referencelist_reference` (
-  `id_reference` int(11) NOT NULL AUTO_INCREMENT,
+  `id_reference` int NOT NULL AUTO_INCREMENT,
   `name` mediumtext NOT NULL,
   `description` mediumtext NOT NULL,
   PRIMARY KEY (`id_reference`)
@@ -2779,8 +2992,10 @@ CREATE TABLE `referencelist_reference` (
 -- Dumping data for table `referencelist_reference`
 --
 
+LOCK TABLES `referencelist_reference` WRITE;
 /*!40000 ALTER TABLE `referencelist_reference` DISABLE KEYS */;
 /*!40000 ALTER TABLE `referencelist_reference` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `referencelist_translation`
@@ -2788,12 +3003,12 @@ CREATE TABLE `referencelist_reference` (
 
 DROP TABLE IF EXISTS `referencelist_translation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `referencelist_translation` (
-  `id_translation` int(11) NOT NULL AUTO_INCREMENT,
+  `id_translation` int NOT NULL AUTO_INCREMENT,
   `lang` varchar(10) NOT NULL,
   `name` mediumtext NOT NULL,
-  `id_reference_item` int(11) NOT NULL,
+  `id_reference_item` int NOT NULL,
   PRIMARY KEY (`id_translation`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2802,8 +3017,10 @@ CREATE TABLE `referencelist_translation` (
 -- Dumping data for table `referencelist_translation`
 --
 
+LOCK TABLES `referencelist_translation` WRITE;
 /*!40000 ALTER TABLE `referencelist_translation` DISABLE KEYS */;
 /*!40000 ALTER TABLE `referencelist_translation` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `regularexpression_regular_expression`
@@ -2811,14 +3028,14 @@ CREATE TABLE `referencelist_translation` (
 
 DROP TABLE IF EXISTS `regularexpression_regular_expression`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `regularexpression_regular_expression` (
-  `id_expression` int(11) NOT NULL DEFAULT 0,
+  `id_expression` int NOT NULL DEFAULT '0',
   `title` varchar(255) DEFAULT NULL,
-  `regular_expression_value` mediumtext DEFAULT NULL,
-  `valid_exemple` mediumtext DEFAULT NULL,
-  `information_message` mediumtext DEFAULT NULL,
-  `error_message` mediumtext DEFAULT NULL,
+  `regular_expression_value` mediumtext,
+  `valid_exemple` mediumtext,
+  `information_message` mediumtext,
+  `error_message` mediumtext,
   PRIMARY KEY (`id_expression`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2827,9 +3044,11 @@ CREATE TABLE `regularexpression_regular_expression` (
 -- Dumping data for table `regularexpression_regular_expression`
 --
 
+LOCK TABLES `regularexpression_regular_expression` WRITE;
 /*!40000 ALTER TABLE `regularexpression_regular_expression` DISABLE KEYS */;
 INSERT INTO `regularexpression_regular_expression` VALUES (1,'Fichier JPG','image/jpeg','image/jpeg','Expression régulière pour les fichiers de type jpeg.','Le format du fichier n\'est pas valide. Veuillez choisir une image de type jpeg.'),(2,'Email','(^([a-zA-Z0-9]+(([\\.\\-\\_]?[a-zA-Z0-9]+)+)?)\\@(([a-zA-Z0-9]+[\\.\\-\\_])+[a-zA-Z]{2,4})$)|(^$)','admin@lutece.fr','Expression régulière pour les emails.','Le format de l\'email est incorrect.');
 /*!40000 ALTER TABLE `regularexpression_regular_expression` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `solr_facet_intersection`
@@ -2837,10 +3056,10 @@ INSERT INTO `regularexpression_regular_expression` VALUES (1,'Fichier JPG','imag
 
 DROP TABLE IF EXISTS `solr_facet_intersection`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `solr_facet_intersection` (
-  `id_field1` int(11) DEFAULT NULL,
-  `id_field2` int(11) DEFAULT NULL
+  `id_field1` int DEFAULT NULL,
+  `id_field2` int DEFAULT NULL
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2848,8 +3067,10 @@ CREATE TABLE `solr_facet_intersection` (
 -- Dumping data for table `solr_facet_intersection`
 --
 
+LOCK TABLES `solr_facet_intersection` WRITE;
 /*!40000 ALTER TABLE `solr_facet_intersection` DISABLE KEYS */;
 /*!40000 ALTER TABLE `solr_facet_intersection` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `solr_fields`
@@ -2857,19 +3078,19 @@ CREATE TABLE `solr_facet_intersection` (
 
 DROP TABLE IF EXISTS `solr_fields`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `solr_fields` (
-  `id_field` int(11) NOT NULL,
+  `id_field` int NOT NULL,
   `name` varchar(75) DEFAULT NULL,
   `label` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `is_facet` tinyint(1) DEFAULT 0,
-  `enable_facet` tinyint(1) DEFAULT 0,
-  `is_sort` tinyint(1) DEFAULT 0,
-  `enable_sort` tinyint(1) DEFAULT 0,
-  `default_sort` tinyint(1) DEFAULT 0,
-  `weight` float DEFAULT 0,
-  `facet_mincount` int(11) DEFAULT 1,
+  `is_facet` tinyint(1) DEFAULT '0',
+  `enable_facet` tinyint(1) DEFAULT '0',
+  `is_sort` tinyint(1) DEFAULT '0',
+  `enable_sort` tinyint(1) DEFAULT '0',
+  `default_sort` tinyint(1) DEFAULT '0',
+  `weight` float DEFAULT '0',
+  `facet_mincount` int DEFAULT '1',
   `operator_type` varchar(30) DEFAULT 'OR',
   PRIMARY KEY (`id_field`)
 );
@@ -2879,9 +3100,11 @@ CREATE TABLE `solr_fields` (
 -- Dumping data for table `solr_fields`
 --
 
+LOCK TABLES `solr_fields` WRITE;
 /*!40000 ALTER TABLE `solr_fields` DISABLE KEYS */;
 INSERT INTO `solr_fields` VALUES (1,'site','Site','Site',1,1,0,0,0,0,1,'OR'),(2,'type','Type','Type',1,1,0,0,0,0,1,'OR'),(3,'date','Date','Date',1,1,1,1,0,0,1,'OR'),(4,'score','Score','Score',0,0,1,1,1,0,1,'OR'),(5,'categorie','Categorie','Category',1,1,0,0,0,0,1,'OR'),(6,'title','title','Title',0,0,0,0,0,10,1,'AND'),(7,'content','content','Content',0,0,0,0,0,0.1,1,'AND'),(8,'summary','summary','Summary',0,0,0,0,0,1,1,'AND');
 /*!40000 ALTER TABLE `solr_fields` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `solr_indexer_action`
@@ -2889,13 +3112,13 @@ INSERT INTO `solr_fields` VALUES (1,'site','Site','Site',1,1,0,0,0,0,1,'OR'),(2,
 
 DROP TABLE IF EXISTS `solr_indexer_action`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `solr_indexer_action` (
-  `id_action` int(11) NOT NULL DEFAULT 0,
+  `id_action` int NOT NULL DEFAULT '0',
   `id_document` varchar(255) NOT NULL,
-  `id_task` int(11) NOT NULL DEFAULT 0,
+  `id_task` int NOT NULL DEFAULT '0',
   `type_ressource` varchar(255) NOT NULL,
-  `id_portlet` int(11) NOT NULL DEFAULT 0,
+  `id_portlet` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_action`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2904,8 +3127,10 @@ CREATE TABLE `solr_indexer_action` (
 -- Dumping data for table `solr_indexer_action`
 --
 
+LOCK TABLES `solr_indexer_action` WRITE;
 /*!40000 ALTER TABLE `solr_indexer_action` DISABLE KEYS */;
 /*!40000 ALTER TABLE `solr_indexer_action` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_action`
@@ -2913,19 +3138,19 @@ CREATE TABLE `solr_indexer_action` (
 
 DROP TABLE IF EXISTS `workflow_action`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_action` (
-  `id_action` int(11) NOT NULL AUTO_INCREMENT,
+  `id_action` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
-  `description` mediumtext DEFAULT NULL,
-  `id_workflow` int(11) DEFAULT NULL,
-  `id_state_after` int(11) DEFAULT NULL,
-  `id_alternative_state_after` int(11) DEFAULT NULL,
-  `id_icon` int(11) DEFAULT NULL,
-  `is_automatic` smallint(6) DEFAULT 0,
-  `is_mass_action` smallint(6) DEFAULT 0,
-  `display_order` int(11) DEFAULT 0,
-  `is_automatic_reflexive_action` smallint(6) DEFAULT 0,
+  `description` mediumtext,
+  `id_workflow` int DEFAULT NULL,
+  `id_state_after` int DEFAULT NULL,
+  `id_alternative_state_after` int DEFAULT NULL,
+  `id_icon` int DEFAULT NULL,
+  `is_automatic` smallint DEFAULT '0',
+  `is_mass_action` smallint DEFAULT '0',
+  `display_order` int DEFAULT '0',
+  `is_automatic_reflexive_action` smallint DEFAULT '0',
   `uid_action` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_action`),
   KEY `action_id_workflow_fk` (`id_workflow`),
@@ -2938,8 +3163,10 @@ CREATE TABLE `workflow_action` (
 -- Dumping data for table `workflow_action`
 --
 
+LOCK TABLES `workflow_action` WRITE;
 /*!40000 ALTER TABLE `workflow_action` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_action` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_action_action`
@@ -2947,10 +3174,10 @@ CREATE TABLE `workflow_action` (
 
 DROP TABLE IF EXISTS `workflow_action_action`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_action_action` (
-  `id_action` int(11) NOT NULL DEFAULT 0,
-  `id_linked_action` int(11) NOT NULL DEFAULT 0,
+  `id_action` int NOT NULL DEFAULT '0',
+  `id_linked_action` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_action`,`id_linked_action`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2959,8 +3186,10 @@ CREATE TABLE `workflow_action_action` (
 -- Dumping data for table `workflow_action_action`
 --
 
+LOCK TABLES `workflow_action_action` WRITE;
 /*!40000 ALTER TABLE `workflow_action_action` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_action_action` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_action_state_before`
@@ -2968,10 +3197,10 @@ CREATE TABLE `workflow_action_action` (
 
 DROP TABLE IF EXISTS `workflow_action_state_before`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_action_state_before` (
-  `id_action` int(11) NOT NULL,
-  `id_state_before` int(11) NOT NULL,
+  `id_action` int NOT NULL,
+  `id_state_before` int NOT NULL,
   PRIMARY KEY (`id_action`,`id_state_before`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2980,8 +3209,10 @@ CREATE TABLE `workflow_action_state_before` (
 -- Dumping data for table `workflow_action_state_before`
 --
 
+LOCK TABLES `workflow_action_state_before` WRITE;
 /*!40000 ALTER TABLE `workflow_action_state_before` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_action_state_before` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_appointment_reminder`
@@ -2989,20 +3220,20 @@ CREATE TABLE `workflow_action_state_before` (
 
 DROP TABLE IF EXISTS `workflow_appointment_reminder`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_appointment_reminder` (
-  `id_task` int(11) NOT NULL,
-  `id_form` int(11) NOT NULL,
-  `rank` int(11) NOT NULL,
-  `time_to_alert` int(11) NOT NULL,
-  `email_notify` smallint(6) NOT NULL,
-  `sms_notify` smallint(6) NOT NULL,
-  `email_alert_message` mediumtext DEFAULT NULL,
-  `sms_alert_message` mediumtext DEFAULT NULL,
+  `id_task` int NOT NULL,
+  `id_form` int NOT NULL,
+  `rank` int NOT NULL,
+  `time_to_alert` int NOT NULL,
+  `email_notify` smallint NOT NULL,
+  `sms_notify` smallint NOT NULL,
+  `email_alert_message` mediumtext,
+  `sms_alert_message` mediumtext,
   `alert_subject` varchar(255) NOT NULL,
   `email_cc` varchar(255) DEFAULT NULL,
   `phone_number` varchar(255) DEFAULT NULL,
-  `id_state_after` int(11) NOT NULL,
+  `id_state_after` int NOT NULL,
   PRIMARY KEY (`id_task`,`id_form`,`rank`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3011,8 +3242,10 @@ CREATE TABLE `workflow_appointment_reminder` (
 -- Dumping data for table `workflow_appointment_reminder`
 --
 
+LOCK TABLES `workflow_appointment_reminder` WRITE;
 /*!40000 ALTER TABLE `workflow_appointment_reminder` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_appointment_reminder` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_assignment_history`
@@ -3020,10 +3253,10 @@ CREATE TABLE `workflow_appointment_reminder` (
 
 DROP TABLE IF EXISTS `workflow_assignment_history`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_assignment_history` (
-  `id_history` int(11) NOT NULL DEFAULT 0,
-  `id_task` int(11) NOT NULL,
+  `id_history` int NOT NULL DEFAULT '0',
+  `id_task` int NOT NULL,
   `workgroup_key` varchar(255) NOT NULL,
   PRIMARY KEY (`id_history`,`id_task`,`workgroup_key`),
   KEY `assignment_id_history_fk` (`id_history`),
@@ -3035,8 +3268,10 @@ CREATE TABLE `workflow_assignment_history` (
 -- Dumping data for table `workflow_assignment_history`
 --
 
+LOCK TABLES `workflow_assignment_history` WRITE;
 /*!40000 ALTER TABLE `workflow_assignment_history` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_assignment_history` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_icon`
@@ -3044,14 +3279,14 @@ CREATE TABLE `workflow_assignment_history` (
 
 DROP TABLE IF EXISTS `workflow_icon`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_icon` (
-  `id_icon` int(11) NOT NULL AUTO_INCREMENT,
+  `id_icon` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `mime_type` varchar(50) DEFAULT NULL,
-  `file_value` mediumblob DEFAULT NULL,
-  `width` int(11) DEFAULT NULL,
-  `height` int(11) DEFAULT NULL,
+  `file_value` mediumblob,
+  `width` int DEFAULT NULL,
+  `height` int DEFAULT NULL,
   PRIMARY KEY (`id_icon`)
 ) AUTO_INCREMENT=4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3060,9 +3295,11 @@ CREATE TABLE `workflow_icon` (
 -- Dumping data for table `workflow_icon`
 --
 
+LOCK TABLES `workflow_icon` WRITE;
 /*!40000 ALTER TABLE `workflow_icon` DISABLE KEYS */;
 INSERT INTO `workflow_icon` VALUES (1,'Valider','image/png',0x89504E470D0A1A0A0000000D4948445200000018000000180803000000D7A9CDCA000001BC504C5445FFFFFFFDFDFDFBFBFBFCFCFCF9F9F9F6F6F6F3F3F3D2D2D2FAFAFAEBEBEBD8D8D8D3D3D3B2C7DBB3B3B3B1B1B197B3CE8FAECA779DC0638EB67D7D7D4F7EAA4771984E4E4E0D14190C141B101010F8F8F8F5F5F5F4F4F4F1F1F1F0F0F0EEEEEEEDEDEDEAEAEAE7E7E7E2E2E2E1E1E1D7E2ECDEDEDEDBDBDBD6D6D6D5D5D5D1D1D1CFCFCFC1D2E2CECECECBCBCBCACACABACDDFC5C5C5C3C3C3AFC5CFADC3D8A9C0D6A4BDD5A3BCD4B4B5B5B2B2B2ABABABA9A9A9A8A8A890ADC7A7A7A78CACC98BABC9A3A3A39E9E9E9D9D9D9B9B9B7DA1C29999997A9FC1789DBF769CBF9293937299BD8F90906690B7628DB55F8BB45D8AB48080805987B25886B15785B05584B05483AF7979797777777575754E7DA97373734C79A36E6E6E49749C48739B47729A5B6874476C8D426A8F42698D5F5F5F4066895D5E5E3D62843C608156595B3C5F7E505A605656563556744F4F4F4B4F5233526E33516B32516D404C543A4D5E4848483C41433C3F412941583C3C3C313E49283D51263C51243A4F27394A2639492437492C353B2D30312132422630382C2C2C1C2D3D1B2B3A27272723282C2525252424241C1C1C131E281617170B12180B0C0B080C0E080908CB531B250000000174524E530040E6D866000000FB4944415478DA6360C0029818B00346666CA25C6262161A8C58246C6C8D4B783930C50D13F945BBF9B0E81016149810AE8F29A155CA2FDA6689C555651E02E291BA981AACB3758A3B7959E17C5626881AC602533FF15875B837D8929AB459C036FB9BE5F55AC9C2357056ABD63BB23130B0E79807F5E57223AC66760EE6A9F19263CC72F0CE9CE8C68964A774B9BB67A34F74114F587B9591144A0035080AB5F49B08A54C0A5446712B4B7ABCAFAB817D546D0F1F1BAA07E45B0342424592255235D1829CC9AE4E2426AE52D24901DDCF321569091912F97A2C18B1A6D255D821E9A288259ED99B274770B360893A0E257635561C69809181080000C74B2BF93B2091D60000000049454E44AE426082,14,14),(2,'Refuser','image/png',0x89504E470D0A1A0A0000000D4948445200000018000000180803000000D7A9CDCA00000243504C5445FFFFFFFCFCFCFDFDFDFBFBFBC34C36FAFAFAF7F7F7E8E8E8F6F6F6F9F9F9F2F2F2E6E6E6BE3B22BA3A22F1F1F1ECECECEBEBEBE0E0E0DFDFDFC7C7C7B4B4B43B1711E5E5E5E2E2E2E1E1E1D4D4D4CDCDCDCACACAC9C9C9C5C5C5BEBEBEAEAEAEA5A5A5A3A3A3A0A0A0CB7868717171C84E37C64D37C44D366D6D6DC03B22BF3B22BD3B225F5F5FBC3B22BB3B22BA3B22B93B24B739225C5C5CB23821575757545454962E1C4E1D144C1B133C18122D16112D1510F8F8F8F4F4F4F3F3F3EEEEEEEDEDEDE9E9E9E7E7E7E3E3E3DCDCDCD7D7D7D6D6D6D3D3D3D0D0D0CFCFCFC6C6C6C1C1C1B9B9B9B8B8B8B6B6B6B5B5B5B0B0B0AAAAAAA7A7A7A4A4A4DD8D7D9F9F9F9D9D9D9A9A9A999999D17F709494949393938F8F8F8E8E8ED9705BD66F5BCD7261CC72618A8A8ACA6D5BC16E5E848484838383CE6653D3634ED05F497E7E7E7A7A7AB06354787878767676C95641CE523A747474B45B4A7272726E6E6EC24D366C6C6C6A6A6AC2462FC24129636363AD4632BE3F27BD3F28BD3D25C23B22B83E27BD3C24B63D26B93A22B43A23B63922B43922B03720AD3620A23A26A1352151515198311E96311E992F1D94301E922F1E912F1E922C1B8226188226173E3E3E50332E3B3836652419462F2A5C251B35302E57211942201939221E3B1F1A2626263C1D194E160D49160C242424331D18411710371A16351B162E1B182D1916201E1E2C19172E181531171230161137130C251A172618161D1A191F19181919192F0E0724120E280E0A22100D151515230F0C250E0A2C0B052109051D09061809060E569B6F0000000174524E530040E6D866000001734944415478DA6360A02EB0139166638671981819E1123173E76BB0B341D8814B16C87141A5986686649A9B08723001D9BE6B53AA374BF231812518A765E4AB59980A713030C82E8DAB34DBE8C70DD1C23C9D45534B7D46B1389BE0A67883498B54FCA1128CC2EB597878586615BA6C496E98B2B74CD1136A14035784358BB6AEB1E8AE9C8AC93BB382A505604E641688B262D1D3372C2AE8DB57A220C5CF0A772F2B7B9A250B2FAF6AEBB6A9E1C2FCCC485EE4E4365A9CDEC8CB6B6CA921698BEC7726D90D91354D86FA7A6D56B1DC9C48123EFB956B276C152DD5D56EB78E6647D891B450D9A07777AA9128D0D92D6BE4E1AECA9B93D86CB6275BC15B6599BA9666E76A0F2E883F98E625D4F5EC285794629730B150ABEF58252206F5F9EC89FD07AA9464F859D9244CCD55BB56060941CC62945BBE5D27D4CB1168278790CE8A75DDF2E2504BB8DC450264D8C1AEE4100CCB551276808615239F98B33DD4F56CECAE6E4E3648D1C9046333B371B0E24B0700373150EBEAA3E2D40000000049454E44AE426082,14,14),(3,'Commentaire','image/png',0x89504E470D0A1A0A0000000D4948445200000020000000200806000000737A7AF40000000467414D410000D904DCB2DA020000067849444154789CC5964D6C13E919C7FFF365C7C4CD879D8F0D64EDB80E34C28BA304A9212840D4224E143801074A94037BD86DC3A16AA54891B85184A05237D96AA52A3D80842A558A90E0C20A11407CE4404C886CC7DE86754C242731AC89673CB6C733F33E3D9044D9ACD776AA7EFCA5F734EFBCCFEF79DE79FEF300FF6709956EDCBF7F7FF7E9D3A74FF03CCFCBB29CD7342DF79F00102BDD78EAD4A9C1919191DFACAEAEE2EDDBB7C9783CFE4D241299999999090483C1D94824F26D3A9D7EBF5D00AECC73E1EAD5ABBF773A9D1F777575FDCAED767F6C1806044180244910840F05CCE572482693CBF178FC9F4B4B4B51C69856EC6C228224495C2010088D8E8E7E590960C3ECEC6C82D654281448370CCA9B26657339CA66B394CBE5289FCF53A150A04A35313111D8C8B00C80E3DCB973BFDEB56B57FDB70B0B48C932E464126C6E0E92D3094E92408C8188C01883AEEB6517C771304D7387CBE56A0D854221BE5C09789E474ED3109D9A82944C627E64047A3E0FB1BA1A2002C771DB5A8C31ECDCB9B3766868E8F3C6C6C676BEBFBFFFC8F1E3C77F590A8288505D5707737C1C5A4B0B2C7D7D0063955C6151711C877038FC5D241259168F1E3D3A32343474F4C68D1B7F49241219599697C7C6C6C600E8EBC1AB2C16581A1AB03A30008769C2AAEB802080E3CA7DC3C5835B2C1684C3E198AEEB09F1D2A54B5763B198E7E2C58B9F757474E0FEFDFBA1E6E6E6B6F1F1F13F2D2C2CA419631045113FEFEA02E338F01FEE10CC34FFED0A00C0ECECEC1C005920A2E5603098AAADAD3DB067CF1EFBDEBD7B1D8661D89A9B9BDB88A8AABFBFFF176EB7BB5E5614643319E83C0FA4D3E02509102AF6B10D0982005555313636762B168B3D1100E88CB185A74F9FBE4EA5529EB6B6B65DBDBDBD1FD5D4D4D8DFBD7B57B76FDF3E9FD3E9B43DBE7F1F862461FE8B2F509D4EA3C6EF07781EDC5A592B5D9224219148D0B56BD7461545F9663D853C11C55EBD7AF52A140AD99D4EE7DE9E9E9EC6EEEE6E573E9FB728B99C24BE7F0FF7D75F63657E1E6DC3C3B055558118DB761788A2886030981A1D1DFD3380E4E61AEA0096161717679E3C79A2582C169FCFE7ABF3783C92AA2848A82AD2990CD29F7C829FFA7CB08A15BBF8868808A228E2D9B367B1898989AF0064B65E220390521425383939199365D9DBD0D0D0E4F178D0E870A0AEB3133FF3FB515D550522DA56E0CD002F5FBE5CBC7DFBF6DF00E48B19110158D175FDEF77EFDEFD5296653C7FFE1C055D87C36E874514C1711C789E2F5BEEADC1D7B5B97D4B3961CEEFF74BBDBDBDF07ABD989E9E46341A85AEEB30D75A5092A492596F5DAC887995BCC8AEAE2EBF2008F07ABDB0D96C98999981AAAAB05AAD989A9AC2891327E072B960180668CD963707DC0A534CA50044BFDFBF6FFDE0A6A6261C3A7408939393181C1C84C3E1402814C2C0C0000E1C3800C6D80F322C0652B16C365BEBF4F4F4DB542A4544448661906118A4280A5DBE7C994451A41D3B76D0912347E8D6AD5B4444649A26699A469AA6513E9FA7DCDA2F5B555552559532990C1111DDBC793300A0AE2440676767FFD2D2124B2693DF03304D938888EEDDBB47BB77EF2600D4DADA4A57AE5C21555549D775D2346D23F83A4026932145518888E8FAF5EBCF00D49404387BF6EC6FB3D92C2D2F2F7F0F6033C49B376F687070900090CFE7A34C26438CB18DEC5555DDD8AF691A99A6498F1F3FD65A5A5AFE00C002941848CE9F3FFFE9C18307BB73B91CEC763B00FCA0BDEAEAEA70F2E449F87C3ED4D6D6429224343737C36AB5823106C330208A220CC300630C8140C03873E6CC578944E2AF004ACE8F96870F1F4E9BA6B95101D3348BAECDE3DAA3478FE8CE9D3B140E87299FCF532A9522455128954A51381CA6E1E1E159007BB0695EFC311F70A8AA5A158FC7CB7EB68C3198A6099EE771F8F0E18D8E2022E8BA8E6C368BB9B939489204C3300200E6F1C1EC4AEA2782201C6B6A6ABAFCE2C58BD5724326638C4CD3245DD7C9300C22225A5D5DA568344A0F1E3CA04824424444C78E1DFBDDD6403FE60319D3341F2493C99542A1F06939DACDF66B9A26D2E9345EBF7E8D743A8D8E8E0EB4B4B4409665168D46E72A0520000680950B172EFCC36EB7B7B3623EBAF92051E4EBEBEB6BDC6E77437B7B7B436767674D5F5F1FAC562B00607171F1BB783C3E5F29C0BADE8742A13FE2836994BB371E4015805A9EE73F72B95C6EAFD7EBF1F97C9E9E9E9EB6582C1601B0B2F5A5ED4F95E525009000D800D801D40368029006300B40FB6F0314D37AB7112AE880FFA9FE054D115D3C36C248200000000049454E44AE426082,14,14);
 /*!40000 ALTER TABLE `workflow_icon` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_prerequisite`
@@ -3070,10 +3307,10 @@ INSERT INTO `workflow_icon` VALUES (1,'Valider','image/png',0x89504E470D0A1A0A00
 
 DROP TABLE IF EXISTS `workflow_prerequisite`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_prerequisite` (
-  `id_prerequisite` int(11) NOT NULL AUTO_INCREMENT,
-  `id_action` int(11) NOT NULL,
+  `id_prerequisite` int NOT NULL AUTO_INCREMENT,
+  `id_action` int NOT NULL,
   `prerequisite_type` varchar(255) NOT NULL,
   `uid_prerequisite` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_prerequisite`)
@@ -3084,8 +3321,10 @@ CREATE TABLE `workflow_prerequisite` (
 -- Dumping data for table `workflow_prerequisite`
 --
 
+LOCK TABLES `workflow_prerequisite` WRITE;
 /*!40000 ALTER TABLE `workflow_prerequisite` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_prerequisite` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_prerequisite_duration_cf`
@@ -3093,10 +3332,10 @@ CREATE TABLE `workflow_prerequisite` (
 
 DROP TABLE IF EXISTS `workflow_prerequisite_duration_cf`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_prerequisite_duration_cf` (
-  `id_prerequisite` int(11) NOT NULL,
-  `duration` int(11) NOT NULL,
+  `id_prerequisite` int NOT NULL,
+  `duration` int NOT NULL,
   PRIMARY KEY (`id_prerequisite`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3105,8 +3344,10 @@ CREATE TABLE `workflow_prerequisite_duration_cf` (
 -- Dumping data for table `workflow_prerequisite_duration_cf`
 --
 
+LOCK TABLES `workflow_prerequisite_duration_cf` WRITE;
 /*!40000 ALTER TABLE `workflow_prerequisite_duration_cf` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_prerequisite_duration_cf` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_resource_history`
@@ -3114,14 +3355,14 @@ CREATE TABLE `workflow_prerequisite_duration_cf` (
 
 DROP TABLE IF EXISTS `workflow_resource_history`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_resource_history` (
-  `id_history` int(11) NOT NULL AUTO_INCREMENT,
-  `id_resource` int(11) DEFAULT NULL,
+  `id_history` int NOT NULL AUTO_INCREMENT,
+  `id_resource` int DEFAULT NULL,
   `resource_type` varchar(255) DEFAULT NULL,
-  `id_workflow` int(11) DEFAULT NULL,
-  `id_action` int(11) DEFAULT NULL,
-  `creation_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `id_workflow` int DEFAULT NULL,
+  `id_action` int DEFAULT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_access_code` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_history`),
   KEY `history_id_workflow_fk` (`id_workflow`),
@@ -3134,8 +3375,10 @@ CREATE TABLE `workflow_resource_history` (
 -- Dumping data for table `workflow_resource_history`
 --
 
+LOCK TABLES `workflow_resource_history` WRITE;
 /*!40000 ALTER TABLE `workflow_resource_history` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_resource_history` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_resource_user_history`
@@ -3143,9 +3386,9 @@ CREATE TABLE `workflow_resource_history` (
 
 DROP TABLE IF EXISTS `workflow_resource_user_history`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_resource_user_history` (
-  `id_history` int(11) NOT NULL,
+  `id_history` int NOT NULL,
   `user_access_code` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT '',
   `first_name` varchar(255) DEFAULT '',
@@ -3159,8 +3402,10 @@ CREATE TABLE `workflow_resource_user_history` (
 -- Dumping data for table `workflow_resource_user_history`
 --
 
+LOCK TABLES `workflow_resource_user_history` WRITE;
 /*!40000 ALTER TABLE `workflow_resource_user_history` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_resource_user_history` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_resource_workflow`
@@ -3168,14 +3413,14 @@ CREATE TABLE `workflow_resource_user_history` (
 
 DROP TABLE IF EXISTS `workflow_resource_workflow`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_resource_workflow` (
-  `id_resource` int(11) NOT NULL DEFAULT 0,
+  `id_resource` int NOT NULL DEFAULT '0',
   `resource_type` varchar(255) NOT NULL,
-  `id_state` int(11) DEFAULT NULL,
-  `id_workflow` int(11) NOT NULL,
-  `id_external_parent` int(11) DEFAULT NULL,
-  `is_associated_workgroups` smallint(6) DEFAULT 0,
+  `id_state` int DEFAULT NULL,
+  `id_workflow` int NOT NULL,
+  `id_external_parent` int DEFAULT NULL,
+  `is_associated_workgroups` smallint DEFAULT '0',
   PRIMARY KEY (`id_resource`,`resource_type`,`id_workflow`),
   KEY `workflow_resource_workflow_id_resource_fk` (`id_resource`),
   KEY `workflow_resource_workflow_resource_type_fk` (`resource_type`),
@@ -3188,8 +3433,10 @@ CREATE TABLE `workflow_resource_workflow` (
 -- Dumping data for table `workflow_resource_workflow`
 --
 
+LOCK TABLES `workflow_resource_workflow` WRITE;
 /*!40000 ALTER TABLE `workflow_resource_workflow` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_resource_workflow` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_resource_workgroup`
@@ -3197,11 +3444,11 @@ CREATE TABLE `workflow_resource_workflow` (
 
 DROP TABLE IF EXISTS `workflow_resource_workgroup`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_resource_workgroup` (
-  `id_resource` int(11) NOT NULL DEFAULT 0,
+  `id_resource` int NOT NULL DEFAULT '0',
   `resource_type` varchar(255) DEFAULT NULL,
-  `id_workflow` int(11) DEFAULT NULL,
+  `id_workflow` int DEFAULT NULL,
   `workgroup_key` varchar(255) DEFAULT NULL,
   KEY `workflow_resource_workgroup_id_resource_fk` (`id_resource`),
   KEY `workflow_resource_workgroup_resource_type_fk` (`resource_type`),
@@ -3213,8 +3460,10 @@ CREATE TABLE `workflow_resource_workgroup` (
 -- Dumping data for table `workflow_resource_workgroup`
 --
 
+LOCK TABLES `workflow_resource_workgroup` WRITE;
 /*!40000 ALTER TABLE `workflow_resource_workgroup` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_resource_workgroup` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_state`
@@ -3222,16 +3471,16 @@ CREATE TABLE `workflow_resource_workgroup` (
 
 DROP TABLE IF EXISTS `workflow_state`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_state` (
-  `id_state` int(11) NOT NULL AUTO_INCREMENT,
+  `id_state` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
-  `description` mediumtext DEFAULT NULL,
-  `id_workflow` int(11) DEFAULT NULL,
-  `is_initial_state` smallint(6) DEFAULT 0,
-  `is_required_workgroup_assigned` smallint(6) DEFAULT 0,
-  `id_icon` int(11) DEFAULT NULL,
-  `display_order` int(11) DEFAULT 0,
+  `description` mediumtext,
+  `id_workflow` int DEFAULT NULL,
+  `is_initial_state` smallint DEFAULT '0',
+  `is_required_workgroup_assigned` smallint DEFAULT '0',
+  `id_icon` int DEFAULT NULL,
+  `display_order` int DEFAULT '0',
   `uid_state` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_state`),
   KEY `fk_state_id_workflow` (`id_workflow`)
@@ -3242,8 +3491,10 @@ CREATE TABLE `workflow_state` (
 -- Dumping data for table `workflow_state`
 --
 
+LOCK TABLES `workflow_state` WRITE;
 /*!40000 ALTER TABLE `workflow_state` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_state` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task`
@@ -3251,12 +3502,12 @@ CREATE TABLE `workflow_state` (
 
 DROP TABLE IF EXISTS `workflow_task`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task` (
-  `id_task` int(11) NOT NULL AUTO_INCREMENT,
+  `id_task` int NOT NULL AUTO_INCREMENT,
   `task_type_key` varchar(50) DEFAULT NULL,
-  `id_action` int(11) NOT NULL DEFAULT 0,
-  `display_order` int(11) DEFAULT 0,
+  `id_action` int NOT NULL DEFAULT '0',
+  `display_order` int DEFAULT '0',
   `uid_task` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_task`),
   KEY `task_id_action_fk` (`id_action`)
@@ -3267,8 +3518,10 @@ CREATE TABLE `workflow_task` (
 -- Dumping data for table `workflow_task`
 --
 
+LOCK TABLES `workflow_task` WRITE;
 /*!40000 ALTER TABLE `workflow_task` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_alert_gru_cf`
@@ -3276,44 +3529,44 @@ CREATE TABLE `workflow_task` (
 
 DROP TABLE IF EXISTS `workflow_task_alert_gru_cf`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_alert_gru_cf` (
-  `id_task` int(11) NOT NULL,
+  `id_task` int NOT NULL,
   `id_spring_provider` varchar(255) DEFAULT NULL,
   `marker_provider_ids` varchar(1000) DEFAULT NULL,
-  `demand_status` int(11) DEFAULT NULL,
-  `crm_status_id` int(11) DEFAULT 1,
-  `set_onglet` smallint(6) DEFAULT NULL,
-  `message_guichet` text DEFAULT NULL,
+  `demand_status` int DEFAULT NULL,
+  `crm_status_id` int DEFAULT '1',
+  `set_onglet` smallint DEFAULT NULL,
+  `message_guichet` text CHARACTER SET utf8mb3,
   `status_text_guichet` varchar(255) DEFAULT NULL,
   `sender_name_guichet` varchar(255) DEFAULT NULL,
   `subject_guichet` varchar(255) DEFAULT NULL,
-  `demand_max_step_guichet` smallint(6) DEFAULT 1,
-  `demand_user_current_step_guichet` smallint(6) DEFAULT 1,
-  `is_active_onglet_guichet` smallint(6) DEFAULT 0,
+  `demand_max_step_guichet` smallint DEFAULT '1',
+  `demand_user_current_step_guichet` smallint DEFAULT '1',
+  `is_active_onglet_guichet` smallint DEFAULT '0',
   `status_text_agent` varchar(255) DEFAULT NULL,
-  `message_agent` text DEFAULT NULL,
-  `is_active_onglet_agent` smallint(6) NOT NULL DEFAULT 0,
+  `message_agent` text CHARACTER SET utf8mb3,
+  `is_active_onglet_agent` smallint NOT NULL DEFAULT '0',
   `subject_email` varchar(255) DEFAULT NULL,
-  `message_email` text DEFAULT NULL,
+  `message_email` text CHARACTER SET utf8mb3,
   `sender_name_email` varchar(255) DEFAULT NULL,
   `recipients_cc_email` varchar(255) DEFAULT NULL,
   `recipients_cci_email` varchar(255) DEFAULT NULL,
-  `is_active_onglet_email` smallint(6) DEFAULT 0,
-  `message_sms` text DEFAULT NULL,
+  `is_active_onglet_email` smallint DEFAULT '0',
+  `message_sms` text CHARACTER SET utf8mb3,
   `billing_account_sms` varchar(255) DEFAULT NULL,
   `billing_group_sms` varchar(255) DEFAULT NULL,
-  `is_active_onglet_sms` smallint(6) NOT NULL DEFAULT 0,
-  `id_mailing_list_broadcast` int(11) DEFAULT NULL,
+  `is_active_onglet_sms` smallint NOT NULL DEFAULT '0',
+  `id_mailing_list_broadcast` int DEFAULT NULL,
   `email_broadcast` varchar(255) DEFAULT NULL,
   `sender_name_broadcast` varchar(255) DEFAULT NULL,
   `subject_broadcast` varchar(255) DEFAULT NULL,
-  `message_broadcast` text DEFAULT NULL,
+  `message_broadcast` text CHARACTER SET utf8mb3,
   `recipients_cc_broadcast` varchar(255) DEFAULT NULL,
   `recipients_cci_broadcast` varchar(255) DEFAULT NULL,
-  `is_active_onglet_broadcast` smallint(6) DEFAULT 0,
-  `days_to_alert` int(11) DEFAULT NULL,
-  `id_state_after` int(11) DEFAULT NULL,
+  `is_active_onglet_broadcast` smallint DEFAULT '0',
+  `days_to_alert` int DEFAULT NULL,
+  `id_state_after` int DEFAULT NULL,
   `alert_subject` varchar(255) DEFAULT NULL,
   `marker_alert` varchar(255) DEFAULT NULL,
   `alert_after_before` varchar(50) DEFAULT NULL,
@@ -3325,8 +3578,10 @@ CREATE TABLE `workflow_task_alert_gru_cf` (
 -- Dumping data for table `workflow_task_alert_gru_cf`
 --
 
+LOCK TABLES `workflow_task_alert_gru_cf` WRITE;
 /*!40000 ALTER TABLE `workflow_task_alert_gru_cf` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_alert_gru_cf` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_alert_gru_history`
@@ -3334,39 +3589,39 @@ CREATE TABLE `workflow_task_alert_gru_cf` (
 
 DROP TABLE IF EXISTS `workflow_task_alert_gru_history`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_alert_gru_history` (
-  `id_history` int(11) NOT NULL,
-  `id_task` int(11) NOT NULL,
-  `crm_status_id` int(11) DEFAULT 1,
-  `message_guichet` text DEFAULT NULL,
+  `id_history` int NOT NULL,
+  `id_task` int NOT NULL,
+  `crm_status_id` int DEFAULT '1',
+  `message_guichet` text CHARACTER SET utf8mb3,
   `status_text_guichet` varchar(255) DEFAULT NULL,
   `sender_name_guichet` varchar(255) DEFAULT NULL,
   `subject_guichet` varchar(255) DEFAULT NULL,
-  `demand_max_step_guichet` smallint(6) DEFAULT 1,
-  `demand_user_current_step_guichet` smallint(6) DEFAULT 1,
-  `is_active_onglet_guichet` smallint(6) DEFAULT 0,
+  `demand_max_step_guichet` smallint DEFAULT '1',
+  `demand_user_current_step_guichet` smallint DEFAULT '1',
+  `is_active_onglet_guichet` smallint DEFAULT '0',
   `status_text_agent` varchar(255) DEFAULT NULL,
-  `message_agent` text DEFAULT NULL,
-  `is_active_onglet_agent` smallint(6) NOT NULL DEFAULT 0,
+  `message_agent` text CHARACTER SET utf8mb3,
+  `is_active_onglet_agent` smallint NOT NULL DEFAULT '0',
   `subject_email` varchar(255) DEFAULT NULL,
-  `message_email` text DEFAULT NULL,
+  `message_email` text CHARACTER SET utf8mb3,
   `sender_name_email` varchar(255) DEFAULT NULL,
   `recipients_cc_email` varchar(255) DEFAULT NULL,
   `recipients_cci_email` varchar(255) DEFAULT NULL,
-  `is_active_onglet_email` smallint(6) DEFAULT 0,
-  `message_sms` text DEFAULT NULL,
+  `is_active_onglet_email` smallint DEFAULT '0',
+  `message_sms` text CHARACTER SET utf8mb3,
   `billing_account_sms` varchar(255) DEFAULT NULL,
   `billing_group_sms` varchar(255) DEFAULT NULL,
-  `is_active_onglet_sms` smallint(6) NOT NULL DEFAULT 0,
-  `id_mailing_list_broadcast` int(11) DEFAULT NULL,
+  `is_active_onglet_sms` smallint NOT NULL DEFAULT '0',
+  `id_mailing_list_broadcast` int DEFAULT NULL,
   `email_broadcast` varchar(255) DEFAULT NULL,
   `sender_name_broadcast` varchar(255) DEFAULT NULL,
   `subject_broadcast` varchar(255) DEFAULT NULL,
-  `message_broadcast` text DEFAULT NULL,
+  `message_broadcast` text CHARACTER SET utf8mb3,
   `recipients_cc_broadcast` varchar(255) DEFAULT NULL,
   `recipients_cci_broadcast` varchar(255) DEFAULT NULL,
-  `is_active_onglet_broadcast` smallint(6) DEFAULT 0,
+  `is_active_onglet_broadcast` smallint DEFAULT '0',
   PRIMARY KEY (`id_history`,`id_task`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3375,8 +3630,10 @@ CREATE TABLE `workflow_task_alert_gru_history` (
 -- Dumping data for table `workflow_task_alert_gru_history`
 --
 
+LOCK TABLES `workflow_task_alert_gru_history` WRITE;
 /*!40000 ALTER TABLE `workflow_task_alert_gru_history` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_alert_gru_history` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_archive_cf`
@@ -3384,12 +3641,12 @@ CREATE TABLE `workflow_task_alert_gru_history` (
 
 DROP TABLE IF EXISTS `workflow_task_archive_cf`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_archive_cf` (
-  `id_task` int(11) NOT NULL DEFAULT 0,
-  `next_state` int(11) NOT NULL,
+  `id_task` int NOT NULL DEFAULT '0',
+  `next_state` int NOT NULL,
   `type_archival` varchar(255) DEFAULT NULL,
-  `delay_archival` int(11) DEFAULT NULL,
+  `delay_archival` int DEFAULT NULL,
   PRIMARY KEY (`id_task`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3398,8 +3655,10 @@ CREATE TABLE `workflow_task_archive_cf` (
 -- Dumping data for table `workflow_task_archive_cf`
 --
 
+LOCK TABLES `workflow_task_archive_cf` WRITE;
 /*!40000 ALTER TABLE `workflow_task_archive_cf` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_archive_cf` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_archive_resource`
@@ -3407,13 +3666,13 @@ CREATE TABLE `workflow_task_archive_cf` (
 
 DROP TABLE IF EXISTS `workflow_task_archive_resource`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_archive_resource` (
-  `id_resource` int(11) NOT NULL DEFAULT 0,
-  `id_task` int(11) NOT NULL DEFAULT 0,
+  `id_resource` int NOT NULL DEFAULT '0',
+  `id_task` int NOT NULL DEFAULT '0',
   `initial_date` timestamp NULL DEFAULT NULL,
   `archival_date` timestamp NULL DEFAULT NULL,
-  `is_archived` smallint(6) DEFAULT 0,
+  `is_archived` smallint DEFAULT '0',
   PRIMARY KEY (`id_resource`,`id_task`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3422,8 +3681,10 @@ CREATE TABLE `workflow_task_archive_resource` (
 -- Dumping data for table `workflow_task_archive_resource`
 --
 
+LOCK TABLES `workflow_task_archive_resource` WRITE;
 /*!40000 ALTER TABLE `workflow_task_archive_resource` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_archive_resource` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_assignment_cf`
@@ -3431,15 +3692,15 @@ CREATE TABLE `workflow_task_archive_resource` (
 
 DROP TABLE IF EXISTS `workflow_task_assignment_cf`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_assignment_cf` (
-  `id_task` int(11) NOT NULL DEFAULT 0,
+  `id_task` int NOT NULL DEFAULT '0',
   `title` varchar(255) DEFAULT NULL,
-  `is_multiple_owner` smallint(6) DEFAULT 0,
-  `is_notify` smallint(6) DEFAULT 0,
+  `is_multiple_owner` smallint DEFAULT '0',
+  `is_notify` smallint DEFAULT '0',
   `message` varchar(255) DEFAULT NULL,
   `subject` varchar(45) DEFAULT NULL,
-  `is_use_user_name` smallint(6) DEFAULT 0,
+  `is_use_user_name` smallint DEFAULT '0',
   PRIMARY KEY (`id_task`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3448,8 +3709,10 @@ CREATE TABLE `workflow_task_assignment_cf` (
 -- Dumping data for table `workflow_task_assignment_cf`
 --
 
+LOCK TABLES `workflow_task_assignment_cf` WRITE;
 /*!40000 ALTER TABLE `workflow_task_assignment_cf` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_assignment_cf` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_change_appointment_status_cf`
@@ -3457,10 +3720,10 @@ CREATE TABLE `workflow_task_assignment_cf` (
 
 DROP TABLE IF EXISTS `workflow_task_change_appointment_status_cf`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_change_appointment_status_cf` (
-  `id_task` int(11) NOT NULL,
-  `appointment_status` int(11) DEFAULT NULL,
+  `id_task` int NOT NULL,
+  `appointment_status` int DEFAULT NULL,
   PRIMARY KEY (`id_task`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3469,8 +3732,10 @@ CREATE TABLE `workflow_task_change_appointment_status_cf` (
 -- Dumping data for table `workflow_task_change_appointment_status_cf`
 --
 
+LOCK TABLES `workflow_task_change_appointment_status_cf` WRITE;
 /*!40000 ALTER TABLE `workflow_task_change_appointment_status_cf` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_change_appointment_status_cf` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_change_state_config`
@@ -3478,10 +3743,10 @@ CREATE TABLE `workflow_task_change_appointment_status_cf` (
 
 DROP TABLE IF EXISTS `workflow_task_change_state_config`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_change_state_config` (
-  `id_task` int(11) NOT NULL DEFAULT 0,
-  `id_next_state` int(11) NOT NULL
+  `id_task` int NOT NULL DEFAULT '0',
+  `id_next_state` int NOT NULL
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -3489,8 +3754,10 @@ CREATE TABLE `workflow_task_change_state_config` (
 -- Dumping data for table `workflow_task_change_state_config`
 --
 
+LOCK TABLES `workflow_task_change_state_config` WRITE;
 /*!40000 ALTER TABLE `workflow_task_change_state_config` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_change_state_config` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_change_state_information`
@@ -3498,10 +3765,10 @@ CREATE TABLE `workflow_task_change_state_config` (
 
 DROP TABLE IF EXISTS `workflow_task_change_state_information`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_change_state_information` (
-  `id_history` int(11) NOT NULL,
-  `id_task` int(11) NOT NULL,
+  `id_history` int NOT NULL,
+  `id_task` int NOT NULL,
   `new_state` varchar(255) NOT NULL
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3510,8 +3777,10 @@ CREATE TABLE `workflow_task_change_state_information` (
 -- Dumping data for table `workflow_task_change_state_information`
 --
 
+LOCK TABLES `workflow_task_change_state_information` WRITE;
 /*!40000 ALTER TABLE `workflow_task_change_state_information` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_change_state_information` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_choice_config`
@@ -3519,9 +3788,9 @@ CREATE TABLE `workflow_task_change_state_information` (
 
 DROP TABLE IF EXISTS `workflow_task_choice_config`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_choice_config` (
-  `id_task` int(11) NOT NULL DEFAULT 0,
+  `id_task` int NOT NULL DEFAULT '0',
   `message` mediumtext NOT NULL
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3530,8 +3799,10 @@ CREATE TABLE `workflow_task_choice_config` (
 -- Dumping data for table `workflow_task_choice_config`
 --
 
+LOCK TABLES `workflow_task_choice_config` WRITE;
 /*!40000 ALTER TABLE `workflow_task_choice_config` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_choice_config` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_choose_state_config`
@@ -3539,12 +3810,12 @@ CREATE TABLE `workflow_task_choice_config` (
 
 DROP TABLE IF EXISTS `workflow_task_choose_state_config`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_choose_state_config` (
-  `id_task` int(11) NOT NULL DEFAULT 0,
+  `id_task` int NOT NULL DEFAULT '0',
   `controller_name` varchar(100) DEFAULT NULL,
-  `id_state_ok` int(11) NOT NULL,
-  `id_state_ko` int(11) NOT NULL,
+  `id_state_ok` int NOT NULL,
+  `id_state_ko` int NOT NULL,
   PRIMARY KEY (`id_task`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3553,8 +3824,10 @@ CREATE TABLE `workflow_task_choose_state_config` (
 -- Dumping data for table `workflow_task_choose_state_config`
 --
 
+LOCK TABLES `workflow_task_choose_state_config` WRITE;
 /*!40000 ALTER TABLE `workflow_task_choose_state_config` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_choose_state_config` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_choose_state_information`
@@ -3562,10 +3835,10 @@ CREATE TABLE `workflow_task_choose_state_config` (
 
 DROP TABLE IF EXISTS `workflow_task_choose_state_information`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_choose_state_information` (
-  `id_history` int(11) NOT NULL,
-  `id_task` int(11) NOT NULL,
+  `id_history` int NOT NULL,
+  `id_task` int NOT NULL,
   `new_state` varchar(255) NOT NULL
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3574,8 +3847,10 @@ CREATE TABLE `workflow_task_choose_state_information` (
 -- Dumping data for table `workflow_task_choose_state_information`
 --
 
+LOCK TABLES `workflow_task_choose_state_information` WRITE;
 /*!40000 ALTER TABLE `workflow_task_choose_state_information` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_choose_state_information` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_comment_config`
@@ -3583,12 +3858,12 @@ CREATE TABLE `workflow_task_choose_state_information` (
 
 DROP TABLE IF EXISTS `workflow_task_comment_config`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_comment_config` (
-  `id_task` int(11) NOT NULL DEFAULT 0,
+  `id_task` int NOT NULL DEFAULT '0',
   `title` varchar(255) DEFAULT NULL,
-  `is_mandatory` smallint(6) DEFAULT 0,
-  `is_richtext` smallint(6) DEFAULT 0,
+  `is_mandatory` smallint DEFAULT '0',
+  `is_richtext` smallint DEFAULT '0',
   PRIMARY KEY (`id_task`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3597,8 +3872,10 @@ CREATE TABLE `workflow_task_comment_config` (
 -- Dumping data for table `workflow_task_comment_config`
 --
 
+LOCK TABLES `workflow_task_comment_config` WRITE;
 /*!40000 ALTER TABLE `workflow_task_comment_config` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_comment_config` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_comment_value`
@@ -3606,11 +3883,11 @@ CREATE TABLE `workflow_task_comment_config` (
 
 DROP TABLE IF EXISTS `workflow_task_comment_value`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_comment_value` (
-  `id_history` int(11) NOT NULL DEFAULT 0,
-  `id_task` int(11) NOT NULL,
-  `comment_value` mediumtext DEFAULT NULL,
+  `id_history` int NOT NULL DEFAULT '0',
+  `id_task` int NOT NULL,
+  `comment_value` mediumtext,
   PRIMARY KEY (`id_history`,`id_task`),
   KEY `comment_value_id_history_fk` (`id_history`),
   KEY `comment_value_id_task_fk` (`id_task`)
@@ -3621,8 +3898,10 @@ CREATE TABLE `workflow_task_comment_value` (
 -- Dumping data for table `workflow_task_comment_value`
 --
 
+LOCK TABLES `workflow_task_comment_value` WRITE;
 /*!40000 ALTER TABLE `workflow_task_comment_value` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_comment_value` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_confirm_action_config`
@@ -3630,9 +3909,9 @@ CREATE TABLE `workflow_task_comment_value` (
 
 DROP TABLE IF EXISTS `workflow_task_confirm_action_config`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_confirm_action_config` (
-  `id_task` int(11) NOT NULL DEFAULT 0,
+  `id_task` int NOT NULL DEFAULT '0',
   `message` mediumtext NOT NULL
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3641,8 +3920,10 @@ CREATE TABLE `workflow_task_confirm_action_config` (
 -- Dumping data for table `workflow_task_confirm_action_config`
 --
 
+LOCK TABLES `workflow_task_confirm_action_config` WRITE;
 /*!40000 ALTER TABLE `workflow_task_confirm_action_config` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_confirm_action_config` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_manual_app_notify`
@@ -3650,14 +3931,14 @@ CREATE TABLE `workflow_task_confirm_action_config` (
 
 DROP TABLE IF EXISTS `workflow_task_manual_app_notify`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_manual_app_notify` (
-  `id_notif` int(11) NOT NULL,
-  `id_history` int(11) DEFAULT NULL,
-  `id_appointment` int(11) DEFAULT NULL,
+  `id_notif` int NOT NULL,
+  `id_history` int DEFAULT NULL,
+  `id_appointment` int DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `subject` varchar(255) DEFAULT NULL,
-  `message` mediumtext DEFAULT NULL,
+  `message` mediumtext,
   PRIMARY KEY (`id_notif`),
   KEY `idx_wf_task_manual_app_notify` (`id_appointment`)
 );
@@ -3667,8 +3948,10 @@ CREATE TABLE `workflow_task_manual_app_notify` (
 -- Dumping data for table `workflow_task_manual_app_notify`
 --
 
+LOCK TABLES `workflow_task_manual_app_notify` WRITE;
 /*!40000 ALTER TABLE `workflow_task_manual_app_notify` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_manual_app_notify` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_notification_cf`
@@ -3676,13 +3959,13 @@ CREATE TABLE `workflow_task_manual_app_notify` (
 
 DROP TABLE IF EXISTS `workflow_task_notification_cf`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_notification_cf` (
-  `id_task` int(11) NOT NULL DEFAULT 0,
-  `id_mailing_list` int(11) DEFAULT NULL,
+  `id_task` int NOT NULL DEFAULT '0',
+  `id_mailing_list` int DEFAULT NULL,
   `sender_name` varchar(255) DEFAULT NULL,
   `subject` varchar(255) DEFAULT NULL,
-  `message` mediumtext DEFAULT NULL,
+  `message` mediumtext,
   PRIMARY KEY (`id_task`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3691,8 +3974,10 @@ CREATE TABLE `workflow_task_notification_cf` (
 -- Dumping data for table `workflow_task_notification_cf`
 --
 
+LOCK TABLES `workflow_task_notification_cf` WRITE;
 /*!40000 ALTER TABLE `workflow_task_notification_cf` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_notification_cf` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_notify_admin_appointment_cf`
@@ -3700,20 +3985,20 @@ CREATE TABLE `workflow_task_notification_cf` (
 
 DROP TABLE IF EXISTS `workflow_task_notify_admin_appointment_cf`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_notify_admin_appointment_cf` (
-  `id_task` int(11) NOT NULL,
-  `id_admin_user` int(11) DEFAULT NULL,
+  `id_task` int NOT NULL,
+  `id_admin_user` int DEFAULT NULL,
   `sender_name` varchar(255) DEFAULT NULL,
   `sender_email` varchar(255) DEFAULT NULL,
   `subject` varchar(255) DEFAULT NULL,
-  `message` mediumtext DEFAULT NULL,
+  `message` mediumtext,
   `recipients_cc` varchar(255) NOT NULL DEFAULT '',
   `recipients_bcc` varchar(255) NOT NULL DEFAULT '',
-  `id_action_cancel` int(11) DEFAULT NULL,
-  `id_action_validate` int(11) DEFAULT NULL,
-  `ical_notification` smallint(6) DEFAULT 0,
-  `create_notif` smallint(6) DEFAULT 0,
+  `id_action_cancel` int DEFAULT NULL,
+  `id_action_validate` int DEFAULT NULL,
+  `ical_notification` smallint DEFAULT '0',
+  `create_notif` smallint DEFAULT '0',
   `location` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id_task`)
 );
@@ -3723,8 +4008,10 @@ CREATE TABLE `workflow_task_notify_admin_appointment_cf` (
 -- Dumping data for table `workflow_task_notify_admin_appointment_cf`
 --
 
+LOCK TABLES `workflow_task_notify_admin_appointment_cf` WRITE;
 /*!40000 ALTER TABLE `workflow_task_notify_admin_appointment_cf` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_notify_admin_appointment_cf` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_notify_appointment_cf`
@@ -3732,20 +4019,20 @@ CREATE TABLE `workflow_task_notify_admin_appointment_cf` (
 
 DROP TABLE IF EXISTS `workflow_task_notify_appointment_cf`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_notify_appointment_cf` (
-  `id_task` int(11) NOT NULL,
+  `id_task` int NOT NULL,
   `sender_name` varchar(255) DEFAULT NULL,
   `sender_email` varchar(255) DEFAULT NULL,
   `subject` varchar(255) DEFAULT NULL,
-  `message` mediumtext DEFAULT NULL,
+  `message` mediumtext,
   `recipients_cc` varchar(255) NOT NULL DEFAULT '',
   `recipients_bcc` varchar(255) NOT NULL DEFAULT '',
-  `id_action_cancel` int(11) DEFAULT NULL,
-  `ical_notification` smallint(6) DEFAULT 0,
-  `create_notif` smallint(6) DEFAULT 0,
+  `id_action_cancel` int DEFAULT NULL,
+  `ical_notification` smallint DEFAULT '0',
+  `create_notif` smallint DEFAULT '0',
   `location` varchar(255) NOT NULL DEFAULT '',
-  `is_sms` smallint(6) DEFAULT 0,
+  `is_sms` smallint DEFAULT '0',
   PRIMARY KEY (`id_task`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3754,8 +4041,10 @@ CREATE TABLE `workflow_task_notify_appointment_cf` (
 -- Dumping data for table `workflow_task_notify_appointment_cf`
 --
 
+LOCK TABLES `workflow_task_notify_appointment_cf` WRITE;
 /*!40000 ALTER TABLE `workflow_task_notify_appointment_cf` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_notify_appointment_cf` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_notify_appointment_crm`
@@ -3763,9 +4052,9 @@ CREATE TABLE `workflow_task_notify_appointment_cf` (
 
 DROP TABLE IF EXISTS `workflow_task_notify_appointment_crm`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_notify_appointment_crm` (
-  `id_task` int(11) NOT NULL,
+  `id_task` int NOT NULL,
   `id_demand_type` varchar(255) DEFAULT NULL,
   `data` varchar(255) DEFAULT NULL,
   `status_text` varchar(255) DEFAULT NULL,
@@ -3781,8 +4070,10 @@ CREATE TABLE `workflow_task_notify_appointment_crm` (
 -- Dumping data for table `workflow_task_notify_appointment_crm`
 --
 
+LOCK TABLES `workflow_task_notify_appointment_crm` WRITE;
 /*!40000 ALTER TABLE `workflow_task_notify_appointment_crm` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_notify_appointment_crm` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_notify_gru_cf`
@@ -3790,43 +4081,43 @@ CREATE TABLE `workflow_task_notify_appointment_crm` (
 
 DROP TABLE IF EXISTS `workflow_task_notify_gru_cf`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_notify_gru_cf` (
-  `id_task` int(11) NOT NULL,
+  `id_task` int NOT NULL,
   `id_spring_provider` varchar(255) DEFAULT NULL,
   `marker_provider_ids` varchar(1000) DEFAULT NULL,
-  `demand_status` int(11) DEFAULT NULL,
-  `crm_status_id` int(11) DEFAULT 1,
-  `set_onglet` smallint(6) DEFAULT NULL,
-  `message_guichet` text DEFAULT NULL,
+  `demand_status` int DEFAULT NULL,
+  `crm_status_id` int DEFAULT '1',
+  `set_onglet` smallint DEFAULT NULL,
+  `message_guichet` text CHARACTER SET utf8mb3,
   `status_text_guichet` varchar(255) DEFAULT NULL,
   `sender_name_guichet` varchar(255) DEFAULT NULL,
   `subject_guichet` varchar(255) DEFAULT NULL,
-  `demand_max_step_guichet` smallint(6) DEFAULT 1,
-  `demand_user_current_step_guichet` smallint(6) DEFAULT 1,
-  `is_active_onglet_guichet` smallint(6) DEFAULT 0,
+  `demand_max_step_guichet` smallint DEFAULT '1',
+  `demand_user_current_step_guichet` smallint DEFAULT '1',
+  `is_active_onglet_guichet` smallint DEFAULT '0',
   `status_text_agent` varchar(255) DEFAULT NULL,
-  `message_agent` text DEFAULT NULL,
-  `is_active_onglet_agent` smallint(6) NOT NULL DEFAULT 0,
+  `message_agent` text CHARACTER SET utf8mb3,
+  `is_active_onglet_agent` smallint NOT NULL DEFAULT '0',
   `subject_email` varchar(255) DEFAULT NULL,
-  `message_email` text DEFAULT NULL,
+  `message_email` text CHARACTER SET utf8mb3,
   `sender_name_email` varchar(255) DEFAULT NULL,
   `recipients_cc_email` varchar(255) DEFAULT NULL,
   `recipients_cci_email` varchar(255) DEFAULT NULL,
-  `is_active_onglet_email` smallint(6) DEFAULT 0,
-  `message_sms` text DEFAULT NULL,
+  `is_active_onglet_email` smallint DEFAULT '0',
+  `message_sms` text CHARACTER SET utf8mb3,
   `billing_account_sms` varchar(255) DEFAULT NULL,
   `billing_group_sms` varchar(255) DEFAULT NULL,
-  `is_active_onglet_sms` smallint(6) NOT NULL DEFAULT 0,
-  `id_mailing_list_broadcast` int(11) DEFAULT NULL,
+  `is_active_onglet_sms` smallint NOT NULL DEFAULT '0',
+  `id_mailing_list_broadcast` int DEFAULT NULL,
   `email_broadcast` varchar(255) DEFAULT NULL,
   `sender_name_broadcast` varchar(255) DEFAULT NULL,
   `subject_broadcast` varchar(255) DEFAULT NULL,
-  `message_broadcast` text DEFAULT NULL,
+  `message_broadcast` text CHARACTER SET utf8mb3,
   `recipients_cc_broadcast` varchar(255) DEFAULT NULL,
   `recipients_cci_broadcast` varchar(255) DEFAULT NULL,
-  `is_active_onglet_broadcast` smallint(6) DEFAULT 0,
-  `content_cleaned` smallint(6) DEFAULT 0,
+  `is_active_onglet_broadcast` smallint DEFAULT '0',
+  `content_cleaned` smallint DEFAULT '0',
   PRIMARY KEY (`id_task`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3835,8 +4126,10 @@ CREATE TABLE `workflow_task_notify_gru_cf` (
 -- Dumping data for table `workflow_task_notify_gru_cf`
 --
 
+LOCK TABLES `workflow_task_notify_gru_cf` WRITE;
 /*!40000 ALTER TABLE `workflow_task_notify_gru_cf` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_notify_gru_cf` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_notify_gru_history`
@@ -3844,43 +4137,43 @@ CREATE TABLE `workflow_task_notify_gru_cf` (
 
 DROP TABLE IF EXISTS `workflow_task_notify_gru_history`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_notify_gru_history` (
-  `id_history` int(11) NOT NULL,
-  `id_task` int(11) NOT NULL,
-  `crm_status_id` int(11) DEFAULT 1,
-  `message_guichet` text DEFAULT NULL,
+  `id_history` int NOT NULL,
+  `id_task` int NOT NULL,
+  `crm_status_id` int DEFAULT '1',
+  `message_guichet` text CHARACTER SET utf8mb3,
   `status_text_guichet` varchar(255) DEFAULT NULL,
   `sender_name_guichet` varchar(255) DEFAULT NULL,
   `subject_guichet` varchar(255) DEFAULT NULL,
-  `demand_max_step_guichet` smallint(6) DEFAULT 1,
-  `demand_user_current_step_guichet` smallint(6) DEFAULT 1,
-  `is_active_onglet_guichet` smallint(6) DEFAULT 0,
+  `demand_max_step_guichet` smallint DEFAULT '1',
+  `demand_user_current_step_guichet` smallint DEFAULT '1',
+  `is_active_onglet_guichet` smallint DEFAULT '0',
   `status_text_agent` varchar(255) DEFAULT NULL,
-  `message_agent` text DEFAULT NULL,
-  `is_active_onglet_agent` smallint(6) NOT NULL DEFAULT 0,
+  `message_agent` text CHARACTER SET utf8mb3,
+  `is_active_onglet_agent` smallint NOT NULL DEFAULT '0',
   `subject_email` varchar(255) DEFAULT NULL,
-  `message_email` text DEFAULT NULL,
+  `message_email` text CHARACTER SET utf8mb3,
   `sender_name_email` varchar(255) DEFAULT NULL,
   `recipients_cc_email` varchar(255) DEFAULT NULL,
   `recipients_cci_email` varchar(255) DEFAULT NULL,
-  `is_active_onglet_email` smallint(6) DEFAULT 0,
-  `message_sms` text DEFAULT NULL,
+  `is_active_onglet_email` smallint DEFAULT '0',
+  `message_sms` text CHARACTER SET utf8mb3,
   `billing_account_sms` varchar(255) DEFAULT NULL,
   `billing_group_sms` varchar(255) DEFAULT NULL,
-  `is_active_onglet_sms` smallint(6) NOT NULL DEFAULT 0,
-  `id_mailing_list_broadcast` int(11) DEFAULT NULL,
+  `is_active_onglet_sms` smallint NOT NULL DEFAULT '0',
+  `id_mailing_list_broadcast` int DEFAULT NULL,
   `email_broadcast` varchar(255) DEFAULT NULL,
   `sender_name_broadcast` varchar(255) DEFAULT NULL,
   `subject_broadcast` varchar(255) DEFAULT NULL,
-  `message_broadcast` text DEFAULT NULL,
+  `message_broadcast` text CHARACTER SET utf8mb3,
   `recipients_cc_broadcast` varchar(255) DEFAULT NULL,
   `recipients_cci_broadcast` varchar(255) DEFAULT NULL,
-  `is_active_onglet_broadcast` smallint(6) DEFAULT 0,
+  `is_active_onglet_broadcast` smallint DEFAULT '0',
   `code_event` varchar(45) DEFAULT NULL,
   `type_event` varchar(45) DEFAULT NULL,
-  `message_event` text DEFAULT NULL,
-  `content_cleaned` smallint(6) DEFAULT 0,
+  `message_event` text,
+  `content_cleaned` smallint DEFAULT '0',
   PRIMARY KEY (`id_history`,`id_task`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3889,8 +4182,10 @@ CREATE TABLE `workflow_task_notify_gru_history` (
 -- Dumping data for table `workflow_task_notify_gru_history`
 --
 
+LOCK TABLES `workflow_task_notify_gru_history` WRITE;
 /*!40000 ALTER TABLE `workflow_task_notify_gru_history` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_notify_gru_history` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_notify_gru_mapping_manager`
@@ -3898,17 +4193,17 @@ CREATE TABLE `workflow_task_notify_gru_history` (
 
 DROP TABLE IF EXISTS `workflow_task_notify_gru_mapping_manager`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_notify_gru_mapping_manager` (
-  `id_notifygrumappingmanager` int(11) NOT NULL,
+  `id_notifygrumappingmanager` int NOT NULL,
   `beankey` varchar(255) NOT NULL DEFAULT '',
-  `connection_id` int(11) NOT NULL DEFAULT 0,
-  `customer_id` int(11) NOT NULL DEFAULT 0,
-  `mobilephonenumber` int(11) NOT NULL DEFAULT 0,
-  `fixedphonenumber` int(11) NOT NULL DEFAULT 0,
-  `email` int(11) NOT NULL DEFAULT 0,
-  `demandetype` int(11) NOT NULL DEFAULT 0,
-  `demand_reference` int(11) NOT NULL DEFAULT 0,
+  `connection_id` int NOT NULL DEFAULT '0',
+  `customer_id` int NOT NULL DEFAULT '0',
+  `mobilephonenumber` int NOT NULL DEFAULT '0',
+  `fixedphonenumber` int NOT NULL DEFAULT '0',
+  `email` int NOT NULL DEFAULT '0',
+  `demandetype` int NOT NULL DEFAULT '0',
+  `demand_reference` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_notifygrumappingmanager`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3917,8 +4212,10 @@ CREATE TABLE `workflow_task_notify_gru_mapping_manager` (
 -- Dumping data for table `workflow_task_notify_gru_mapping_manager`
 --
 
+LOCK TABLES `workflow_task_notify_gru_mapping_manager` WRITE;
 /*!40000 ALTER TABLE `workflow_task_notify_gru_mapping_manager` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_notify_gru_mapping_manager` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_notify_reminder_cf`
@@ -3926,11 +4223,11 @@ CREATE TABLE `workflow_task_notify_gru_mapping_manager` (
 
 DROP TABLE IF EXISTS `workflow_task_notify_reminder_cf`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_notify_reminder_cf` (
-  `id_task` int(11) NOT NULL,
-  `id_form` int(11) NOT NULL DEFAULT 0,
-  `nb_alerts` int(11) DEFAULT 0,
+  `id_task` int NOT NULL,
+  `id_form` int NOT NULL DEFAULT '0',
+  `nb_alerts` int DEFAULT '0',
   PRIMARY KEY (`id_task`,`id_form`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3939,8 +4236,10 @@ CREATE TABLE `workflow_task_notify_reminder_cf` (
 -- Dumping data for table `workflow_task_notify_reminder_cf`
 --
 
+LOCK TABLES `workflow_task_notify_reminder_cf` WRITE;
 /*!40000 ALTER TABLE `workflow_task_notify_reminder_cf` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_notify_reminder_cf` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_update_admin_appointment`
@@ -3948,12 +4247,12 @@ CREATE TABLE `workflow_task_notify_reminder_cf` (
 
 DROP TABLE IF EXISTS `workflow_task_update_admin_appointment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_update_admin_appointment` (
-  `id_update` int(11) NOT NULL,
-  `id_history` int(11) DEFAULT NULL,
-  `id_appointment` int(11) DEFAULT NULL,
-  `id_admin_user` int(11) DEFAULT NULL,
+  `id_update` int NOT NULL,
+  `id_history` int DEFAULT NULL,
+  `id_appointment` int DEFAULT NULL,
+  `id_admin_user` int DEFAULT NULL,
   PRIMARY KEY (`id_update`),
   KEY `idx_wf_task_update_admin_app` (`id_appointment`)
 );
@@ -3963,8 +4262,10 @@ CREATE TABLE `workflow_task_update_admin_appointment` (
 -- Dumping data for table `workflow_task_update_admin_appointment`
 --
 
+LOCK TABLES `workflow_task_update_admin_appointment` WRITE;
 /*!40000 ALTER TABLE `workflow_task_update_admin_appointment` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_update_admin_appointment` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_task_update_appointment_cancel_cf`
@@ -3972,11 +4273,11 @@ CREATE TABLE `workflow_task_update_admin_appointment` (
 
 DROP TABLE IF EXISTS `workflow_task_update_appointment_cancel_cf`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_task_update_appointment_cancel_cf` (
-  `id_task` int(11) NOT NULL,
-  `id_action_cancel` int(11) DEFAULT NULL,
-  `id_action_report` int(11) DEFAULT NULL,
+  `id_task` int NOT NULL,
+  `id_action_cancel` int DEFAULT NULL,
+  `id_action_report` int DEFAULT NULL,
   PRIMARY KEY (`id_task`),
   KEY `fk_wf_task_up_app_cancel_cf` (`id_action_cancel`)
 );
@@ -3986,8 +4287,10 @@ CREATE TABLE `workflow_task_update_appointment_cancel_cf` (
 -- Dumping data for table `workflow_task_update_appointment_cancel_cf`
 --
 
+LOCK TABLES `workflow_task_update_appointment_cancel_cf` WRITE;
 /*!40000 ALTER TABLE `workflow_task_update_appointment_cancel_cf` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_task_update_appointment_cancel_cf` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_workflow`
@@ -3995,13 +4298,13 @@ CREATE TABLE `workflow_task_update_appointment_cancel_cf` (
 
 DROP TABLE IF EXISTS `workflow_workflow`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_workflow` (
-  `id_workflow` int(11) NOT NULL AUTO_INCREMENT,
+  `id_workflow` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
-  `description` mediumtext DEFAULT NULL,
-  `creation_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `is_enabled` smallint(6) DEFAULT 0,
+  `description` mediumtext,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_enabled` smallint DEFAULT '0',
   `workgroup_key` varchar(255) DEFAULT NULL,
   `uid_workflow` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_workflow`)
@@ -4012,8 +4315,10 @@ CREATE TABLE `workflow_workflow` (
 -- Dumping data for table `workflow_workflow`
 --
 
+LOCK TABLES `workflow_workflow` WRITE;
 /*!40000 ALTER TABLE `workflow_workflow` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_workflow` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `workflow_workgroup_cf`
@@ -4021,11 +4326,11 @@ CREATE TABLE `workflow_workflow` (
 
 DROP TABLE IF EXISTS `workflow_workgroup_cf`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workflow_workgroup_cf` (
-  `id_task` int(11) NOT NULL DEFAULT 0,
+  `id_task` int NOT NULL DEFAULT '0',
   `workgroup_key` varchar(255) NOT NULL,
-  `id_mailing_list` int(11) DEFAULT NULL,
+  `id_mailing_list` int DEFAULT NULL,
   PRIMARY KEY (`id_task`,`workgroup_key`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4034,12 +4339,10 @@ CREATE TABLE `workflow_workgroup_cf` (
 -- Dumping data for table `workflow_workgroup_cf`
 --
 
+LOCK TABLES `workflow_workgroup_cf` WRITE;
 /*!40000 ALTER TABLE `workflow_workgroup_cf` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_workgroup_cf` ENABLE KEYS */;
-
---
--- Dumping routines for database lutece
---
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -4049,5 +4352,3 @@ CREATE TABLE `workflow_workgroup_cf` (
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2024-03-11 11:54:55
