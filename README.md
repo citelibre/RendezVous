@@ -7,7 +7,7 @@
 ## Architecture
 Architecture with embedded database and stmp server
 
-![CiteLibre architecture diagram](cite-libre-rendezvous-docker.svg "CiteLibre architecture")
+![CiteLibre architecture diagram](CiteLibre-rendezvous-docker.svg "CiteLibre architecture")
 
 ## Environment variables
 
