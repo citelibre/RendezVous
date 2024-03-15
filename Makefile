@@ -1,6 +1,8 @@
 VERSION=1.0.9
 
 REPO=citelibre/rendezvous
+REPO-TEST=test-rendezvous
+
 build: ## Build the containers
 	docker build citelibre-rendezvous -t $(REPO):ihm
 	docker build citelibre-rendezvous -t $(REPO):ihm-$(VERSION)
@@ -12,6 +14,20 @@ build: ## Build the containers
 	docker build solr -t $(REPO):solr-$(VERSION)
 	docker build mysql -t $(REPO):db
 	docker build mysql -t $(REPO):db-$(VERSION)
+
+test: ## Build the containers
+	docker build -t $(REPO-TEST)/ihm citelibre-rendezvous
+	docker build -t $(REPO-TEST)/fake-smtp fake-smtp
+	docker build -t $(REPO-TEST)/matomo matomo
+	docker build -t $(REPO-TEST)/solr solr
+	docker build -t $(REPO-TEST)/db mysql
+	docker build -t $(REPO-TEST)/keycloak keycloak
+	echo "REPO=$(REPO-TEST)" > .env.test
+	docker-compose --env-file .env.test -f ./docker-compose-test.yml up -d
+
+test-down:
+	docker-compose --env-file .env.test -f ./docker-compose-test.yml down
+	rm .env.test
 
 publish: repo-login publish-latest publish-version ## Publish the `{VERSION}` ans `latest` tagged containers
 

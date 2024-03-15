@@ -1,4 +1,4 @@
-![alt text](CiteLibre_500.png "Cite Libre")
+![alt text](utils/Images/CiteLibre_500.png "Cite Libre")
 # CiteLibre Rendezvous with docker Compose
 
 ## Architecture
@@ -6,7 +6,7 @@
 
 Architecture with embedded database and stmp server
 
-![alt text](cite-libre-rendezvous-docker.png "CiteLibre architecture")
+![alt text](utils/Images/cite-libre-rendezvous-docker.png "CiteLibre architecture")
 ## Environment variables
 
 Create an `.env` file in the root directory where you should assign values for
