@@ -1,3 +1,4 @@
+-- Active: 1706775433698@@127.0.0.1@3306@CORE_CIBLE
 -- MySQL dump 10.13  Distrib 8.1.0, for Linux (x86_64)
 --
 -- Host: localhost    Database: lutece
@@ -14,6 +15,9 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+CREATE DATABASE lutece;
+USE lutece;
 
 --
 -- Table structure for table `appointment_appointment`
