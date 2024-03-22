@@ -6,6 +6,7 @@ FROM lutece/builder as builder
 WORKDIR /app
 ADD pom.xml /app/pom.xml
 ADD src /app/src
+
 RUN mvn -e lutece:site-assembly -Pdev
 RUN cd target && mv $(ls *.war) ${site}.war
 
@@ -20,8 +21,6 @@ COPY --from=builder /app/target/${site}.war webapps
 COPY haproxy.cfg /etc/haproxy/haproxy.cfg
 
 RUN cd webapps && mkdir rendezvous &&  mv ${site}.war rendezvous/rendezvous.war  && cd rendezvous && jar xvf rendezvous.war && rm rendezvous.war
-
-#COPY webapp/WEB-INF webapps/rendezvous/WEB-INF/
 
 COPY entrypoint.sh /entrypoint.sh
 
