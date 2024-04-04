@@ -8,7 +8,7 @@ services:
             - "3307:3306"
         # if you want to persist data uncomment the following 2 lines... don't forget to create the directory mysql-data for sample
         #volumes:
-        #    - ./mysql-data:/var/lib/mysql
+        #  - ./mysql-data:/var/lib/mysql
 
 
     solr:
@@ -16,12 +16,12 @@ services:
         container_name: rdv_solr
         command: -force
         depends_on:
-            - db
+          - db
         ports:
-            - "8983:8983"
+          - "8983:8983"
         # if you want to persist data uncomment the following 2 lines... and don't forget to create the directory
         #volumes:
-        #    - ./solr-data:/var/solr/data/cite-libre/data
+        #  - ./solr-data:/var/solr/data/cite-libre/data
 
 
     fake-smtp:
@@ -66,6 +66,11 @@ services:
             - LUTECE_MAIL_USER
             - LUTECE_MAIL_PWD
             - LUTECE_INTERNAL_KEYCLOAK=true
+        mem_limit: 2g
+          #volumes:
+          #  - type: volume
+          #    source: rendezvous-data
+          #    target: /usr/local/tomcat/webapps/rendezvous
 
     kibana:
       image: kibana:8.12.2
@@ -74,8 +79,9 @@ services:
         - xpack.security.enabled=true
         - xpack.security.enrollment.enabled=false
         - discovery.type=single-node
-      volumes:
-        - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+          #volumes:
+          #  - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+      mem_limit: 1g
       ports:
         - 5601:5601
 
@@ -87,6 +93,17 @@ services:
         - xpack.security.enrollment.enabled=false
         - ELASTIC_PASSWORD="*93n2US7fWog"
         - discovery.type=single-node
+        - ESJAVAOPTS=-Xmx1g
+      mem_limit: 1g
       ports:
         - 9200:9200
         - 9300:9300
+          #volumes:
+          #    - type: volume
+          #      source: elasticsearch-data
+          #      target: /usr/share/elasticsearch/data
+
+
+#volumes:
+#  elasticsearch-data:
+#  rendezvous-data:

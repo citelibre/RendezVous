@@ -1,6 +1,17 @@
 ![alt text](utils/Images/CiteLibre_500.png "Cite Libre")
 # CiteLibre Rendezvous & Docker Compose
 
+## Build and launch all containers
+
+```
+make test
+```
+
+Delete all apps containers :
+```
+make test-down
+```
+
 ## Prepare your dump
 
 

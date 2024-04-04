@@ -149,6 +149,13 @@ or for demo you can use user demo : test@paris.fr / test1234=TEST1234
 
 In matomo by default is displayed the day after today. Remember to change with the current date of the day if you want see the actual data
 
+## Elasticsearch & Kibana
+
+You can access to Kibana via http://localhost:5601
+
+User: lutece
+Password: RKOmBI1sWaa*SFm1gx*H
+
 ## External database
 If you want to use an external database (only support mariabd or mysql for the moment),
 create a database for lutece with the following command : 
