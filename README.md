@@ -154,6 +154,7 @@ In matomo by default is displayed the day after today. Remember to change with t
 You can access to Kibana via http://localhost:5601
 
 User: lutece
+
 Password: RKOmBI1sWaa*SFm1gx*H
 
 ## External database
