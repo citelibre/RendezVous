@@ -1,17 +1,22 @@
-![alt text](utils/Images/CiteLibre_500.png "Cite Libre")
-# CiteLibre Rendezvous with docker Compose
+<p align="center">
+	<img src="https://github.com/citelibre/RendezVous/blob/main/CiteLibre.svg?raw=true" alt="CitéLibre logo"/>
+</p>
 
+
+# CitéLibre RendezVous with docker-compose
 ## Architecture
-
-
 Architecture with embedded database and stmp server
 
-![alt text](utils/Images/cite-libre-rendezvous-docker.png "CiteLibre architecture")
+![CiteLibre architecture diagram](CiteLibre-rendezvous-docker.svg "CiteLibre architecture")
+
 ## Environment variables
 
-Create an `.env` file in the root directory where you should assign values for
+Copy the `external.env` file as `.env` in the root directory. There you should assign values for
 environment variables containing sensitive data, such as external database connection information.
- These variables should be manually set. Here is a list of variables (key) that
+
+These variables should be manually set. 
+
+Here is a list of variables (key) that
 need to be set in the `.env` file (key with = as separator):
 
  * LUTECE_DB_USER   : Set the user for the database connection
@@ -64,7 +69,7 @@ If you create an `.env` file, docker compose use it without using --env-file
 
 Back end is available at : <http://localhost:8080/rendezvous/jsp/admin/AdminLogin.jsp>
 
-Defaut login is `admin` anbd password is `adminadmin`
+Defaut login is `admin` and password is `adminadmin`
 
 
 1. Open UI mail (in order to see mail send by application) at <http://localhost:1080/>.
@@ -72,7 +77,7 @@ Defaut login is `admin` anbd password is `adminadmin`
 
 2. Open UI matomo (for see stats of your application) at <http://localhost:80>.
 
-Defaut login is `admin` anbd password is `adminadmin`
+Defaut login is `admin` and password is `adminadmin`
 
 ### Helpful commands
 
