@@ -22,6 +22,9 @@ COPY haproxy.cfg /etc/haproxy/haproxy.cfg
 
 RUN cd webapps && mkdir rendezvous &&  mv ${site}.war rendezvous/rendezvous.war  && cd rendezvous && jar xvf rendezvous.war && rm rendezvous.war
 
+COPY webapp/WEB-INF webapps/rendezvous/WEB-INF/
+COPY webapp/js webapps/rendezvous/js/
+
 COPY entrypoint.sh /entrypoint.sh
 
 COPY wait /wait
@@ -29,6 +32,7 @@ COPY wait /wait
 RUN chmod +x /wait 
 RUN chmod +x /entrypoint.sh
 RUN apt -y install haproxy
+# RUN service haproxy start
 ENV LUTECE_DB_HOST=
 ENV LUTECE_DB_PORT=
 ENV LUTECE_DB_NAME=
@@ -41,8 +45,3 @@ ENV LUTECE_MAIL_PWD=
 ENV LUTECE_INTERNAL_KEYCLOAK=
 
 ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
-
-
-
-
-
