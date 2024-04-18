@@ -1,109 +1,117 @@
 version: '3.5'
 
 services:
-    db:
-        image: ${REPO}/db
-        container_name: rdv_db
-        ports:
-            - "3307:3306"
-        # if you want to persist data uncomment the following 2 lines... don't forget to create the directory mysql-data for sample
-        #volumes:
-        #  - ./mysql-data:/var/lib/mysql
+  db:
+    image: ${REPO}/db
+    container_name: rdv_db
+    ports:
+        - "3307:3306"
+    # if you want to persist data uncomment the following 2 lines... don't forget to create the directory mysql-data for sample
+    volumes:
+      - ./mysql-data:/var/lib/mysql
 
 
-    solr:
-        image: ${REPO}/solr
-        container_name: rdv_solr
-        command: -force
-        depends_on:
-          - db
-        ports:
-          - "8983:8983"
+  solr:
+    image: ${REPO}/solr
+    container_name: rdv_solr
+    command: -force
+    depends_on:
+      - db
+    ports:
+      - "8983:8983"
         # if you want to persist data uncomment the following 2 lines... and don't forget to create the directory
         #volumes:
         #  - ./solr-data:/var/solr/data/cite-libre/data
+        #volumes:
+        #  - type: volume
+        #    source: solr-data
+        #    target: /var/solr/data/cite-libre/data
 
 
-    fake-smtp:
-        image: ${REPO}/fake-smtp
-        container_name: rdv_fake-smtp
-        ports:
-            - "1080:1080"
-            - "25:25"
+  fake-smtp:
+    image: ${REPO}/fake-smtp
+    container_name: rdv_fake-smtp
+    ports:
+      - "1080:1080"
+      - "25:25"
             
-    matomo:
-        image: ${REPO}/matomo
-        container_name: rdv_matomo
-        ports:
-            - "80:80"
-        depends_on:
-            - solr
+  matomo:
+    image: ${REPO}/matomo
+    container_name: rdv_matomo
+    ports:
+      - "80:80"
+    depends_on:
+      - solr
 
-    keycloak:
-        image: ${REPO}/keycloak
-        container_name: rdv_keycloak
-        ports:
-            - "8081:8080"
-        depends_on:
-            - citelibre
-
-
-    citelibre:
-        image: ${REPO}/ihm
-        container_name: rdv_citelibre
-        ports:
-            - 8080:8080
-        depends_on:
-            - solr
-        environment:
-            - LUTECE_DB_USER
-            - LUTECE_DB_PWD
-            - LUTECE_DB_NAME
-            - LUTECE_DB_HOST
-            - LUTECE_DB_PORT
-            - LUTECE_MAIL_HOST
-            - LUTECE_MAIL_PORT
-            - LUTECE_MAIL_USER
-            - LUTECE_MAIL_PWD
-            - LUTECE_INTERNAL_KEYCLOAK=true
-        mem_limit: 2g
-          #volumes:
-          #  - type: volume
-          #    source: rendezvous-data
-          #    target: /usr/local/tomcat/webapps/rendezvous
-
-    kibana:
-      image: kibana:8.12.2
-      container_name: rdv_kibana
-      environment:
-        - xpack.security.enabled=true
-        - xpack.security.enrollment.enabled=false
-        - discovery.type=single-node
-          #volumes:
-          #  - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
-      mem_limit: 1g
-      ports:
-        - 5601:5601
-
-    elasticsearch:
-      image: ${REPO}/elasticsearch
-      container_name: rdv_elasticsearch
-      environment:
-        - xpack.security.enabled=true
-        - xpack.security.enrollment.enabled=false
-        - ELASTIC_PASSWORD="*93n2US7fWog"
-        - discovery.type=single-node
-        - ESJAVAOPTS=-Xmx1g
-      mem_limit: 1g
-      ports:
-        - 9200:9200
-        - 9300:9300
-          #volumes:
-          #    - type: volume
-          #      source: elasticsearch-data
-          #      target: /usr/share/elasticsearch/data
+  keycloak:
+    image: ${REPO}/keycloak
+    container_name: rdv_keycloak
+    ports:
+      - "8081:8080"
+      - "8443:8443"
+    depends_on:
+      - citelibre
 
 
-#volumes:
-#  elasticsearch-data:
-#  rendezvous-data:
+  citelibre:
+    image: ${REPO}/ihm
+    container_name: rdv_citelibre
+    ports:
+        - 8080:8080
+    depends_on:
+        - solr
+    environment:
+        - LUTECE_DB_USER
+        - LUTECE_DB_PWD
+        - LUTECE_DB_NAME
+        - LUTECE_DB_HOST
+        - LUTECE_DB_PORT
+        - LUTECE_MAIL_HOST
+        - LUTECE_MAIL_PORT
+        - LUTECE_MAIL_USER
+        - LUTECE_MAIL_PWD
+        - LUTECE_INTERNAL_KEYCLOAK=true
+    mem_limit: 2g
+    volumes:
+      - type: volume
+        source: rendezvous-data
+        target: /usr/local/tomcat/webapps/rendezvous
+
+  kibana:
+    image: kibana:8.12.2
+    container_name: rdv_kibana
+    environment:
+      - xpack.security.enabled=false
+      - xpack.security.enrollment.enabled=false
+      - discovery.type=single-node
+      - server.publicBaseUrl=localhost
+    ports:
+      - 5601:5601
+    mem_limit: 1g
+    depends_on:
+      - elasticsearch
+    volumes:
+      - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+
+  elasticsearch:
+    image: ${REPO}/elasticsearch
+    container_name: rdv_elasticsearch
+    environment:
+      - xpack.security.enabled=false
+      - xpack.security.enrollment.enabled=false
+      - ELASTIC_PASSWORD="*93n2US7fWog"
+      - discovery.type=single-node
+      - ESJAVAOPTS=-Xmx1g
+    mem_limit: 1g
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - type: volume
+        source: elasticsearch-data
+        target: /usr/share/elasticsearch/data
+
+volumes:
+  elasticsearch-data:
+  rendezvous-data:
+    #  solr-data:
