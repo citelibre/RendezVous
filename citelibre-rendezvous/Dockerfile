@@ -41,8 +41,3 @@ ENV LUTECE_MAIL_PWD=
 ENV LUTECE_INTERNAL_KEYCLOAK=
 
 ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
-
-
-
-
-

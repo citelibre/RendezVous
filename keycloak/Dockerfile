@@ -1,4 +1,4 @@
-FROM keycloak/keycloak:24.0.1
+FROM keycloak/keycloak:18.0.0
 
 env KEYCLOAK_USER=admin
 env KEYCLOAK_PASSWORD=admin1234
