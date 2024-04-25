@@ -13,15 +13,14 @@
     <bean id="oauth2.server" class="fr.paris.lutece.plugins.oauth2.business.AuthServerConf">
         <property name="issuer" value="http://fcp.integ01.dev-oauth2.fr"/>
         <property name="authorizationEndpointUri" value="http://localhost:8081/realms/paris/protocol/openid-connect/auth"/>
-        <property name="tokenEndpointUri" value="https://localhost:8443/realms/paris/protocol/openid-connect/token"/>
+        <property name="tokenEndpointUri" value="http://localhost:8081/realms/paris/protocol/openid-connect/token"/>
         <property name="logoutEndpointUri" value="http://localhost:8081/realms/paris/protocol/openid-connect/logout?redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Frendezvous%2F"/>
-        <property name="enableJwtParser" value="true"/>
+        <property name="enableJwtParser" value="false"/>
     </bean> 
     
     <bean id="oauth2.client" class="fr.paris.lutece.plugins.oauth2.business.AuthClientConf">
         <property name="clientId" value="moncompte"/>
         <property name="clientSecret" value="moncompte"/>
-        <property name="redirectUri" value="http%3A%2F%2Flocalhost%3A8080%2Frendezvous%2F"/>
     </bean>       
     
     <bean id="oauth2.callbackHandler" class="fr.paris.lutece.plugins.oauth2.web.CallbackHandler" >
@@ -31,9 +30,6 @@
        	<property name="default" value="true"/>
     </bean>      
     
-
     <!--    <bean id="oauth2.jwtParser" class="fr.paris.lutece.plugins.oauth2.oidc.jwt.MitreJWTParser" /> -->
     <bean id="oauth2.jwtParser" class="fr.paris.lutece.plugins.oauth2.jwt.JjwtJWTParser" />
-        
 </beans>
-
