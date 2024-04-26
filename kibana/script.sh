@@ -1,5 +1,6 @@
 #!/bin/bash
 
+KIBANAUSER=lutece
 KIBANAPASS="RKOmBI1sWaa*SFm1gx*H"
 
 
@@ -10,7 +11,7 @@ do
   response=$(curl -so /dev/null -w "%{http_code}\n" localhost:5601/status) 
   if [ $response = "200" ]
   then
-    curl -X POST -u lutece:$KIBANAPASS "localhost:5601/api/spaces/space" -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -d'
+    curl -X POST -u $KIBANAUSER:$KIBANAPASS "localhost:5601/api/spaces/space" -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -d'
     {
       "id": "dev",
       "name": "dev",
@@ -22,7 +23,7 @@ do
     }
     '
 
-    curl -X POST -u lutece:$KIBANAPASS "localhost:5601/s/dev/api/saved_objects/_import?createNewCopies=true" -H "kbn-xsrf: true" \
+    curl -X POST -u $KIBANAUSER:$KIBANAPASS "localhost:5601/s/dev/api/saved_objects/_import?createNewCopies=true" -H "kbn-xsrf: true" \
         --form file=@/usr/share/kibana/export.ndjson -H 'kbn-xsrf: true'
 
   fi

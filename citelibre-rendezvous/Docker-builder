@@ -1,7 +1,0 @@
-FROM lutece/builder as builder
-ARG site=site-citelibre-rendezvous-1.0.9
-
-# build the site and assemble the webapp
-WORKDIR /app
-ADD pom.xml /app/pom.xml
-CMD ["mvn", "-e", "lutece:site-assembly","-Pdev"]
