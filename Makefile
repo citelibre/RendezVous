@@ -14,6 +14,12 @@ build: ## Build the containers
 	docker build solr -t $(REPO):solr-$(VERSION)
 	docker build mysql -t $(REPO):db
 	docker build mysql -t $(REPO):db-$(VERSION)
+	docker build keycloak -t $(REPO):keycloak
+	docker build keycloak -t $(REPO):keycloak-$(VERSION)
+	docker build kibana -t $(REPO):kibana
+	docker build kibana -t $(REPO):kibana-$(VERSION)
+	docker build elasticsearch -t $(REPO):elasticsearch
+	docker build elasticsearch -t $(REPO):elasticsearch-$(VERSION)
 
 test: ## Build the containers
 	docker build -t $(REPO-TEST)/ihm citelibre-rendezvous
@@ -40,6 +46,9 @@ publish-latest: ## Publish the `latest` tagged container
 	docker push $(REPO):ihm
 	docker push $(REPO):matomo
 	docker push $(REPO):fake-smtp
+	docker push $(REPO):keycloak
+	docker push $(REPO):kibana
+	docker push $(REPO):elasticsearch
 
 publish-version: ## Publish the `{version}` tagged container t
 	@echo 'publish $(VERSION) to $(REPO)'
@@ -48,6 +57,9 @@ publish-version: ## Publish the `{version}` tagged container t
 	docker push $(REPO):ihm-$(VERSION)
 	docker push $(REPO):matomo-$(VERSION)
 	docker push $(REPO):fake-smtp-$(VERSION)
+	docker push $(REPO):keycloak-$(VERSION)
+	docker push $(REPO):kibana-$(VERSION)
+	docker push $(REPO):elasticsearch-$(VERSION)
 
 repo-login:
 	docker login
