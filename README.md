@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://github.com/citelibre/RendezVous/blob/main/CiteLibre.svg?raw=true" alt="CitéLibre logo"/>
+	<img src="./utils/CiteLibre.svg" alt="CitéLibre logo"/>
 </p>
 
 
@@ -7,7 +7,7 @@
 ## Architecture
 Architecture with embedded database and stmp server
 
-![CiteLibre architecture diagram](CiteLibre-rendezvous-docker.svg "CiteLibre architecture")
+![CiteLibre architecture diagram](./utils/CiteLibre-rendezvous-docker.svg "CiteLibre architecture")
 
 ## Environment variables
 
