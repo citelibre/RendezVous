@@ -1,5 +1,16 @@
-![alt text](CiteLibre_500.png "Cite Libre")
+![alt text](utils/Images/CiteLibre_500.png "Cite Libre")
 # CiteLibre Rendezvous & Docker Compose
+
+## Build and launch all containers
+
+```
+make test
+```
+
+Delete all apps containers :
+```
+make test-down
+```
 
 ## Prepare your dump
 
@@ -85,7 +96,7 @@ Log into docker hub
     docker login
 ```
 
-After you can launch makefile task (you need to install make utility in outils directory)  : 
+After you can launch makefile task (you need to install make utility in utils/outils directory)  : 
 
 For building local containers 
 

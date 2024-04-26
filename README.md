@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://github.com/citelibre/RendezVous/blob/main/CiteLibre.svg?raw=true" alt="CitéLibre logo"/>
+	<img src="./utils/CiteLibre.svg" alt="CitéLibre logo"/>
 </p>
 
 
@@ -7,7 +7,7 @@
 ## Architecture
 Architecture with embedded database and stmp server
 
-![CiteLibre architecture diagram](CiteLibre-rendezvous-docker.svg "CiteLibre architecture")
+![CiteLibre architecture diagram](./utils/CiteLibre-rendezvous-docker.svg "CiteLibre architecture")
 
 ## Environment variables
 
@@ -153,6 +153,14 @@ or for demo you can use user demo : test@paris.fr / test1234=TEST1234
 ## Matomo
 
 In matomo by default is displayed the day after today. Remember to change with the current date of the day if you want see the actual data
+
+## Elasticsearch & Kibana
+
+You can access to Kibana via http://localhost:5601
+
+User: lutece
+
+Password: RKOmBI1sWaa*SFm1gx*H
 
 ## External database
 If you want to use an external database (only support mariabd or mysql for the moment),

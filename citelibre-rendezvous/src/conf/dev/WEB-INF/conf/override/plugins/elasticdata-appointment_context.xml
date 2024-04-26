@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <!-- Appointment datasource -->
+      <bean id="elasticdata-appointment.appointmentdataSource" class="fr.paris.lutece.plugins.elasticdata.modules.appointment.service.AppointmentDataSource">
+        <property name="id" value="AppointmentDataSource" />
+        <property name="name" value="Appointment Data Source" />
+        <property name="targetIndexName" value="citelibre_appointmentdatasource" />
+        <property name="mappings">
+            <value>
+                <![CDATA[
+                            {
+                            "mappings": {
+                                  "properties": {
+                                    "timestamp": {
+                                      "format": "epoch_millis",
+                                      "type": "date"
+                                    },
+                                    "createdTimestamp": {
+                                      "format": "epoch_millis",
+                                      "type": "date"
+                                    },
+                                    "appointmentForm.geoPoint": {
+                                      "type": "geo_point"
+                                    }
+                                  }
+                              }
+                            }
+                            ]]>
+            </value>
+        </property>
+    </bean>
+    <bean id="elasticdata-appointment.appointmentslotdataSource" class="fr.paris.lutece.plugins.elasticdata.modules.appointment.service.AppointmentSlotDataSource">
+        <property name="id" value="AppointmentSlotDataSource" />
+        <property name="name" value="Appointment Slot Data Source" />
+        <property name="targetIndexName" value="citelibre_appointmentslotdatasource" />
+        <property name="mappings">
+            <value>
+                <![CDATA[
+                            {
+                            "mappings": {
+                                  "properties": {
+                                    "timestamp": {
+                                      "format": "epoch_millis",
+                                      "type": "date"
+                                    }
+                                  }
+                              }
+                            }
+                            ]]>
+            </value>
+        </property>
+    </bean>
+      <bean id="elasticdata-appointment.appointmentHistoryDataSource" class="fr.paris.lutece.plugins.elasticdata.modules.appointment.service.AppointmentHistoryDataSource">
+        <property name="id" value="AppointmentHistoryDataSource" />
+        <property name="name" value="Appointment Workflow History Data Source" />
+        <property name="targetIndexName" value="citelibre_appointmenthistorydatasource" />
+        <property name="mappings">
+            <value>
+                <![CDATA[
+                            {
+                            "mappings": {
+                                  "properties": {
+                                    "timestamp": {
+                                      "format": "epoch_millis",
+                                      "type": "date"
+                                    }
+                                  }
+                              }
+                            }
+                            ]]>
+            </value>
+        </property>
+    </bean>
+    <!-- Beans service listener-->
+    <bean id="elasticdata-appointment.appointmentServiceListener" class="fr.paris.lutece.plugins.elasticdata.modules.appointment.service.listener.AppointmentServiceListener" />
+    <bean id="elasticdata-appointment.appointmentSlotServiceListener" class="fr.paris.lutece.plugins.elasticdata.modules.appointment.service.listener.AppointmentSlotServiceListener" />
+</beans>

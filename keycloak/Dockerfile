@@ -1,9 +1,9 @@
-FROM keycloak/keycloak:24.0.1
+FROM keycloak/keycloak:18.0.0
 
 env KEYCLOAK_USER=admin
 env KEYCLOAK_PASSWORD=admin1234
-env KEYCLOAK_LOGLEVEL=INFO 
-env ROOT_LOGLEVEL=INFO
+env KEYCLOAK_LOGLEVEL=DEBUG 
+env ROOT_LOGLEVEL=DEBUG
 env DB_VENDOR=mysql
 env DB_ADDR=db
 env DB_PORT=3306
