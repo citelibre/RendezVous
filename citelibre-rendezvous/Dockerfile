@@ -7,7 +7,7 @@ WORKDIR /app
 ADD pom.xml /app/pom.xml
 ADD src /app/src
 
-RUN mvn -e lutece:site-assembly -Pdev
+RUN mvn -e -U lutece:site-assembly -Pdev
 RUN cd target && mv $(ls *.war) ${site}.war
 
 # built tomcat
