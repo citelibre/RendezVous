@@ -46,7 +46,7 @@ jobs:
     - name: docker login
       run: docker login -u=citelibre -p="${{ secrets.PASSWORD_DOCKER_CITELIBRE }}"
     - name: Retrieve version in pom with  Maven
-      run: echo "VERSION=1.0.10-SNAPSHOT">> $GITHUB_ENV
+      run: echo "VERSION=1.0.11-SNAPSHOT">> $GITHUB_ENV
         #run: echo "VERSION=$(cd citelibre-rendezvous && mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | sed -n -e '/^\[.*\]/ !{ /^[0-9]/ { p; q } }')">> $GITHUB_ENV
 
     - name: Display version
