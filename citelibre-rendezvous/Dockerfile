@@ -20,12 +20,11 @@ WORKDIR ${tomcat}
 COPY --from=builder /app/target/${site}.war webapps
 COPY haproxy.cfg /etc/haproxy/haproxy.cfg
 
+RUN cd webapps && mkdir rendezvous &&  mv ${site}.war rendezvous/rendezvous.war  && cd rendezvous && jar xvf rendezvous.war && rm rendezvous.war
+
 # Add webapps folder
 COPY webapp/WEB-INF webapps/rendezvous/WEB-INF/
 COPY webapp/js webapps/rendezvous/js/
-
-
-RUN cd webapps && mkdir rendezvous &&  mv ${site}.war rendezvous/rendezvous.war  && cd rendezvous && jar xvf rendezvous.war && rm rendezvous.war
 
 COPY entrypoint.sh /entrypoint.sh
 
