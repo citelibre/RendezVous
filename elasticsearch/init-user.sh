@@ -7,7 +7,6 @@ list_users=$(/usr/share/elasticsearch/bin/elasticsearch-users list)
 # $3: role
 create_user() {
   if [[ ! $list_users =~ $1 ]]; then
-    echo "je suis ici"
     /usr/share/elasticsearch/bin/elasticsearch-users useradd $1 -p $2 -r $3
   fi
 }
