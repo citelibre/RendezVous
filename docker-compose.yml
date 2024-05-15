@@ -93,8 +93,6 @@ services:
     image: citelibre/rendezvous:kibana-1.0.11-SNAPSHOT
     container_name: rdv_kibana
     environment:
-      - xpack.security.enabled=false
-      - xpack.security.enrollment.enabled=false
       - discovery.type=single-node
       - server.publicBaseUrl=localhost
     ports:
@@ -112,8 +110,6 @@ services:
     image: citelibre/rendezvous:elasticsearch-1.0.11-SNAPSHOT
     container_name: rdv_elasticsearch
     environment:
-      - xpack.security.enabled=false
-      - xpack.security.enrollment.enabled=false
       - ELASTIC_PASSWORD="*93n2US7fWog"
       - discovery.type=single-node
       - ESJAVAOPTS=-Xmx1g
