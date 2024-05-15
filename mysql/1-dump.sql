@@ -3149,7 +3149,7 @@ CREATE TABLE `workflow_action` (
   `description` mediumtext,
   `id_workflow` int DEFAULT NULL,
   `id_state_after` int DEFAULT NULL,
-  `id_alternative_state_after` int DEFAULT NULL,
+  `id_alternative_state_after` INT NOT NULL DEFAULT -1,
   `id_icon` int DEFAULT NULL,
   `is_automatic` smallint DEFAULT '0',
   `is_mass_action` smallint DEFAULT '0',
