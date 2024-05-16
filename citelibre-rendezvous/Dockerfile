@@ -8,6 +8,7 @@ ADD pom.xml /app/pom.xml
 ADD src /app/src
 
 RUN mvn -Dmaven.artifact.threads=30 -e -U lutece:site-assembly -Pdev
+#RUN --mount=type=cache,target=/root/.m2,rw mvn -Dmaven.artifact.threads=30 -e -U lutece:site-assembly -Pdev
 RUN cd target && mv $(ls *.war) ${site}.war
 
 # built tomcat
