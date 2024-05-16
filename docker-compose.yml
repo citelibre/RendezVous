@@ -6,9 +6,6 @@ services:
     container_name: rdv_db
     ports:
       - "3307:3306"
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.2
     # if you want to persist data uncomment the following 2 lines... don't forget to create the directory mysql-data for sample
     #volumes:
     #    - ./mysql-data:/var/lib/mysql
@@ -21,9 +18,6 @@ services:
       - db
     ports:
       - "8983:8983"
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.3
     # if you want to persist data uncomment the following 4 lines
     #volumes:
     #  - type: volume
@@ -36,9 +30,6 @@ services:
     ports:
       - "1080:1080"
       - "25:25"
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.4
           
   matomo:
     image: citelibre/rendezvous:matomo-1.0.11-SNAPSHOT
@@ -47,9 +38,6 @@ services:
       - "80:80"
     depends_on:
       - solr
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.5
 
   keycloak:
     image: citelibre/rendezvous:keycloak-1.0.11-SNAPSHOT
@@ -58,9 +46,6 @@ services:
       - "8081:8080"
     depends_on:
       - citelibre
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.6
 
   citelibre:
     image: citelibre/rendezvous:ihm-1.0.11-SNAPSHOT
@@ -85,9 +70,6 @@ services:
       - type: volume
         source: rendezvous-data
         target: /usr/local/tomcat/webapps/rendezvous
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.7
 
   kibana:
     image: citelibre/rendezvous:kibana-1.0.11-SNAPSHOT
@@ -100,9 +82,6 @@ services:
     mem_limit: 1g
     depends_on:
       - elasticsearch
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.8
         #volumes:
         #  - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
 
@@ -121,19 +100,8 @@ services:
       - type: volume
         source: elasticsearch-data
         target: /usr/share/elasticsearch/data
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.9
 
 volumes:
   elasticsearch-data:
   rendezvous-data:
     #  solr-data:
-
-networks:
-  vpcbr:
-    driver: bridge
-    ipam:
-     config:
-       - subnet: 10.5.0.0/16
-         gateway: 10.5.0.1

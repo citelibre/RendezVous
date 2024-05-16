@@ -9,9 +9,6 @@ services:
     # if you want to persist data uncomment the following 2 lines... don't forget to create the directory mysql-data for sample
     # volumes:
     #   - ./mysql-data:/var/lib/mysql
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.2
 
   solr:
     image: ${REPO}/solr
@@ -21,9 +18,6 @@ services:
       - db
     ports:
       - "8983:8983"
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.3
     # if you want to persist data uncomment the following 4 lines
     #volumes:
     #  - type: volume
@@ -36,9 +30,6 @@ services:
     ports:
       - "1080:1080"
       - "25:25"
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.4
             
   matomo:
     image: ${REPO}/matomo
@@ -47,9 +38,6 @@ services:
       - "80:80"
     depends_on:
       - solr
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.5
 
   keycloak:
     image: ${REPO}/keycloak
@@ -59,9 +47,6 @@ services:
       - "8443:8443"
     depends_on:
       - citelibre
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.6
 
 
   citelibre:
@@ -71,6 +56,7 @@ services:
         - 8080:8080
     depends_on:
         - solr
+        - kibana
     environment:
         - LUTECE_DB_USER
         - LUTECE_DB_PWD
@@ -87,9 +73,6 @@ services:
       - type: volume
         source: rendezvous-data
         target: /usr/local/tomcat/webapps/rendezvous
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.7
 
   kibana:
     image: ${REPO}/kibana
@@ -102,9 +85,6 @@ services:
     mem_limit: 1g
     depends_on:
       - elasticsearch
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.8
         #volumes:
         #  - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
 
@@ -114,6 +94,8 @@ services:
     environment:
       - ELASTIC_PASSWORD="*93n2US7fWog"
       - discovery.type=single-node
+      - xpack.security.enabled=false
+        #- xpack.security.enrollment.enabled=false
       - ESJAVAOPTS=-Xmx1g
     mem_limit: 1g
     ports:
@@ -123,19 +105,8 @@ services:
       - type: volume
         source: elasticsearch-data
         target: /usr/share/elasticsearch/data
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.9
 
 volumes:
   elasticsearch-data:
   rendezvous-data:
     #  solr-data:
-
-networks:
-  vpcbr:
-    driver: bridge
-    ipam:
-     config:
-       - subnet: 10.5.0.0/16
-         gateway: 10.5.0.1
