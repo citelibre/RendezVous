@@ -92,6 +92,7 @@ services:
       - ELASTIC_PASSWORD="*93n2US7fWog"
       - discovery.type=single-node
       - ESJAVAOPTS=-Xmx1g
+      - xpack.security.enabled=false
     mem_limit: 1g
     ports:
       - 9200:9200
