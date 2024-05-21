@@ -8,7 +8,7 @@ response="500"
 while [ $response != "200" ]
 do
   sleep 20
-  response=$(curl -so /dev/null -w "%{http_code}\n" localhost:5601/status) 
+  response=$(curl -so /dev/null -w "%{http_code}\n" localhost:5601/api/uptime/settings) 
   if [ $response = "200" ]
   then
     response_elastic="500"
