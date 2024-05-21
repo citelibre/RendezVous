@@ -28,6 +28,7 @@
                             ]]>
             </value>
         </property>
+		<property name="fullIndexingDaemon" value="true" />
     </bean>
     <bean id="elasticdata-appointment.appointmentslotdataSource" class="fr.paris.lutece.plugins.elasticdata.modules.appointment.service.AppointmentSlotDataSource">
         <property name="id" value="AppointmentSlotDataSource" />
@@ -49,6 +50,7 @@
                             ]]>
             </value>
         </property>
+		<property name="fullIndexingDaemon" value="true" />
     </bean>
       <bean id="elasticdata-appointment.appointmentHistoryDataSource" class="fr.paris.lutece.plugins.elasticdata.modules.appointment.service.AppointmentHistoryDataSource">
         <property name="id" value="AppointmentHistoryDataSource" />
@@ -70,6 +72,7 @@
                             ]]>
             </value>
         </property>
+		<property name="fullIndexingDaemon" value="true" />
     </bean>
     <!-- Beans service listener-->
     <bean id="elasticdata-appointment.appointmentServiceListener" class="fr.paris.lutece.plugins.elasticdata.modules.appointment.service.listener.AppointmentServiceListener" />
