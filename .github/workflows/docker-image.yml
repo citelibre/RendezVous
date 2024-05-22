@@ -48,8 +48,10 @@ jobs:
     
     - name: Get new version
       run: |
+        ls
+        pwd
         version=$(cd citelibre-rendezvous && cat VERSION | cut -d'-' -f1)
-        end=$(cat VERSION | cut -d'-' -f2-)
+        end=$(cd citelibre-rendezvous && cat VERSION | cut -d'-' -f2-)
         old_version=$(echo $version | rev)
         old_num_version=$(echo $version | rev | cut -d'.' -f 1 | rev)
         num_version=$((old_num_version+1))
