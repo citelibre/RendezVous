@@ -65,19 +65,18 @@ If you have created an env file named external-database.env start the following
 If you create an `.env` file, docker compose use it without using --env-file 
 
 
-1. Open UI at <http://localhost:8080/rendezvous>.
+### URL and default login
 
-Back end is available at : <http://localhost:8080/rendezvous/jsp/admin/AdminLogin.jsp>
+- Lutece Open UI at <http://localhost:8080/rendezvous>.
 
-Defaut login is `admin` and password is `adminadmin`
+- Lutece Back end is available at : <http://localhost:8080/rendezvous/jsp/admin/AdminLogin.jsp> : `admin`/`adminadmin`
 
+- Mail (in order to see mail send by application) at <http://localhost:1080/>.
 
-1. Open UI mail (in order to see mail send by application) at <http://localhost:1080/>.
+- Matomo (for see stats of your application) at <http://localhost:80> : `admin`/`adminadmin`
 
+- Keycloak at <http://localhost:8081/> : `admin` / `admin1234` . And for demo you can use user demo : `test@paris.fr` / `test1234=TEST1234`
 
-2. Open UI matomo (for see stats of your application) at <http://localhost:80>.
-
-Defaut login is `admin` and password is `adminadmin`
 
 ### Helpful commands
 
@@ -226,5 +225,6 @@ Create a database for matomo with the following command :
 
 ## Production usage
 
-DO NOT use this without persisting your data and email. You should use
+> [!CAUTION]
+> DO NOT use this without persisting your data and email. You should use
 mounted volumes as containers can be recreated and re-init all data. 

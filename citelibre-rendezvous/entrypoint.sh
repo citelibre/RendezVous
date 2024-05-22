@@ -21,18 +21,23 @@ rm  ${tomcat}/webapps/rendezvous/WEB-INF/conf/override/config.properties
 if [[  -z "$LUTECE_MAIL_HOST" ]]
 then
 echo "Launch with internal SMTP"
-sed -i "s/mail.server=.*/mail.server=fake-smtp/g"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/config.properties 
+sed -i "s/mail.server=.*/mail.server=mailpit/g"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/config.properties 
+
+portMail="${LUTECE_MAIL_PORT:-1025}"
+sed -i "s/mail.server.port=.*/mail.server.port=$portMail/"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/config.properties
+sed -i "s/mail.server.port=.*/mail.server.port=$portMail/"  ${tomcat}/webapps/rendezvous/WEB-INF/templates/admin/system/config_properties.html
+
 sed -i "s/mail.username=.*//"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/config.properties 
 sed -i "s/mail.password=.*//"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/config.properties 
 # report in html because after tomcatstarted it will be copied but the params i nconfig are load correctly
 # so it's just for coordonate values
-sed -i "s/mail.server=.*/mail.server=fake-smtp/g"  ${tomcat}/webapps/rendezvous/WEB-INF/templates/admin/system/config_properties.html
+sed -i "s/mail.server=.*/mail.server=mailpit/g"  ${tomcat}/webapps/rendezvous/WEB-INF/templates/admin/system/config_properties.html
 sed -i "s/mail.username=.*//"  ${tomcat}/webapps/rendezvous/WEB-INF/templates/admin/system/config_properties.html
 sed -i "s/mail.password=.*//"  ${tomcat}/webapps/rendezvous/WEB-INF/templates/admin/system/config_properties.html
 
 else
 echo "Launch with external SMTP"
-portMail="${LUTECE_MAIL_PORT:-25}"
+portMail="${LUTECE_MAIL_PORT:-1025}"
 sed -i "s/mail.server=.*/mail.server=$LUTECE_MAIL_HOST/"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/config.properties
 sed -i "s/mail.server.port=.*/mail.server.port=$portMail/"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/config.properties
 

@@ -24,12 +24,19 @@ services:
     #    source: solr-data
     #    target: /var/solr/data/cite-libre/data
 
-  fake-smtp:
-    image: citelibre/rendezvous:fake-smtp-1.0.14-SNAPSHOT
-    container_name: rdv_fake-smtp
+  mailpit:
+    image: axllent/mailpit:v1.18.3
+    container_name: rdv_mailpit
+    restart: unless-stopped
+    volumes:
+      - ./data:/data
     ports:
-      - "1080:1080"
-      - "25:25"
+      - 1080:8025
+      - 1025:1025
+    environment:
+      MP_MAX_MESSAGES: 500
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
           
   matomo:
     image: citelibre/rendezvous:matomo-1.0.14-SNAPSHOT
@@ -45,7 +52,7 @@ services:
     ports:
       - "8081:8080"
     depends_on:
-      - citelibre
+      - db
 
   citelibre:
     image: citelibre/rendezvous:ihm-1.0.14-SNAPSHOT
@@ -61,7 +68,7 @@ services:
       - LUTECE_DB_HOST 
       - LUTECE_DB_PORT 
       - LUTECE_MAIL_HOST
-      - LUTECE_MAIL_PORT
+      - LUTECE_MAIL_PORT=1025
       - LUTECE_MAIL_USER
       - LUTECE_MAIL_PWD
       - LUTECE_INTERNAL_KEYCLOAK=true
