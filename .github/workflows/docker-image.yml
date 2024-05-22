@@ -45,8 +45,22 @@ jobs:
         maven-version: '3.6.3'
     - name: docker login
       run: docker login -u=citelibre -p="${{ secrets.PASSWORD_DOCKER_CITELIBRE }}"
-    - name: Retrieve version in pom with  Maven
-      run: echo "VERSION=1.0.12-SNAPSHOT">> $GITHUB_ENV
+    
+    - name: Get new version
+      run: |
+        version=$(cd citelibre-rendezvous && cat VERSION | cut -d'-' -f1)
+        end=$(cat VERSION | cut -d'-' -f2-)
+        old_version=$(echo $version | rev)
+        old_num_version=$(echo $version | rev | cut -d'.' -f 1 | rev)
+        num_version=$((old_num_version+1))
+        old_num_version=$(echo $old_num_version | rev)
+        num_version=$(echo $num_version | rev)
+        new_version=$(echo $old_version | sed "s/$old_num_version/$num_version/" | rev)
+        echo "VERSION=${new_version}-${end}">> $GITHUB_ENV
+        echo "${new_version}-${end}" > citelibre-rendezvous/VERSION
+
+    # - name: Retrieve version in pom with  Maven
+    #   run: echo "VERSION=1.0.12-SNAPSHOT">> $GITHUB_ENV
         #run: echo "VERSION=$(cd citelibre-rendezvous && mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | sed -n -e '/^\[.*\]/ !{ /^[0-9]/ { p; q } }')">> $GITHUB_ENV
 
     - name: Display version
@@ -127,5 +141,6 @@ jobs:
         git config --global user.name "githubaction"
         git config --global user.email "githubaction"
         git add docker-compose.yml
+        git add VERSION
         git commit -m "ci(githubaction): update docker compose with version $VERSION"  --allow-empty
         git push
