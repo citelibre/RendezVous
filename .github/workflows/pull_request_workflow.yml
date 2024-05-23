@@ -1,8 +1,9 @@
-name: Docker Image CI
+name: Pull Request CI
 
 on:
   pull_request:
     branches: [ "main" ]
+    types: [submitted, edited]
   workflow_dispatch:
     inputs:
       logLevel:
