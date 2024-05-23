@@ -6,8 +6,6 @@ REPO-TEST=test-rendezvous
 build: ## Build the containers
 	docker build citelibre-rendezvous -t $(REPO):ihm
 	docker build citelibre-rendezvous -t $(REPO):ihm-$(VERSION)
-	docker build fake-smtp -t $(REPO):fake-smtp
-	docker build fake-smtp -t $(REPO):fake-smtp-$(VERSION)
 	docker build matomo -t $(REPO):matomo
 	docker build matomo -t $(REPO):matomo-$(VERSION)
 	docker build solr -t $(REPO):solr
@@ -23,7 +21,6 @@ build: ## Build the containers
 
 test: ## Build the containers
 	docker build -t $(REPO-TEST)/ihm citelibre-rendezvous
-	docker build -t $(REPO-TEST)/fake-smtp fake-smtp
 	docker build -t $(REPO-TEST)/matomo matomo
 	docker build -t $(REPO-TEST)/solr solr
 	docker build -t $(REPO-TEST)/db mysql
@@ -45,7 +42,6 @@ publish-latest: ## Publish the `latest` tagged container
 	docker push $(REPO):db
 	docker push $(REPO):ihm
 	docker push $(REPO):matomo
-	docker push $(REPO):fake-smtp
 	docker push $(REPO):keycloak
 	docker push $(REPO):kibana
 	docker push $(REPO):elasticsearch
@@ -56,7 +52,6 @@ publish-version: ## Publish the `{version}` tagged container t
 	docker push $(REPO):db-$(VERSION)
 	docker push $(REPO):ihm-$(VERSION)
 	docker push $(REPO):matomo-$(VERSION)
-	docker push $(REPO):fake-smtp-$(VERSION)
 	docker push $(REPO):keycloak-$(VERSION)
 	docker push $(REPO):kibana-$(VERSION)
 	docker push $(REPO):elasticsearch-$(VERSION)

@@ -89,9 +89,6 @@ jobs:
       with:
         sarif_file: 'trivy-results.sarif'
       
-    - name: build fakesmtp
-      run: docker build  fake-smtp -t citelibre/rendezvous:fake-smtp-$VERSION
-      
     - name: build mysql
       run: docker build  mysql -t citelibre/rendezvous:db-$VERSION
       
@@ -115,7 +112,6 @@ jobs:
         docker push citelibre/rendezvous:solr-$VERSION
         docker push citelibre/rendezvous:db-$VERSION
         docker push citelibre/rendezvous:matomo-$VERSION
-        docker push citelibre/rendezvous:fake-smtp-$VERSION
         docker push citelibre/rendezvous:keycloak-$VERSION
         docker push citelibre/rendezvous:ihm-$VERSION
         docker push citelibre/rendezvous:kibana-$VERSION
@@ -123,7 +119,6 @@ jobs:
       
     - name: update docker compose
       run: |  
-        sed -i -e "s/:fake-smtp.*$/:fake-smtp-$VERSION/g" docker-compose.yml 
         sed -i -e "s/:solr.*$/:solr-$VERSION/g" docker-compose.yml
         sed -i -e "s/:matomo.*$/:matomo-$VERSION/g" docker-compose.yml
         sed -i -e "s/:db.*$/:db-$VERSION/g" docker-compose.yml
