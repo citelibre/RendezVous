@@ -71,7 +71,7 @@ services:
         - LUTECE_DB_HOST
         - LUTECE_DB_PORT
         - LUTECE_MAIL_HOST
-        - LUTECE_MAIL_PORT=1025
+        - LUTECE_MAIL_PORT
         - LUTECE_MAIL_USER
         - LUTECE_MAIL_PWD
         - LUTECE_INTERNAL_KEYCLOAK=true
