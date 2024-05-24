@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   db:
-    image: citelibre/rendezvous:db-1.0.15-SNAPSHOT
+    image: citelibre/rendezvous:db-latest
     container_name: rdv_db
     ports:
       - "3307:3306"
@@ -11,7 +11,7 @@ services:
     #    - ./mysql-data:/var/lib/mysql
 
   solr:
-    image: citelibre/rendezvous:solr-1.0.15-SNAPSHOT
+    image: citelibre/rendezvous:solr-latest
     container_name: rdv_solr
     command: -force
     depends_on:
@@ -39,7 +39,7 @@ services:
       MP_SMTP_AUTH_ALLOW_INSECURE: 1
           
   matomo:
-    image: citelibre/rendezvous:matomo-1.0.15-SNAPSHOT
+    image: citelibre/rendezvous:matomo-latest
     container_name: rdv_matomo
     ports:
       - "80:80"
@@ -47,7 +47,7 @@ services:
       - solr
 
   keycloak:
-    image: citelibre/rendezvous:keycloak-1.0.15-SNAPSHOT
+    image: citelibre/rendezvous:keycloak-latest
     container_name: rdv_keycloak
     ports:
       - "8081:8080"
@@ -55,7 +55,7 @@ services:
       - db
 
   citelibre:
-    image: citelibre/rendezvous:ihm-1.0.15-SNAPSHOT
+    image: citelibre/rendezvous:ihm-latest
     container_name: rdv_citelibre
     ports:
       - 8080:8080
@@ -79,7 +79,7 @@ services:
         target: /usr/local/tomcat/webapps/rendezvous
 
   kibana:
-    image: citelibre/rendezvous:kibana-1.0.15-SNAPSHOT
+    image: citelibre/rendezvous:kibana-latest
     container_name: rdv_kibana
     environment:
       - discovery.type=single-node
@@ -93,7 +93,7 @@ services:
         #  - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
 
   elasticsearch:
-    image: citelibre/rendezvous:elasticsearch-1.0.15-SNAPSHOT
+    image: citelibre/rendezvous:elasticsearch-latest
     container_name: rdv_elasticsearch
     environment:
       - ELASTIC_PASSWORD="*93n2US7fWog"
