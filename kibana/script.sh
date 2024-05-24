@@ -30,7 +30,7 @@ do
         }
         '
 
-        curl -X POST -u $KIBANAUSER:$KIBANAPASS "localhost:5601/s/dev/api/saved_objects/_import?createNewCopies=true" -H "kbn-xsrf: true" \
+        curl -X POST -u $KIBANAUSER:$KIBANAPASS "localhost:5601/s/dev/api/saved_objects/_import?overwrite=true" -H "kbn-xsrf: true" \
             --form file=@/usr/share/kibana/export.ndjson -H 'kbn-xsrf: true'
       fi
     done
