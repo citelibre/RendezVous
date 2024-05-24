@@ -1,8 +1,6 @@
-name: Docker Image CI
+name: Create new version
 
 on:
-  push:
-    branches: [ "main" ]
   workflow_dispatch:
     inputs:
       logLevel:
@@ -45,7 +43,17 @@ jobs:
       run: docker login -u=citelibre -p="${{ secrets.PASSWORD_DOCKER_CITELIBRE }}"
     
     - name: Get new version
-      run: echo "VERSION=latest">> $GITHUB_ENV
+      run: |
+        version=$(cat VERSION | cut -d'-' -f1)
+        end=$(cat VERSION | cut -d'-' -f2-)
+        old_version=$(echo $version | rev)
+        old_num_version=$(echo $version | rev | cut -d'.' -f 1 | rev)
+        num_version=$((old_num_version+1))
+        old_num_version=$(echo $old_num_version | rev)
+        num_version=$(echo $num_version | rev)
+        new_version=$(echo $old_version | sed "s/$old_num_version/$num_version/" | rev)
+        echo "VERSION=${new_version}-${end}">> $GITHUB_ENV
+        echo "${new_version}-${end}" > VERSION
 
     - name: Display version
       run: echo "version $VERSION"
