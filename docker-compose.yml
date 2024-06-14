@@ -4,6 +4,7 @@ services:
   db:
     image: citelibre/rendezvous:db-1.0.18-SNAPSHOT
     container_name: rdv_db
+    env_file: "./external.env"
     ports:
       - "3307:3306"
     # if you want to persist data uncomment the following 2 lines... don't forget to create the directory mysql-data for sample
@@ -16,6 +17,7 @@ services:
     command: -force
     depends_on:
       - db
+    env_file: "./external.env"
     ports:
       - "8983:8983"
     # if you want to persist data uncomment the following 4 lines
@@ -28,8 +30,9 @@ services:
     image: axllent/mailpit:v1.18.3
     container_name: rdv_mailpit
     restart: unless-stopped
-    volumes:
-      - ./data:/data
+    # volumes:
+    #   - ./data:/data
+    env_file: "./external.env"
     ports:
       - 1080:8025
       - 1025:1025
@@ -41,6 +44,7 @@ services:
   matomo:
     image: citelibre/rendezvous:matomo-1.0.18-SNAPSHOT
     container_name: rdv_matomo
+    env_file: "./external.env"
     ports:
       - "80:80"
     depends_on:
@@ -49,6 +53,7 @@ services:
   keycloak:
     image: citelibre/rendezvous:keycloak-1.0.18-SNAPSHOT
     container_name: rdv_keycloak
+    env_file: "./external.env"
     ports:
       - "8081:8080"
     depends_on:
@@ -57,6 +62,7 @@ services:
   citelibre:
     image: citelibre/rendezvous:ihm-1.0.18-SNAPSHOT
     container_name: rdv_citelibre
+    env_file: "./external.env"
     ports:
       - 8080:8080
     depends_on:
@@ -73,10 +79,10 @@ services:
       - LUTECE_MAIL_PWD
       - LUTECE_INTERNAL_KEYCLOAK=true
     mem_limit: 2g
-    volumes:
-      - type: volume
-        source: rendezvous-data
-        target: /usr/local/tomcat/webapps/rendezvous
+    # volumes:
+    #   - type: volume
+    #     source: rendezvous-data
+    #     target: /usr/local/tomcat/webapps/rendezvous
 
   kibana:
     image: citelibre/rendezvous:kibana-1.0.18-SNAPSHOT
@@ -84,6 +90,7 @@ services:
     environment:
       - discovery.type=single-node
       - server.publicBaseUrl=localhost
+    env_file: "./external.env"
     ports:
       - 5601:5601
     mem_limit: 1g
@@ -101,13 +108,14 @@ services:
       - ESJAVAOPTS=-Xmx1g
       - xpack.security.enabled=false
     mem_limit: 1g
+    env_file: "./external.env"
     ports:
       - 9200:9200
       - 9300:9300
-    volumes:
-      - type: volume
-        source: elasticsearch-data
-        target: /usr/share/elasticsearch/data
+    # volumes:
+    #   - type: volume
+    #     source: elasticsearch-data
+    #     target: /usr/share/elasticsearch/data
 
 volumes:
   elasticsearch-data:

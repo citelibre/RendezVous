@@ -4,6 +4,7 @@ services:
   db:
     image: ${REPO}/db
     container_name: rdv_db
+    env_file: "./external.env"
     ports:
       - "3307:3306"
     # if you want to persist data uncomment the following 2 lines... don't forget to create the directory mysql-data for sample
@@ -16,6 +17,7 @@ services:
     command: -force
     depends_on:
       - db
+    env_file: "./external.env"
     ports:
       - "8983:8983"
     # if you want to persist data uncomment the following 4 lines
@@ -28,8 +30,9 @@ services:
     image: axllent/mailpit:v1.18.3
     container_name: rdv_mailpit
     restart: unless-stopped
-    volumes:
-      - ./data:/data
+    # volumes:
+    #   - ./data:/data
+    env_file: "./external.env"
     ports:
       - 1080:8025
       - 1025:1025
@@ -41,6 +44,7 @@ services:
   matomo:
     image: ${REPO}/matomo
     container_name: rdv_matomo
+    env_file: "./external.env"
     ports:
       - "80:80"
     depends_on:
@@ -49,6 +53,7 @@ services:
   keycloak:
     image: ${REPO}/keycloak
     container_name: rdv_keycloak
+    env_file: "./external.env"
     ports:
       - "8081:8080"
       - "8443:8443"
@@ -59,6 +64,7 @@ services:
   citelibre:
     image: ${REPO}/ihm
     container_name: rdv_citelibre
+    env_file: "./external.env"
     ports:
         - 8080:8080
     depends_on:
@@ -76,10 +82,10 @@ services:
         - LUTECE_MAIL_PWD
         - LUTECE_INTERNAL_KEYCLOAK=true
     mem_limit: 2g
-    volumes:
-      - type: volume
-        source: rendezvous-data
-        target: /usr/local/tomcat/webapps/rendezvous
+    # volumes:
+    #   - type: volume
+    #     source: rendezvous-data
+    #     target: /usr/local/tomcat/webapps/rendezvous
 
   kibana:
     image: ${REPO}/kibana
@@ -87,6 +93,7 @@ services:
     environment:
       - discovery.type=single-node
       - server.publicBaseUrl=localhost
+    env_file: "./external.env"
     ports:
       - 5601:5601
     mem_limit: 1g
@@ -105,6 +112,7 @@ services:
         #- xpack.security.enrollment.enabled=false
       - ESJAVAOPTS=-Xmx1g
     mem_limit: 1g
+    env_file: "./external.env"
     ports:
       - 9200:9200
       - 9300:9300
