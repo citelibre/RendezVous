@@ -28,28 +28,6 @@ services:
     ports:
       - "8983:8983"
 
-  mailpit:
-    image: axllent/mailpit:v1.18.3
-    container_name: rdv_mailpit
-    restart: unless-stopped
-    ports:
-      - 1080:8025
-      - 1025:1025
-    environment:
-      MP_MAX_MESSAGES: 500
-      MP_SMTP_AUTH_ACCEPT_ANY: 1
-      MP_SMTP_AUTH_ALLOW_INSECURE: 1
-      TZ: "Europe/Paris"
-
-  matomo:
-    image: citelibre/rendezvous:matomo-1.0.18-SNAPSHOT
-    container_name: rdv_matomo
-    ports:
-      - "80:80"
-    depends_on:
-      - solr
-    environment:
-      - TZ="Europe/Paris"
 
   keycloak:
     image: citelibre/rendezvous:keycloak-1.0.18-SNAPSHOT
@@ -93,30 +71,3 @@ services:
         - URL_SOLR="http:\/\/localhost:8983"
         - URL_MAIL="http:\/\/localhost:1080"
     mem_limit: 2g
-
-  kibana:
-    image: citelibre/rendezvous:kibana-1.0.18-SNAPSHOT
-    container_name: rdv_kibana
-    environment:
-      - discovery.type=single-node
-      - server.publicBaseUrl=localhost
-      - TZ="Europe/Paris"
-    ports:
-      - 5601:5601
-    mem_limit: 1g
-    depends_on:
-      - elasticsearch
-
-  elasticsearch:
-    image: citelibre/rendezvous:elasticsearch-1.0.18-SNAPSHOT
-    container_name: rdv_elasticsearch
-    environment:
-      - ELASTIC_PASSWORD="*93n2US7fWog"
-      - discovery.type=single-node
-      - xpack.security.enabled=false
-      - ESJAVAOPTS=-Xmx1g
-      - TZ="Europe/Paris"
-    mem_limit: 1g
-    ports:
-      - 9200:9200
-      - 9300:9300
