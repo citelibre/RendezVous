@@ -48,7 +48,6 @@ services:
         - 8080:8080
     depends_on:
         - solr
-        - kibana
     environment:
         - LUTECE_DB_USER
         - LUTECE_DB_PWD
