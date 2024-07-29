@@ -1,0 +1,122 @@
+services:
+  db:
+    image: citelibre/rendezvous:db-1.0.18-SNAPSHOT
+    container_name: rdv_db
+    environment:
+      - TZ="Europe/Paris"
+      - URL_CITELIRE="http:\/\/localhost:8080"
+      - URL_CITELIRE_HTTPS="https:\/\/localhost:8080"
+      - URL_CITELIRE_HTML="http%3A%2F%2Flocalhost"
+      - URL_KIBANA="http:\/\/localhost:5601"
+      - URL_MATOMO_HTTP="http:\/\/localhost"
+      - URL_MATOMO_HTTPS="https:\/\/localhost"
+      - URL_KEYCLOAK="http:\/\/localhost:8081"
+      - URL_SOLR="http:\/\/localhost:8983"
+      - URL_MAIL="http:\/\/localhost:1080"
+      - LUTECE_DEFAULT_LANG="fr"
+    ports:
+      - "3307:3306"
+
+  solr:
+    image: citelibre/rendezvous:solr-1.0.18-SNAPSHOT
+    container_name: rdv_solr
+    command: -force
+    environment:
+      - TZ="Europe/Paris"
+    depends_on:
+      - db
+    ports:
+      - "8983:8983"
+
+  mailpit:
+    image: axllent/mailpit:v1.18.3
+    container_name: rdv_mailpit
+    restart: unless-stopped
+    ports:
+      - 1080:8025
+      - 1025:1025
+    environment:
+      MP_MAX_MESSAGES: 500
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
+      TZ: "Europe/Paris"
+
+  matomo:
+    image: citelibre/rendezvous:matomo-1.0.18-SNAPSHOT
+    container_name: rdv_matomo
+    ports:
+      - "80:80"
+    depends_on:
+      - solr
+    environment:
+      - TZ="Europe/Paris"
+
+  keycloak:
+    image: citelibre/rendezvous:keycloak-1.0.18-SNAPSHOT
+    container_name: rdv_keycloak
+    environment:
+      - TZ="Europe/Paris"
+    ports:
+      - "8081:8080"
+      - "8443:8443"
+    depends_on:
+      - db
+
+
+  citelibre:
+    image: citelibre/rendezvous:ihm-1.0.18-SNAPSHOT
+    container_name: rdv_citelibre
+    ports:
+        - 8080:8080
+    depends_on:
+        - solr
+        - kibana
+    environment:
+        - LUTECE_DB_USER
+        - LUTECE_DB_PWD
+        - LUTECE_DB_NAME
+        - LUTECE_DB_HOST
+        - LUTECE_DB_PORT
+        - LUTECE_MAIL_HOST
+        - LUTECE_MAIL_PORT
+        - LUTECE_MAIL_USER
+        - LUTECE_MAIL_PWD
+        - LUTECE_INTERNAL_KEYCLOAK=true
+        - TZ="Europe/Paris"
+        - URL_CITELIRE="http:\/\/localhost:8080"
+        - URL_CITELIRE_HTTPS="https:\/\/localhost:8080"
+        - URL_CITELIRE_HTML="http%3A%2F%2Flocalhost"
+        - URL_KIBANA="http:\/\/localhost:5601"
+        - URL_MATOMO_HTTP="http:\/\/localhost"
+        - URL_MATOMO_HTTPS="https:\/\/localhost"
+        - URL_KEYCLOAK="http:\/\/localhost:8081"
+        - URL_SOLR="http:\/\/localhost:8983"
+        - URL_MAIL="http:\/\/localhost:1080"
+    mem_limit: 2g
+
+  kibana:
+    image: citelibre/rendezvous:kibana-1.0.18-SNAPSHOT
+    container_name: rdv_kibana
+    environment:
+      - discovery.type=single-node
+      - server.publicBaseUrl=localhost
+      - TZ="Europe/Paris"
+    ports:
+      - 5601:5601
+    mem_limit: 1g
+    depends_on:
+      - elasticsearch
+
+  elasticsearch:
+    image: citelibre/rendezvous:elasticsearch-1.0.18-SNAPSHOT
+    container_name: rdv_elasticsearch
+    environment:
+      - ELASTIC_PASSWORD="*93n2US7fWog"
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ESJAVAOPTS=-Xmx1g
+      - TZ="Europe/Paris"
+    mem_limit: 1g
+    ports:
+      - 9200:9200
+      - 9300:9300
