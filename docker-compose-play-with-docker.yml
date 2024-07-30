@@ -14,8 +14,6 @@ services:
       - URL_SOLR="http:\/\/localhost:8983"
       - URL_MAIL="http:\/\/localhost:1080"
       - LUTECE_DEFAULT_LANG="fr"
-    ports:
-      - "3307:3306"
 
   solr:
     image: citelibre/rendezvous:solr-1.0.18-SNAPSHOT
@@ -25,9 +23,6 @@ services:
       - TZ="Europe/Paris"
     depends_on:
       - db
-    ports:
-      - "8983:8983"
-
 
   keycloak:
     image: citelibre/rendezvous:keycloak-1.0.18-SNAPSHOT
