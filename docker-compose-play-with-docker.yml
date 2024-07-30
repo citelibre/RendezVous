@@ -15,53 +15,53 @@ services:
       - URL_MAIL="http:\/\/localhost:1080"
       - LUTECE_DEFAULT_LANG="fr"
 
-  solr:
-    image: citelibre/rendezvous:solr-1.0.18-SNAPSHOT
-    container_name: rdv_solr
-    command: -force
-    environment:
-      - TZ="Europe/Paris"
-    depends_on:
-      - db
+  # solr:
+  #   image: citelibre/rendezvous:solr-1.0.18-SNAPSHOT
+  #   container_name: rdv_solr
+  #   command: -force
+  #   environment:
+  #     - TZ="Europe/Paris"
+  #   depends_on:
+  #     - db
 
-  keycloak:
-    image: citelibre/rendezvous:keycloak-1.0.18-SNAPSHOT
-    container_name: rdv_keycloak
-    environment:
-      - TZ="Europe/Paris"
-    ports:
-      - "8081:8080"
-      - "8443:8443"
-    depends_on:
-      - db
+  # keycloak:
+  #   image: citelibre/rendezvous:keycloak-1.0.18-SNAPSHOT
+  #   container_name: rdv_keycloak
+  #   environment:
+  #     - TZ="Europe/Paris"
+  #   ports:
+  #     - "8081:8080"
+  #     - "8443:8443"
+  #   depends_on:
+  #     - db
 
 
-  citelibre:
-    image: citelibre/rendezvous:ihm-1.0.18-SNAPSHOT
-    container_name: rdv_citelibre
-    ports:
-        - 8080:8080
-    depends_on:
-        - solr
-    environment:
-        - LUTECE_DB_USER
-        - LUTECE_DB_PWD
-        - LUTECE_DB_NAME
-        - LUTECE_DB_HOST
-        - LUTECE_DB_PORT
-        - LUTECE_MAIL_HOST
-        - LUTECE_MAIL_PORT
-        - LUTECE_MAIL_USER
-        - LUTECE_MAIL_PWD
-        - LUTECE_INTERNAL_KEYCLOAK=true
-        - TZ="Europe/Paris"
-        - URL_CITELIRE="http:\/\/localhost:8080"
-        - URL_CITELIRE_HTTPS="https:\/\/localhost:8080"
-        - URL_CITELIRE_HTML="http%3A%2F%2Flocalhost"
-        - URL_KIBANA="http:\/\/localhost:5601"
-        - URL_MATOMO_HTTP="http:\/\/localhost"
-        - URL_MATOMO_HTTPS="https:\/\/localhost"
-        - URL_KEYCLOAK="http:\/\/localhost:8081"
-        - URL_SOLR="http:\/\/localhost:8983"
-        - URL_MAIL="http:\/\/localhost:1080"
-    mem_limit: 2g
+  # citelibre:
+  #   image: citelibre/rendezvous:ihm-1.0.18-SNAPSHOT
+  #   container_name: rdv_citelibre
+  #   ports:
+  #       - 8080:8080
+  #   depends_on:
+  #       - solr
+  #   environment:
+  #       - LUTECE_DB_USER
+  #       - LUTECE_DB_PWD
+  #       - LUTECE_DB_NAME
+  #       - LUTECE_DB_HOST
+  #       - LUTECE_DB_PORT
+  #       - LUTECE_MAIL_HOST
+  #       - LUTECE_MAIL_PORT
+  #       - LUTECE_MAIL_USER
+  #       - LUTECE_MAIL_PWD
+  #       - LUTECE_INTERNAL_KEYCLOAK=true
+  #       - TZ="Europe/Paris"
+  #       - URL_CITELIRE="http:\/\/localhost:8080"
+  #       - URL_CITELIRE_HTTPS="https:\/\/localhost:8080"
+  #       - URL_CITELIRE_HTML="http%3A%2F%2Flocalhost"
+  #       - URL_KIBANA="http:\/\/localhost:5601"
+  #       - URL_MATOMO_HTTP="http:\/\/localhost"
+  #       - URL_MATOMO_HTTPS="https:\/\/localhost"
+  #       - URL_KEYCLOAK="http:\/\/localhost:8081"
+  #       - URL_SOLR="http:\/\/localhost:8983"
+  #       - URL_MAIL="http:\/\/localhost:1080"
+  #   mem_limit: 2g
