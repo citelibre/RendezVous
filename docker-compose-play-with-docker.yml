@@ -1,6 +1,6 @@
 services:
   db:
-    image: citelibre/rendezvous:db-1.0.18-SNAPSHOT
+    image: citelibre/rendezvous:db-latest
     container_name: rdv_db
     environment:
       - TZ="Europe/Paris"
@@ -16,7 +16,7 @@ services:
       - LUTECE_DEFAULT_LANG="fr"
 
   solr:
-    image: citelibre/rendezvous:solr-1.0.18-SNAPSHOT
+    image: citelibre/rendezvous:solr-latest
     container_name: rdv_solr
     command: -force
     environment:
@@ -25,7 +25,7 @@ services:
       - db
 
   keycloak:
-    image: citelibre/rendezvous:keycloak-1.0.18-SNAPSHOT
+    image: citelibre/rendezvous:keycloak-latest
     container_name: rdv_keycloak
     environment:
       - TZ="Europe/Paris"
@@ -37,7 +37,7 @@ services:
 
 
   citelibre:
-    image: citelibre/rendezvous:ihm-1.0.18-SNAPSHOT
+    image: citelibre/rendezvous:ihm-latest
     container_name: rdv_citelibre
     ports:
         - 8080:8080
