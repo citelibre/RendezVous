@@ -81,7 +81,3 @@ In matomo by default is displayed the day after today. Remember to change with t
 > [!CAUTION]
 > DO NOT use this without persisting your data and email. You should use
 mounted volumes as containers can be recreated and re-init all data. 
-
-# Test online
-
-- https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/citelibre/RendezVous/main/docker-compose-play-with-docker.yml

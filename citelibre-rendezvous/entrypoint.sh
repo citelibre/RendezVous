@@ -22,7 +22,6 @@ mail_port="${LUTECE_MAIL_PORT:-1025}"
 mail_user="${LUTECE_MAIL_USER:-}"
 mail_password="${LUTECE_MAIL_PWD:-}"
 
-light_mode="${LIGHT_MODE:-False}"
 
 echo "Config database"
 sed -i "s/portal.user=.*/portal\.user=$db_user/" ${tomcat}/webapps/rendezvous/WEB-INF/conf/db.properties
@@ -56,9 +55,6 @@ sed -i "s/http:\/\/localhost:8081/$url_keycloak/g" ${tomcat}/webapps/rendezvous/
 sed -i "s/http:\/\/localhost:8081/$url_keycloak/g" ${tomcat}/webapps/rendezvous/WEB-INF/conf/override/plugins/mylutece-oauth2_context.xml
 
 
-if [ "$light_mode" = "True" ]; then
-    echo "mylutece.authentication.class=fr.paris.lutece.plugins.mylutece.modules.database.authentication.BaseAuthentication" > ${tomcat}/webapps/rendezvous/WEB-INF/conf/override/plugins/mylutece.properties
-fi
 
 # SMTP
 # Pb with new version => delete this file 
