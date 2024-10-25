@@ -1,8 +1,8 @@
 ARG site=site-citelibre-rendezvous-1.0.9
 
 # build the site and assemble the webapp
-FROM lutece/builder as builder
-
+FROM lutece/builder AS builder
+ARG site
 WORKDIR /app
 ADD pom.xml /app/pom.xml
 ADD src /app/src
@@ -13,6 +13,7 @@ RUN cd target && mv $(ls *.war) ${site}.war
 
 # built tomcat
 FROM tomcat:9.0-jdk11
+ARG site
 
 RUN apt update && apt install -y haproxy
 
