@@ -60,7 +60,7 @@ jobs:
       run: docker save -o citelibre-rendezvous.tar citelibre/rendezvous:ihm-$VERSION
       
     - name: Run Trivy vulnerability scanner in tarball mode of rendez vous image
-      uses: aquasecurity/trivy-action@master
+      uses: aquasecurity/trivy-action@0.20
       with:
         input: /github/workspace/citelibre-rendezvous.tar
         severity: 'CRITICAL,HIGH'
