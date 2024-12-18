@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+     <bean id="adminauthenticationoauth2.authDataClient" class="fr.paris.lutece.plugins.adminauthenticationoauth2.business.authentication.AuthDataClient">
+        <property name="name" value="adminAuthData" />
+        <property name="dataServerUri" value="http://localhost:8081/realms/paris/protocol/openid-connect/userinfo"/>
+        <property name="tokenMethod" value="HEADER"/>
+        <property name="default" value="true"/>
+        <property name="scope">
+         <set value-type="java.lang.String">
+	   	  <value>openid</value>
+	  	</set>
+        </property>
+    </bean>
+
+    
+    <bean id="adminauthenticationoauth2.server" class="fr.paris.lutece.plugins.oauth2.business.AuthServerConf">
+        <property name="issuer" value="http://fcp.integ01.dev-oauth2.fr"/>
+        <property name="authorizationEndpointUri" value="http://localhost:8081/realms/paris/protocol/openid-connect/auth"/>
+        <property name="tokenEndpointUri" value="http://localhost:8081/realms/paris/protocol/openid-connect/token"/>
+        <property name="logoutEndpointUri" value="http://localhost:8081/realms/paris/protocol/openid-connect/logout?redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Frendezvous%2F"/>
+        <property name="enableJwtParser" value="false"/>
+    </bean> 
+    
+    <bean id="adminauthenticationoauth2.client" class="fr.paris.lutece.plugins.oauth2.business.AuthClientConf">
+        <property name="clientId" value="moncompte"/>
+        <property name="clientSecret" value="moncompte"/>
+    </bean>   
+    
+    
+     <!-- By default the admin user authentication system use client and server properties define in the file oauth2_context.xml -->
+    <bean id="adminauthenticationoauth2.callbackHandler" class="fr.paris.lutece.plugins.oauth2.web.CallbackHandler" >
+        <property name="handlerName" value="adminOauth2Handler"/>
+        <property name="authServerConf" ref="adminauthenticationoauth2.server"/>
+        <property name="authClientConf" ref="adminauthenticationoauth2.client"/>
+        <property name="jWTParser" ref="oauth2.jwtParser"/>
+    </bean>     
+    
+    
+</beans>

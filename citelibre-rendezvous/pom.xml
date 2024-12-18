@@ -53,7 +53,7 @@
 		<dependency>
 			<groupId>fr.paris.lutece</groupId>
 			<artifactId>lutece-core</artifactId>
-			<version>[7.0.13]</version>
+			<version>[7.1.1-SNAPSHOT]</version>
 			<type>lutece-core</type>
 		</dependency>
 		<dependency>
@@ -460,6 +460,12 @@
             <artifactId>site-theme-citelibre</artifactId>
             <version>[1.0.0-SNAPSHOT]</version>
             <type>lutece-site</type>
-        </dependency>
+    </dependency>
+     <dependency>
+        <groupId>fr.paris.lutece.plugins</groupId>
+        <artifactId>plugin-adminauthenticationoauth2</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <type>lutece-plugin</type>
+      </dependency>
     </dependencies>
 </project>
