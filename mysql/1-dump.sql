@@ -40,7 +40,7 @@ CREATE TABLE `appointment_appointment` (
   PRIMARY KEY (`id_appointment`),
   UNIQUE KEY `reference_idx` (`reference`),
   KEY `fk_appointment_appointment_appointment_user_idx` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +67,7 @@ CREATE TABLE `appointment_appointment_response` (
   PRIMARY KEY (`id_appointment_response`),
   UNIQUE KEY `appointment_appointment_response_unique` (`id_appointment`,`id_response`),
   KEY `fk_appointment_appointment_response_appointment_appointment_idx` (`id_appointment`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +93,7 @@ CREATE TABLE `appointment_appointment_slot` (
   PRIMARY KEY (`id_appointment`,`id_slot`),
   KEY `fk_appointment_appointment_slot_slot` (`id_slot`),
   KEY `idx_appointment_slot` (`id_appointment`,`id_slot`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +119,7 @@ CREATE TABLE `appointment_calendar_template` (
   `description` varchar(255) NOT NULL,
   `template_path` varchar(255) NOT NULL,
   PRIMARY KEY (`id_calendar_template`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +145,7 @@ CREATE TABLE `appointment_category` (
   `nb_max_appointments_per_user` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_category`),
   UNIQUE KEY `appointment_category_unique_label` (`label`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,7 +173,7 @@ CREATE TABLE `appointment_closing_day` (
   UNIQUE KEY `appointment_closing_day_unique` (`id_form`,`date_of_closing_day`),
   KEY `fk_appointment_closing_day_appointment_form_idx` (`id_form`),
   KEY `date_of_closing_day` (`date_of_closing_day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -204,7 +204,7 @@ CREATE TABLE `appointment_comment` (
   `comment_user_creator` varchar(255) NOT NULL,
   PRIMARY KEY (`id_comment`),
   KEY `fk_appointment_comment` (`id_form`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -229,7 +229,7 @@ CREATE TABLE `appointment_comment_notification_cf` (
   `sender_name` varchar(255) DEFAULT NULL,
   `subject` varchar(255) DEFAULT NULL,
   `message` mediumtext DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -261,7 +261,7 @@ CREATE TABLE `appointment_display` (
   PRIMARY KEY (`id_display`),
   UNIQUE KEY `appointment_display_unique` (`id_form`),
   KEY `fk_appointment_display_appointment_calendar_template_idx` (`id_calendar_template`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -302,7 +302,7 @@ CREATE TABLE `appointment_form` (
   KEY `starting_validity_date_idx` (`starting_validity_date`),
   KEY `ending_validity_date_idx` (`ending_validity_date`),
   KEY `fk_appointment_form_appointment_category_idx` (`id_category`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -344,7 +344,7 @@ CREATE TABLE `appointment_form_message` (
   `id_form` int(11) NOT NULL,
   PRIMARY KEY (`id_form_message`),
   KEY `fk_appointment_form_message_appointment_form_idx` (`id_form`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -369,7 +369,7 @@ CREATE TABLE `appointment_form_portlet` (
   `id_form` int(11) NOT NULL,
   PRIMARY KEY (`id_portlet`,`id_form`),
   KEY `fk_appointment_form_portlet_appointment_form_idx` (`id_form`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -401,7 +401,7 @@ CREATE TABLE `appointment_form_rule` (
   `id_form` int(11) NOT NULL,
   PRIMARY KEY (`id_form_rule`),
   UNIQUE KEY `appointment_form_rule_unique` (`id_form`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -429,7 +429,7 @@ CREATE TABLE `appointment_localization` (
   `id_form` int(11) NOT NULL,
   PRIMARY KEY (`id_localization`),
   KEY `fk_appointment_localization_appointment_form_idx` (`id_form`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -462,7 +462,7 @@ CREATE TABLE `appointment_reservation_rule` (
   PRIMARY KEY (`id_reservation_rule`),
   KEY `fk_appointment_reservation_rule_appointment_form_idx` (`id_form`),
   KEY `fk_appointment_working_day_appointment_reservation_rule_idx` (`id_reservation_rule`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -499,7 +499,7 @@ CREATE TABLE `appointment_slot` (
   KEY `fk_appointment_slot_appointment_form_idx` (`id_form`),
   KEY `starting_date_time_idx` (`starting_date_time`),
   KEY `ending_date_time_idx` (`ending_date_time`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -532,7 +532,7 @@ CREATE TABLE `appointment_time_slot` (
   KEY `fk_appointment_time_slot_appointment_working_day_idx` (`id_working_day`),
   KEY `starting_time_idx` (`starting_time`),
   KEY `ending_time_idx` (`ending_time`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -561,7 +561,7 @@ CREATE TABLE `appointment_user` (
   `phone_number` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_user`),
   KEY `email_idx` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -589,7 +589,7 @@ CREATE TABLE `appointment_week_definition` (
   PRIMARY KEY (`id_week_definition`),
   UNIQUE KEY `appointment_week_definition_unique_date` (`id_reservation_rule`,`date_of_apply`),
   KEY `date_of_apply_idx` (`date_of_apply`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -615,7 +615,7 @@ CREATE TABLE `appointment_working_day` (
   `id_reservation_rule` int(11) NOT NULL,
   PRIMARY KEY (`id_working_day`),
   UNIQUE KEY `appointment_working_day_unique` (`id_reservation_rule`,`day_of_week`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -640,7 +640,7 @@ CREATE TABLE `appointmentgru_` (
   `guid` varchar(50) NOT NULL DEFAULT '',
   `cuid` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_appointmentgru`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -664,7 +664,7 @@ CREATE TABLE `core_admin_dashboard` (
   `dashboard_column` int(11) NOT NULL,
   `dashboard_order` int(11) NOT NULL,
   PRIMARY KEY (`dashboard_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -690,7 +690,7 @@ CREATE TABLE `core_admin_mailinglist` (
   `description` varchar(255) NOT NULL,
   `workgroup` varchar(50) NOT NULL,
   PRIMARY KEY (`id_mailinglist`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -715,7 +715,7 @@ CREATE TABLE `core_admin_mailinglist_filter` (
   `workgroup` varchar(50) NOT NULL,
   `role` varchar(50) NOT NULL,
   PRIMARY KEY (`id_mailinglist`,`workgroup`,`role`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -750,7 +750,7 @@ CREATE TABLE `core_admin_right` (
   `is_external_feature` smallint(6) DEFAULT 0,
   PRIMARY KEY (`id_right`),
   KEY `index_right` (`level_right`,`admin_url`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -774,7 +774,7 @@ CREATE TABLE `core_admin_role` (
   `role_key` varchar(50) NOT NULL DEFAULT '',
   `role_description` varchar(100) NOT NULL DEFAULT '',
   PRIMARY KEY (`role_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -801,7 +801,7 @@ CREATE TABLE `core_admin_role_resource` (
   `resource_id` varchar(50) NOT NULL DEFAULT '',
   `permission` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`rbac_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1031 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1031 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -839,7 +839,7 @@ CREATE TABLE `core_admin_user` (
   `last_login` timestamp NULL DEFAULT '1980-01-01 00:00:00',
   `workgroup_key` varchar(50) DEFAULT 'all',
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -863,7 +863,7 @@ CREATE TABLE `core_admin_user_anonymize_field` (
   `field_name` varchar(100) NOT NULL,
   `anonymize` smallint(6) NOT NULL,
   PRIMARY KEY (`field_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -892,7 +892,7 @@ CREATE TABLE `core_admin_user_field` (
   `user_field_value` mediumtext DEFAULT NULL,
   PRIMARY KEY (`id_user_field`),
   KEY `core_admin_user_field_idx_file` (`id_file`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -917,7 +917,7 @@ CREATE TABLE `core_admin_user_preferences` (
   `pref_value` mediumtext DEFAULT NULL,
   PRIMARY KEY (`id_user`,`pref_key`),
   KEY `index_admin_user_preferences` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -940,7 +940,7 @@ CREATE TABLE `core_admin_workgroup` (
   `workgroup_key` varchar(50) NOT NULL,
   `workgroup_description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`workgroup_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -963,7 +963,7 @@ CREATE TABLE `core_admin_workgroup_user` (
   `workgroup_key` varchar(50) NOT NULL,
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`workgroup_key`,`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -995,7 +995,7 @@ CREATE TABLE `core_attribute` (
   `plugin_name` varchar(255) DEFAULT NULL,
   `anonymize` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`id_attribute`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1027,7 +1027,7 @@ CREATE TABLE `core_attribute_field` (
   `is_multiple` smallint(6) DEFAULT 0,
   `field_position` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_field`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1053,7 +1053,7 @@ CREATE TABLE `core_connections_log` (
   `date_login` timestamp NOT NULL DEFAULT current_timestamp(),
   `login_status` int(11) DEFAULT NULL,
   KEY `index_connections_log` (`ip_address`,`date_login`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1078,7 +1078,7 @@ CREATE TABLE `core_dashboard` (
   `dashboard_column` int(11) NOT NULL,
   `dashboard_order` int(11) NOT NULL,
   PRIMARY KEY (`dashboard_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1102,7 +1102,7 @@ CREATE TABLE `core_datastore` (
   `entity_key` varchar(255) NOT NULL,
   `entity_value` mediumtext DEFAULT NULL,
   PRIMARY KEY (`entity_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1129,7 +1129,7 @@ CREATE TABLE `core_feature_group` (
   `feature_group_order` int(11) DEFAULT NULL,
   `feature_group_icon` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_feature_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1158,7 +1158,7 @@ CREATE TABLE `core_file` (
   `date_creation` timestamp NULL DEFAULT NULL,
   `origin` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_file`)
-) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1182,7 +1182,7 @@ CREATE TABLE `core_id_generator` (
   `class_name` varchar(250) NOT NULL DEFAULT '',
   `current_value` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`class_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1208,7 +1208,7 @@ CREATE TABLE `core_indexer_action` (
   `indexer_name` varchar(255) NOT NULL,
   `id_portlet` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_action`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1231,7 +1231,7 @@ CREATE TABLE `core_level_right` (
   `id_level` smallint(6) NOT NULL DEFAULT 0,
   `name` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`id_level`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1255,7 +1255,7 @@ CREATE TABLE `core_mail_item` (
   `id_mail_queue` int(11) NOT NULL DEFAULT 0,
   `mail_item` mediumblob DEFAULT NULL,
   PRIMARY KEY (`id_mail_queue`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1279,7 +1279,7 @@ CREATE TABLE `core_mail_queue` (
   `is_locked` smallint(6) DEFAULT 0,
   PRIMARY KEY (`id_mail_queue`),
   KEY `is_locked_core_mail_queue` (`is_locked`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1310,7 +1310,7 @@ CREATE TABLE `core_mode` (
   `output_xsl_omit_xml_dec` varchar(50) DEFAULT NULL,
   `output_xsl_standalone` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_mode`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1353,7 +1353,7 @@ CREATE TABLE `core_page` (
   PRIMARY KEY (`id_page`),
   KEY `index_page` (`id_template`,`id_parent`),
   KEY `index_childpage` (`id_parent`,`page_order`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1379,7 +1379,7 @@ CREATE TABLE `core_page_template` (
   `file_name` varchar(100) DEFAULT NULL,
   `picture` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_template`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1403,7 +1403,7 @@ CREATE TABLE `core_physical_file` (
   `id_physical_file` int(11) NOT NULL AUTO_INCREMENT,
   `file_value` mediumblob DEFAULT NULL,
   PRIMARY KEY (`id_physical_file`)
-) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1427,7 +1427,7 @@ CREATE TABLE `core_portal_component` (
   `id_portal_component` int(11) NOT NULL DEFAULT 0,
   `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_portal_component`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1464,7 +1464,7 @@ CREATE TABLE `core_portlet` (
   `device_display_flags` int(11) NOT NULL DEFAULT 15,
   PRIMARY KEY (`id_portlet`),
   KEY `index_portlet` (`id_page`,`id_portlet_type`,`id_style`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1488,7 +1488,7 @@ CREATE TABLE `core_portlet_alias` (
   `id_portlet` int(11) NOT NULL DEFAULT 0,
   `id_alias` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_portlet`,`id_alias`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1524,7 +1524,7 @@ CREATE TABLE `core_portlet_type` (
   `modify_specific_form` varchar(255) DEFAULT NULL,
   `icon_name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_portlet_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1549,7 +1549,7 @@ CREATE TABLE `core_role` (
   `role_description` varchar(255) DEFAULT NULL,
   `workgroup_key` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`role`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1572,7 +1572,7 @@ CREATE TABLE `core_search_parameter` (
   `parameter_key` varchar(100) NOT NULL,
   `parameter_value` mediumtext DEFAULT NULL,
   PRIMARY KEY (`parameter_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1599,7 +1599,7 @@ CREATE TABLE `core_style` (
   `id_portal_component` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_style`),
   KEY `index_style` (`id_portlet_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1625,7 +1625,7 @@ CREATE TABLE `core_style_mode_stylesheet` (
   `id_stylesheet` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_style`,`id_mode`,`id_stylesheet`),
   KEY `index_style_mode_stylesheet` (`id_stylesheet`,`id_mode`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1651,7 +1651,7 @@ CREATE TABLE `core_stylesheet` (
   `file_name` varchar(255) DEFAULT NULL,
   `source` mediumblob DEFAULT NULL,
   PRIMARY KEY (`id_stylesheet`)
-) ENGINE=InnoDB AUTO_INCREMENT=311 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=311 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1675,7 +1675,7 @@ CREATE TABLE `core_template` (
   `template_name` varchar(100) NOT NULL,
   `template_value` mediumtext DEFAULT NULL,
   PRIMARY KEY (`template_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1700,7 +1700,7 @@ CREATE TABLE `core_text_editor` (
   `editor_description` varchar(255) NOT NULL,
   `backOffice` smallint(6) NOT NULL,
   PRIMARY KEY (`editor_name`,`backOffice`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1725,7 +1725,7 @@ CREATE TABLE `core_user_password_history` (
   `password` mediumtext NOT NULL,
   `date_password_change` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id_user`,`date_password_change`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1751,7 +1751,7 @@ CREATE TABLE `core_user_preferences` (
   `pref_value` mediumtext DEFAULT NULL,
   PRIMARY KEY (`id_user`,`pref_key`),
   KEY `index_user_preferences` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1775,7 +1775,7 @@ CREATE TABLE `core_user_right` (
   `id_user` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_right`,`id_user`),
   KEY `index_user_right` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1799,7 +1799,7 @@ CREATE TABLE `core_user_role` (
   `role_key` varchar(50) NOT NULL DEFAULT '',
   `id_user` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`role_key`,`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1827,7 +1827,7 @@ CREATE TABLE `core_xsl_export` (
   `id_file` int(11) DEFAULT NULL,
   `plugin` varchar(255) DEFAULT '',
   PRIMARY KEY (`id_xsl_export`)
-) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1851,7 +1851,7 @@ CREATE TABLE `crm_client_crm_item` (
   `id_crm_queue` int(11) NOT NULL DEFAULT 0,
   `crm_item` mediumblob DEFAULT NULL,
   PRIMARY KEY (`id_crm_queue`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1875,7 +1875,7 @@ CREATE TABLE `crm_client_crm_queue` (
   `is_locked` smallint(6) DEFAULT 0,
   PRIMARY KEY (`id_crm_queue`),
   KEY `is_locked_crm_client_crm_queue` (`is_locked`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1899,7 +1899,7 @@ CREATE TABLE `elastic_mapping` (
   `id_customer` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_mapping`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1924,7 +1924,7 @@ CREATE TABLE `elasticdata_indexer_action` (
   `id_task` int(11) NOT NULL DEFAULT 0,
   `id_datasource` varchar(255) NOT NULL,
   PRIMARY KEY (`id_action`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1953,7 +1953,7 @@ CREATE TABLE `filegen_temporary_file` (
   `mime_type` varchar(255) DEFAULT NULL,
   `date_creation` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id_file`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1997,7 +1997,7 @@ CREATE TABLE `genatt_entry` (
   KEY `index_genatt_entry_parent` (`id_parent`),
   KEY `index_genatt_code` (`code`),
   KEY `fk_genatt_entry_type` (`id_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2029,7 +2029,7 @@ CREATE TABLE `genatt_entry_type` (
   `inactive` int(11) DEFAULT 0,
   PRIMARY KEY (`id_type`),
   KEY `index_genatt_entry_type_plugin` (`plugin`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2062,7 +2062,7 @@ CREATE TABLE `genatt_field` (
   `comment` mediumtext DEFAULT NULL,
   PRIMARY KEY (`id_field`),
   KEY `index_genatt_field_entry` (`id_entry`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2085,7 +2085,7 @@ CREATE TABLE `genatt_referenceitem_field` (
   `id_field` int(11) NOT NULL DEFAULT 0,
   `id_item` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_field`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2114,7 +2114,7 @@ CREATE TABLE `genatt_response` (
   `status` smallint(6) DEFAULT 1,
   PRIMARY KEY (`id_response`),
   KEY `index_genatt_response_entry` (`id_entry`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2138,7 +2138,7 @@ CREATE TABLE `genatt_verify_by` (
   `id_expression` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_field`,`id_expression`),
   KEY `index_genatt_verify_by_field` (`id_field`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2161,7 +2161,7 @@ CREATE TABLE `html_portlet` (
   `id_portlet` int(11) NOT NULL DEFAULT 0,
   `html` mediumtext DEFAULT NULL,
   PRIMARY KEY (`id_portlet`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2189,7 +2189,7 @@ CREATE TABLE `htmlpage` (
   `workgroup_key` varchar(50) NOT NULL DEFAULT 'all',
   `role` varchar(50) NOT NULL DEFAULT 'none',
   PRIMARY KEY (`id_htmlpage`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2218,7 +2218,7 @@ CREATE TABLE `identitystore_attribute` (
   PRIMARY KEY (`id_attribute`),
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `key_name` (`key_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2245,7 +2245,7 @@ CREATE TABLE `identitystore_attribute_certificate` (
   `certificate_level` int(11) NOT NULL DEFAULT 0,
   `expiration_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_attribute_certificate`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2273,7 +2273,7 @@ CREATE TABLE `identitystore_attribute_right` (
   `searchable` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_client_app`,`id_attribute`),
   KEY `fk_attribute_right_id_attribute` (`id_attribute`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2301,7 +2301,7 @@ CREATE TABLE `identitystore_client_application` (
   PRIMARY KEY (`id_client_app`),
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `code` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2326,7 +2326,7 @@ CREATE TABLE `identitystore_client_application_certifiers` (
   `certifier_code` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id_client_app`,`certifier_code`),
   KEY `id_client_app` (`id_client_app`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2360,7 +2360,7 @@ CREATE TABLE `identitystore_history_identity_attribute` (
   `modification_date` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id_history`),
   KEY `fk_history_identity_attribute_id_identity` (`id_identity`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2391,7 +2391,7 @@ CREATE TABLE `identitystore_identity` (
   UNIQUE KEY `customer_id` (`customer_id`),
   KEY `connection_id_2` (`connection_id`),
   KEY `customer_id_2` (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2422,7 +2422,7 @@ CREATE TABLE `identitystore_identity_attribute` (
   PRIMARY KEY (`id_identity`,`id_attribute`),
   KEY `fk_identity_attribute_id_attribute` (`id_attribute`),
   KEY `ix_attribute_value` (`attribute_value`(50)) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2449,7 +2449,7 @@ CREATE TABLE `kibana_dashboard` (
   `dataSourceName` mediumtext DEFAULT NULL,
   PRIMARY KEY (`id_dashboard`),
   UNIQUE KEY `idkibanadashboard` (`idkibanadashboard`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2475,7 +2475,7 @@ CREATE TABLE `mydashboard_configuration` (
   `dashboard_order` int(11) NOT NULL,
   `hide_dashboard` smallint(6) NOT NULL,
   PRIMARY KEY (`my_dashboard_component_id`,`id_config`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2501,7 +2501,7 @@ CREATE TABLE `mydashboard_dashboard_association` (
   `position` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_dashboard_association`),
   KEY `fk_id_panel` (`id_panel`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2527,7 +2527,7 @@ CREATE TABLE `mydashboard_panel` (
   `description` mediumtext DEFAULT NULL,
   `is_default` smallint(6) NOT NULL,
   PRIMARY KEY (`id_panel`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2550,7 +2550,7 @@ CREATE TABLE `mydashboard_portlet_panel` (
   `id_portlet` int(11) NOT NULL,
   `id_panel` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_portlet`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2580,7 +2580,7 @@ CREATE TABLE `mylutece_attribute` (
   `plugin_name` varchar(255) DEFAULT NULL,
   `anonymize` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`id_attribute`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2611,7 +2611,7 @@ CREATE TABLE `mylutece_attribute_field` (
   `is_multiple` smallint(6) DEFAULT 0,
   `field_position` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_field`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2634,7 +2634,7 @@ CREATE TABLE `mylutece_connections_log` (
   `ip_address` varchar(63) DEFAULT NULL,
   `date_login` timestamp NOT NULL DEFAULT current_timestamp(),
   `login_status` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2657,7 +2657,7 @@ CREATE TABLE `mylutece_user_anonymize_field` (
   `field_name` varchar(100) NOT NULL,
   `anonymize` smallint(6) NOT NULL,
   PRIMARY KEY (`field_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2683,7 +2683,7 @@ CREATE TABLE `mylutece_user_field` (
   `id_field` int(11) DEFAULT NULL,
   `user_field_value` mediumtext DEFAULT NULL,
   PRIMARY KEY (`id_user_field`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2715,7 +2715,7 @@ CREATE TABLE `notifygru_alert_update_resource_state_queue` (
   `alert_reference_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `id_state` int(11) NOT NULL,
   PRIMARY KEY (`id_resource_queue`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2742,7 +2742,7 @@ CREATE TABLE `profile_action` (
   `icon_url` varchar(255) DEFAULT NULL,
   `action_permission` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_action`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2766,7 +2766,7 @@ CREATE TABLE `profile_profile` (
   `profile_key` varchar(50) NOT NULL DEFAULT '',
   `profile_description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`profile_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2789,7 +2789,7 @@ CREATE TABLE `profile_right` (
   `profile_key` varchar(50) NOT NULL DEFAULT '',
   `id_right` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`profile_key`,`id_right`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2812,7 +2812,7 @@ CREATE TABLE `profile_role` (
   `profile_key` varchar(50) NOT NULL DEFAULT '',
   `role_key` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`profile_key`,`role_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2835,7 +2835,7 @@ CREATE TABLE `profile_user` (
   `profile_key` varchar(50) NOT NULL DEFAULT '',
   `id_user` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`profile_key`,`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2858,7 +2858,7 @@ CREATE TABLE `profile_view` (
   `view_key` varchar(50) NOT NULL DEFAULT '',
   `view_description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`view_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2885,7 +2885,7 @@ CREATE TABLE `profile_view_action` (
   `icon_url` varchar(255) DEFAULT NULL,
   `action_permission` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_action`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2911,7 +2911,7 @@ CREATE TABLE `profile_view_dashboard` (
   `dashboard_column` int(11) NOT NULL,
   `dashboard_order` int(11) NOT NULL,
   PRIMARY KEY (`view_key`,`dashboard_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2934,7 +2934,7 @@ CREATE TABLE `profile_view_profile` (
   `view_key` varchar(50) NOT NULL DEFAULT '',
   `profile_key` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`view_key`,`profile_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2957,7 +2957,7 @@ CREATE TABLE `profile_workgroup` (
   `profile_key` varchar(50) NOT NULL DEFAULT '',
   `workgroup_key` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`profile_key`,`workgroup_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2982,7 +2982,7 @@ CREATE TABLE `referencelist_item` (
   `code` mediumtext NOT NULL,
   `idreference` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_reference_item`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3006,7 +3006,7 @@ CREATE TABLE `referencelist_reference` (
   `name` mediumtext NOT NULL,
   `description` mediumtext NOT NULL,
   PRIMARY KEY (`id_reference`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3031,7 +3031,7 @@ CREATE TABLE `referencelist_translation` (
   `name` mediumtext NOT NULL,
   `id_reference_item` int(11) NOT NULL,
   PRIMARY KEY (`id_translation`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3058,7 +3058,7 @@ CREATE TABLE `regularexpression_regular_expression` (
   `information_message` mediumtext DEFAULT NULL,
   `error_message` mediumtext DEFAULT NULL,
   PRIMARY KEY (`id_expression`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3081,7 +3081,7 @@ DROP TABLE IF EXISTS `solr_facet_intersection`;
 CREATE TABLE `solr_facet_intersection` (
   `id_field1` int(11) DEFAULT NULL,
   `id_field2` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3114,7 +3114,7 @@ CREATE TABLE `solr_fields` (
   `facet_mincount` int(11) DEFAULT 1,
   `operator_type` varchar(30) DEFAULT 'OR',
   PRIMARY KEY (`id_field`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3141,7 +3141,7 @@ CREATE TABLE `solr_indexer_action` (
   `type_ressource` varchar(255) NOT NULL,
   `id_portlet` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_action`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3177,7 +3177,7 @@ CREATE TABLE `workflow_action` (
   KEY `action_id_workflow_fk` (`id_workflow`),
   KEY `action_id_state_after_fk` (`id_state_after`),
   KEY `action_id_icon_fk` (`id_icon`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3201,7 +3201,7 @@ CREATE TABLE `workflow_action_action` (
   `id_action` int(11) NOT NULL DEFAULT 0,
   `id_linked_action` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_action`,`id_linked_action`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3224,7 +3224,7 @@ CREATE TABLE `workflow_action_state_before` (
   `id_action` int(11) NOT NULL,
   `id_state_before` int(11) NOT NULL,
   PRIMARY KEY (`id_action`,`id_state_before`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3258,7 +3258,7 @@ CREATE TABLE `workflow_appointment_reminder` (
   `phone_number` varchar(255) DEFAULT NULL,
   `id_state_after` int(11) NOT NULL,
   PRIMARY KEY (`id_task`,`id_form`,`rank`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3284,7 +3284,7 @@ CREATE TABLE `workflow_assignment_history` (
   PRIMARY KEY (`id_history`,`id_task`,`workgroup_key`),
   KEY `assignment_id_history_fk` (`id_history`),
   KEY `assignment_id_task_fk` (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3311,7 +3311,7 @@ CREATE TABLE `workflow_icon` (
   `width` int(11) DEFAULT NULL,
   `height` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_icon`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3344,7 +3344,7 @@ CREATE TABLE `workflow_prerequisite` (
   `prerequisite_type` varchar(255) NOT NULL,
   `uid_prerequisite` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_prerequisite`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3367,7 +3367,7 @@ CREATE TABLE `workflow_prerequisite_duration_cf` (
   `id_prerequisite` int(11) NOT NULL,
   `duration` int(11) NOT NULL,
   PRIMARY KEY (`id_prerequisite`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3398,7 +3398,7 @@ CREATE TABLE `workflow_resource_history` (
   KEY `history_id_workflow_fk` (`id_workflow`),
   KEY `history_id_action_fk` (`id_action`),
   KEY `history_id_resource_fk` (`id_resource`)
-) ENGINE=InnoDB AUTO_INCREMENT=352 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=352 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3426,7 +3426,7 @@ CREATE TABLE `workflow_resource_user_history` (
   `last_name` varchar(255) DEFAULT '',
   `realm` varchar(255) DEFAULT '',
   PRIMARY KEY (`id_history`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3458,7 +3458,7 @@ CREATE TABLE `workflow_resource_workflow` (
   KEY `workflow_resource_workflow_resource_type_fk` (`resource_type`),
   KEY `workflow_resource_workflow_id_workflow_fk` (`id_workflow`),
   KEY `fk_document_id_state` (`id_state`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3486,7 +3486,7 @@ CREATE TABLE `workflow_resource_workgroup` (
   KEY `workflow_resource_workgroup_id_resource_fk` (`id_resource`),
   KEY `workflow_resource_workgroup_resource_type_fk` (`resource_type`),
   KEY `workflow_resource_workgroup_id_workflow_fk` (`id_workflow`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3517,7 +3517,7 @@ CREATE TABLE `workflow_state` (
   `uid_state` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_state`),
   KEY `fk_state_id_workflow` (`id_workflow`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3545,7 +3545,7 @@ CREATE TABLE `workflow_task` (
   `uid_task` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_task`),
   KEY `task_id_action_fk` (`id_action`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3606,7 +3606,7 @@ CREATE TABLE `workflow_task_alert_gru_cf` (
   `marker_alert` varchar(255) DEFAULT NULL,
   `alert_after_before` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3658,7 +3658,7 @@ CREATE TABLE `workflow_task_alert_gru_history` (
   `recipients_cci_broadcast` varchar(255) DEFAULT NULL,
   `is_active_onglet_broadcast` smallint(6) DEFAULT 0,
   PRIMARY KEY (`id_history`,`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3683,7 +3683,7 @@ CREATE TABLE `workflow_task_archive_cf` (
   `type_archival` varchar(255) DEFAULT NULL,
   `delay_archival` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3710,7 +3710,7 @@ CREATE TABLE `workflow_task_archive_resource` (
   `archival_date` timestamp NULL DEFAULT NULL,
   `is_archived` smallint(6) DEFAULT 0,
   PRIMARY KEY (`id_resource`,`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3738,7 +3738,7 @@ CREATE TABLE `workflow_task_assignment_cf` (
   `subject` varchar(45) DEFAULT NULL,
   `is_use_user_name` smallint(6) DEFAULT 0,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3761,7 +3761,7 @@ CREATE TABLE `workflow_task_change_appointment_status_cf` (
   `id_task` int(11) NOT NULL,
   `appointment_status` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3783,7 +3783,7 @@ DROP TABLE IF EXISTS `workflow_task_change_state_config`;
 CREATE TABLE `workflow_task_change_state_config` (
   `id_task` int(11) NOT NULL DEFAULT 0,
   `id_next_state` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3806,7 +3806,7 @@ CREATE TABLE `workflow_task_change_state_information` (
   `id_history` int(11) NOT NULL,
   `id_task` int(11) NOT NULL,
   `new_state` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3828,7 +3828,7 @@ DROP TABLE IF EXISTS `workflow_task_choice_config`;
 CREATE TABLE `workflow_task_choice_config` (
   `id_task` int(11) NOT NULL DEFAULT 0,
   `message` mediumtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3853,7 +3853,7 @@ CREATE TABLE `workflow_task_choose_state_config` (
   `id_state_ok` int(11) NOT NULL,
   `id_state_ko` int(11) NOT NULL,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3876,7 +3876,7 @@ CREATE TABLE `workflow_task_choose_state_information` (
   `id_history` int(11) NOT NULL,
   `id_task` int(11) NOT NULL,
   `new_state` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3901,7 +3901,7 @@ CREATE TABLE `workflow_task_comment_config` (
   `is_mandatory` smallint(6) DEFAULT 0,
   `is_richtext` smallint(6) DEFAULT 0,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3927,7 +3927,7 @@ CREATE TABLE `workflow_task_comment_value` (
   PRIMARY KEY (`id_history`,`id_task`),
   KEY `comment_value_id_history_fk` (`id_history`),
   KEY `comment_value_id_task_fk` (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3949,7 +3949,7 @@ DROP TABLE IF EXISTS `workflow_task_confirm_action_config`;
 CREATE TABLE `workflow_task_confirm_action_config` (
   `id_task` int(11) NOT NULL DEFAULT 0,
   `message` mediumtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3977,7 +3977,7 @@ CREATE TABLE `workflow_task_manual_app_notify` (
   `message` mediumtext DEFAULT NULL,
   PRIMARY KEY (`id_notif`),
   KEY `idx_wf_task_manual_app_notify` (`id_appointment`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4003,7 +4003,7 @@ CREATE TABLE `workflow_task_notification_cf` (
   `subject` varchar(255) DEFAULT NULL,
   `message` mediumtext DEFAULT NULL,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4037,7 +4037,7 @@ CREATE TABLE `workflow_task_notify_admin_appointment_cf` (
   `create_notif` smallint(6) DEFAULT 0,
   `location` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4070,7 +4070,7 @@ CREATE TABLE `workflow_task_notify_appointment_cf` (
   `location` varchar(255) NOT NULL DEFAULT '',
   `is_sms` smallint(6) DEFAULT 0,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4099,7 +4099,7 @@ CREATE TABLE `workflow_task_notify_appointment_crm` (
   `message` varchar(255) DEFAULT NULL,
   `sender` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4155,7 +4155,7 @@ CREATE TABLE `workflow_task_notify_gru_cf` (
   `is_active_onglet_broadcast` smallint(6) DEFAULT 0,
   `content_cleaned` smallint(6) DEFAULT 0,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4212,7 +4212,7 @@ CREATE TABLE `workflow_task_notify_gru_history` (
   `message_event` text DEFAULT NULL,
   `content_cleaned` smallint(6) DEFAULT 0,
   PRIMARY KEY (`id_history`,`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4243,7 +4243,7 @@ CREATE TABLE `workflow_task_notify_gru_mapping_manager` (
   `demandetype` int(11) NOT NULL DEFAULT 0,
   `demand_reference` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_notifygrumappingmanager`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4267,7 +4267,7 @@ CREATE TABLE `workflow_task_notify_reminder_cf` (
   `id_form` int(11) NOT NULL DEFAULT 0,
   `nb_alerts` int(11) DEFAULT 0,
   PRIMARY KEY (`id_task`,`id_form`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4293,7 +4293,7 @@ CREATE TABLE `workflow_task_update_admin_appointment` (
   `id_admin_user` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_update`),
   KEY `idx_wf_task_update_admin_app` (`id_appointment`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4318,7 +4318,7 @@ CREATE TABLE `workflow_task_update_appointment_cancel_cf` (
   `id_action_report` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_task`),
   KEY `fk_wf_task_up_app_cancel_cf` (`id_action_cancel`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4347,7 +4347,7 @@ CREATE TABLE `workflow_workflow` (
   `workgroup_key` varchar(255) DEFAULT NULL,
   `uid_workflow` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_workflow`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4372,7 +4372,7 @@ CREATE TABLE `workflow_workgroup_cf` (
   `workgroup_key` varchar(255) NOT NULL,
   `id_mailing_list` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_task`,`workgroup_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4383,6 +4383,43 @@ LOCK TABLES `workflow_workgroup_cf` WRITE;
 /*!40000 ALTER TABLE `workflow_workgroup_cf` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workflow_workgroup_cf` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table core_admin_security_header
+--
+DROP TABLE IF EXISTS core_admin_security_header;
+CREATE TABLE core_admin_security_header (
+  id_security_header SMALLINT AUTO_INCREMENT NOT NULL,
+  name VARCHAR(60) NOT NULL,
+  value VARCHAR(1024) NOT NULL,
+  description VARCHAR(1024) DEFAULT NULL,
+  type VARCHAR(10) NOT NULL,
+  page_category VARCHAR(25) DEFAULT NULL,
+  is_active SMALLINT DEFAULT 0,
+  PRIMARY KEY  (id_security_header)
+);
+
+INSERT INTO core_admin_right VALUES ('CORE_SECURITY_HEADER_MANAGEMENT', 'portal.system.adminFeature.security_header_management.name', 0, 'jsp/admin/system/ManageSecurityHeaders.jsp', 'portal.system.adminFeature.security_header_management.description', 1, '', 'SYSTEM', 'ti ti-box-align-top', NULL, 12, 0);
+
+INSERT INTO core_user_right VALUES ('CORE_SECURITY_HEADER_MANAGEMENT',1);
+
+INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('Strict-Transport-Security', 'max-age=31536000; includeSubDomains','The HTTP Strict-Transport-Security response header (often abbreviated as HSTS) informs browsers that the site should only be accessed using HTTPS, and that any future attempts to access it using HTTP should automatically be converted to HTTPS. The value recommended by OWASP for this header is ''max-age=31536000; includeSubDomains'' and this is the value retained for Lutece. This setting means that the browser should remember that this site and all of his subdomains are only to be accessed using HTTPS for 31536000 seconds (1 year).', 'page', 'all', 1);
+INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('X-Content-Type-Options', 'nosniff', 'The X-Content-Type-Options response HTTP header is a marker used by the server to indicate that the MIME types advertised in the Content-Type headers should be followed and not be changed. The header allows you to avoid MIME type sniffing by saying that the MIME types are deliberately configured. The value recommended by OWASP for this header is ''nosniff'' and this is the value retained for Lutece. ''nosniff'' value will prevent the browser from MIME-sniffing a response away from the declared content-type.', 'page', 'all', 1);
+INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('Content-Security-Policy', 'default-src ''self''; script-src ''self'' ''unsafe-inline''; style-src ''self'' ''unsafe-inline''; img-src ''self'' data: blob:; connect-src ''self'' blob:; object-src ''none''; form-action ''self''; frame-ancestors ''self''; upgrade-insecure-requests','The HTTP Content-Security-Policy response header allows website administrators to control resources the user agent is allowed to load for a given page. With a few exceptions, policies mostly involve specifying server origins and script endpoints. This helps guard against cross-site scripting attacks (Cross-site_scripting). The directives recommended by OWASP are ""default-src ''self''; form-action ''self''; object-src ''none''; frame-ancestors ''none''; upgrade-insecure-requests; block-all-mixed-content"". For Lutece, the values of the directives of this policy have been defined as close as possible to this recommendation. However, hey are different because they take into account of the specificities of Lutece existing code and more specifically the constraints of tiny mce library that needs specific configuration for this header.', 'page', 'all', 1);
+INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('X-Permitted-Cross-Domain-Policies', 'none', 'This header is used to limit which data external resources, such as Adobe Flash and PDF documents, can access on the domain. The value recommended by OWASP for this header is ''none'' and this is the value retained for Lutece. It means that o policy files are allowed anywhere on the target server, including this master policy file.','page','all',1);
+INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('Referrer-Policy', 'no-referrer','The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests. Aside from the HTTP header, you can set this policy in HTML. The value recommended by OWASP for this header is ''no-referrer'' and this is the value retained for Lutece. The Referer header included with requests will be omitted entirely. No referrer information is sent along with requests.','page','all',1);
+INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('Cross-Origin-Embedder-Policy', 'require-corp', 'The HTTP Cross-Origin-Embedder-Policy (COEP) response header configures embedding cross-origin resources into the document. The value recommended by OWASP for this header is ''require-corp'' and this is the value retained for Lutece. It means that a document can only load resources from the same origin (i.e. protocol/scheme + host + port), or resources explicitly marked as loadable from another origin.','page','all',1);
+INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('Cross-Origin-Opener-Policy', 'same-origin', 'The HTTP Cross-Origin-Opener-Policy (COOP) response header allows you to ensure a top-level document does not share a browsing context group with cross-origin documents. The value recommended by OWASP for this header is ''same-origin'' and this is the value retained for Lutece. This value permits to isolates the browsing context exclusively to same-origin documents. Cross-origin documents are not loaded in the same browsing context.', 'page','all', 1);
+INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('Cross-Origin-Resource-Policy', 'same-site', 'The HTTP Cross-Origin-Resource-Policy response header conveys a desire that the browser blocks no-cors cross-origin/cross-site requests to the given resource. The value recommended by OWASP for this header is ''same-origin'' and the value retained for Lutece is ''same-site'' which means that only requests from the same Site can read the resource. It is less restrictive than ''same-origin'' in order to allow Lutece sub-domains to access to resources.', 'page', 'all', 1);
+INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('Cache-Control', 'max-age=0, must-revalidate, no-cache, no-store, private', 'The Cache-Control HTTP header field holds directives (instructions) — in both requests and responses — that control caching in browsers and shared caches (e.g. Proxies, CDNs). The value recommended by OWASP for this header is ''no-store, max-age=0''. For Lutece, the directives retained are ''max-age=0, must-revalidate, no-cache, no-store, private'' and are applied to administration front office/back office pages with authentication in order to prevent caching of any information. Theoretically, OWASP recommended directives should be suficient but in practice some browsers may continue to use the cache or don''t support no-store directive. So, for Lutece, more directives have been added to prevent caching. For instance, the login page of gmail uses the following directives : no-cache, no-store, max-age=0, must-revalidate', 'page', 'auth_admin_BO', 1);
+INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('Cache-Control', 'max-age=0, must-revalidate, no-cache, no-store, private', 'The Cache-Control HTTP header field holds directives (instructions) — in both requests and responses — that control caching in browsers and shared caches (e.g. Proxies, CDNs). The value recommended by OWASP for this header is ''no-store, max-age=0''. For Lutece, the directives retained are ''max-age=0, must-revalidate, no-cache, no-store, private'' and are applied to administration front office/back office pages with authentication in order to prevent caching of any information. Theoretically, OWASP recommended directives should be suficient but in practice some browsers may continue to use the cache or don''t support no-store directive. So, for Lutece, more directives have been added to prevent caching. For instance, the login page of gmail uses the following directives : no-cache, no-store, max-age=0, must-revalidate', 'page', 'auth_admin_FO', 1);
+INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('Clear-Site-Data', '"cache","cookies","storage"', 'The Clear-Site-Data header clears browsing data (cookies, storage, cache) associated with the requesting website. It allows web developers to have more control over the data stored by a client browser for their origins. This header is useful for example, during a logout process, in order to ensure that all stored content on the client side like cookies, storage and cache are removed. The value recommended by OWASP for this header is ''"cache","cookies","storage"'' and this is the value retained for Lutece. It is added to the front office/back office logout pages of Lutece.', 'page', 'logout_BO', 1);
+INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('Clear-Site-Data', '"cache","cookies","storage"', 'The Clear-Site-Data header clears browsing data (cookies, storage, cache) associated with the requesting website. It allows web developers to have more control over the data stored by a client browser for their origins. This header is useful for example, during a logout process, in order to ensure that all stored content on the client side like cookies, storage and cache are removed. The value recommended by OWASP for this header is ''"cache","cookies","storage"'' and this is the value retained for Lutece. It is added to the front office/back office logout pages of Lutece.', 'page', 'logout_FO', 1);
+INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('Strict-Transport-Security', 'max-age=31536000; includeSubDomains', 'The HTTP Content-Security-Policy response header allows website administrators to control resources the user agent is allowed to load for a given page. With a few exceptions, policies mostly involve specifying server origins and script endpoints. This helps guard against cross-site scripting attacks (Cross-site_scripting). The value recommended by OWASP for this header when used as a response of an API call is ''frame-ancestors ''none'''' and this is the value retained for Lutece. It prevents any domain from framing the response returned by the API call.', 'rest_api', NULL, 1);
+INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('Content-Security-Policy', 'frame-ancestors ''none''', 'The HTTP Strict-Transport-Security response header (often abbreviated as HSTS) informs browsers that the site should only be accessed using HTTPS, and that any future attempts to access it using HTTP should automatically be converted to HTTPS. The value recommended by OWASP for this header when used as a response of an API call is ''max-age=31536000; includeSubDomains'' and this is the value retained for Lutece. This setting means that the browser should remember that this site and all of his subdomains are only to be accessed using HTTPS for 31536000 seconds (1 year).', 'rest_api', NULL, 1);
+
+INSERT INTO core_datastore VALUES('core.plugins.status.adminauthenticationoauth2.installed', 'true');
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

@@ -12,7 +12,7 @@
     
   <bean id="mylutece-oauth2.authDataClient" class="fr.paris.lutece.plugins.mylutece.modules.oauth2.authentication.AuthDataClient">
         <property name="name" value="authData" />
-        <property name="dataServerUri" value="http://localhost:8081/realms/paris/protocol/openid-connect/userinfo"/>
+        <property name="dataServerUri" value="http://localhost:8081/realms/citelibre_frontoffice/protocol/openid-connect/userinfo"/>
         <property name="tokenMethod" value="HEADER"/>
         <property name="default" value="true"/>
         
@@ -24,4 +24,3 @@
     </bean>
     
 </beans>
-
