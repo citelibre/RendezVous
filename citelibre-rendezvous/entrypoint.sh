@@ -30,9 +30,9 @@ sed -i "s/\/lutece/\/$db_name/" ${tomcat}/webapps/rendezvous/WEB-INF/conf/db.pro
 sed -i "s/db:3306/$db_host:$db_port/"  ${tomcat}/webapps/rendezvous/WEB-INF/conf/db.properties
 
 echo "Edit host"
-url_citelibre=${URL_CITELIRE}
-url_citelibre_https=${URL_CITELIRE_HTTPS}
-url_citelibre_html=${URL_CITELIRE_HTML}
+url_citelibre=${URL_CITELIBRE}
+url_citelibre_https=${URL_CITELIBRE_HTTPS}
+url_citelibre_html=${URL_CITELIBRE_HTML}
 url_kibana=${URL_KIBANA}
 url_matomo_http=${URL_MATOMO_HTTP}
 url_matomo_https=${URL_MATOMO_HTTPS}
