@@ -4,7 +4,7 @@ lang_default="${LUTECE_DEFAULT_LANG:-fr}"
 
 sed -i "s/'fr'/'$lang_default'/g" /docker-entrypoint-initdb.d/1-dump.sql
 
-url_citelibre=${URL_CITELIRE}
+url_citelibre=${URL_CITELIBRE}
 url_matomo_http=${URL_MATOMO_HTTP}
 url_kibana=${URL_KIBANA}
 url_keycloak=${URL_KEYCLOAK}
