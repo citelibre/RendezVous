@@ -1,5 +1,8 @@
-![alt text](utils/Images/CiteLibre_500.png "Cite Libre")
-# CiteLibre Rendezvous & Docker Compose
+<p align="center">
+	<img src="./utils/CiteLibre.svg" alt="CiteLibre logo"/>
+</p>
+
+# CiteLibre RendezVous with docker-compose
 
 ## Build and launch all containers
 

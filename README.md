@@ -1,8 +1,8 @@
 <p align="center">
-	<img src="./utils/CiteLibre.svg" alt="CitéLibre logo"/>
+	<img src="./utils/CiteLibre.svg" alt="CiteLibre logo"/>
 </p>
 
-# CitéLibre RendezVous with docker-compose
+# CiteLibre RendezVous with docker-compose
 
 ## Table of contents
 
