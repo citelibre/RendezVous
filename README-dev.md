@@ -6,13 +6,25 @@
 
 ## Build and launch all containers
 
+* If you have the make command available in your path 
 ```
 make test
 ```
 
-Delete all apps containers :
+* For Windows users, if you don't have _make_ installed, we have included it in the package
+```
+.\utils\make\bin\make.exe test
+```
+
+## Delete all apps containers
+* If you have the make command available in your path 
 ```
 make test-down
+```
+
+* If not and using Windows
+```
+.\utils\make\bin\make.exe test-down
 ```
 
 ## Prepare your dump
