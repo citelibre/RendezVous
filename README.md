@@ -3,9 +3,9 @@
 </p>
 
 # CiteLibre RendezVous with docker-compose
+This repository hosts all source code required to launch a full-featured local CiteLibre RendezVous application.
 
 ## Table of contents
-
 - [Architecture](#architecture)
 - [Getting started](#getting-started)
   - [URL and default login](#url-and-default-login)
