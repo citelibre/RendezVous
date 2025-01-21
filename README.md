@@ -23,7 +23,7 @@ Architecture with embedded database and stmp server
 
 ## Getting started
 
-If you are behind a proxy :
+If you are behind a proxy:
 
 1. Start the `CiteLibre` service (and any others) in background:
 
@@ -31,7 +31,7 @@ If you are behind a proxy :
     docker-compose up -d
 ```
 
-In interactive : 
+In interactive: 
 
 ```bash
     docker-compose up
@@ -52,15 +52,15 @@ If you create an `.env` file, docker compose use it without using --env-file
 
 - Lutece Open UI at <http://localhost:8080/rendezvous>.
 
-- Lutece Back end is available at : <http://localhost:8080/rendezvous/jsp/admin/AdminLogin.jsp> : `admin`/`adminadmin`
+- Lutece Back end is available at <http://localhost:8080/rendezvous/jsp/admin/AdminLogin.jsp>: `admin`/`adminadmin`
 
 - Mail (in order to see mail send by application) at <http://localhost:1080/>.
 
 - Matomo (for see stats of your application) at <http://localhost:80> : `admin`/`adminadmin`
 
-- Keycloak at <http://localhost:8081/> : `admin` / `admin1234` . And for demo you can use user demo : `test@paris.fr` / `test1234=TEST1234`
+- Keycloak at <http://localhost:8081/> `admin` / `admin1234` . And for demo you can use user demo `test@paris.fr` / `test1234=TEST1234`
 
-- Elasticsearch & Kibana <http://localhost:5601> : `lutece` / `RKOmBI1sWaa*SFm1gx*H`
+- Elasticsearch & Kibana <http://localhost:5601> `lutece` / `RKOmBI1sWaa*SFm1gx*H`
 
 ### Helpful commands
 

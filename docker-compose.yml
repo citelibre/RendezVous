@@ -1,18 +1,17 @@
-version: '3.5'
-
 services:
   db:
-    image: citelibre/rendezvous:db-1.0.18-SNAPSHOT
+    image: citelibre/rendezvous:db-latest
     container_name: rdv_db
     env_file: "./external.env"
     ports:
       - "3307:3306"
-    # if you want to persist data uncomment the following 2 lines... don't forget to create the directory mysql-data for sample
-    #volumes:
-    #    - ./mysql-data:/var/lib/mysql
+    # volumes:
+    #  - type: volume
+    #    source: mysql-data
+    #    target: /var/lib/mysql
 
   solr:
-    image: citelibre/rendezvous:solr-1.0.18-SNAPSHOT
+    image: citelibre/rendezvous:solr-latest
     container_name: rdv_solr
     command: -force
     depends_on:
@@ -20,7 +19,7 @@ services:
     env_file: "./external.env"
     ports:
       - "8983:8983"
-    # if you want to persist data uncomment the following 4 lines
+    # if you want to persist data uncomment the following 4 lines; make sure to create the directory
     #volumes:
     #  - type: volume
     #    source: solr-data
@@ -30,8 +29,6 @@ services:
     image: axllent/mailpit:v1.18.3
     container_name: rdv_mailpit
     restart: unless-stopped
-    # volumes:
-    #   - ./data:/data
     env_file: "./external.env"
     ports:
       - 1080:8025
@@ -40,9 +37,9 @@ services:
       MP_MAX_MESSAGES: 500
       MP_SMTP_AUTH_ACCEPT_ANY: 1
       MP_SMTP_AUTH_ALLOW_INSECURE: 1
-          
+
   matomo:
-    image: citelibre/rendezvous:matomo-1.0.18-SNAPSHOT
+    image: citelibre/rendezvous:matomo-latest
     container_name: rdv_matomo
     env_file: "./external.env"
     ports:
@@ -51,16 +48,16 @@ services:
       - solr
 
   keycloak:
-    image: citelibre/rendezvous:keycloak-1.0.18-SNAPSHOT
+    image: citelibre/rendezvous:keycloak-latest
     container_name: rdv_keycloak
     env_file: "./external.env"
     ports:
       - "8081:8080"
     depends_on:
-      - db
+      - citelibre
 
   citelibre:
-    image: citelibre/rendezvous:ihm-1.0.18-SNAPSHOT
+    image: citelibre/rendezvous:ihm-latest
     container_name: rdv_citelibre
     env_file: "./external.env"
     ports:
@@ -70,9 +67,9 @@ services:
     environment:
       - LUTECE_DB_USER
       - LUTECE_DB_PWD
-      - LUTECE_DB_NAME 
-      - LUTECE_DB_HOST 
-      - LUTECE_DB_PORT 
+      - LUTECE_DB_NAME
+      - LUTECE_DB_HOST
+      - LUTECE_DB_PORT
       - LUTECE_MAIL_HOST
       - LUTECE_MAIL_PORT
       - LUTECE_MAIL_USER
@@ -81,11 +78,11 @@ services:
     mem_limit: 2g
     # volumes:
     #   - type: volume
-    #     source: rendezvous-data
+    #     source: webapp-data
     #     target: /usr/local/tomcat/webapps/rendezvous
 
   kibana:
-    image: citelibre/rendezvous:kibana-1.0.18-SNAPSHOT
+    image: citelibre/rendezvous:kibana-latest
     container_name: rdv_kibana
     environment:
       - discovery.type=single-node
@@ -96,19 +93,19 @@ services:
     mem_limit: 1g
     depends_on:
       - elasticsearch
-        #volumes:
-        #  - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+    #volumes:
+    #  - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
 
   elasticsearch:
-    image: citelibre/rendezvous:elasticsearch-1.0.18-SNAPSHOT
+    image: citelibre/rendezvous:elasticsearch-latest
     container_name: rdv_elasticsearch
     environment:
       - ELASTIC_PASSWORD="*93n2US7fWog"
       - discovery.type=single-node
       - ESJAVAOPTS=-Xmx1g
       - xpack.security.enabled=false
-    mem_limit: 1g
     env_file: "./external.env"
+    mem_limit: 1g
     ports:
       - 9200:9200
       - 9300:9300
@@ -117,7 +114,8 @@ services:
     #     source: elasticsearch-data
     #     target: /usr/share/elasticsearch/data
 
-volumes:
-  elasticsearch-data:
-  rendezvous-data:
-    #  solr-data:
+# volumes:
+  # elasticsearch-data:
+  # webapp-data:
+  # solr-data:
+  # mysql-data:

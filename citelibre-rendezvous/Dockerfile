@@ -1,19 +1,23 @@
 ARG site=site-citelibre-rendezvous-1.0.9
+ARG NAME_APP=rendezvous
 
 # build the site and assemble the webapp
 FROM lutece/builder AS builder
 ARG site
+ARG NAME_APP
+
 WORKDIR /app
 ADD pom.xml /app/pom.xml
 ADD src /app/src
 
-#RUN mvn -Dmaven.artifact.threads=30 -e -U lutece:site-assembly -Pdev
 RUN --mount=type=cache,target=/root/.m2,rw mvn -Dmaven.artifact.threads=30 -e -U lutece:site-assembly -Pdev
+
 RUN cd target && mv $(ls *.war) ${site}.war
 
 # built tomcat
 FROM tomcat:9.0-jdk11
 ARG site
+ARG NAME_APP
 
 RUN apt update && apt install -y haproxy
 
@@ -22,11 +26,11 @@ WORKDIR ${tomcat}
 COPY --from=builder /app/target/${site}.war webapps
 COPY haproxy.cfg /etc/haproxy/haproxy.cfg
 
-RUN cd webapps && mkdir rendezvous &&  mv ${site}.war rendezvous/rendezvous.war  && cd rendezvous && jar xvf rendezvous.war && rm rendezvous.war
+RUN cd webapps && mkdir ${NAME_APP} &&  mv ${site}.war ${NAME_APP}/${NAME_APP}.war  && cd ${NAME_APP} && jar xvf ${NAME_APP}.war && rm ${NAME_APP}.war
 
 # Add webapps folder
-COPY webapp/WEB-INF webapps/rendezvous/WEB-INF/
-COPY webapp/js webapps/rendezvous/js/
+COPY webapp/WEB-INF webapps/${NAME_APP}/WEB-INF/
+COPY webapp/js webapps/${NAME_APP}/js/
 
 COPY entrypoint.sh /entrypoint.sh
 
@@ -34,7 +38,7 @@ COPY wait /wait
 
 RUN chmod +x /wait 
 RUN chmod +x /entrypoint.sh
-RUN apt -y install haproxy
+
 ENV LUTECE_DB_HOST=
 ENV LUTECE_DB_PORT=
 ENV LUTECE_DB_NAME=
