@@ -5,6 +5,7 @@ lang_default="${LUTECE_DEFAULT_LANG:-en}"
 
 if [[ "$lang_default" = "fr" ]] ; then 
 	rm /docker-entrypoint-initdb.d/1-dump.sql
+	mv /docker-entrypoint-initdb.d/1-dump.fr.sql /docker-entrypoint-initdb.d/1-dump.sql
 else 
 	rm /docker-entrypoint-initdb.d/1-dump.fr.sql
 fi

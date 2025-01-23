@@ -1,13 +1,12 @@
 #!/bin/bash
 
-site_folder=rendezvous
-
 export WAIT_HOSTS_TIMEOUT=300
 export WAIT_SLEEP_INTERVAL=30
 export WAIT_HOST_CONNECT_TIMEOUT=30
 
 tomcat=/usr/local/tomcat
 TOMCAT_START="/opt/java/openjdk/bin/java -Djava.util.logging.config.file=${tomcat}/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0027 -Dignore.endorsed.dirs= -classpath ${tomcat}/bin/bootstrap.jar:${tomcat}/bin/tomcat-juli.jar -Dcatalina.base=${tomcat} -Dcatalina.home=${tomcat} -Djava.io.tmpdir=${tomcat}/temp org.apache.catalina.startup.Bootstrap start"
+site_folder=rendezvous
 
 # variables db
 db_name=${LUTECE_DB_NAME:-lutece}
@@ -28,12 +27,17 @@ mail_password="${LUTECE_MAIL_PWD:-}"
 echo "Configure languages"
 default_fo_lang="${LUTECE_DEFAULT_LANG:-en}"
 available_lang="${LUTECE_AVAILABLE_LANG:-en,fr}"
+available_lang_date_formats="${AVAILABLE_LANG_DATE_FORMATS}"
 sed -i "s/lutece.i18n.defaultLocale=.*/lutece.i18n.defaultLocale=$default_fo_lang/" ${tomcat}/webapps/${site_folder}/WEB-INF/conf/lutece.properties
 sed -i "s/lutece.i18n.availableLocales=.*/lutece.i18n.availableLocales=$available_lang/" ${tomcat}/webapps/${site_folder}/WEB-INF/conf/lutece.properties
+sed -i "s/lutece.format.date.short=.*/lutece.format.date.short==$available_lang_date_formats/" ${tomcat}/webapps/${site_folder}/WEB-INF/conf/lutece.properties
+
+# temporary solution to replace English resources files (plugins translations) until fixed directly in the plugins
+find . -name *_en.properties | sed 's/_en.properties//g' | awk '{ print "mv " $1 "_en.properties " $1 ".properties" }' | bash
 
 echo "Config database"
 sed -i "s/portal.user=.*/portal\.user=$db_user/" ${tomcat}/webapps/${site_folder}/WEB-INF/conf/db.properties
-sed -i "s/portal.password=.*/portal\.password=$db_password/"  ${tomcat}/webapps/${site_folder}/WEB-INF/conf/db.properties
+sed -i "s/portal.password=.*/portal\.password=$db_password/" ${tomcat}/webapps/${site_folder}/WEB-INF/conf/db.properties
 sed -i "s/\/lutece/\/$db_name/" ${tomcat}/webapps/${site_folder}/WEB-INF/conf/db.properties
 sed -i "s/db:3306/$db_host:$db_port/"  ${tomcat}/webapps/${site_folder}/WEB-INF/conf/db.properties
 
