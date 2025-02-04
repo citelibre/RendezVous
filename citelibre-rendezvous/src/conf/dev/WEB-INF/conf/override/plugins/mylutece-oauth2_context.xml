@@ -25,28 +25,24 @@
     </bean>
 
     <bean id="mylutece-oauth2.server" class="fr.paris.lutece.plugins.oauth2.business.AuthServerConf">
-        <property name="issuer" value="http://fcp.integ01.dev-oauth2.fr" />
-        <property name="authorizationEndpointUri"
-            value="http://localhost:8081/realms/citelibre_frontoffice/protocol/openid-connect/auth" />
-        <property name="tokenEndpointUri"
-            value="http://localhost:8081/realms/citelibre_frontoffice/protocol/openid-connect/token" />
-        <property name="logoutEndpointUri"
-            value="http://localhost:8081/realms/citelibre_frontoffice/protocol/openid-connect/logout?client_id=moncompte&amp;post_logout_redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Frendezvous%2F" />
-        <property name="enableJwtParser" value="false" />
-    </bean>
-
+        <property name="issuer" value="http://fcp.integ01.dev-oauth2.fr"/>
+        <property name="authorizationEndpointUri" value="http://localhost:8081/realms/citelibre_frontoffice/protocol/openid-connect/auth"/>
+        <property name="tokenEndpointUri" value="http://localhost:8081/realms/citelibre_frontoffice/protocol/openid-connect/token"/>
+        <property name="logoutEndpointUri" value="http://localhost:8081/realms/citelibre_frontoffice/protocol/openid-connect/logout?client_id=moncompte&amp;post_logout_redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Frendezvous%2F"/>
+        <property name="enableJwtParser" value="false"/>
+    </bean> 
+    
     <bean id="mylutece-oauth2.client" class="fr.paris.lutece.plugins.oauth2.business.AuthClientConf">
-        <property name="clientId" value="moncompte" />
-        <property name="clientSecret" value="moncompte" />
-    </bean>
-
-    <bean id="mylutece-oauth2.callbackHandler"
-        class="fr.paris.lutece.plugins.oauth2.web.CallbackHandler">
-        <property name="handlerName" value="auth2Handler" />
-        <property name="authServerConf" ref="oauth2.server" />
-        <property name="authClientConf" ref="oauth2.client" />
-        <property name="jWTParser" ref="oauth2.jwtParser" />
-        <property name="default" value="true" />
-    </bean>
+        <property name="clientId" value="moncompte"/>
+        <property name="clientSecret" value="moncompte"/>
+    </bean>       
+    
+    <bean id="oauth2.callbackHandler" class="fr.paris.lutece.plugins.oauth2.web.CallbackHandler" >
+        <property name="handlerName" value="auth2Handler"/>
+        <property name="authServerConf" ref="oauth2.server"/>
+        <property name="authClientConf" ref="oauth2.client"/>
+        <property name="jWTParser" ref="oauth2.jwtParser"/>
+       	<property name="default" value="true"/>
+    </bean>   
 
 </beans>

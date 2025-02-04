@@ -1,0 +1,5 @@
+.env-test
+.vscode/
+citelibre-rendezvous/Makefile
+citelibre-rendezvous/plugins/
+citelibre-rendezvous/target/
