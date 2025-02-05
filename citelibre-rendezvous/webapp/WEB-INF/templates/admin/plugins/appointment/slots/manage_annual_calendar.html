@@ -1,0 +1,195 @@
+<link rel="stylesheet" href="css/admin/plugins/appointment/js-year-calendar.min.css">
+<link rel="stylesheet" href="css/admin/plugins/appointment/appointment.css">
+<@appointmentTabs tab='year' form=appointmentform context='slot'>
+    <@row>
+        <@columns sm=10>
+            <@div id="calendar"></@div>
+        </@columns>
+        <@columns sm=2>
+			<@p params=' style="border-bottom: 1px solid #000;margin-bottom: 15px; padding:15px 0"'>
+                <@span params='style="border-radius: 50%;background-color:#DDD;width: 20px;height: 20px;display: inline-block;vertical-align: middle;"'></@span> #i18n{appointment.annual.label.daySpecifity}
+            </@p>
+            <@ul class="list-unstyled">
+                <#list listReservationRule as rule>
+                    <@li class='py-2'>
+                        <@aButton color='link btn-outline-default justify-content-start w-75' href='jsp/admin/plugins/appointment/ManageAppointmentSlots.jsp?view=manageTypicalWeek&id_form=${id_form}&id_reservation_rule=${rule.idReservationRule}'>
+                            <@icon prefix='fas fa-' style='circle me-2' params=' style="color:${rule.color!};"' /> ${rule.name} 
+                        </@aButton>
+                    </@li>
+                </#list>
+            </@ul>
+        </@columns>
+    </@row>
+</@appointmentTabs>
+<@div id="context-menu"></@div>
+<@modal id='event-modal' size='md' >
+	<@modalHeader modalTitle='#i18n{appointment.assign.typicalWeek.defaultTitle}' />
+	<@modalBody>
+		<@tform id='form-validate' action='jsp/admin/plugins/appointment/ManageAnnualCalendar.jsp' params='enctype="multipart/form-data"'>
+			<@input type='hidden' name='action' value='doAssignWeek' />
+			<@input type='hidden' name='id_form' value='${id_form}' />
+			<@input type='hidden' name='id_week_definition' value='' />
+			<@formGroup labelFor='date_of_apply' labelKey='#i18n{appointment.manageAppointments.startingDateOfSearch}' rows=2>
+				<@inputGroup>
+					<@input type='text' name='date_of_apply' id='date_of_apply' value="" />
+					<@inputGroupItem type='text'>
+						<@icon style='calendar' />
+					</@inputGroupItem>
+				</@inputGroup>
+			</@formGroup>
+			<@formGroup labelFor='endingDate' labelKey='#i18n{appointment.manageAppointments.endingDateOfSearch}' rows=2>
+				<@inputGroup>
+					<@input type='text' name='ending_date_of_apply' id='ending_date_of_apply' value="" />
+					<@inputGroupItem type='text'>
+						<@icon style='calendar' />
+					</@inputGroupItem>
+				</@inputGroup>
+			</@formGroup>	
+			<@formGroup labelFor='type' labelKey='#i18n{appointment.week.toApplay}' rows=2>
+                <@select name='id_reservation_rule' id='id_reservation_rule'>
+                <#list listReservationRule as rule>
+				    <@option value=rule.idReservationRule label=rule.name />
+                </#list>
+				</@select>
+			</@formGroup>		
+			<@formGroup rows=2>
+                <@button type='submit' name='save' id='save' buttonIcon='check' title='#i18n{appointment.labelSave}' />
+                <@button type='submit' name='delete' id='delete' title='#i18n{portal.util.labelDelete}' buttonIcon='trash' color='danger'  />
+                <@button type='button' params='data-bs-dismiss="modal"' title='#i18n{portal.util.labelCancel}' buttonIcon='times' color='default' />   
+			</@formGroup>	
+		</@tform>
+	</@modalBody>
+</@modal>
+<script src="js/admin/plugins/appointment/moment.min.js"></script>
+<script src="js/admin/plugins/appointment/locale-all.js"></script>
+<script src="js/admin/plugins/appointment/bootstrap-datetimepicker.min.js"></script>
+<script src="js/admin/plugins/appointment/js-year-calendar.min.js"></script>
+<script src="js/admin/plugins/appointment/locales/js-year-calendar.${language}.js"></script>
+<script>
+moment.locale( '${language}' );
+function isOlderThanToday( dtCompare ) {    
+    var dateToday = new Date().setUTCHours( 0, 0, 0, 0); // Today
+    var isOlder=dtCompare.setUTCHours( 24, 0, 0, 0) >= dateToday ? true : false; 
+    console.log( dtCompare.setUTCHours( 0, 0, 0, 0) );
+    return isOlder;   
+}    
+
+let calendar = null;
+function editEvent( event) {
+    if( event.weekDef != undefined  ){
+        $('#event-modal input[name="id_week_definition"]').val( event.weekDef );
+        $('#event-modal #delete').show();
+        if( !isOlderThanToday( event.startDate ) ){
+            $('#event-modal #delete').attr('disabled','disabled');
+        } else {
+            $('#event-modal #delete').removeAttr('disabled');
+        }
+    } else {
+        $('#event-modal #delete').hide();
+    }
+    
+    $('#event-modal input[name="date_of_apply"]').val( moment( event.startDate ).format('L') );
+    $('#event-modal input[name="date_of_apply"]').datetimepicker({ locale: '${language}', format: 'L' });
+    $('#event-modal input[name="ending_date_of_apply"]').val( moment( event.endDate ).format('L') );
+    $('#event-modal input[name="ending_date_of_apply"]').datetimepicker({ locale: '${language}', format: 'L'});
+    //$('#event-modal').modal();
+    const eventModal = bootstrap.Modal.getOrCreateInstance('#event-modal')
+    eventModal.toggle()
+}
+
+function deleteEvent(event) {
+   location.href= 'jsp/admin/plugins/appointment/ManageAnnualCalendar.jsp?action=doRemoveWeekFromCalendar&id_week_definition='+event.idweekdef+'&id_form=${id_form}';
+}
+
+var specDates = [<#list specificSlotDates as sDate>'${sDate}',</#list>];
+var popover = null;
+$(function() {
+    calendar = new Calendar('#calendar', { 
+        language: '${language}',
+        startYear: ${start_year},
+        enableContextMenu: true,
+        enableRangeSelection: true,
+        contextMenuItems:[
+            {
+                text: '#i18n{appointment.createEntry.manageField.buttonItemsPerPage}',
+                click: editEvent
+            },
+            {
+                text: '#i18n{appointment.delete.title}',
+                click: deleteEvent
+            }
+        ],
+        selectRange: function(e) {
+            if ( e.events.length > 0 ){
+                editEvent({ startDate: e.startDate, endDate: e.endDate, weekDef: e.events[0].idweekdef });
+            } else {
+                editEvent({ startDate: e.startDate, endDate: e.endDate });
+            }
+        },
+        mouseOnDay: function(e) {
+            if(e.events.length > 0) {
+                var content = '';
+                for(var i in e.events) {
+                    content += '<div class="event-tooltip-content">'
+                            + '<div class="event-name" style="color:' + e.events[i].color + '">' + e.events[i].name + '</div>'
+                            + '<div class="event-location">' + e.events[i].location + '</div>'
+                            + '</div>';
+                }
+                // $(e.element).popover({ 
+                //     trigger: 'manual',
+                //     container: 'body',
+                //     html:true,
+                //     content: content
+                // });
+                //$(e.element).popover('show');
+                popover = new bootstrap.Popover( e.element, { 
+                    trigger: 'manual',
+                    container: 'body',
+                    html: true,
+                    content: content
+                });
+                popover.show()
+            }
+        },
+        mouseOutDay: function(e) {
+            if(e.events.length > 0) {
+                //$(e.element).popover('hide');
+                popover.hide();
+            }
+        },
+        dayContextMenu: function(e) {
+            //$(e.element).popover('hide');
+            popover.hide();
+        },
+        customDayRenderer: function( e, date){
+            const cDay = moment( date ).format('YYYY-MM-DD');
+            const result = specDates.findIndex( yday => yday === cDay );
+            if( result != -1 ){
+                $(e).addClass( 'isSpecific' );
+            }
+        },
+        dataSource: [
+            <#list listReservationRule as rule>
+                <#list listWeekDefinition?filter( weekdef -> weekdef.idReservationRule  = rule.idReservationRule ) as weekdef>
+                    {
+                        id: ${rule.idReservationRule},
+                        name: '${rule.name?js_string}',
+                        location: '${rule.descriptionRule?js_string}',
+                        startDate: new Date(${weekdef.dateOfApply.year}, ${weekdef.dateOfApply.monthValue -1}, ${weekdef.dateOfApply.dayOfMonth}),
+                        endDate: new Date(${weekdef.endingDateOfApply.year}, ${weekdef.endingDateOfApply.monthValue -1}, ${weekdef.endingDateOfApply.dayOfMonth!}),
+                        color: '${rule.color}',
+                        idweekdef: ${weekdef.idWeekDefinition},
+                    },
+                </#list>
+            </#list>
+        ]
+    });
+
+    if( document.getElementById('loader') != undefined ){ document.getElementById('loader').remove() };
+
+    $('#event-modal #delete').click(function( em ) {
+        $('#event-modal input[name="action"]').val( 'doUnssignWeek' );
+    })
+});
+</script>
+

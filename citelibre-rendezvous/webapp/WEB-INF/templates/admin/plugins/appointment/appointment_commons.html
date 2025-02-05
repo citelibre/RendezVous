@@ -1,0 +1,768 @@
+<#macro commonsAppJS >
+<!--  CSS admin -->
+<link rel="stylesheet" href="css/admin/plugins/appointment/bootstrap-datepicker.css" >
+<link rel="stylesheet" href="css/admin/plugins/appointment/bootstrap-datetimepicker.css" >
+<link rel="stylesheet" href="css/admin/plugins/appointment/fullcalendar.min.css" >
+<link rel="stylesheet" href="css/admin/plugins/appointment/fullcalendar.custom.css" >
+<link rel="stylesheet" href="css/admin/plugins/appointment/appointment.css" >
+<!--  JS admin -->
+<#-- <script src="themes/admin/shared/js/lib/bootstrap/bootstrap.bundle.min.js"></script> -->
+<script src="js/admin/plugins/appointment/jquery.min.js"></script>
+<script src="js/admin/plugins/appointment/moment.min.js" ></script>
+<script src="js/admin/plugins/appointment/fullcalendar.min.js"></script>
+<script src="js/admin/plugins/appointment/locale-all.js"></script>
+<script src="js/admin/plugins/appointment/bootstrap-datepicker.js" ></script>
+<script src="js/admin/plugins/appointment/locales/bootstrap-datepicker.fr.js" ></script>
+<script src="js/admin/plugins/appointment/bootstrap-datetimepicker.min.js"></script>
+<script src="js/admin/plugins/appointment/tinycolor-min.js"></script>
+<script src="js/admin/plugins/appointment/appointment.js" ></script>
+<script>
+document.querySelector('body').classList.add('loaded')
+</script>
+</#macro>
+<#macro headerTitle form=form >
+/* Add Form title */
+document.querySelector('#feature-title').innerHTML = '<a href="jsp/admin/plugins/appointment/ManageAppointmentForms.jsp" title="#i18n{appointment.adminFeature.ManageAppointmentForm.name}">#i18n{appointment.adminFeature.ManageAppointmentForm.name}</a> <small>${form.title!?js_string}</small>';
+</#macro> 
+<#--
+-- Check if the checkbox must be checked or not
+-- @param code the checkbox code
+-- @param referecenlist the default values list
+-- @return the String 'checked="checked" if the checkbox must be checked, an empty String otherwise
+-->
+<#function getChecked code reference_list>
+<#if reference_list?has_content>
+<#list reference_list as reference_item>
+	<#if reference_item.code = code>
+		<#if reference_item.checked><#return "checked='checked'"><#else><#return ""></#if>
+	</#if>
+</#list>
+</#if>
+<#return "">
+</#function>
+<#--
+-- Get the value of the parameter
+-- @param code the code of the parameter
+-- @param referecenlist the default values list
+-- @return the value of the parameter
+-->
+<#function getName code reference_list>
+	<#if reference_list?has_content>
+		<#list reference_list as reference_item>
+			<#if reference_item.code = code>
+  				<#return reference_item.name>
+  			</#if>
+  		</#list>
+	</#if>
+	<#return "">
+</#function>
+<#--
+-- Get the field from a given title
+-- @param entry the entry
+-- @param fieldTitle the title
+-- @return the field
+-->
+<#function getField entry fieldTitle>
+	<#if entry.fields?? && entry.fields?has_content>
+		<#list entry.fields as field>
+			<#if field?? && field.title?? && field.title == fieldTitle>
+				<#return field>
+			</#if>
+		</#list>
+	</#if>
+</#function>
+<#-- 
+-- Get the field value from a given entry and a given title
+-- @param entry the entry
+-- @param fieldTitle the title
+-- @return the field
+-->
+<#function getFieldValue entry fieldTitle>
+	<#if getField( entry, fieldTitle )??>
+		<#assign field = getField( entry, fieldTitle )>
+		<#return field.value>
+	</#if>
+	<#return "">
+</#function>
+<#-- 
+-- Get the max files value of an entry
+-- @param entry the entry
+-- @return the number of max authorized uploaded files
+-->
+<#function getMaxFiles entry>
+	<#assign fieldMaxFiles = getFieldValueByCode( entry, "max_files" )>
+	<#if fieldMaxFiles?? && fieldMaxFiles != "">
+		<#return fieldMaxFiles>
+	</#if>
+	<#return "1">
+</#function>
+<#-- 
+-- Get the max size an uploaded file is authorized to have
+-- @param entry the entry
+-- @return the max size
+-->
+<#function getFileMaxSize entry>
+	<#assign fieldFileMaxSize = getFieldValueByCode( entry, "file_max_size" )>
+	<#if fieldFileMaxSize?? && fieldFileMaxSize != "">
+		<#return fieldFileMaxSize>
+	<#else>
+		<#if getField( entry, "option" )??>
+			<#assign fieldFileMaxSize = getFieldValueByCode( entry, "option" )>
+			<#return fieldFileMaxSize.width> 
+		</#if>
+	</#if>
+	<#return "5242880">
+</#function>
+<#--
+-- Check if the given entry must export the binary
+-- @param entry the entry
+-- @return true if it must export the binaries, false otherwise
+-->
+<#function exportBinary entry>
+	<#assign field = getFieldValue( entry, "export_binary" ) />
+	<#if field?? && field = "true">
+		<#return true />
+	</#if>
+	<#return false />
+</#function>
+<#-- 
+-- Get the field value from a given entry and a given title
+-- @param entry the entry
+-- @param fieldTitle the title
+-- @return the field
+-->
+<#function getFieldValueByCode entry fieldCode>
+	<#if getFieldByCode( entry, fieldCode )??>
+		<#assign field = getFieldByCode( entry, fieldCode )>
+		<#return field.value>
+	</#if>
+	<#return "">
+</#function>
+<#--
+-- Get the field from a given code
+-- @param entry the entry
+-- @param fieldCode the code
+-- @return the field
+-->
+<#function getFieldByCode entry fieldCode>
+    <#if entry.fields?? && entry.fields?has_content>
+        <#list entry.fields as field>
+            <#if field?? && field.code?? && field.code == fieldCode>
+                <#return field>
+            </#if>
+        </#list>
+    </#if>
+</#function>
+<#macro getCommentModal modalId modalTitle idComment idStartingDate idEndingDate idStartingTime idEndingTime action idForm mailingList locale=locale>
+<#switch modalId>
+<#case 'modify-comment'>
+	<#assign startDateLabel='#i18n{appointment.modify_comment.labelStartingValidityDate}'>
+	<#assign startTimeLabel='#i18n{appointment.modify_comment.labelStartingValidityTime}'>
+	<#assign endDateLabel='#i18n{appointment.modify_comment.labelEndingValidityDate}'>
+	<#assign endDateHelp='#i18n{appointment.modify_comment.labelEndingValidityDate}'>
+	<#assign endTimeLabel='#i18n{appointment.modify_comment.labelEndingValidityTime}'>
+<#break>
+<#default>
+	<#assign startDateLabel='#i18n{appointment.create_comment.labelStartingValidityDate}'>
+	<#assign startTimeLabel='#i18n{appointment.create_comment.labelStartingValidityTime}'>
+	<#assign endDateLabel='#i18n{appointment.create_comment.labelEndingValidityDate}'>
+	<#assign endDateHelp='#i18n{appointment.create_comment.labelEndingValidityDate}'>
+	<#assign endTimeLabel='#i18n{appointment.create_comment.labelEndingValidityTime}'>
+</#switch>
+<@modal id=modalId >
+	<@modalHeader modalTitle=modalTitle />
+	<@modalBody>
+		<@tform action='jsp/admin/plugins/appointment/Comments.jsp' id='commentUpdate'>
+		<@input type='hidden' name='id_form' value='${idForm!}' />
+		<@input type='hidden' name='id_comment' id='id_comment' />
+		<@formGroup labelFor='comment' labelKey='#i18n{appointment.comment.name}' helpKey='#i18n{appointment.comment.name}' mandatory=true rows=2>
+			<@input type='textarea' name='comment' id=idComment richtext=true />
+		</@formGroup>
+		<@formGroup labelFor='startingValidityDate' labelKey=startDateLabel mandatory=true rows=2>
+			<@inputGroup class='date' id='${idStartingDate}Group'>
+				<@input type='text' name='startingValidityDate' id=idStartingDate />
+				<@inputGroupItem type='text'>
+					<@icon style='calendar' />
+				</@inputGroupItem>
+			</@inputGroup>
+		</@formGroup>
+		<@formGroup labelFor='startingValidityTime' labelKey=startTimeLabel rows=2>
+			<@inputGroup id='${idStartingTime}Group' class='date'>
+				<@input type='text' name='startingValidityTime' id=idStartingTime value='00:00' />
+				<@inputGroupItem type='text' >
+					<@icon style='clock' />
+				</@inputGroupItem>
+			</@inputGroup>
+		</@formGroup>
+		<@formGroup labelFor=idEndingDate labelKey=endDateLabel mandatory=true rows=2>
+			<@inputGroup class='date' id='${idEndingDate}Group'>
+				<@input type='text' name='endingValidityDate' id=idEndingDate />
+				<@inputGroupItem type='text'>
+					<@icon style='calendar' />
+				</@inputGroupItem>
+			</@inputGroup>
+		</@formGroup>
+		<@formGroup labelFor='endingValidityTime' labelKey=endTimeLabel rows=2>
+			<@inputGroup class='date' id='${idEndingTime}Group'>
+				<@input type='text' name='endingValidityTime' id=idEndingTime value='00:00' />
+				<@inputGroupItem type='text'>
+					<@icon style='clock' />
+				</@inputGroupItem>
+			</@inputGroup>
+		</@formGroup>
+		<@formGroup labelFor='idMailingList' labelKey='#i18n{appointment.create_comment.labelMailingList}' helpKey='#i18n{appointment.create_comment.labelMailingList.help}' mandatory=false rows=2>
+			<#assign default='-1'>
+			<@select name="idMailingList" size='sm'>
+				<@option value='-1' label='#i18n{appointment.create_comment.labelNoNotification}' />
+				<#list mailing_list as item>
+					<#assign isSelected><#if default=item.code>true<#else>false</#if></#assign>
+					<#assign label><#if !item.name?has_content>label="${i18n("portal.util.labelEmpty")}"<#else>${item.name}</#if></#assign>
+					<@option value=item.code label=label selected=isSelected?boolean />
+				</#list>
+			</@select>
+		</@formGroup>
+		<@formGroup rows=2>
+			<@btnGroup>
+				<@button type='submit' name='action_${action}' buttonIcon='save' title='#i18n{portal.util.labelValidate}' /> 
+				<@button type='submit' id='commentDelete' name='action_confirmRemoveComment' buttonIcon='trash' title='#i18n{portal.util.labelDelete}' color='danger' /> 
+				<@button type='button' params='data-bs-dismiss="modal"' title='#i18n{portal.util.labelCancel}' buttonIcon='times' color='default' />
+			</@btnGroup>
+		</@formGroup>
+		</@tform>
+	</@modalBody>
+</@modal>
+<script>
+$(function(){
+	$('#${idEndingDate}_help').html('');
+	$('#${idStartingDate}').datetimepicker({locale: '${locale}', format: 'DD/MM/YYYY'});
+	$('#${idStartingDate}').val( moment().format('DD/MM/YYYY') );
+	$('#${idStartingDate}Group').click(function(event){
+		$('#${idStartingDate}').data("DateTimePicker").show();
+	});
+	$('#${idEndingDate}').datetimepicker({locale: '${locale}', format: 'DD/MM/YYYY', useCurrent: false});
+	$('#${idEndingDate}').val( moment().format('DD/MM/YYYY') );
+	$('#${idEndingDate}Group').click(function(event){
+		$('#${idEndingDate}').data("DateTimePicker").show();
+	});
+	$('#${idStartingTime}').datetimepicker({format: 'HH:mm', stepping: 5});
+	$('#${idStartingTime}Group').click( function(event){
+		$('#${idStartingTime}').data("DateTimePicker").show();
+	});
+	$('#${idEndingTime}').datetimepicker({format: 'HH:mm', stepping: 5});
+	$('#${idEndingTime}Group').click(function(event){
+		$('#${idEndingTime}').data("DateTimePicker").show();
+	});
+	<#if action !='doModifyComment'>
+	/* Set current date */
+	$('#${modalId}').on('shown.bs.modal', function(){
+		var workingDate=sessionStorage.getItem( 'appCurrentDate');
+		$('#${idStartingDate}').val( workingDate );
+		$('#${idEndingDate}').val( workingDate );
+		localStorage.setItem( 'commentContext', workingDate );
+  	});
+	</#if>
+	$("#${idStartingDate}").on("dp.change", function (e) {
+		$('#${idEndingDate}').data("DateTimePicker").minDate(e.date);
+	});
+	$("#${idEndingDate}").on("dp.change", function (e) {
+		$('#${idStartingDate}').data("DateTimePicker").maxDate(e.date);
+	});
+	if( '${action!}' === 'doAddComment' ){
+		$('#commentDelete').remove()
+	}
+	// Click on validation button events
+	$( '[name="action_${action}"]' ).click( function(e){
+		$('#endingValidityTime ~ *').html('');
+		$('#${idEndingTime}').parents('.form-group').removeClass('has-error');
+		$('#${idEndingDate} ~ *').html('');
+		$('#${idEndingDate}').parents('.form-group').removeClass('has-error');
+		$('#${idComment} ~ *').html('');
+		$('#${idComment}').parents('.form-group').removeClass('has-error');
+		dStart=$('#${idStartingDate}').val(),dEnd=$('#${idEndingDate}').val();
+		if( moment(dEnd).isBefore( dStart ) ){
+			$('#${idEndingDate}').parents('.form-group').addClass('has-error');
+			$('#${idEndingDate}Group ~ *').html('La date de fin ne peut être antérieure à la date de début !');
+			$('#${idEndingDate}Group ~ *').removeClass('text-muted').addClass('text-danger');
+			e.preventDefault();
+		}
+		tStart=$('#${idStartingTime}').val(),tEnd=$('#${idEndingTime}').val();		
+		var startDateAndTime = moment(dStart + ' ' + tStart, 'YYYY-MM-DD HH:mm');
+		var endDateAndTime = moment(dEnd + ' ' + tEnd, 'YYYY-MM-DD HH:mm');
+		if(( moment(endDateAndTime).isBefore( startDateAndTime ) ) || ( moment(endDateAndTime).isSame( startDateAndTime )) && ($('#${idStartingTime}').val() != '00:00') && ($('#${idEndingTime}').val() != '00:00')) {
+			$('#${idEndingTime}').parents('.form-group').addClass('has-error');
+			$('#${idEndingTime}Group ~ *').removeClass('text-muted').addClass('text-danger');
+			if( moment(endDateAndTime).isBefore( startDateAndTime )) {
+				$('#${idEndingTime}Group ~ *').html('L\'heure de fin ne peut être antérieure à la date de début !');
+			}
+			if ((moment(endDateAndTime).isSame( startDateAndTime )) && ($('#${idStartingTime}').val() != '00:00') && ($('#${idEndingTime}').val() != '00:00'))  {
+				$('#${idEndingTime}Group ~ *').html('L\'heure de fin ne peut être égale à la date de début !');
+			}
+			e.preventDefault();
+		}
+		if( tinyMCE.activeEditor.getContent().trim().length === 0 ){
+			$('#${idComment}').parents('.form-group').addClass('has-error');
+			$('#${idComment} ~ *').removeClass('text-muted').addClass('text-danger');
+			$('#${idComment} ~ *').html('Vous devez saisir un texte !');
+			e.preventDefault();
+		}
+	});
+});
+</script>
+</#macro>
+<#macro btnComment >
+<#if permission_add_comment?boolean>
+	<@button id='toggle-add-comment' style='none' color='info mt-2 me-1' title='#i18n{appointment.create_comment.pageTitle}' hideTitle=[''] params='data-bs-toggle="modal" data-bs-target="#commentModal"' >
+		<@iconStack class='fa-xs'>
+			<@icon prefix='' style='far fa-comment fa-stack-2x' />
+			<@icon prefix='' style='fas fa-plus fa-stack-1x' />
+		</@iconStack> 
+	</@button>
+</#if>
+</#macro>
+<#macro tabsComment tab>
+<@tabList id='${tab}-tab' params=' style="margin-top:15px"'>
+	<#if tab='comment'><#assign active = true /><#else><#assign active = false /></#if>
+	<@tabLink href='jsp/admin/plugins/appointment/Comments.jsp?view=manageComment' title='#i18n{appointment.manage_comments.title}' active=active />
+	<#if tab='notif'><#assign active = true /><#else><#assign active = false /></#if>
+	<@tabLink href='jsp/admin/plugins/appointment/NotificationCommentConfig.jsp?view=notificationConfig' title='#i18n{appointment.task_notify_appointment_comment_config.title}' active=active />
+</@tabList>
+</#macro>
+<#macro appointmentTabList tab form tabcontext>
+<#if tabcontext='slot'>
+	<#if tab="typicalWeek"><#assign active = true /><#else><#assign active = false /></#if>
+    <@tabLink href='jsp/admin/plugins/appointment/ManageAppointmentSlots.jsp?view=manageTypicalWeek&id_form=${form.idForm}&context=slot' title='#i18n{appointment.typicalWeek.pageTitle}' active=active />
+	<#if tab="specificWeek"><#assign active = true /><#else><#assign active = false /></#if>
+	<@tabLink href='jsp/admin/plugins/appointment/ManageSpecificWeek.jsp?view=manageSpecificWeek&id_form=${form.idForm}&context=slot' title='#i18n{appointment.specificWeek.pageTitle}' active=active /> 			 
+	<#if tab="year"><#assign active = true /><#else><#assign active = false /></#if>
+	<@tabLink href='jsp/admin/plugins/appointment/ManageAnnualCalendar.jsp?view=manageAnnualCalendar&id_form=${form.idForm}&context=slot' title='#i18n{appointment.annual.calendar.pageTitle}' active=active />
+	<#if tab="day"><#assign active = true /><#else><#assign active = false /></#if>
+    <#if isDeskInstalled?? && isDeskInstalled><@tabLink href='jsp/admin/plugins/appointment/modules/desk/ManageAppointmentDesks.jsp?plugin_name=appointment-desk&id_form=${form.idForm}&context=slot' title='#i18n{appointment.specificDay.pageTitle}' active=active /></#if>
+<#elseif tabcontext='app'>
+	<#if tab="calendar"><#assign active = true /><#else><#assign active = false /></#if>
+	<@tabLink href='jsp/admin/plugins/appointment/ManageAppointments.jsp?view=viewCalendarManageAppointment&id_form=${form.idForm}&context=app' title='#i18n{appointment.manageAppointmentCalendar.pageTitle}' active=active />
+	<#if tab="filter"><#assign active = true /><#else><#assign active = false /></#if>
+	<@tabLink href='jsp/admin/plugins/appointment/ManageAppointments.jsp?view=manageAppointments&id_form=${form.idForm}&context=app' title='#i18n{appointment.manageAppointments.pageTitle}' active=active />
+	<#if tab='day'><#assign active = true /><#else><#assign active = false /></#if>
+	<#if isDeskInstalled?? && isDeskInstalled><@tabLink href='jsp/admin/plugins/appointment/modules/desk/ManageAppointmentDesks.jsp?plugin_name=appointment-desk&id_form=${form.idForm}&context=app' title='#i18n{appointment.specificDay.pageTitle}' active=active /></#if>  
+<#else>
+	<#assign tabparams='data-menu="slot"'>
+	<#if isDeskInstalled?? && isDeskInstalled><@tabLink href='jsp/admin/plugins/appointment/modules/desk/ManageAppointmentDesks.jsp?plugin_name=appointment-desk&id_form=${form.idForm}&context=slot' title='#i18n{appointment.specificDay.pageTitle}' active=true params=tabparams /></#if>
+	<#assign active = false />
+	<@tabLink href='jsp/admin/plugins/appointment/ManageSpecificWeek.jsp?view=manageSpecificWeek&id_form=${form.idForm}&context=slot' title='#i18n{appointment.specificWeek.pageTitle}' active=active params=tabparams/> 			 
+	<@tabLink href='jsp/admin/plugins/appointment/ManageAnnualCalendar.jsp?view=manageAnnualCalendar&id_form=${form.idForm}&context=slot' title='#i18n{appointment.annual.calendar.pageTitle}' active=active params=tabparams/>  			
+	<@tabLink href='jsp/admin/plugins/appointment/ManageAppointmentSlots.jsp?view=manageTypicalWeek&id_form=${form.idForm}&context=slot' title='#i18n{appointment.typicalWeek.pageTitle}' active=active params=tabparams/>
+	<#assign tabparams='data-menu="app"'>
+	<#assign active = false />
+	<@tabLink href='jsp/admin/plugins/appointment/ManageAppointments.jsp?view=viewCalendarManageAppointment&id_form=${form.idForm}&context=app' title='#i18n{appointment.manageAppointmentCalendar.pageTitle}' active=active params=tabparams/>
+	<@tabLink href='jsp/admin/plugins/appointment/ManageAppointments.jsp?view=manageAppointments&id_form=${form.idForm}&context=app' title='#i18n{appointment.manageAppointments.pageTitle}' active=active params=tabparams/>
+	<#if isDeskInstalled?? && isDeskInstalled><@tabLink href='jsp/admin/plugins/appointment/modules/desk/ManageAppointmentDesks.jsp?plugin_name=appointment-desk&id_form=${form.idForm}&context=app' title='#i18n{appointment.specificDay.pageTitle}' active=true params=tabparams/></#if>
+</#if>
+</#macro>
+<#macro appointmentTabs tab form context >
+<@commonsAppJS />
+<@row id='${tab}-tab'>
+	<@columns>
+		<@tabs params=' style="margin-top:15px"'>
+			<@tabList>
+				<@appointmentTabList tab form context />
+			</@tabList>
+			<@tabContent id='${tab}-content'>
+				<@messages errors=errors warnings=warnings infos=infos />
+				<#nested>
+				<#if formCalendarErrors??>
+					<div class="layout-wrapper"></div>
+				<#else>
+					<#if !tab?contains("filter")>
+						<#if !tab?contains("typicalWeek")>
+						<div id="btn-comment-main">
+							<@btnComment /> 
+						</div>
+						</#if>	
+					</#if>	
+					<#if tab !='typicalWeek' && tab !='year' && tab !='day' && tab !='filter'>
+						<div id="calendar">
+							<div id="loader" class="d-flex justify-content-center align-items-center vh-100 h-75">
+								<strong>#i18n{appointment.labelLoading}...</strong>
+								<div class="spinner-border" role="status" aria-hidden="true"></div>
+							</div>
+						</div>
+					</#if>
+				</#if>
+			</@tabContent>
+		</@tabs>
+	</@columns>
+</@row>
+<script>
+<@headerTitle form=form />
+localStorage.setItem( 'appointmentContext', '${context}' );
+</script>
+</#macro>
+<#macro commentModal update=false >
+<#if update>
+	var formValues = JSON.parse( $(this).attr( 'data-json' ) );
+	localStorage.setItem( 'commentContext', moment(formValues.comment_start).format('DD/MM/YYYY') );
+	tinyMCE.activeEditor.setContent( formValues.comment_text );
+	$( '#modify-comment input[name="id_comment"]' ).val( formValues.id_comment.slice(1) );
+	$( '#modify-comment input[name="startingValidityDate"]' ).val( moment(formValues.comment_start).format('DD/MM/YYYY') );
+	$( '#modify-comment input[name="endingValidityDate"]' ).val( moment(formValues.comment_end).format('DD/MM/YYYY')  );
+	$( '#modify-comment input[name="startingValidityTime"]' ).val( formValues.comment_start_time );
+	$( '#modify-comment input[name="endingValidityTime"]' ).val( formValues.comment_end_time );
+</#if>
+// const commentModal = new bootstrap.Modal( document.getElementById('modify-comment') )
+const commentModal = bootstrap.Modal.getOrCreateInstance('#modify-comment');
+commentModal.toggle();
+</#macro> 
+<#macro getComments comments_list>
+<#list comments_list as comment_event>
+<#compress>
+<#assign comment_title>${comment_event.comment?replace('\n', '')?replace('\r', '')?replace('\rn', '')?replace('\'', '&apos;')?replace('\\', '&bsol;')}</#assign>
+</#compress>
+{
+	"title" : "${comment_title?json_string}",
+	"start" : "${comment_event.startingValidityDate}T${comment_event.startingValidityTime!}",
+	"end" : "${comment_event.calendarAllDaySlotEnd}T${comment_event.endingValidityTime!}",
+	"validity_end" : "${comment_event.endingValidityDate}",
+	"start_time" : "${comment_event.startingValidityTime!}",
+	"end_time" : "${comment_event.endingValidityTime!}",
+	"id" : "C${comment_event.id}",
+	"creator_name" : "${comment_event.userLastName!''} ${comment_event.userFirstName!''}",
+	"creator_user" : "${comment_event.creatorUserName!''}",
+	"creation_date" : "${comment_event.creationDate?date.xs!''}",
+	"type" : "comment",
+	"allDay" : true,
+},
+<#assign aDateTime = .now>
+<#if comment_event.startingValidityTime?? && comment_event.endingValidityTime??>
+	<#if ( comment_event.startingValidityTime != '00:00' && comment_event.endingValidityTime != '00:00' )>
+	{
+		"start" : "${comment_event.startingValidityDate}T${comment_event.startingValidityTime!}",
+		"end" : "${comment_event.endingValidityDate}T${comment_event.endingValidityTime!}",
+		"type" : "hour_comment",
+		"backgroundColor" : 'rgb(233, 250, 0 )',
+		"className" : ["comment-${comment_event.id!}"],
+		"rendering" : "background",
+		"allDay" : false,
+	},
+	</#if>
+</#if>
+</#list>
+</#macro>
+<#macro fullCalendarScript selectable=true isSpecific=false isTypical=false showComments=true locale=locale>
+$( function(){
+    var calendar = $('#calendar');
+	calendar.fullCalendar({
+		<#if !showComments>allDaySlot: false,</#if>
+		displayEventTime: false, 
+		buttonText : {
+			prev : '#i18n{appointment.appointmentApp.previousWeek}',
+			next : '#i18n{appointment.appointmentApp.nextWeek}',
+		}, 
+		height: 'parent',
+		themeSystem: 'jquery-ui', 
+		navLinks: true, 
+		navLinkDayClick: function( date, jsEvent ) {
+			location.href = eventUrl + 'manageAppointments&id_form=' + idForm + '&starting_date_time=' + date.format() + 'T00:00&ending_date_time=' + date.format() + 'T23:59';
+		},
+		defaultDate: defaultDate,
+		nowIndicator: true,
+		defaultView: 'agendaWeek',
+		locale: '${locale}',
+		editable: false,
+		<#if !isTypical>
+		customButtons: {
+			datePicker: {
+				text: '#i18n{appointment.appointmentCalendar.labelChooseDate}',
+				click: function () {
+					var $btnCustom = $('.fc-datePicker-button' ); // name of custom  button in the generated code
+					$btnCustom.after('<input type="text" id="hiddenDate" class="datepicker">');
+					$( '#hiddenDate' ).datepicker({
+						showOn: "button",
+						language:'${locale}',
+						autoclose: true,
+						orientation: "bottom"
+					});
+					var $btnDatepicker = $( '.ui-datepicker-trigger' ); // name of the generated datepicker UI 
+					//Below are required for manipulating dynamically created datepicker on custom button click
+					$( '#hiddenDate' ).focus().hide();
+					$btnDatepicker.trigger( 'click' ); //dynamically generated button for datepicker when clicked on input textbox
+					$btnDatepicker.hide();
+					$btnDatepicker.remove();
+					$( 'input.datepicker' ).not( ':first' ).remove();//dynamically appended every time on custom button click
+					$( '#hiddenDate' ).change(function () {
+						calendar.fullCalendar( 'gotoDate', moment($("#hiddenDate").val(),'DD-MM-YYYY'));
+					});
+				}
+			}
+		},
+		</#if>
+		header: <#if isTypical>false<#else>{left: 'prev',center: 'today, datePicker, title',right: 'next'}</#if>,
+		<#if isTypical>columnFormat : 'dddd',<#else>columnHeaderHtml: function(mom) { return mom.format('dddd') + '</br>' + mom.format('LL'); },</#if>
+		slotLabelFormat: 'H:mm',
+		slotLabelInterval: slotDuration,
+		slotDuration: slotDuration,
+		<#if selectable>
+			selectable: true,
+			selectHelper: true,
+			select: function( startDate, endDate  ) {
+				var selIdx=0, selData='', evData=''; 
+				var selected=$('.fc-event-container .fc-time-grid-event.fc-v-event.fc-event.fc-start.fc-end.fc-custom.ui-selectee');
+				selected.each( function(  ){ 
+					var evt='{' + $(this).data('event') + '}';
+					const event = JSON.parse( evt ); 
+					if( moment( event.startingDateTime ).isSameOrAfter( startDate.format() ) && moment( event.endingDateTime ).isSameOrBefore( endDate.format() ) ){
+						selData += JSON.stringify( event ) + ',' ;
+						selIdx++;
+					} 
+				}) ;
+				if ( selIdx > 1 ){
+					evtData='['+ selData.slice(0, -1) + ']';
+					const evt = JSON.parse(evtData); 
+					<#if isTypical>$('#timeSlotData')<#else>$('#slotsData')</#if>.val(evtData);
+					$('#date_of_display_multi').val( moment(evt[0].startingDateTime).format('YYYY-MM-DD') );
+					const updatePlanningMultiSlotModal = new bootstrap.Modal('#updatePlanningMultiSlot')
+					updatePlanningMultiSlotModal.toggle()
+				} else {
+					evtData=selData.slice(0, -1) ;
+					const evt = JSON.parse(evtData); 
+					<#if isTypical>$('#timeSlotData')<#else>$('#slotData')</#if>.val( '['+evtData+']' );
+					const isOpen = JSON.parse( evt.isOpen )
+					$('#is_open').prop( "checked", isOpen );
+					$('#maxCapacity').val( evt.maxCapacity );
+					$('#dtSlot .modal-title').append( moment(evt.startingDateTime).format('DD/MM/YYYY') );
+					$('#date_of_display_slot').val( moment(evt.startingDateTime).format('YYYY-MM-DD') );
+					$('#timeStart').text( evt.startingTime );
+					$('#timeEnd').val( evt.endingTime );
+					const updatePlanningModal = new bootstrap.Modal('#updatePlanningSlot')
+					updatePlanningModal.toggle()
+				}
+			},
+		</#if>
+		minTime: minTime,
+		maxTime: maxTime,
+		businessHours: {
+			start: minTime,
+			end: maxTime,
+			dow: dow
+		}, 
+		eventClick: function( calEvent, jsEvent, view ){
+		<#if showComments>
+			// Comments
+			var isCommentModerator=${permission_moderate_comment};
+			if( calEvent.type == "comment" && ( calEvent.creator_user === '${permission_access_code}' || isCommentModerator ) ){
+				<@commentModal update=true />
+			} else if( calEvent.type == "appointment" ) {
+				location.href = calEvent.manageUrl;
+			}
+		<#else>
+			// Typical week
+			location.href = eventUrl + calEvent.id;
+		</#if>
+		},
+		events: events,
+		<#if !isTypical>
+		viewRender: function(view, element) {
+			var minDate = moment(startingDateOfDisplay);
+			var maxDate = moment(endingDateOfDisplay);
+			// Past 
+			if (minDate >= view.start && minDate <= view.end || view.end <= minDate) {
+				$( '.fc-prev-button' ).prop('disabled', true);
+				$( '.fc-prev-button' ).addClass('fc-state-disabled');
+			} else {
+				$( '.fc-prev-button' ).removeClass('fc-state-disabled');
+				$( '.fc-prev-button' ).prop('disabled', false); 
+			}
+			// Future
+			if (maxDate >= view.start && maxDate <= view.end || maxDate <= view.start) {
+				$( '.fc-next-button' ).prop('disabled', true);
+				$( '.fc-next-button' ).addClass('fc-state-disabled');
+			} else {
+				$( '.fc-next-button' ).removeClass('fc-state-disabled');
+				$( '.fc-next-button' ).prop('disabled', false); 
+			}
+		},
+		</#if>
+		eventAfterAllRender: function( view ) {
+			if( document.getElementById('loader') != undefined ){ document.getElementById('loader').remove() };
+			sessionStorage.setItem( 'appCurrentDate', moment(view.start).format('DD/MM/YYYY') );
+			$('.fc-event').css('cursor', 'pointer');
+			<#if !isTypical>
+				$('.fc-next-button').attr('class', 'fc-next-button btn btn-primary btn-sm');
+				$('.fc-prev-button').attr('class', 'fc-prev-button btn btn-primary btn-sm');
+				$('.fc-today-button').attr('class', 'fc-today-button btn btn-primary btn-sm');
+				$('.fc-datePicker-button').attr('class', 'fc-datePicker-button btn btn-primary btn-sm');
+			</#if>
+			$('.open-AddBookDialog').click( function( e ) {
+				e.preventDefault();
+				$('#starting_date_time').val($(this).data('starting_date_time'));
+				var dt = $(this).data('starting_date_time');
+				$('#starting_date_time_span').val( moment(dt).format('DD/MM/YYYY hh:mm') );
+				const addbookModal = new bootstrap.Modal( '#addBookModalDialog' )
+				addbookModal.toggle();
+				return false;
+			});
+			<#if showComments>
+			// Set comments 
+			$( '.fc-view.fc-agendaWeek-view.fc-agenda-view .fc-body .ui-widget-content .fc-day-grid .fc-bg .fc-axis.ui-widget-content' ).html( '' );
+			$( '#toggle-add-comment' ).clone().appendTo( '.fc-body .ui-widget-content .fc-day-grid .fc-content-skeleton .fc-axis:first' );
+			$( '.fc-body .ui-widget-content .fc-day-grid .fc-content-skeleton .fc-axis:first' ).css('position', 'relative');
+			var tgc = $( '#toggle-add-comment' ).find('body');
+			tgc.click(function(ev) {
+				<@commentModal />
+			});	
+			var firstBgColor;
+			// Highlight comment from bg
+			$( '.fc-bgevent' ).hover(function(){
+			    firstBgColor = $( this ).css( "background-color" );
+				$( this ).css('background-color', 'orange' );
+				var classSel = $(this).attr('class'), bgColor=$(this).css('background-color'),
+				commentSel = classSel.split(' '),
+				c = '#' + commentSel[0].replace('-','-C');
+				$( c ).css('background-color', 'orange' );
+				$( c ).css('color', '#fff' );
+				return false;
+			}, function(){
+				$( this ).css('background-color', firstBgColor );
+				var classSel = $(this).attr('class'),
+				commentSel = classSel.split(' '),
+				c = '#' + commentSel[0].replace('-','-C');
+				$( c ).css('background-color', firstBgColor );
+				$( c ).css('color', '#000' );
+			});
+			// Show comment popover
+			$('.fc-bgevent').click(function(e){
+				var classSel = $(this).attr('class'),
+				commentSel = classSel.split(' '),
+				c = '#' + commentSel[0].replace('-','-C');
+				const popover = bootstrap.Popover.getOrCreateInstance( c )
+				popover.toggle();
+				return false;
+			});
+			</#if>
+			<#if isSpecific || isTypical >
+			/* Event selection if specific */ 
+			var eventIdx=0, eventData='',evtData='';        
+           	$( ".fc-content-skeleton" )<#if isSpecific>.not(":has(.comments)")</#if>.not(":has(.btn-comments)").selectable({
+                filter: ".fc-time-grid-event.fc-v-event",
+				selecting: function( event, ui ) {
+					eventIdx++;
+				},
+				unselecting: function( event, ui ) {
+					eventIdx--;
+				},
+				stop: function() {
+					$( '.ui-selected', this ).each( function( index ) {
+						index++;
+						<#if isSpecific>
+							if ( eventIdx > 1 ){
+								eventData += '{' + $(this).data('event') + '},' ;
+								const events =  JSON.stringify( eventData );
+								evtData='['+eventData.slice(0, -1)+']'
+								const evt = JSON.parse(evtData); 
+								$('#slotsData').val( evtData);
+								$('#date_of_display_multi').val( moment(evt[0].startingDateTime).format('YYYY-MM-DD') );
+								const updatePlanningMultiSlotModal = bootstrap.Modal.getOrCreateInstance('#updatePlanningMultiSlot')
+								updatePlanningMultiSlotModal.toggle()
+							} else {
+								eventData ='{' + $(this).data('event') + '}';  
+								const events = JSON.stringify(eventData); 
+								evtData= '['+eventData+']';
+								$('#slotData').val( evtData );
+								const evt = JSON.parse(eventData); 
+								const isOpen = JSON.parse( evt.isOpen )
+								$('#is_open').prop( "checked", isOpen );
+								$('#maxCapacity').val( evt.maxCapacity );
+								$('#dtSlot .modal-title').append( moment(evt.startingDateTime).format('DD/MM/YYYY') );
+								$('#date_of_display_slot').val( moment(evt.startingDateTime).format('YYYY-MM-DD') );
+								$('#timeStart').text( evt.startingTime );
+								$('#timeEnd').val( evt.endingTime );
+								const updatePlanningSlotModal = bootstrap.Modal.getOrCreateInstance('#updatePlanningSlot')
+								updatePlanningSlotModal.toggle()
+							}
+						</#if>  
+						<#if isTypical>
+							if ( eventIdx > 1 ){
+								eventData += '{' + $(this).data('event') + '},' ;
+								const events =  JSON.stringify( eventData );
+								evtData='['+eventData.slice(0, -1)+']'
+								$('#timeSlotData').val( evtData );
+								const updatePlanningMultiSlotModal = bootstrap.Modal.getOrCreateInstance('#updatePlanningMultiSlot')
+								updatePlanningMultiSlotModal.toggle()
+							} else {
+								eventData ='{' + $(this).data('event') + '}';                       
+								const evt = JSON.parse(eventData); 
+								const isOpen = JSON.parse( evt.isOpen )
+								$('#timeIsOpen').prop( "checked", isOpen );
+								$('#idTimeSlot').val( evt.idTimeSlot );
+								$('#idWorkingDay').val( evt.idWorkingDay );
+								$('#maxCapacity').val( evt.maxCapacity );
+								$('#date_of_display_slotmaxCapacity').val( evt.maxCapacity );
+								$('#timeStart').text( evt.startingTime );
+								$('#timeEnd').val( evt.endingTime );
+								const updatePlanningSlotModal = bootstrap.Modal.getOrCreateInstance('#updatePlanningSlot')
+								updatePlanningSlotModal.toggle()
+							}
+						</#if> 
+					});
+					eventData='';
+				}
+			
+			});
+			</#if>
+			
+		},
+		eventRender: function( event, element, view ) {
+			var $title = element.find( '.fc-title' ), createSlot='', labelEventDate='';
+			$(element).addClass( event.customClass );
+			if ( event.customStyle !='' ){
+				$(element).css( 'background', event.customStyle );
+			}
+			$title.html( $title.text() );
+			if( event.type !== 'comment' ){
+			<#if isSpecific>
+				$(element).attr( 'data-event', '"idSlot":"' + event.id +'","startingDateTime":"' + event.start.toISOString()+ '","startingTime":"' + event.start.format('HH:mm') + '","endingDateTime":"' + event.end.toISOString() + '","endingTime":"' + event.end.format('HH:mm')+ '","isOpen":"' + event.isOpen + '","idForm":"' + event.idForm +'","date":"' + event.date + '","isSpecific":"' + event.isSpecific + '","maxCapacity":"' + event.maxCapacity + '"' );
+			</#if>  
+			<#if isTypical>
+				$(element).attr( 'data-event', '"idTimeSlot":"' + event.id +'","startingDateTime":"' + event.start.toISOString()+ '","startingTime":"' + event.start.format('HH:mm') + '","endingDateTime":"' + event.end.toISOString() + '","endingTime":"' + event.end.format('HH:mm')+ '","isOpen":"' + event.isOpen + '","idForm":"' + event.idForm +'","maxCapacity":"' + event.maxCapacity + '"' );
+			</#if>  
+			}
+			var json = { "container": "body", "placement" : "bottom", "html" : true, "trigger" : "hover" };
+			<#if showComments>
+				if( event.type == 'comment' ){
+					$(element).addClass('comments').attr( 'id', 'comment-' + event.id ).attr( 'data-json', '{"id_comment":"' + event.id + '", "comment_text":"' + event.title.replace(/"/g,'\\"') + '", "comment_start":"' + event.start.format('YYYY-MM-DD') + '", "comment_start_time":"' + event.start_time + '", "comment_end":"' + event.validity_end + '", "comment_end_time\":"' + event.end_time + '"}' );
+					/* Add comment render */
+					labelEventDate=setLabelComment( event, '${locale}' );
+					var creator = event.creator_name.trim() !== '' ? event.creator_name : event.creator_user;
+					json.content = '<p>' + labelEventDate +'</p><p>Créé par <em>' + creator + '</em> le ' + event.creation_date + '</span><hr>'+ event.title + '</p>'  ;
+					var dateDebut='', dateFin='';
+					if ( ! ( event.start_time == null || event.start_time == undefined || event.start_time == '00:00' ) ){
+						if( event.start.format('DDMM') != moment(event.validity_end).format('DDMM') ){
+							dateDebut=event.start.format('ddd DD/MM à ');
+							dateFin=moment(event.validity_end).format('ddd DD/MM à ')
+						}
+						var fcTitle = element.find('.fc-title p');
+						fcTitle.prepend( dateDebut + event.start_time + '/' + dateFin + event.end_time + ' ' );
+					} else {
+						$(element).addClass('allday');
+					}
+				} else {
+					if( event.id != undefined || event.id != undefined ){
+						json.content = "<p><b>" + event.start.format('HH:mm') + "</b> - <b>" + event.end.format('HH:mm')+"</b></p>";
+					}
+				}
+			<#else>
+				if( event.id != undefined || event.id != undefined ){
+					json.content = "<p><b>" + event.start.format('HH:mm') + "</b> - <b>" + event.end.format('HH:mm')+"</b></p>";
+				}
+			</#if>
+			const popover = new bootstrap.Popover( element.context, json )
+		}
+	});
+	/* If comment creation set currentDate from "commentContext" localstorage */
+	const dtCurrent=localStorage.getItem('commentContext');
+	if(  dtCurrent !='' && dtCurrent != null ){
+		localStorage.removeItem( 'commentContext' );
+		calendar.fullCalendar( 'gotoDate', moment(dtCurrent,'DD-MM-YYYY'));
+	}
+	<#nested>
+});
+</#macro>
