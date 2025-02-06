@@ -460,12 +460,12 @@
             <artifactId>site-theme-citelibre</artifactId>
             <version>[1.0.0-SNAPSHOT]</version>
             <type>lutece-site</type>
-    </dependency>
-     <dependency>
-        <groupId>fr.paris.lutece.plugins</groupId>
-        <artifactId>plugin-adminauthenticationoauth2</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <type>lutece-plugin</type>
-      </dependency>
+        </dependency>
+        <dependency>
+            <groupId>fr.paris.lutece.plugins</groupId>
+            <artifactId>plugin-adminauthenticationoauth2</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <type>lutece-plugin</type>
+        </dependency>
     </dependencies>
 </project>
