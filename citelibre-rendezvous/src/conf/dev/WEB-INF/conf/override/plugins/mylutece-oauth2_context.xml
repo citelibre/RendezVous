@@ -1,26 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-       xmlns:p="http://www.springframework.org/schema/p"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-       http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context-3.0.xsd
-       http://www.springframework.org/schema/tx
-       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
-    
-  <bean id="mylutece-oauth2.authDataClient" class="fr.paris.lutece.plugins.mylutece.modules.oauth2.authentication.AuthDataClient">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+    <bean id="mylutece-oauth2.authDataClient"
+        class="fr.paris.lutece.plugins.mylutece.modules.oauth2.authentication.AuthDataClient">
         <property name="name" value="authData" />
-        <property name="dataServerUri" value="http://localhost:8081/realms/citelibre_frontoffice/protocol/openid-connect/userinfo"/>
-        <property name="tokenMethod" value="HEADER"/>
-        <property name="default" value="true"/>
-        
+        <property name="dataServerUri"
+            value="http://localhost:8081/realms/citelibre_frontoffice/protocol/openid-connect/userinfo" />
+        <property name="tokenMethod" value="HEADER" />
+        <property name="default" value="true" />
+
         <property name="scope">
-         <set value-type="java.lang.String">
-	     	<value>openid</value>
-	  </set>
+            <set value-type="java.lang.String">
+                <value>openid</value>
+            </set>
         </property>
     </bean>
+
+    <bean id="mylutece-oauth2.server" class="fr.paris.lutece.plugins.oauth2.business.AuthServerConf">
+        <property name="issuer" value="http://fcp.integ01.dev-oauth2.fr"/>
+        <property name="authorizationEndpointUri" value="http://localhost:8081/realms/citelibre_frontoffice/protocol/openid-connect/auth"/>
+        <property name="tokenEndpointUri" value="http://localhost:8081/realms/citelibre_frontoffice/protocol/openid-connect/token"/>
+        <property name="logoutEndpointUri" value="http://localhost:8081/realms/citelibre_frontoffice/protocol/openid-connect/logout?client_id=moncompte&amp;post_logout_redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Frendezvous%2F"/>
+        <property name="enableJwtParser" value="false"/>
+    </bean> 
     
+    <bean id="mylutece-oauth2.client" class="fr.paris.lutece.plugins.oauth2.business.AuthClientConf">
+        <property name="clientId" value="moncompte"/>
+        <property name="clientSecret" value="moncompte"/>
+    </bean>       
+    
+    <bean id="oauth2.callbackHandler" class="fr.paris.lutece.plugins.oauth2.web.CallbackHandler" >
+        <property name="handlerName" value="auth2Handler"/>
+        <property name="authServerConf" ref="oauth2.server"/>
+        <property name="authClientConf" ref="oauth2.client"/>
+        <property name="jWTParser" ref="oauth2.jwtParser"/>
+       	<property name="default" value="true"/>
+    </bean>   
+
 </beans>
