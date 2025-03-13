@@ -1,0 +1,23 @@
+<@row>
+	<@columns>
+		<@box>
+			<@boxHeader title='#i18n{module.mylutece.database.create_group.boxTitle}' />
+			<@boxBody>
+				<@tform method='post' action='jsp/admin/plugins/mylutece/modules/database/DoCreateGroup.jsp' name='create_group'>
+					<@fieldSet legend='#i18n{module.mylutece.database.create_group.boxTitle}' hideLegend=['all']>
+						<@formGroup labelFor='group_key' labelKey='#i18n{module.mylutece.database.create_group.labelName}' mandatory=true>
+							<@input type='text' id='group_key' name='group_key' maxlength=100 />
+						</@formGroup>
+						<@formGroup labelFor='group_description' labelKey='#i18n{module.mylutece.database.create_group.labelDescription}' mandatory=true>
+							<@input type='text' id='group_description' name='group_description' maxlength=200 />
+						</@formGroup>
+						<@formGroup>
+							<@button type='submit' title='#i18n{module.mylutece.database.modify_group.buttonLabelValidate}' buttonIcon='check' />
+							<@aButton href='jsp/admin/plugins/mylutece/modules/database/ManageGroups.jsp' title='#i18n{portal.admin.message.buttonCancel}' buttonIcon='times' color='default' />
+						</@formGroup>
+					</@fieldSet>
+				</@tform>
+			</@boxBody>
+		</@box>
+	</@columns>
+</@row>

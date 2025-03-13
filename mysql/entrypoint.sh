@@ -11,6 +11,14 @@ url_keycloak=${URL_KEYCLOAK}
 url_solr=${URL_SOLR}
 url_mail=${URL_MAIL}
 
+keycloak_mode=${KEYCLOAK_MODE:-true}
+
+if $keycloak_mode; then
+    rm /docker-entrypoint-initdb.d/4-auth-database.sql
+else
+    rm /docker-entrypoint-initdb.d/4-auth-keycloak.sql
+fi
+
 sed -i "s/http:\/\/localhost\//${url_matomo_http}\//g" /docker-entrypoint-initdb.d/1-dump.sql
 sed -i "s/http:\/\/localhost\//${url_matomo_http}\//g" /docker-entrypoint-initdb.d/2-dump-matomo.sql
 sed -i "s/http:\/\/localhost\//${url_matomo_http}\//g" /docker-entrypoint-initdb.d/3-dump-keycloak.sql

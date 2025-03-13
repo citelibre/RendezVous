@@ -1,0 +1,48 @@
+<@row>
+	<@columns>
+	    <@tabs>
+			<@tabList>
+				<@tabLink href='jsp/admin/plugins/mylutece/modules/database/ModifyGroup.jsp?group_key=${group.groupKey}'title='#i18n{module.mylutece.database.modify_group.boxTitle}' />
+				<@tabLink active=true href='#' title='#i18n{module.mylutece.database.modify_group.linkManageRoles}' />
+				<@tabLink href='jsp/admin/plugins/mylutece/modules/database/ManageUsersGroup.jsp?group_key=${group.groupKey}' title='#i18n{module.mylutece.database.modify_group.linkLabelManageUsers}' />
+			</@tabList>
+			<@tabContent>
+				<@item_navigation item_navigator=item_navigator align='right' />
+				<@tform action='jsp/admin/plugins/mylutece/modules/database/DoAssignRoleGroup.jsp'>
+					<@input type='hidden' name='group_key' value='${group.groupKey}' />
+					<@fieldSet legend='#i18n{module.mylutece.database.modify_group.titleGroup} : ${group.groupKey} - #i18n{module.mylutece.database.manage_roles_group.boxTitle}'>
+						<@table>
+							<@tr>
+								<@th>#i18n{module.mylutece.database.manage_roles_group.colName}</@th>
+								<@th>#i18n{module.mylutece.database.manage_roles_group.colLabel}</@th>
+								<@th></@th>
+							</@tr>
+							<#list role_list as role >
+							<#if role.role != "none">
+							<@tr>
+								<@td>${role.role}</@td>
+								<@td>${role.roleDescription}</@td>
+								<@td>
+									<#assign checked = false />
+									<#list group_role_list as group_role >
+										<#if group_role.role = role.role >
+											<#assign checked = true />
+										<#break>
+										</#if>
+									</#list>
+									<@checkBox name='role_key' id=role.role?replace('\\s+','','r') value='${role.role}' checked=checked />
+								</@td>
+							</@tr>
+							</#if>
+							</#list>
+						</@table>
+						<@formGroup>
+							<@button type='submit' name='save' title='#i18n{module.mylutece.database.manage_roles_group.btnAssign}' buttonIcon='check' />
+							<@button type='button' params='onclick="javascript:window.history.back();"' title='#i18n{portal.admin.message.buttonCancel}' buttonIcon='times' color='default' />
+						</@formGroup>
+					</@fieldSet>
+				</@tform>
+			</@tabContent>
+		</@tabs>
+	</@columns>
+</@row>

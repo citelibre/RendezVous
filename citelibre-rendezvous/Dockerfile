@@ -22,6 +22,9 @@ WORKDIR ${tomcat}
 COPY --from=builder /app/target/${site}.war webapps
 COPY haproxy.cfg /etc/haproxy/haproxy.cfg
 
+COPY oauth2 /tmp/oauth2
+COPY database /tmp/database
+
 RUN cd webapps && mkdir rendezvous &&  mv ${site}.war rendezvous/rendezvous.war  && cd rendezvous && jar xvf rendezvous.war && rm rendezvous.war
 
 # Add webapps folder
