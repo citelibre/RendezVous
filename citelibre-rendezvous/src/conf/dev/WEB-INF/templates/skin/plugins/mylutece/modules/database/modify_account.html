@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-12 col-md-6 offset-md-3">
+<#if error_code?has_content >
+<#assign typeClass = " is-invalid" />
+<#if error_code = "error_mandatory_fields">
+    <div class="alert alert-error">#i18n{module.mylutece.database.message.account.errorMandatoryFields}</div>
+    <#if !(user.lastName?has_content)><#assign classLastName = typeClass /></#if>
+    <#if !(user.firstName?has_content)><#assign classFirstName = typeClass /></#if>
+    <#if !(user.email?has_content)><#assign classEmail = typeClass /></#if>
+</#if>
+<#if error_code = "error_syntax_email">
+    <div class="alert alert-error">#i18n{module.mylutece.database.message.account.errorBadEmail}</div>
+    <#assign classEmail = typeClass />
+</#if>
+<#if error_code = "error_captcha">
+    <div class="alert alert-error">#i18n{module.mylutece.database.message.account.errorCaptcha}</div>
+</#if>
+</#if>
+<#if action_successful?has_content>
+    <form  id="modifyAccount" name="modifyAccount" action="${action_successful}" method="post">
+    <h2>#i18n{module.mylutece.database.xpage.modify_account.pageTitle}</h2>
+    <h3>#i18n{module.mylutece.database.message.modify_account.success}</h3>
+    <div class="form-row">
+        <button class="btn btn-primary" id="button-return" type="submit" name="BtnBack">
+            #i18n{module.mylutece.database.xpage.account.btnBack}
+        </button>
+    </div>
+    </form>
+<#else>
+    <form id="modifyAccount" name="modifyAccount" action="jsp/site/plugins/mylutece/modules/database/DoModifyAccount.jsp" method="post">
+    <h2>#i18n{module.mylutece.database.xpage.modify_account.pageTitle}</h2>
+    <input type="hidden" name="plugin_name" value="${plugin_name}" />
+    <#if show_input_email>
+    <div class="form-floating">
+        <input type="text" class="form-control${classEmail?if_exists}" name="email" maxlength="100" value="${(user.email)?if_exists}">
+        <label for="email">#i18n{module.mylutece.database.xpage.modify_account.eMail} *</label>
+    </div>
+    </#if>	
+    <div class="form-floating">
+        <input type="text" class="form-control${classLastName?if_exists}" name="last_name" maxlength="100" value="${(user.lastName)?if_exists}">
+        <label for="last_name">#i18n{module.mylutece.database.xpage.modify_account.lastName} *</label>
+    </div>
+    <div class="form-floating">
+        <input type="text" class="form-control${classFirstName?if_exists}" name="first_name" maxlength="100" value="${(user.firstName)?if_exists}">
+        <label for="first_name">#i18n{module.mylutece.database.xpage.modify_account.firstName} *</label>
+    </div>
+    <#if jcaptcha?exists>
+    <div class="form-floating">
+        ${jcaptcha}
+    </div>
+    </#if>				
+    <div class="form-row">
+        <button class="btn btn-primary" id="button-subscribe" type="submit" name="modifyAccountBtn">
+            <span class="ti ti-check"></span> #i18n{module.mylutece.database.xpage.modify_account.btnModifyAccount}
+        </button >
+        <button class="btn btn-secondary" id="button-return" type="button" name="back" onclick="javascript:history.go(-1)">
+            <span class="ti ti-circle-x"></span>#i18n{module.mylutece.database.xpage.account.btnBack}
+        </button>
+    </div>
+    </form>
+</#if>
+    </div>
+</div>

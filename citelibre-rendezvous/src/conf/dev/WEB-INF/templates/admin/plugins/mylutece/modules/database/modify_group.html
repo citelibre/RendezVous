@@ -1,0 +1,27 @@
+<@row>
+	<@columns>
+	    <@tabs>
+			<@tabList>
+				<@tabLink active=true href='#' title='#i18n{module.mylutece.database.modify_group.boxTitle}' />
+				<@tabLink href='jsp/admin/plugins/mylutece/modules/database/ManageRolesGroup.jsp?group_key=${group.groupKey}' title='#i18n{module.mylutece.database.modify_group.linkManageRoles}' />
+				<@tabLink href='jsp/admin/plugins/mylutece/modules/database/ManageUsersGroup.jsp?group_key=${group.groupKey}' title='#i18n{module.mylutece.database.modify_group.linkLabelManageUsers}' />
+			</@tabList>
+			<@tabContent>
+				<@item_navigation item_navigator=item_navigator align='right' />
+				<@tform method='post' action='jsp/admin/plugins/mylutece/modules/database/DoModifyGroup.jsp' name='modify_group'>
+					<@input type='hidden' name='group_key' value='${group.groupKey}' />
+					<fieldset>
+						<legend>#i18n{module.mylutece.database.modify_group.titleGroup} : ${group.groupKey} - <small>#i18n{module.mylutece.database.modify_group.labelAssignedUsersNumber} : <strong>${assigned_users_number}</strong></small></legend>
+						<@formGroup labelFor='group_description' labelKey='#i18n{module.mylutece.database.modify_group.labelDescription}'>
+							<@input type='text' id='group_description' name='group_description' value='${group.groupDescription}' maxlength=200 />
+						</@formGroup>
+						<@formGroup>
+							<@button type='submit' name='save' title='#i18n{module.mylutece.database.modify_group.buttonLabelValidate}' buttonIcon='check' />
+							<@button type='button' params='onclick="javascript:window.history.back();"' title='#i18n{portal.admin.message.buttonCancel}' buttonIcon='times' color='default' />
+						</@formGroup>
+					</fieldset>
+				</@tform>
+			</@tabContent>
+		</@tabs>
+	</@columns>
+</@row>

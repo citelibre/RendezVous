@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<title>[${site_name}] #i18n{module.mylutece.database.import_users_from_file.email.title}</title>
+	</head>
+	<body>
+		<#if site_link?has_content>
+			<h2>${site_link}</h2>
+		</#if>
+		#i18n{module.mylutece.database.import_users_from_file.email.hello} ${user.firstName} ${user.lastName},<br /><br />
+		#i18n{module.mylutece.database.import_users_from_file.email.textIntro}. #i18n{module.mylutece.database.import_users_from_file.email.textInfo} :
+		 <br/>----------------------------------------------------------<br />    
+		&nbsp;&nbsp;&nbsp;#i18n{module.mylutece.database.import_users_from_file.email.codeAcces} : ${user.login}
+		<br />
+		&nbsp;&nbsp;&nbsp;#i18n{module.mylutece.database.import_users_from_file.email.password} : ${password}
+		<br/>----------------------------------------------------------<br />
+	</body>
+</html>

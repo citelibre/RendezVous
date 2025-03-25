@@ -1,0 +1,127 @@
+<#if .main_template_name = 'admin/plugins/mylutece/modules/database/manage_advanced_parameters.html'>
+	<@row>
+		<@columns>
+			<@box>
+				<@boxHeader title='#i18n{module.mylutece.database.manage_advanced_parameters.pageTitle}'>
+					<@MyLuteceDBAdvParamsFormActions />
+				</@boxHeader>
+				<@boxBody>
+					<@MyLuteceDBAdvParamsMainForm />
+				</@boxBody>
+			</@box>
+		</@columns>
+	</@row>
+<#elseif .main_template_name = 'admin/plugins/mylutece/modules/database/database_admindashboard.html'>
+	<@MyLuteceDBAdvParamsFormActions params='style="text-align:right;"' />
+	<@MyLuteceDBAdvParamsMainForm />
+</#if>
+
+<#macro MyLuteceDBAdvParamsFormActions params=''>
+	<@tform action='jsp/admin/plugins/mylutece/modules/database/GetChangeUseAdvancedSecurityParameters.jsp' params='${params!}'>
+		<#if use_advanced_security_parameters>
+			<@button type='submit' title='#i18n{mylutece.manage_advanced_parameters.removeAdvancedSecurityParameters}' hideTitle=['xs','sm'] buttonIcon='times' color='danger' size='sm' />
+		<#else>
+			<@button type='submit' title='#i18n{mylutece.manage_advanced_parameters.useAdvancedSecurityParameters}' hideTitle=['xs','sm'] buttonIcon='check' color='success' size='sm' />
+		</#if>
+		<@aButton href='jsp/admin/plugins/mylutece/attribute/ManageAttributes.jsp' title='#i18n{module.mylutece.database.manage_advanced_parameters.btnManageAttributes}' hideTitle=['xs','sm'] buttonIcon='wrench' size='sm' />
+		<@aButton href='jsp/admin/plugins/mylutece/modules/database/ChangeFieldAnonymizeUsers.jsp' title='#i18n{mylutece.manage_advanced_parameters.buttonLabelAnonymizationOptions}' hideTitle=['xs','sm'] buttonIcon='user-secret' size='sm' />
+	</@tform>
+</#macro>
+
+<#macro MyLuteceDBAdvParamsMainForm>
+	<@tform method='post' name='password_global_security' action='jsp/admin/plugins/mylutece/modules/database/DoModifyDatabaseUserParameters.jsp'>
+		<@fieldSet legend='#i18n{portal.users.manage_advanced_parameters.securityParameters}'>
+			<@formGroup helpKey='#i18n{module.mylutece.database.manage_advanced_parameters.labelAccountCreationValidationEmailComment}'>
+				<@checkBox labelFor='account_creation_validation_email' labelKey='#i18n{module.mylutece.database.manage_advanced_parameters.labelAccountCreationValidationEmail}' name='account_creation_validation_email' id='account_creation_validation_email' value='true' checked=(account_creation_validation_email?? && account_creation_validation_email) />
+			</@formGroup>
+			<@formGroup helpKey='#i18n{module.mylutece.database.manage_advanced_parameters.labelAutoLoginAfterValidationEmailComment}'>
+				<@checkBox labelFor='auto_login_after_validation_email' labelKey='#i18n{module.mylutece.database.manage_advanced_parameters.labelAutoLoginAfterValidationEmail}' name='auto_login_after_validation_email' id='auto_login_after_validation_email' value='true' checked=(auto_login_after_validation_email?? && auto_login_after_validation_email) />
+			</@formGroup>
+			<#if is_plugin_jcatpcha_enable>
+				<@formGroup helpKey='#i18n{module.mylutece.database.manage_advanced_parameters.labelEnableCaptchaComment}'>
+					<@checkBox labelFor='enable_jcaptcha' labelKey='#i18n{module.mylutece.database.manage_advanced_parameters.labelEnableCaptcha}' name='enable_jcaptcha' id='enable_jcaptcha' value='true' checked=(enable_jcaptcha?? && enable_jcaptcha) />
+				</@formGroup>
+			</#if>
+			<@formGroup labelFor='banned_domain_names' labelKey='#i18n{mylutece.message.email.labelBannedDomainNames}'>
+				<@input type='textarea' rows=4 name='banned_domain_names' id='banned_domain_names'>${banned_domain_names!}</@input>
+			</@formGroup>
+			<@formGroup labelFor='password_minimum_length' labelKey='#i18n{mylutece.message.password.labelMinimumPasswordLength}' mandatory=true>
+				<@input type='text' name='password_minimum_length' value='${password_minimum_length!}' />
+			</@formGroup>
+			<#if use_advanced_security_parameters>
+				<@formGroup labelKey='#i18n{mylutece.message.password.labelPasswordFormat}'>
+					<@checkBox labelFor='password_format_upper_lower_case' labelKey='#i18n{mylutece.message.password.labelPasswordFormatUpperLowerCase}' name='password_format_upper_lower_case' id='password_format_upper_lower_case' value='true' checked=(password_format_upper_lower_case?? && password_format_upper_lower_case) />
+					<@checkBox labelFor='password_format_numero' labelKey='#i18n{mylutece.message.password.labelPasswordFormatNumero}' name='password_format_numero' id='password_format_numero' value='true' checked=(password_format_numero?? && password_format_numero) />
+					<@checkBox labelFor='password_format_special_characters' labelKey='#i18n{mylutece.message.password.labelPasswordFormatSpecialCharacters}' name='password_format_special_characters' id='password_format_special_characters' value='true' checked=(password_format_special_characters?? && password_format_special_characters) />
+				</@formGroup>
+				<@formGroup labelFor='password_duration' labelKey='#i18n{mylutece.message.password.labelPasswordDuration}'>
+					<@input type='text' name='password_duration' value='${password_duration!}' />
+				</@formGroup>
+				<@formGroup>
+					<@checkBox labelFor='notify_user_password_expired' labelKey='#i18n{mylutece.manage_advanced_parameters.labelNotifyUserPasswordExpired}' name='notify_user_password_expired' id='notify_user_password_expired' value='true' checked=(notify_user_password_expired?? && notify_user_password_expired) />
+				</@formGroup>
+			</#if>
+			<@formGroup>
+				<@checkBox labelFor='force_change_password_reinit' labelKey='#i18n{mylutece.message.password.labelForceChangePasswordReinit}' name='force_change_password_reinit' id='force_change_password_reinit' value='true' checked=(force_change_password_reinit?? && force_change_password_reinit) />
+			</@formGroup>
+			<#if use_advanced_security_parameters>
+				<@formGroup labelFor='password_history_size' labelKey='#i18n{mylutece.message.password.labelPasswordHistorySize}'>
+					<@input type='text' name='password_history_size' value='${password_history_size!}' />
+				</@formGroup>
+				<@formGroup labelFor='maximum_number_password_change' labelKey='#i18n{mylutece.message.password.labelMaxNumberPasswordChange}'>
+					<@input type='text' name='maximum_number_password_change' value='${maximum_number_password_change!}' />
+				</@formGroup>
+				<@formGroup labelFor='tsw_size_password_change' labelKey='#i18n{mylutece.message.password.labelPasswordChangeTSWSize}'>
+					<@input type='text' name='tsw_size_password_change' value='${tsw_size_password_change!}' />
+				</@formGroup>
+			</#if>
+			<@formGroup labelFor='access_failures_max' labelKey='#i18n{mylutece.manage_advanced_parameters.labelAccesFailuresMax}'>
+				<@input type='text' name='access_failures_max' value='${access_failures_max!}' />
+			</@formGroup>
+			<#if is_plugin_jcatpcha_enable>
+				<@formGroup labelFor='access_failures_captcha'  labelKey='#i18n{mylutece.manage_advanced_parameters.labelAccesFailuresCaptcha}'>
+					<@input type='text' name='access_failures_captcha' value='${access_failures_captcha!}' />
+				</@formGroup>
+			</#if>
+			<@formGroup labelFor='access_failures_interval' labelKey='#i18n{mylutece.manage_advanced_parameters.labelAccesFailuresInterval}'>
+				<@input type='text' name='access_failures_interval' value='${access_failures_interval!}' />
+			</@formGroup>
+			<@formGroup>
+				<@checkBox labelFor='enable_unblock_ip' labelKey='#i18n{mylutece.manage_advanced_parameters.labelEnableUnblockIp}' name='enable_unblock_ip' id='enable_unblock_ip' value='true' checked=(enable_unblock_ip?? && enable_unblock_ip) />
+			</@formGroup>
+			<@formGroup labelFor='account_life_time' labelKey='#i18n{mylutece.manage_advanced_parameters.labelAccountLifeTime}'>
+				<@input type='text' name='account_life_time' value='${account_life_time!}' />
+			</@formGroup>
+			<@formGroup labelFor='time_before_alert_account' labelKey='#i18n{mylutece.manage_advanced_parameters.labelTimeBeforeAlert}'>
+				<@input type='text' name='time_before_alert_account' value='${time_before_alert_account!}' />
+			</@formGroup>
+			<@formGroup labelFor='nb_alert_account' labelKey='#i18n{mylutece.manage_advanced_parameters.labelNbAlert}'>
+				<@input type='text' name='nb_alert_account' value='${nb_alert_account!}' />
+			</@formGroup>
+			<@formGroup labelFor='time_between_alerts_account' labelKey='#i18n{mylutece.manage_advanced_parameters.labelTimeBetweenAlerts}'>
+				<@input type='text' name='time_between_alerts_account' value='${time_between_alerts_account!}' />
+			</@formGroup>
+			<@formGroup>
+				<@button type='submit' title='#i18n{module.mylutece.database.manage_advanced_parameters.buttonModify}' buttonIcon='check' />
+			</@formGroup>
+		</@fieldSet>
+	</@tform>
+	<@tform method='post' action='jsp/admin/plugins/mylutece/modules/database/ModifyAccountLifeTimeEmails.jsp'>
+		<@fieldSet legend='#i18n{mylutece.accountLifeTime.labelLifeTimeNotifications}'>
+			<@formGroup labelFor='email_type' labelKey='#i18n{mylutece.accountLifeTime.labelSelectEmail}'>
+				<@select name='email_type'>
+					<option value="first" selected="selected" >#i18n{mylutece.accountLifeTime.labelFirstEmail}</option>
+					<option value="other" >#i18n{mylutece.accountLifeTime.labelOtherEmail}</option>
+					<option value="expired" >#i18n{mylutece.accountLifeTime.labelAccountDeactivatedEmail}</option>
+					<option value="reactivated" >#i18n{mylutece.accountLifeTime.labelAccountUpdatedEmail}</option>
+					<option value="ip_blocked" >#i18n{mylutece.ip.labelIpBlocked}</option>
+					<option value="password_expired" >#i18n{mylutece.accountLifeTime.labelPasswordExpired}</option>
+					<option value="lost_password" >#i18n{mylutece.accountLifeTime.labelLostPasswordMail}</option>
+				</@select>
+			</@formGroup>
+			<@formGroup>
+				<@button type='submit' title='#i18n{mylutece.accountLifeTime.labelEditEmail}' buttonIcon='envelope' />
+			</@formGroup>
+		</@fieldSet>
+	</@tform>
+</#macro>

@@ -1,0 +1,126 @@
+<@row>
+	<@columns>
+		<@box>
+			<@boxHeader title='#i18n{module.mylutece.database.manage_users.tableTitle}'>
+				<#if permission_advanced_parameter?? && permission_advanced_parameter>
+				<@tform type='inline' method='post' action='jsp/admin/plugins/mylutece/modules/database/ManageAdvancedParameters.jsp'>
+					<@button type='submit' title='#i18n{module.mylutece.database.manage_users.buttonLabelManageAdvancedParameters}' hideTitle=['xs','sm','md','lg'] buttonIcon='cog' size='sm' />
+				</@tform>
+				</#if>
+				<#if permission_advanced_parameter?? && permission_advanced_parameter>
+				<@tform type='inline' method='post' action='jsp/admin/plugins/mylutece/modules/database/ExportUsers.jsp'>
+					<@button type='submit' title='#i18n{module.mylutece.database.manage_users.buttonLabelImportExportUsers}' hideTitle=['xs','sm','md','lg'] buttonIcon='hdd' size='sm' />
+				</@tform>
+				</#if>
+				<@button type='button' title='#i18n{module.mylutece.database.user_filter.buttonSearch}' buttonIcon='search' hideTitle=['xs','sm','md','lg'] size='sm' style='card-control collapse' buttonTargetId='#searchForm' />
+				<@tform type='inline' method='post' action='jsp/admin/plugins/mylutece/modules/database/CreateUser.jsp'>
+					<@input type='hidden' name='plugin_name' value='${plugin_name}' />
+					<@button type='submit' title='#i18n{module.mylutece.database.manage_users.btnCreateUser}' hideTitle=['xs','sm','md','lg'] buttonIcon='plus' size='sm' />
+				</@tform>
+			</@boxHeader>
+			<@boxBody>
+				<@tform method='post' name='search_users' id='searchForm' action='jsp/admin/plugins/mylutece/modules/database/ManageUsers.jsp'>
+					<@formGroup labelFor='login' labelKey='#i18n{module.mylutece.database.user_filter.labelLogin}'>
+						<@input type='text' name='search_login' id='login' value='${search_user_filter.login}' maxlength=100 />
+					</@formGroup>
+					<@formGroup labelFor='lastName' labelKey='#i18n{module.mylutece.database.user_filter.labelLastName}'>
+						<@input type='text' name='search_last_name' id='lastName' value='${search_user_filter.lastName}' maxlength=100 />
+					</@formGroup>
+					<@formGroup labelFor='firstName' labelKey='#i18n{module.mylutece.database.user_filter.labelFirstName}'>
+						<@input type='text' name='search_first_name' id='firstName' value='${search_user_filter.firstName}' maxlength=100 />
+					</@formGroup>
+					<@formGroup labelFor='email' labelKey='#i18n{module.mylutece.database.user_filter.labelEmail}'>
+						<@input type='text' name='search_email' id='email' value='${search_user_filter.email}' maxlength=100 />
+					</@formGroup>
+					<#list attributes_list as attribute>
+						<#if attribute.shownInSearch>
+							${attribute.getHtmlFormSearchAttribute( search_mylutece_user_field_filter, locale )}
+						</#if>
+					</#list>
+					<@formGroup>
+						<@button type='submit' name='search_is_search' title='#i18n{module.mylutece.database.user_filter.buttonSearch}' buttonIcon='search' />
+					</@formGroup>
+				</@tform>
+				
+				<@tform align='right' method='post' action='jsp/admin/plugins/mylutece/modules/database/ManageUsers.jsp'>
+					<@paginationAdmin paginator=paginator combo=1 form=0 />
+					<#if search_is_search >
+						<@input type='hidden' name='search_is_search' value='true' />
+						<@input type='hidden' name='search_login' value='${search_user_filter.login}' />
+						<@input type='hidden' name='search_last_name' value='${search_user_filter.lastName}' />
+						<@input type='hidden' name='search_first_name' value='${search_user_filter.firstName}' />
+						<@input type='hidden' name='search_email' value='${search_user_filter.email}' />
+						<#if search_mylutece_user_field_filter.listUserFields?exists && search_mylutece_user_field_filter.listUserFields?has_content>
+							<#list search_mylutece_user_field_filter.listUserFields as user_field>
+								<#if user_field.attribute.attributeType.className == "fr.paris.lutece.plugins.mylutece.business.attribute.AttributeComboBox">
+									<@input type='hidden' name='attribute_${user_field.attribute.idAttribute}' value='${user_field.attributeField.idField}' />
+								<#else>
+									<@input type='hidden' name='attribute_${user_field.attribute.idAttribute}' value='${user_field.value}' />
+								</#if>
+							</#list>
+						</#if>
+					</#if>
+				</@tform>
+				<@table>
+					<@tr>
+						<@th>
+							#i18n{module.mylutece.database.manage_users.colLogin}
+							<@sort jsp_url="jsp/admin/plugins/mylutece/modules/database/ManageUsers.jsp" attribute="login${sort_search_attribute}" />
+						</@th>
+						<@th>
+							#i18n{module.mylutece.database.manage_users.colLastName}
+							<@sort jsp_url="jsp/admin/plugins/mylutece/modules/database/ManageUsers.jsp" attribute="lastName${sort_search_attribute}" />
+						</@th>
+						<@th>
+							#i18n{module.mylutece.database.manage_users.colFirstName}
+							<@sort jsp_url="jsp/admin/plugins/mylutece/modules/database/ManageUsers.jsp" attribute="firstName${sort_search_attribute}" />
+						</@th>
+						<@th>
+							#i18n{module.mylutece.database.manage_users.colEmail}
+							<@sort jsp_url="jsp/admin/plugins/mylutece/modules/database/ManageUsers.jsp" attribute="email${sort_search_attribute}" />
+						</@th>
+						<@th>#i18n{module.mylutece.database.manage_users.colActions}</@th>
+					</@tr>
+					<#list user_list as user >
+					<@tr>
+						<@td>
+							<#if user.status = 10>
+								#i18n{mylutece.anonymize_user.statusLabelAnonymize}
+							<#else>
+								${user.login}
+							</#if>
+						</@td>
+						<@td><#if user.status = 10>#i18n{mylutece.anonymize_user.statusLabelAnonymize}<#else>${user.lastName}</#if></@td>
+						<@td><#if user.status = 10>#i18n{mylutece.anonymize_user.statusLabelAnonymize}<#else>${user.firstName}</#if></@td>
+						<@td><#if user.status = 10>#i18n{mylutece.anonymize_user.statusLabelAnonymize}<#else>${user.email}</#if></@td>
+						<@td>
+							<#if user.status != 10>
+							<@aButton href='jsp/admin/plugins/mylutece/modules/database/ModifyUser.jsp?plugin_name=${plugin_name}&mylutece_database_user_id=${user.userId}' title='#i18n{module.mylutece.database.manage_users.linkModifyUser}' hideTitle=['all'] buttonIcon='edit' size='sm' />
+							</#if>
+							<#if external_application_exist >
+							<@aButton href='jsp/admin/plugins/mylutece/ManageExternalApplicationUser.jsp?mylutece_user_id=${user.login}' title='#i18n{module.mylutece.database.manage_users.linkManageExternalApplication}' hideTitle=['all'] buttonIcon='wrench' size='sm' />
+							</#if>
+							<#if user.status = 10>
+								<@aButton href='javascript:return false;' title='#i18n{mylutece.anonymize_user.statusLabelAnonymize}' hideTitle=['all'] buttonIcon='check' size='sm' />
+							<#else>
+								<#if user.isActive(  )>
+									<@aButton href='jsp/admin/plugins/mylutece/modules/database/DoDeactivateUser.jsp?plugin_name=${plugin_name}&mylutece_database_user_id=${user.userId}' title='#i18n{module.mylutece.database.manage_users.linkDeactivateUser}' hideTitle=['all'] buttonIcon='user-times' color='warning' size='sm' />
+								<#else>
+									<@aButton href='jsp/admin/plugins/mylutece/modules/database/DoActivateUser.jsp?plugin_name=${plugin_name}&mylutece_database_user_id=${user.userId}' title='#i18n{module.mylutece.database.manage_users.linkActivateUser}' hideTitle=['all'] buttonIcon='user-check' color='success' size='sm' />
+								</#if>
+							</#if>
+							<@aButton href='jsp/admin/plugins/mylutece/modules/database/ManageGroupsUser.jsp?plugin_name=${plugin_name}&mylutece_database_user_id=${user.userId}' title='#i18n{module.mylutece.database.manage_users.linkManageGroups}' hideTitle=['all'] buttonIcon='users' size='sm' />
+							<@aButton href='jsp/admin/plugins/mylutece/modules/database/ManageRolesUser.jsp?plugin_name=${plugin_name}&mylutece_database_user_id=${user.userId}' title='#i18n{module.mylutece.database.manage_users.linkManageRoles}' hideTitle=['all'] buttonIcon='user-tag' size='sm' />
+							<#if user.status != 10>
+								<@aButton href='jsp/admin/plugins/mylutece/modules/database/GetAnonymizeUser.jsp?plugin_name=${plugin_name}&user_id=${user.userId}' title='#i18n{mylutece.anonymize_user.labelAnonymizeUser}' hideTitle=['all'] buttonIcon='user-secret' size='sm' />
+							</#if>
+							<@aButton href='jsp/admin/plugins/mylutece/modules/database/RemoveUser.jsp?plugin_name=${plugin_name}&mylutece_database_user_id=${user.userId}' title='#i18n{module.mylutece.database.manage_users.linkRemoveUser}' hideTitle=['all'] buttonIcon='trash' color='danger' size='sm' />
+						</@td>
+					</@tr>
+					</#list>
+				</@table>
+				<@paginationAdmin paginator=paginator />
+			</@boxBody>
+		</@box>
+	</@columns>
+</@row>

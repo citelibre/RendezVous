@@ -1,0 +1,220 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-4 offset-md-4">
+        <#if error_code?has_content >
+            <#assign typeClass = " is-invalid" />
+            <#if error_code = "error_mandatory_fields">
+            <div class="alert alert-danger" role="alert">
+                <div class="d-flex">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
+                    </div>
+                    <div class="ms-2">#i18n{module.mylutece.database.message.account.errorMandatoryFields}</div>
+                </div>
+            </div>
+            <#if !(user.login?has_content)>
+            <#assign classLogin = typeClass />
+            </#if>
+            <#if !(user.password?has_content)>
+            <#assign classPassword = typeClass />
+            </#if>
+            <#if !(user.confirmation?has_content)>
+            <#assign classConfirmation = typeClass />
+            </#if>
+            <#if !(user.lastName?has_content)>
+            <#assign classLastName = typeClass />
+            </#if>
+            <#if !(user.firstName?has_content)>
+            <#assign classFirstName = typeClass />
+            </#if>
+            <#if !(user.email?has_content)>
+            <#assign classEmail = typeClass />
+            </#if>
+            </#if>
+            <#if error_code = "error_confirmation_password">
+            <div class="alert alert-danger" role="alert">
+                <div class="d-flex">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
+                    </div>
+                    <div class="ms-2">#i18n{module.mylutece.database.message.account.errorConfirmation}</div>
+                </div>
+            </div>
+            <#assign classPassword = typeClass />
+            <#assign classConfirmation = typeClass />
+            </#if>
+            <#if error_code = "error_login_already_exists">
+            <div class="alert alert-danger" role="alert">
+                <div class="d-flex">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
+                    </div>
+                    <div class="ms-2">#i18n{module.mylutece.database.message.create_account.errorLogin}</div>
+                </div>
+            </div>
+            <#assign classLogin = typeClass />
+            </#if>
+            <#if error_code = "error_syntax_email">
+            <div class="alert alert-danger" role="alert">
+                <div class="d-flex">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
+                    </div>
+                    <div class="ms-2">#i18n{module.mylutece.database.message.account.errorBadEmail}</div>
+                </div>
+            </div>
+            <#assign classEmail = typeClass />
+            </#if>
+            <#if error_code = "error_sending_email">
+            <div class="alert alert-danger" role="alert">
+                <div class="d-flex">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
+                    </div>
+                    <div class="ms-2">#i18n{module.mylutece.database.message.account.errorSendingEmail}</div>
+                </div>
+            </div>
+            </#if>
+            <#if error_code = "error_captcha">
+            <div class="alert alert-danger" role="alert">
+                <div class="d-flex">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
+                    </div>
+                    <div class="ms-2">#i18n{module.mylutece.database.message.create_account.errorCaptcha}</div>
+                </div>
+            </div>
+            </#if>
+            <#if error_code = "password_minimum_length">
+            <div class="alert alert-danger" role="alert">
+                <div class="d-flex">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
+                    </div>
+                    <div class="ms-2">${password_minimum_length!}</div>
+                </div>
+            </div>
+            <#assign classPassword = typeClass />
+            <#assign classConfirmation = typeClass />
+            </#if>
+            <#if error_code = "password_format">
+                <div class="alert alert-danger" role="alert">
+                    <div class="d-flex">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
+                        </div>
+                        <div class="ms-2">${password_format_message!}</div>
+                    </div>
+                </div>
+                <#assign classPassword = typeClass />
+                <#assign classConfirmation = typeClass />
+            </#if>
+        </#if>
+        <#if action_successful?has_content>
+            <h2>#i18n{module.mylutece.database.xpage.create_account.pageTitle}</h2>
+            <form role="form" id="createAccount" name="createAccount" action="${action_successful}" method="post">
+                <p class="fs-3"><span class="ti ti-circle-check text-success"></span> #i18n{module.mylutece.database.message.create_account.success}</p>
+                <button class="btn btn-primary" id="button-return" type="submit" name="BtnBack" value="#i18n{module.mylutece.database.xpage.account.btnBack}">#i18n{module.mylutece.database.xpage.account.btnBack}</button>
+            </form>
+        <#elseif action_validation_email?has_content>
+            <h2>#i18n{module.mylutece.database.xpage.create_account.pageTitle}</h2>
+            <form id="createAccount" name="createAccount" action="${action_validation_email}" method="post">
+                <p class="fs-3"><span class="ti ti-alert-circle"></span>#i18n{module.mylutece.database.message.create_account.validation.email}</p>
+                <button class="btn btn-primary" id="button-return" type="submit" name="BtnBack" value="#i18n{module.mylutece.database.xpage.account.btnBack}">#i18n{module.mylutece.database.xpage.account.btnBack}</button>
+            </form>
+        <#elseif action_validation_success?has_content>
+            <h2>#i18n{module.mylutece.database.xpage.create_account.pageTitle}</h2>
+            <form id="createAccount" name="createAccount" action="${action_validation_success}" method="post">
+                <p class="fs-3"><span class="ti ti-circle-check text-success"></span>#i18n{module.mylutece.database.message.create_account.validation.success}</p>
+                <button class="btn btn-primary" id="button-return" type="submit" name="BtnBack" value="#i18n{module.mylutece.database.xpage.account.btnBack}" />#i18n{module.mylutece.database.xpage.account.btnBack}</button>
+            </form>
+        <#else>
+            <h2>#i18n{module.mylutece.database.xpage.create_account.pageTitle}</h2>
+            <form  id="createAccount" name="createAccount" action="jsp/site/plugins/mylutece/modules/database/DoCreateAccount.jsp" method="post">
+            <input type="hidden" name="plugin_name" value="${plugin_name}">
+            <#if show_input_login>
+            <div class="form-floating">
+                <input class="form-control${classLogin?if_exists}"  type="text" name="login" maxlength="100" value="${(user.login)?if_exists}" />
+                <label for="login">#i18n{module.mylutece.database.xpage.create_account.login} *</label>
+            </div>
+            </#if>
+            <div class="form-floating">
+                <input class="form-control${classEmail?if_exists}" type="text" name="email" maxlength="100" value="${(user.email)?if_exists}" />
+                <label for="email">#i18n{module.mylutece.database.xpage.create_account.eMail} *</label>
+            </div>
+            <div class="form-floating">
+                <div class="input-group">
+                    <input class="form-control${classPassword?if_exists}" type="password" id="password" name="password" maxlength="100" value="" />
+                    <label for="password">#i18n{module.mylutece.database.xpage.create_account.password} *</label>
+                    <span class="input-group-text">
+                    <a href="#" class="btn btn-light" id="lutece-password-toggler" title="Afficher / masquer le mot de passe">
+                        <i class="ti ti-eye" aria-hidden="true"></i>
+                    </a>
+                    </span>
+                    <span class="input-group-text">
+                        <a href="#" class="btn btn-light" title="Générer un mot de passe" id="generate_password">
+                            <i class="ti ti-settings me-1" aria-hidden="true"></i>
+                            <span class="d-none">Générer un mot de passe</span>
+                        </a>
+                    </span>
+                </div>
+            </div>
+            <div class="form-row py-3">
+     
+                <div id="status">#i18n{portal.users.create_user.passwordComplexity}</div>
+                <div class="progress">
+                    <div id="progress_bar_first_password" class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 0%;" aria-valuenow="0">0%</div>
+                </div>
+            </div>
+            <div class="form-floating">
+                <input class="form-control${classConfirmation?if_exists}" type="password" id="confirmation" name="confirmation_password" maxlength="100" value="" />
+                <label for="confirmation">#i18n{module.mylutece.database.xpage.create_account.confirmation} *</label>
+            </div>
+            <div class="form-floating">
+                <input class="form-control ${classFirstName?if_exists}" type="text" name="first_name" maxlength="100" value="${(user.firstName)?if_exists}" />
+                <label for="first_name">#i18n{module.mylutece.database.xpage.create_account.firstName} *</label>
+            </div>
+            <div class="form-floating">
+                <input class="form-control${classLastName?if_exists}" type="text" name="last_name" maxlength="100" value="${(user.lastName)?if_exists}" />
+                <label for="last_name">#i18n{module.mylutece.database.xpage.create_account.lastName} *</label>
+            </div>
+            <#if jcaptcha?exists>
+            <div class="form-row">
+                ${jcaptcha}
+            </div>
+            </#if>				
+            <div class="form-row pt-3">
+                <button class="btn btn-primary" id="button-subscribe" type="submit" name="createAccountBtn" >
+                   <span class="ti ti-user-check"></span> #i18n{module.mylutece.database.xpage.create_account.btnCreateAccount}
+                </button>
+                <button class="btn btn-secondary" id="button-return" type="button" name="back" onclick="javascript:history.go(-1)" >
+                    <span class="ti ti-circle-x"></span> #i18n{module.mylutece.database.xpage.account.btnBack}
+                </button>
+            </div>
+            </form>
+        </#if>
+        </div>
+    </div>
+</div>
+<script type="module">
+import { LutecePassword } from './themes/shared/modules/lutecePassword.js';
+const password = new LutecePassword();
+const generator = document.getElementById('generate_password');
+const newPassword = document.getElementById('password');
+const confirmNewPassword = document.getElementById('confirmation');
+const progressBar = document.getElementById('progress_bar_first_password');
+
+generator.addEventListener('click', (e) => {
+    e.preventDefault()
+    const newPassValue = password.generatePassword();
+    newPassword.value = newPassValue
+    confirmation.value = newPassValue
+    newPassword.dispatchEvent(new Event('input'));
+});
+
+password.passwordInput = '#password'
+password.progressBar = '#progress_bar_first_password'
+password.initPassToggler( );
+password.getComplexity( );
+
+</script>

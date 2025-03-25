@@ -1,0 +1,63 @@
+<@row>
+	<@columns>
+		<@box>
+			<@boxHeader title='#i18n{module.mylutece.database.manage_groups.boxTitle}'>
+				<@tform type='inline' action='jsp/admin/plugins/mylutece/modules/database/CreateGroup.jsp'>
+					<@fieldSet legend='#i18n{module.mylutece.database.manage_groups.boxTitle}' hideLegend=['all']>
+						<@button type='button' title='#i18n{module.mylutece.database.group_filter.buttonSearch}' buttonIcon='search'  hideTitle=['xs','sm'] style='card-control collapse' buttonTargetId='#search_groups' size='sm' />
+						<@button type='submit' title='#i18n{module.mylutece.database.manage_groups.buttonLabelCreate}' buttonIcon='plus-square' hideTitle=['xs','sm'] size='sm' />
+					</@fieldSet>
+				</@tform>
+			</@boxHeader>
+			<@boxBody>
+				<@tform method='post' name='search_groups' id='search_groups' action='jsp/admin/plugins/mylutece/modules/database/ManageGroups.jsp'>
+					<@formGroup labelFor='key' labelKey='#i18n{module.mylutece.database.group_filter.labelKey}'>
+						<@input type='text' id='key' name='search_key' value='${search_group_filter.key}' maxlength=50 />
+					</@formGroup>
+					<@formGroup labelFor='description' labelKey='#i18n{module.mylutece.database.group_filter.labelDescription}'>
+						<@input type='text' id='description' name='search_description' value='${search_group_filter.description}' maxlength=250 />
+					</@formGroup>
+					<@formGroup>
+						<@button type='submit' name='search_is_search' title='#i18n{module.mylutece.database.group_filter.buttonSearch}' buttonIcon='search' />
+					</@formGroup>
+				</@tform>
+
+				<@tform method='post' action='jsp/admin/plugins/mylutece/modules/database/ManageGroups.jsp'>
+					<@paginationAdmin paginator=paginator combo=1 form=0 />
+					<#if search_is_search >
+						<@input type='hidden' name='search_is_search' value='true' />
+						<@input type='hidden' name='search_key' value='${search_group_filter.key}' />
+						<@input type='hidden' name='search_description' value='${search_group_filter.description}' />
+					 </#if>
+				</@tform>
+				
+				<@table>
+					<@tr>
+						<@th>
+							#i18n{module.mylutece.database.manage_groups.columnTitleId}
+							<@sort jsp_url="jsp/admin/plugins/mylutece/modules/database/ManageGroups.jsp" attribute="groupKey${sort_search_attribute}" />
+						</@th>
+						<@th>
+							#i18n{module.mylutece.database.manage_groups.columnTitleDescription}
+							<@sort jsp_url="jsp/admin/plugins/mylutece/modules/database/ManageGroups.jsp" attribute="groupDescription${sort_search_attribute}" />
+						</@th>
+						<@th>#i18n{module.mylutece.database.manage_groups.columnTitleActions}</@th>
+					</@tr>
+					<#list groups_list as group >
+						<@tr>
+							<@td>${group.groupKey}</@td>
+							<@td>${group.groupDescription}</@td>
+							<@td>
+								<@aButton href='jsp/admin/plugins/mylutece/modules/database/ModifyGroup.jsp?group_key=${group.groupKey}' title='' buttonIcon='edit' hideTitle=['all'] size='sm' />
+								<@aButton href='jsp/admin/plugins/mylutece/modules/database/ManageUsersGroup.jsp?group_key=${group.groupKey}' title='#i18n{module.mylutece.database.manage_groups.linkLabelManageUsers}' hideTitle=['all'] buttonIcon='users' size='sm' />
+								<@aButton href='jsp/admin/plugins/mylutece/modules/database/ManageRolesGroup.jsp?group_key=${group.groupKey}' title='#i18n{module.mylutece.database.manage_groups.linkLabelManageRoles}' hideTitle=['all'] buttonIcon='user-tag' size='sm' />
+								<@aButton href='jsp/admin/plugins/mylutece/modules/database/RemoveGroup.jsp?group_key=${group.groupKey}' title='#i18n{module.mylutece.database.manage_groups.linkLabelRemove}' hideTitle=['all'] buttonIcon='trash' color='danger' size='sm' />
+							</@td>
+						</@tr>
+					</#list>
+				</@table>
+				<@paginationAdmin paginator=paginator />
+			</@boxBody>
+		</@box>
+	</@columns>
+</@row>

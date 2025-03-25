@@ -57,6 +57,8 @@ services:
       - "8443:8443"
     depends_on:
       - db
+    # profiles:
+    #   - keycloak
 
   citelibre:
     image: ${REPO}/ihm

@@ -1,0 +1,59 @@
+<@row>
+	<@columns>
+	    <@tabs>
+			<@tabList>
+				<@tabLink active=true href='#' title='#i18n{module.mylutece.database.modify_user.labelIdentity}' />
+				<@tabLink href='jsp/admin/plugins/mylutece/modules/database/ManageGroupsUser.jsp?plugin_name=${plugin_name}&mylutece_database_user_id=${user.userId}' title='#i18n{module.mylutece.database.manage_users.linkManageGroups}' />
+				<@tabLink  href='jsp/admin/plugins/mylutece/modules/database/ManageRolesUser.jsp?plugin_name=${plugin_name}&mylutece_database_user_id=${user.userId}' title='#i18n{module.mylutece.database.manage_users.linkManageRoles}' />
+				<#if external_application_exist >
+					<@tabLink href='jsp/admin/plugins/mylutece/ManageExternalApplicationUser.jsp?mylutece_user_id=${user.login}' title='#i18n{module.mylutece.database.manage_users.linkManageExternalApplication}' />
+				</#if>
+			</@tabList>
+
+			<@tabContent>
+				<@item_navigation item_navigator=item_navigator align='right' />
+				<#if user.status = 10>
+					<@alert color='warning'>
+						#i18n{module.mylutece.database.modify_user.titleUser} #i18n{mylutece.anonymize_user.statusLabelAnonymize}
+					</@alert>
+				<#else>
+				<@tform method='post' name='create_user' action='jsp/admin/plugins/mylutece/modules/database/DoModifyUser.jsp'>
+					<@input type='hidden' name='plugin_name' value='${plugin_name}' />
+					<@input type='hidden' name='mylutece_database_user_id' value='${user.userId}' />
+					<fieldset>
+						<legend>
+							<#if user.status = 10>#i18n{module.mylutece.database.modify_user.titleUser}<#else>${user.lastName} ${user.firstName}</#if>
+						</legend>
+						<#if show_input_login>
+						<@formGroup labelFor='login' labelKey='#i18n{module.mylutece.database.modify_user.login}' mandatory=true>
+							<@input type='text' name='login' maxlength=100 inputSize=35 value='${user.login}' />
+						</@formGroup>
+						</#if>
+						<@formGroup labelFor='email' labelKey='#i18n{module.mylutece.database.modify_user.eMail}' mandatory=true>
+							<@input type='text' name='email' maxlength=100 inputSize=35 value='${user.email}' />
+						</@formGroup>
+						<@formGroup labelFor='last_name' labelKey='#i18n{module.mylutece.database.modify_user.lastName}' mandatory=true>
+							<@input type='text' name='last_name' maxlength=100 inputSize=35 value='${user.lastName}' />
+						</@formGroup>
+						<@formGroup labelFor='first_name' labelKey='#i18n{module.mylutece.database.modify_user.firstName}' mandatory=true>
+							<@input type='text' name='first_name' maxlength=100 inputSize=35 value='${user.firstName}' />
+						</@formGroup>
+					</fieldset>
+					<#if attributes_list?has_content>
+						<@fieldSet legend='#i18n{module.mylutece.database.modify_user.labelComplementaryAttributes}'>
+							<#list attributes_list as attribute>
+								<#assign idAttribute = "" + attribute.idAttribute>
+									${attribute.getHtmlFormAttribute( locale, map_list_attribute_default_values[idAttribute] )}
+							</#list>
+						</@fieldSet>
+					</#if>
+					<@formGroup>
+						<@button type='submit' title='#i18n{module.mylutece.database.modify_user.btnModify}' buttonIcon='check' />
+						<@button type='submit' params='onclick="javascript:window.history.back();"' title='#i18n{portal.admin.message.buttonCancel}' buttonIcon='times' color='default' />
+					</@formGroup>
+				</@tform>
+				</#if>
+			</@tabContent>
+		</@tabs>
+	</@columns>
+</@row>
