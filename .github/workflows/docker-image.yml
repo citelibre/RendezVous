@@ -35,9 +35,9 @@ jobs:
 
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Set up maven
-      uses: s4u/setup-maven-action@v1.2.1
+      uses: s4u/setup-maven-action@v1.18.0
       with:
         java-version: '11'
         maven-version: '3.6.3'
@@ -60,7 +60,7 @@ jobs:
       run: docker save -o citelibre-rendezvous.tar citelibre/rendezvous:ihm-$VERSION
       
     - name: Run Trivy vulnerability scanner in tarball mode of rendez vous image
-      uses: aquasecurity/trivy-action@0.20.0
+      uses: aquasecurity/trivy-action@0.30.0
       with:
         input: /github/workspace/citelibre-rendezvous.tar
         severity: 'CRITICAL,HIGH'
