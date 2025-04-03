@@ -57,7 +57,7 @@ jobs:
       run: docker build  citelibre-rendezvous -t citelibre/rendezvous:ihm-$VERSION
     
     - name: Save rendezvous
-      run: docker save -o citelibre-rendezvous.tar citelibre/rendezvous:ihm-$VERSION
+      run: docker save -o /github/workspace/citelibre-rendezvous.tar citelibre/rendezvous:ihm-$VERSION
       
     - name: Run Trivy vulnerability scanner in tarball mode of rendez vous image
       uses: aquasecurity/trivy-action@0.30.0
