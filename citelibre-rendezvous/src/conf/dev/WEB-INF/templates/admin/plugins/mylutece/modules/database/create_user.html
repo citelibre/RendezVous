@@ -1,0 +1,61 @@
+<@row>
+	<@columns>
+		<@box>
+			<@boxHeader title='#i18n{module.mylutece.database.create_user.tableTitle}' />
+			<@boxBody>
+				<@tform method='post' name='create_user' action='jsp/admin/plugins/mylutece/modules/database/DoCreateUser.jsp'>
+					<@input type='hidden' name='plugin_name' value='${plugin_name}' />
+					<@fieldSet legend='#i18n{module.mylutece.database.create_user.labelIdentity}'>
+						<#if show_input_login>
+						<@formGroup labelFor='login' labelKey='#i18n{module.mylutece.database.create_user.login}' mandatory=true>
+							<@input type='text' name='login' maxlength=100 inputSize=35 value='' />
+						</@formGroup>
+						</#if>
+						<@formGroup labelFor='email' labelKey='#i18n{module.mylutece.database.create_user.eMail}' mandatory=true>
+							<@input type='text' name='email' maxlength=100 inputSize=35 value='' />
+						</@formGroup>
+						<@formGroup labelFor='first_password' labelKey='#i18n{module.mylutece.database.create_user.firstPassword}' mandatory=true>
+							<@input type='password' id='first_password' name='first_password' maxlength=100 inputSize=35 value='' />
+						</@formGroup>
+						<@formGroup labelFor='second_password' labelKey='#i18n{module.mylutece.database.create_user.secondPassword}' mandatory=true>
+							<@input type='password' name='second_password' maxlength=100 inputSize=35 value='' />
+						</@formGroup>
+						<@formGroup labelFor='first_password' labelKey='#i18n{portal.users.create_user.passwordComplexity}'>
+							<@progressBar id='first_password' />
+						</@formGroup>
+						<@formGroup labelFor='last_name' labelKey='#i18n{module.mylutece.database.create_user.lastName}' mandatory=true>
+							<@input type='text' name='last_name' maxlength=100 inputSize=35 value='' />
+						</@formGroup>
+						<@formGroup labelFor='first_name' labelKey='#i18n{module.mylutece.database.create_user.firstName}' mandatory=true>
+							<@input type='text' name='first_name' maxlength=100 inputSize=35 value='' />
+						</@formGroup>
+					</@fieldSet>
+					<#if attributes_list?has_content>
+					<@fieldSet legend='#i18n{module.mylutece.database.create_user.labelComplementaryAttributes}'>
+						<#list attributes_list as attribute>
+							${attribute.getHtmlFormAttribute( locale )}
+						</#list>
+					</@fieldSet>
+					</#if>
+					<@formGroup>
+						<@button type='submit' title='#i18n{module.mylutece.database.create_user.btnCreate}' buttonIcon='check' />
+						<@button type='submit' name='cancel' title='#i18n{portal.admin.message.buttonCancel}' buttonIcon='times' cancel=true /> 
+					</@formGroup>
+				</@tform>
+			</@boxBody>
+		</@box>
+	</@columns>
+</@row>
+<script src="js/admin/jquery/plugins/jquery.complexify.js"></script>
+<script>
+$(document).ready(function(){	
+	$("#first_password").complexify({}, function (valid, complexity) {
+		if (!valid) {
+			$('#progressbar').css({'width':complexity + '%'}).removeClass('bg-success').addClass('bg-danger');
+		} else {
+			$('#progressbar').css({'width':complexity + '%'}).removeClass('bg-danger').addClass('bg-success');
+			}
+		$('#complexity').html(Math.round(complexity) + '%');
+	});
+});
+</script>

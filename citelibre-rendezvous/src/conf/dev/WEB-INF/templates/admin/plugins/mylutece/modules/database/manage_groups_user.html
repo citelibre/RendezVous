@@ -1,0 +1,59 @@
+<@row>
+	<@columns>
+	    <@tabs>
+			<@tabList>
+				<#if user.status != 10>
+					<@tabLink href='jsp/admin/plugins/mylutece/modules/database/ModifyUser.jsp?plugin_name=${plugin_name}&mylutece_database_user_id=${user.userId}' title='#i18n{module.mylutece.database.modify_user.labelIdentity}' />
+				</#if>
+				<@tabLink active=true href='#' title='#i18n{module.mylutece.database.manage_users.linkManageGroups}' />
+				<@tabLink href='jsp/admin/plugins/mylutece/modules/database/ManageRolesUser.jsp?plugin_name=${plugin_name}&mylutece_database_user_id=${user.userId}' title='#i18n{module.mylutece.database.manage_users.linkManageRoles}' />
+				<#if external_application_exist>
+					<@tabLink href='jsp/admin/plugins/mylutece/ManageExternalApplicationUser.jsp?mylutece_user_id=${user.login}' title='#i18n{module.mylutece.database.manage_users.linkManageExternalApplication}' />
+				</#if>
+			</@tabList>
+			<@tabContent>
+				<@item_navigation item_navigator=item_navigator align='right' />
+				<@tform method='post' action='jsp/admin/plugins/mylutece/modules/database/DoAssignGroupsUser.jsp'>
+					<@input type='hidden' name='mylutece_database_user_id' value='${user.userId}' />
+					<@input type='hidden' name='plugin_name' value='${plugin_name}' />
+					<fieldset>
+						<legend>
+						<#if user.status = 10>
+							#i18n{module.mylutece.database.manage_groups_user.titleUser} #i18n{mylutece.anonymize_user.statusLabelAnonymize}
+						<#else>
+							#i18n{module.mylutece.database.manage_groups_user.titleUser} ${user.lastName} ${user.firstName}
+						</#if>
+						</legend>
+						<@table>
+							<@tr>
+								<@th>#i18n{module.mylutece.database.manage_groups_user.colName}</@th>
+								<@th>#i18n{module.mylutece.database.manage_groups_user.colLabel}</@th>
+								<@th></@th>
+							</@tr>
+							<#list group_list as group >
+							<@tr>
+								<@td>${group.groupKey}</@td>
+								<@td>${group.groupDescription}</@td>
+								<@td>
+									<#assign checked = false /> 
+									<#list user_group_list as user_group >
+										<#if user_group.groupKey = group.groupKey >
+											<#assign checked = true />
+											<#break>
+										</#if>
+									</#list>
+									<@checkBox name='mylutece_database_group_key' id=group.groupKey?replace('\\s+','','r') value='${group.groupKey}' checked=checked />
+								</@td>
+							</@tr>
+							</#list>
+						</@table>
+						<@formGroup>
+							<@button type='submit' title='#i18n{module.mylutece.database.manage_groups_user.btnAssign}' buttonIcon='check' />
+							<@button type='button' params='onclick="javascript:window.history.back();"' title='#i18n{portal.admin.message.buttonCancel}' buttonIcon='times' color='default' />
+						</@formGroup>
+					</fieldset>
+				</@tform>
+			</@tabContent>
+		</@tabs>
+	</@columns>
+</@row>

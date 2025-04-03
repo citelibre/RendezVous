@@ -50,17 +50,37 @@ url_matomo_http=${URL_MATOMO_HTTP}
 url_matomo_https=${URL_MATOMO_HTTPS}
 url_keycloak=${URL_KEYCLOAK}
 
-sed -i "s/http:\/\/localhost:8080/$url_citelibre/g" ${tomcat}/webapps/${site_folder}/WEB-INF/conf/config.properties
-sed -i "s/https:\/\/localhost:8080/$url_citelibre_https/g" ${tomcat}/webapps/${site_folder}/WEB-INF/conf/config.properties
-sed -i "s/http%3A%2F%2Flocalhost/$url_citelibre_html/g" ${tomcat}/webapps/${site_folder}/WEB-INF/conf/override/plugins/mylutece.properties
-sed -i "s/http:\/\/localhost:8080/$url_citelibre/g" ${tomcat}/webapps/${site_folder}/WEB-INF/conf/override/plugins/workflow-notifygru_context.xml
+echo "Edit auth"
+keycloak_mode=${KEYCLOAK_MODE:-true}
 
-sed -i "s/http%3A%2F%2Flocalhost/$url_citelibre_html/g" ${tomcat}/webapps/${site_folder}/WEB-INF/conf/override/plugins/oauth2_context.xml
+if $keycloak_mode; then
+    echo "Keycloak mode"
+    mv /tmp/oauth2/override/plugins/* ${tomcat}/webapps/rendezvous/WEB-INF/conf/override/plugins/.
+    mv /tmp/oauth2/override/lutece.properties ${tomcat}/webapps/rendezvous/WEB-INF/conf/override/.
 
-sed -i "s/http:\/\/localhost:5601/$url_kibana/g" ${tomcat}/webapps/${site_folder}/WEB-INF/conf/override/plugins/kibana.properties
+    sed -i "s/http%3A%2F%2Flocalhost/$url_citelibre_html/g" ${tomcat}/webapps/rendezvous/WEB-INF/conf/override/plugins/oauth2_context.xml
+    sed -i "s/http:\/\/localhost:8081/$url_keycloak/g" ${tomcat}/webapps/rendezvous/WEB-INF/conf/override/plugins/mylutece.properties
+    sed -i "s/http:\/\/localhost:8081/$url_keycloak/g" ${tomcat}/webapps/rendezvous/WEB-INF/conf/override/plugins/oauth2_context.xml
+    sed -i "s/http:\/\/localhost:8081/$url_keycloak/g" ${tomcat}/webapps/rendezvous/WEB-INF/conf/override/plugins/mylutece-oauth2_context.xml
 
-sed -i "s/matomo.default.server.http.url=.*/matomo.default.server.http.url=$url_matomo_http/g" ${tomcat}/webapps/${site_folder}/WEB-INF/conf/override/plugins/matomo.properties
-sed -i "s/matomo.default.server.https.url=.*/matomo.default.server.http.url=$url_matomo_https/g" ${tomcat}/webapps/${site_folder}/WEB-INF/conf/override/plugins/matomo.properties
+else
+    echo "Database mode"
+    mv /tmp/database/override/plugins/* ${tomcat}/webapps/rendezvous/WEB-INF/conf/override/plugins/.
+    mkdir -p ${tomcat}/webapps/rendezvous/WEB-INF/templates/skin/plugins/mylutece/includes
+    mv /tmp/database/user_login_multi_include.html ${tomcat}/webapps/rendezvous/WEB-INF/templates/skin/plugins/mylutece/includes/.
+fi
+
+sed -i "s/http:\/\/localhost:8080/$url_citelibre/g" ${tomcat}/webapps/rendezvous/WEB-INF/conf/config.properties
+sed -i "s/https:\/\/localhost:8080/$url_citelibre_https/g" ${tomcat}/webapps/rendezvous/WEB-INF/conf/config.properties
+sed -i "s/http%3A%2F%2Flocalhost/$url_citelibre_html/g" ${tomcat}/webapps/rendezvous/WEB-INF/conf/override/plugins/mylutece.properties
+sed -i "s/http:\/\/localhost:8080/$url_citelibre/g" ${tomcat}/webapps/rendezvous/WEB-INF/conf/override/plugins/workflow-notifygru_context.xml
+
+
+sed -i "s/http:\/\/localhost:5601/$url_kibana/g" ${tomcat}/webapps/rendezvous/WEB-INF/conf/override/plugins/kibana.properties
+
+sed -i "s/matomo.default.server.http.url=.*/matomo.default.server.http.url=$url_matomo_http/g" ${tomcat}/webapps/rendezvous/WEB-INF/conf/override/plugins/matomo.properties
+sed -i "s/matomo.default.server.https.url=.*/matomo.default.server.http.url=$url_matomo_https/g" ${tomcat}/webapps/rendezvous/WEB-INF/conf/override/plugins/matomo.properties
+
 
 sed -i "s/http:\/\/localhost:8081/$url_keycloak/g" ${tomcat}/webapps/${site_folder}/WEB-INF/conf/override/plugins/mylutece.properties
 sed -i "s/http:\/\/localhost:8081/$url_keycloak/g" ${tomcat}/webapps/${site_folder}/WEB-INF/conf/override/plugins/oauth2_context.xml

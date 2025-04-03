@@ -1,0 +1,36 @@
+<@row>
+	<@columns>
+		<@tform method='post' name='import_users_from_file' action='jsp/admin/plugins/mylutece/modules/database/DoExportUsers.jsp'>
+			<@tabs>
+				<@tabList>
+					<@tabLink active=true href='jsp/admin/plugins/mylutece/modules/database/ExportUsers.jsp' title='#i18n{module.mylutece.database.export_users.labelExportUsers}' />
+					<@tabLink href='jsp/admin/plugins/mylutece/modules/database/ImportUsersFromFile.jsp' title='#i18n{module.mylutece.database.import_users_from_file.labelImportUsers}' />
+				</@tabList>
+				<@tabContent>
+					<@fieldSet legend='#i18n{module.mylutece.database.export_users.pageTitle}'> 
+						<@formGroup labelFor='xsl_export_id' labelKey='#i18n{module.mylutece.database.export_users.labelXslt}'>
+							<@select id='xsl_export_id' name='xsl_export_id'>
+								<#list refListXsl as xsl>
+									<option value="${xsl.code}" >${xsl.name}</option>
+								</#list>
+							</@select>
+						</@formGroup>
+						<@formGroup labelKey='#i18n{module.mylutece.database.export_users.labelExportAttributes}' helpKey='#i18n{module.mylutece.database.export_users.labelHelpExportAttributes}'>
+							<@checkBox labelFor='export_attributes' id='export_attributes' name='export_attributes' checked=true />
+						</@formGroup>
+						<@formGroup labelKey='#i18n{module.mylutece.database.export_users.labelExportRoles}' helpKey='#i18n{module.mylutece.database.export_users.labelHelpExportRoles}'>
+							<@checkBox labelFor='export_roles' id='export_roles' name='export_roles' checked=true />
+						</@formGroup>
+						<@formGroup labelKey='#i18n{module.mylutece.database.export_users.labelExportWorkgroups}' helpKey='#i18n{module.mylutece.database.export_users.labelHelpExportWorkgroups}'>
+							<@checkBox labelFor='export_workgroups' id='export_workgroups' name='export_workgroups' checked=true />
+						</@formGroup>
+						<@formGroup>
+							<@button type='submit' title='#i18n{portal.util.labelValidate}' buttonIcon='check' />
+							<@aButton href='jsp/admin/plugins/mylutece/modules/database/ManageUsers.jsp' title='#i18n{portal.util.labelBack}' buttonIcon='times' color='default' />
+						</@formGroup>
+					</@fieldSet>
+				</@tabContent>
+			</@tabs>
+		</@tform>
+	</@columns>
+</@row>

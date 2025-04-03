@@ -19,18 +19,17 @@ FROM tomcat:9.0-jdk11
 ARG site
 ARG NAME_APP
 
-RUN apt update && apt install -y haproxy
+RUN apt update && apt install -y haproxy vim
 
 ARG tomcat=/usr/local/tomcat
 WORKDIR ${tomcat}
 COPY --from=builder /app/target/${site}.war webapps
 COPY haproxy.cfg /etc/haproxy/haproxy.cfg
 
-RUN cd webapps && mkdir ${NAME_APP} &&  mv ${site}.war ${NAME_APP}/${NAME_APP}.war  && cd ${NAME_APP} && jar xvf ${NAME_APP}.war && rm ${NAME_APP}.war
+COPY oauth2 /tmp/oauth2
+COPY database /tmp/database
 
-# Add webapps folder
-COPY webapp/WEB-INF webapps/${NAME_APP}/WEB-INF/
-COPY webapp/js webapps/${NAME_APP}/js/
+RUN cd webapps && mkdir rendezvous &&  mv ${site}.war rendezvous/rendezvous.war  && cd rendezvous && jar xvf rendezvous.war && rm rendezvous.war
 
 COPY entrypoint.sh /entrypoint.sh
 

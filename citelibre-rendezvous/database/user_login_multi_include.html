@@ -1,0 +1,24 @@
+<#if user?has_content>
+<#assign userNameFamily = user.getUserInfo('user.name.family') >
+<#if userNameFamily?has_content>
+<#assign labelUserName = userNameFamily >
+<#else>  
+<#assign userBusinessMail = user.getUserInfo('user.business-info.online.email') >
+<#assign userHomeMail = user.getUserInfo('user.home-info.online.email') >
+<#if userBusinessMail?has_content><#assign labelUserName = userBusinessMail ><#else><#assign labelUserName = userHomeMail > </#if>
+</#if>
+<li class="ms-auto">
+    <a href="${url_account}" class="btn btn-secondary me-2">
+        <span class="ti ti-user me-2"></span>#i18n{mylutece.user_login_include.labelWelcome} ${labelUserName!}&nbsp; 
+    </a>
+</li>
+<li>
+    <a href="${url_dologout}" class="btn btn-outline-secondary" title="#i18n{mylutece.user_login_include.labelLastLogin} : <#if (user.getUserInfo('user.lastLogin'))?has_content>${user.getUserInfo('user.lastLogin')}<#else>#i18n{mylutece.user_login_include.labelNever}</#if>">
+        <span class="ti ti-logout"></span> #i18n{mylutece.user_login_include.labelLogout}
+    </a>
+</li>
+<#else>
+<li class="ms-auto">
+<#if list_authentications?exists><#list list_authentications as authentication><#if !authentication.externalAuthentication><#if authentication.delegatedAuthentication><a class="btn btn-outline-light" href="${authentication.doLoginUrl}?auth_provider=${authentication.name}"><#else><a class="btn btn-outline-dark" href="${authentication.loginPageUrl}&auth_provider=${authentication.name}"></#if><span class="ti ti-login"></span> #i18n{mylutece.user_login_include.labelButton}</a></#if></#list></#if>
+</li>
+</#if>

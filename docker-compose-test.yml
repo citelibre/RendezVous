@@ -59,6 +59,8 @@ services:
     mem_limit: 1g
     depends_on:
       - db
+    # profiles:
+    #   - keycloak
 
   citelibre:
     image: ${REPO}/ihm
