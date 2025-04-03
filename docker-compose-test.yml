@@ -5,9 +5,11 @@ services:
     env_file: "./external.env"
     ports:
       - "3307:3306"
-    # if you want to persist data uncomment the following 2 lines... don't forget to create the directory mysql-data for sample
+    mem_limit: 1g
     # volumes:
-    #   - ./mysql-data:/var/lib/mysql
+    #  - type: volume
+    #    source: mysql-data
+    #    target: /var/lib/mysql
 
   solr:
     image: ${REPO}/solr
@@ -15,10 +17,10 @@ services:
     command: -force
     depends_on:
       - db
+    mem_limit: 1g
     env_file: "./external.env"
     ports:
       - "8983:8983"
-    # if you want to persist data uncomment the following 4 lines
     #volumes:
     #  - type: volume
     #    source: solr-data
@@ -28,16 +30,15 @@ services:
     image: axllent/mailpit:v1.18.3
     container_name: rdv_mailpit
     restart: unless-stopped
-    # volumes:
-    #   - ./data:/data
     env_file: "./external.env"
     ports:
       - 1080:8025
       - 1025:1025
+    mem_limit: 1g
     environment:
-      MP_MAX_MESSAGES: 500
-      MP_SMTP_AUTH_ACCEPT_ANY: 1
-      MP_SMTP_AUTH_ALLOW_INSECURE: 1
+      - MP_MAX_MESSAGES=500
+      - MP_SMTP_AUTH_ACCEPT_ANY=1
+      - MP_SMTP_AUTH_ALLOW_INSECURE=1
 
   matomo:
     image: ${REPO}/matomo
@@ -45,6 +46,7 @@ services:
     env_file: "./external.env"
     ports:
       - "80:80"
+    mem_limit: 1g
     depends_on:
       - solr
 
@@ -54,7 +56,7 @@ services:
     env_file: "./external.env"
     ports:
       - "8081:8080"
-      - "8443:8443"
+    mem_limit: 1g
     depends_on:
       - db
     # profiles:
@@ -65,25 +67,24 @@ services:
     container_name: rdv_citelibre
     env_file: "./external.env"
     ports:
-        - 8080:8080
+      - 8080:8080
     depends_on:
-        - solr
-        - kibana
+      - solr
     environment:
-        - LUTECE_DB_USER
-        - LUTECE_DB_PWD
-        - LUTECE_DB_NAME
-        - LUTECE_DB_HOST
-        - LUTECE_DB_PORT
-        - LUTECE_MAIL_HOST
-        - LUTECE_MAIL_PORT
-        - LUTECE_MAIL_USER
-        - LUTECE_MAIL_PWD
-        - LUTECE_INTERNAL_KEYCLOAK=true
+      - LUTECE_DB_USER
+      - LUTECE_DB_PWD
+      - LUTECE_DB_NAME
+      - LUTECE_DB_HOST
+      - LUTECE_DB_PORT
+      - LUTECE_MAIL_HOST
+      - LUTECE_MAIL_PORT
+      - LUTECE_MAIL_USER
+      - LUTECE_MAIL_PWD
+      - LUTECE_INTERNAL_KEYCLOAK=true
     mem_limit: 2g
     # volumes:
     #   - type: volume
-    #     source: rendezvous-data
+    #     source: webapp-data
     #     target: /usr/local/tomcat/webapps/rendezvous
 
   kibana:
@@ -98,9 +99,9 @@ services:
     mem_limit: 1g
     depends_on:
       - elasticsearch
-    # volumes:
+    #volumes:
     #  - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
-   
+
   elasticsearch:
     image: ${REPO}/elasticsearch
     container_name: rdv_elasticsearch
@@ -108,10 +109,9 @@ services:
       - ELASTIC_PASSWORD="*93n2US7fWog"
       - discovery.type=single-node
       - xpack.security.enabled=false
-        #- xpack.security.enrollment.enabled=false
       - ESJAVAOPTS=-Xmx1g
-    mem_limit: 1g
     env_file: "./external.env"
+    mem_limit: 1g
     ports:
       - 9200:9200
       - 9300:9300
@@ -122,5 +122,5 @@ services:
 
 # volumes:
   # elasticsearch-data:
-  # rendezvous-data:
+  # webapp-data:
   # solr-data:

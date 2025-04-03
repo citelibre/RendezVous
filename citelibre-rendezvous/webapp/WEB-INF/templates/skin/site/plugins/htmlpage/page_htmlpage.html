@@ -1,0 +1,14 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-offset-3 col col-md-7">
+		${htmlpage.htmlContent!}
+	</div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+let pageTitle = '${htmlpage.description!}';
+let currentTitle = document.title;
+let dashIndex = currentTitle.indexOf('-');
+let newTitle = (dashIndex !== -1) ? currentTitle.substring(0, dashIndex).trim() : currentTitle;
+document.title = <#noparse>`${newTitle} - ${pageTitle}`</#noparse>;
+});
+</script>

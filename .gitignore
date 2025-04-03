@@ -1,6 +1,6 @@
-.env-test
+mysql-data
+elasticsearch-data
+rendezvous-data
+solr-data
 .env.test
-.vscode/
-citelibre-rendezvous/Makefile
-citelibre-rendezvous/plugins/
-citelibre-rendezvous/target/
+.env

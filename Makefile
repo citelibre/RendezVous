@@ -2,10 +2,11 @@ VERSION=1.0.9
 
 REPO=citelibre/rendezvous
 REPO-TEST=test-rendezvous
+NAME_SERVICE=rendezvous
 
 build: ## Build the containers
-	docker build citelibre-rendezvous -t $(REPO):ihm
-	docker build citelibre-rendezvous -t $(REPO):ihm-$(VERSION)
+	docker build citelibre-$(NAME_SERVICE) -t $(REPO):ihm
+	docker build citelibre-$(NAME_SERVICE) -t $(REPO):ihm-$(VERSION)
 	docker build matomo -t $(REPO):matomo
 	docker build matomo -t $(REPO):matomo-$(VERSION)
 	docker build solr -t $(REPO):solr

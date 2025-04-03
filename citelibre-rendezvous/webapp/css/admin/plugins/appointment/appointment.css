@@ -1,0 +1,104 @@
+.alert-success, .alert-info, .alert-warning, .alert-danger{ background-image:none; }
+
+.datepicker.datepicker-dropdown.dropdown-menu2.datepicker-orient-left.datepicker-orient-bottom,
+.datepicker.datepicker-dropdown.dropdown-menu.datepicker-orient-left.datepicker-orient-bottom{
+    top:210px !important;
+}
+
+/* Header */
+.content-header > h1 > small{
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000;
+}
+
+.content-header > h1 > small::before{
+    content: ' - ';
+    padding: 0 5px;
+}
+
+/* Tabs for typical week */
+.tablink-actions{
+	justify-content: space-between;
+}
+
+/* Input Color */
+input[type="color"]{
+    background: transparent;
+    border: 0;
+    padding: 0;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    margin-top: -5px;
+    box-shadow: -2px 1px 13px 3px rgba(0,0,0,0.51);
+    -webkit-box-shadow: -2px 1px 13px 3px rgba(0,0,0,0.51);
+    -moz-box-shadow: -2px 1px 13px 3px rgba(0,0,0,0.51);
+}
+
+input[type="color"]:hover{
+    box-shadow: -2px 1px 13px 3px rgba(87, 87, 87, 0.51);
+    -webkit-box-shadow: -2px 1px 13px 3px rgba(0,0,0,0.51);
+    -moz-box-shadow: -2px 1px 13px 3px rgba(0,0,0,0.51);
+}
+
+/* Year Calendar */
+#calendar.calendar{
+    min-height: 105vh;
+}
+
+.calendar .months-container .month-container {
+    height: 230px;
+}
+
+.calendar-context-menu .item .content {
+    min-height: auto;
+}
+
+.isSpecific{
+    font-family:Arial, Helvetica, sans-serif;
+    /* font-weight: 700;
+    font-style: italic;*/
+    background-color: #DDD !important;
+    border-radius: 50% !important;
+    padding: 2px !important;
+}
+
+/* Form */
+.viewTextarea{
+    font-size:14px;
+    font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+    border:0;
+    background-color:transparent;
+    min-height: 34px;
+    padding: 7px 0;
+    margin-bottom: 0
+}
+
+/* Center BS3 Modal */
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Lists - Side Menu */
+.appointment-list-group .list-group li .fa{ margin-right: 10px }
+.appointment-list-group .list-group li{ position: relative;	list-style-type: none }
+.appointment-list-group .group td{ vertical-align: baseline }
+
+#sticky-container{ min-height: 450vh; }
+#info-right{ position: sticky; top: 60px }
