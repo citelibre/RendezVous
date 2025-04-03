@@ -15,8 +15,9 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-CREATE DATABASE lutece;
+CREATE database lutece;
 USE lutece;
+
 --
 -- Table structure for table `appointment_appointment`
 --
@@ -40,7 +41,7 @@ CREATE TABLE `appointment_appointment` (
   PRIMARY KEY (`id_appointment`),
   UNIQUE KEY `reference_idx` (`reference`),
   KEY `fk_appointment_appointment_appointment_user_idx` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +50,7 @@ CREATE TABLE `appointment_appointment` (
 
 LOCK TABLES `appointment_appointment` WRITE;
 /*!40000 ALTER TABLE `appointment_appointment` DISABLE KEYS */;
-INSERT INTO `appointment_appointment` VALUES (1,'1f42f1b5e',1,0,2,4,0,0,'2024-02-09 13:44:46',NULL,1,0),(2,'27209b899',1,0,2,4,0,0,'2024-02-09 14:42:42',NULL,2,0),(3,'307de7871',1,0,2,4,0,0,'2024-02-09 14:49:21','admin',3,0),(4,'45078fbd0',1,0,2,4,0,0,'2024-02-28 15:34:30',NULL,4,0),(5,'5facef2e3',1,0,2,4,0,0,'2024-02-28 15:46:02',NULL,5,0),(6,'66e496225',1,0,2,4,0,0,'2024-02-28 15:53:07',NULL,6,0),(7,'72603ed23',1,0,2,4,0,0,'2024-02-28 15:55:29',NULL,7,0),(8,'832bee60d',1,0,2,4,0,0,'2024-02-29 09:55:53',NULL,8,0),(9,'956cce199',1,0,2,4,0,0,'2024-02-29 15:50:33','admin',9,0),(10,'10270795a1',1,0,2,4,0,0,'2024-02-29 15:55:51','admin',10,0),(11,'11d4fbdbdc',1,0,2,4,0,0,'2024-02-29 15:59:10','admin',11,0),(12,'124d3d3dd3',1,0,2,4,0,0,'2024-02-29 16:11:30','admin',12,0),(13,'131830eb6c',1,0,2,4,0,0,'2024-03-01 13:19:47',NULL,13,0),(14,'147009507d',1,0,2,4,0,0,'2024-03-01 13:35:06','admin',14,0),(15,'15fe52817e',1,0,2,4,0,0,'2024-03-01 15:11:41',NULL,15,0),(16,'16339f91d6',1,0,2,4,0,0,'2024-03-01 15:12:49',NULL,16,0),(17,'177bd64a8d',1,0,2,4,0,0,'2024-03-05 09:54:07',NULL,17,0),(18,'18239f10cf',1,0,2,4,0,0,'2024-05-23 16:27:44','admin',18,0),(19,'19068fd1dc',1,0,2,4,0,0,'2024-05-23 16:29:15','admin',19,0),(20,'20ce9e1a66',1,0,2,4,0,0,'2024-05-23 16:30:23','admin',20,0),(21,'21b4d294a1',1,0,2,4,0,0,'2024-05-23 16:31:01','admin',21,0),(22,'22b557a23c',1,0,2,4,0,0,'2024-05-23 16:32:15','admin',22,0),(23,'233e93c5fd',1,0,2,4,0,0,'2024-05-23 16:33:35','admin',23,0);
+INSERT INTO `appointment_appointment` VALUES (1,'1f42f1b5e',1,0,2,4,0,0,'2024-02-09 13:44:46',NULL,1,0),(2,'27209b899',1,0,2,4,0,0,'2024-02-09 14:42:42',NULL,2,0),(3,'307de7871',1,0,2,4,0,0,'2024-02-09 14:49:21','admin',3,0),(4,'45078fbd0',1,0,2,4,0,0,'2024-02-28 15:34:30',NULL,4,0),(5,'5facef2e3',1,0,2,4,0,0,'2024-02-28 15:46:02',NULL,5,0),(6,'66e496225',1,0,2,4,0,0,'2024-02-28 15:53:07',NULL,6,0),(7,'72603ed23',1,0,2,4,0,0,'2024-02-28 15:55:29',NULL,7,0),(8,'832bee60d',1,0,2,4,0,0,'2024-02-29 09:55:53',NULL,8,0),(9,'956cce199',1,0,2,4,0,0,'2024-02-29 15:50:33','admin',9,0),(10,'10270795a1',1,0,2,4,0,0,'2024-02-29 15:55:51','admin',10,0),(11,'11d4fbdbdc',1,0,2,4,0,0,'2024-02-29 15:59:10','admin',11,0),(12,'124d3d3dd3',1,0,2,4,0,0,'2024-02-29 16:11:30','admin',12,0),(13,'131830eb6c',1,0,2,4,0,0,'2024-03-01 13:19:47',NULL,13,0),(14,'147009507d',1,0,2,4,0,0,'2024-03-01 13:35:06','admin',14,0),(15,'15fe52817e',1,0,2,4,0,0,'2024-03-01 15:11:41',NULL,15,0),(16,'16339f91d6',1,0,2,4,0,0,'2024-03-01 15:12:49',NULL,16,0),(17,'177bd64a8d',1,0,2,4,0,0,'2024-03-05 09:54:07',NULL,17,0),(18,'18239f10cf',1,0,2,4,0,0,'2024-05-23 16:27:44','admin',18,0),(19,'19068fd1dc',1,0,2,4,0,0,'2024-05-23 16:29:15','admin',19,0),(20,'20ce9e1a66',1,0,2,4,0,0,'2024-05-23 16:30:23','admin',20,0),(21,'21b4d294a1',1,0,2,4,0,0,'2024-05-23 16:31:01','admin',21,0),(22,'22b557a23c',1,0,2,4,0,0,'2024-05-23 16:32:15','admin',22,0),(23,'233e93c5fd',1,0,2,4,0,0,'2024-05-23 16:33:35','admin',23,0),(24,'24a0b49222',1,0,2,4,0,0,'2025-01-23 09:42:38',NULL,24,0),(25,'25e34ba33c',1,0,2,4,0,0,'2025-01-23 09:43:53',NULL,25,0),(26,'26b5fe664c',1,0,2,4,0,0,'2025-01-23 09:44:30',NULL,26,0),(27,'27f0d6faa1',1,0,2,4,0,0,'2025-01-23 09:45:00',NULL,27,0),(28,'28dda79ddb',1,0,2,4,0,0,'2025-01-23 09:45:37',NULL,28,0),(29,'29921921b8',1,0,2,4,0,0,'2025-01-23 09:46:12',NULL,29,0),(30,'30e9c07e5b',1,0,2,4,0,0,'2025-01-23 09:48:30',NULL,30,0),(31,'313aca4d81',1,0,2,4,0,0,'2025-01-23 09:49:17',NULL,31,0),(32,'32bed77f25',1,0,2,4,0,0,'2025-01-23 09:49:48',NULL,32,0),(33,'33840245ea',1,0,2,4,0,0,'2025-01-23 09:50:20',NULL,33,0),(34,'34c049bb6f',1,0,2,4,0,0,'2025-01-23 09:52:03',NULL,34,0),(35,'35fa09bdd0',1,0,2,4,0,0,'2025-01-23 09:52:45',NULL,35,0),(36,'368f2c82ef',1,0,2,4,0,0,'2025-01-23 09:53:20',NULL,36,0),(37,'37623f7e22',1,0,2,4,0,0,'2025-01-23 09:53:49',NULL,37,0),(38,'38b77c42af',1,0,2,4,0,0,'2025-01-23 09:54:37',NULL,38,0),(39,'39006d8674',1,0,2,4,0,0,'2025-01-23 09:55:12',NULL,39,0),(40,'4014a69453',1,0,2,4,0,0,'2025-01-23 09:55:42',NULL,40,0),(41,'4127aad033',1,0,2,4,0,0,'2025-01-23 09:56:15',NULL,41,0),(42,'42b94c7aca',1,0,2,4,0,0,'2025-01-23 09:57:12',NULL,42,0),(43,'43443ad8ca',1,0,2,4,0,0,'2025-01-23 09:58:29',NULL,43,0),(44,'446896393b',1,0,2,4,0,0,'2025-01-23 09:59:06',NULL,44,0),(45,'45e2bfef25',1,0,2,4,0,0,'2025-01-23 10:00:05',NULL,45,0),(46,'46e3cdc1b7',1,0,2,4,0,0,'2025-01-23 10:02:40',NULL,46,0);
 /*!40000 ALTER TABLE `appointment_appointment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,7 +68,7 @@ CREATE TABLE `appointment_appointment_response` (
   PRIMARY KEY (`id_appointment_response`),
   UNIQUE KEY `appointment_appointment_response_unique` (`id_appointment`,`id_response`),
   KEY `fk_appointment_appointment_response_appointment_appointment_idx` (`id_appointment`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +94,7 @@ CREATE TABLE `appointment_appointment_slot` (
   PRIMARY KEY (`id_appointment`,`id_slot`),
   KEY `fk_appointment_appointment_slot_slot` (`id_slot`),
   KEY `idx_appointment_slot` (`id_appointment`,`id_slot`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +103,7 @@ CREATE TABLE `appointment_appointment_slot` (
 
 LOCK TABLES `appointment_appointment_slot` WRITE;
 /*!40000 ALTER TABLE `appointment_appointment_slot` DISABLE KEYS */;
-INSERT INTO `appointment_appointment_slot` VALUES (1,4,1),(2,6,1),(3,7,1),(4,12,1),(5,13,1),(6,14,1),(7,15,1),(8,18,1),(9,20,1),(10,21,1),(11,13,1),(12,17,1),(13,22,1),(14,25,1),(15,26,1),(16,27,1),(17,29,1),(18,37,1),(19,38,1),(20,39,1),(21,40,1),(22,41,1),(23,42,1);
+INSERT INTO `appointment_appointment_slot` VALUES (1,4,1),(2,6,1),(3,7,1),(4,12,1),(5,13,1),(6,14,1),(7,15,1),(8,18,1),(9,20,1),(10,21,1),(11,13,1),(12,17,1),(13,22,1),(14,25,1),(15,26,1),(16,27,1),(17,29,1),(18,37,1),(19,38,1),(20,39,1),(21,40,1),(22,41,1),(23,42,1),(24,90,1),(25,91,1),(26,92,1),(27,93,1),(28,94,1),(29,95,1),(30,96,1),(31,97,1),(32,98,1),(33,99,1),(34,100,1),(35,101,1),(36,102,1),(37,103,1),(38,104,1),(39,105,1),(40,106,1),(41,107,1),(42,108,1),(43,109,1),(44,110,1),(45,111,1),(46,112,1);
 /*!40000 ALTER TABLE `appointment_appointment_slot` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,7 +120,7 @@ CREATE TABLE `appointment_calendar_template` (
   `description` varchar(255) NOT NULL,
   `template_path` varchar(255) NOT NULL,
   PRIMARY KEY (`id_calendar_template`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +146,7 @@ CREATE TABLE `appointment_category` (
   `nb_max_appointments_per_user` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_category`),
   UNIQUE KEY `appointment_category_unique_label` (`label`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,7 +174,7 @@ CREATE TABLE `appointment_closing_day` (
   UNIQUE KEY `appointment_closing_day_unique` (`id_form`,`date_of_closing_day`),
   KEY `fk_appointment_closing_day_appointment_form_idx` (`id_form`),
   KEY `date_of_closing_day` (`date_of_closing_day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -204,7 +205,7 @@ CREATE TABLE `appointment_comment` (
   `comment_user_creator` varchar(255) NOT NULL,
   PRIMARY KEY (`id_comment`),
   KEY `fk_appointment_comment` (`id_form`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,7 +214,7 @@ CREATE TABLE `appointment_comment` (
 
 LOCK TABLES `appointment_comment` WRITE;
 /*!40000 ALTER TABLE `appointment_comment` DISABLE KEYS */;
-INSERT INTO `appointment_comment` VALUES (1,1,'2024-08-15','00:00:00','2024-08-15','00:00:00','<p>Jour f&eacute;ri&eacute;</p>','2024-05-22','admin'),(2,1,'2024-07-16','00:00:00','2024-07-16','00:00:00','<p>Ferm&eacute; le matin pour cause de travaux</p>','2024-05-23','admin');
+INSERT INTO `appointment_comment` VALUES (1,1,'2024-08-15','00:00:00','2024-08-15','00:00:00','<p>Jour f&eacute;ri&eacute;</p>','2024-05-22','admin'),(2,1,'2024-07-16','00:00:00','2024-07-16','00:00:00','<p>Ferm&eacute; le matin pour cause de travaux</p>','2024-05-23','admin'),(3,1,'2025-06-04','00:00:00','2025-06-04','00:00:00','<p>Fermeture exceptionnelle</p>','2025-01-23','admin'),(4,1,'2025-05-01','00:00:00','2025-05-01','00:00:00','<p>Fermeture exceptionnelle</p>','2025-01-23','admin'),(5,1,'2025-05-08','00:00:00','2025-05-08','00:00:00','<p>Fermeture exceptionnelle</p>','2025-01-23','admin'),(6,1,'2025-06-09','00:00:00','2025-06-09','00:00:00','<p>Fermeture exceptionnelle</p>','2025-01-23','admin');
 /*!40000 ALTER TABLE `appointment_comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,7 +230,7 @@ CREATE TABLE `appointment_comment_notification_cf` (
   `sender_name` varchar(255) DEFAULT NULL,
   `subject` varchar(255) DEFAULT NULL,
   `message` mediumtext DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -261,7 +262,7 @@ CREATE TABLE `appointment_display` (
   PRIMARY KEY (`id_display`),
   UNIQUE KEY `appointment_display_unique` (`id_form`),
   KEY `fk_appointment_display_appointment_calendar_template_idx` (`id_calendar_template`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -270,7 +271,7 @@ CREATE TABLE `appointment_display` (
 
 LOCK TABLES `appointment_display` WRITE;
 /*!40000 ALTER TABLE `appointment_display` DISABLE KEYS */;
-INSERT INTO `appointment_display` VALUES (1,0,'','NULL',4,1,4,1);
+INSERT INTO `appointment_display` VALUES (1,0,'','NULL',6,1,4,1);
 /*!40000 ALTER TABLE `appointment_display` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -302,7 +303,7 @@ CREATE TABLE `appointment_form` (
   KEY `starting_validity_date_idx` (`starting_validity_date`),
   KEY `ending_validity_date_idx` (`ending_validity_date`),
   KEY `fk_appointment_form_appointment_category_idx` (`id_category`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -344,7 +345,7 @@ CREATE TABLE `appointment_form_message` (
   `id_form` int(11) NOT NULL,
   PRIMARY KEY (`id_form_message`),
   KEY `fk_appointment_form_message_appointment_form_idx` (`id_form`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -353,7 +354,7 @@ CREATE TABLE `appointment_form_message` (
 
 LOCK TABLES `appointment_form_message` WRITE;
 /*!40000 ALTER TABLE `appointment_form_message` DISABLE KEYS */;
-INSERT INTO `appointment_form_message` VALUES (1,'Choisir une date','Prénom','','Nom','','Email','','Confirmation Email','','Votre demande de rendez-vous a bien été créée avec la reference %%REF%%','jsp/site/Portal.jsp','Votre demande de rendez-vous a bien été annulée','Terminer','Aucun créneau disponible n\'a été trouvé. Veuillez réiterer votre recherche ultérieurement.','','Réserver','Complet',1);
+INSERT INTO `appointment_form_message` VALUES (1,'Choisir une date','Prénom','','Nom','','Email','','Confirmation Email','','Votre demande de rendez-vous a bien été créée avec la reference %%REF%%','jsp/site/Portal.jsp','Votre demande de rendez-vous a bien été annulée','Terminer','Aucun créneau disponible n\'a été trouvé. Veuillez réitérer votre recherche ultérieurement.','','Réserver','Complet',1);
 /*!40000 ALTER TABLE `appointment_form_message` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -369,7 +370,7 @@ CREATE TABLE `appointment_form_portlet` (
   `id_form` int(11) NOT NULL,
   PRIMARY KEY (`id_portlet`,`id_form`),
   KEY `fk_appointment_form_portlet_appointment_form_idx` (`id_form`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -401,7 +402,7 @@ CREATE TABLE `appointment_form_rule` (
   `id_form` int(11) NOT NULL,
   PRIMARY KEY (`id_form_rule`),
   UNIQUE KEY `appointment_form_rule_unique` (`id_form`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -429,7 +430,7 @@ CREATE TABLE `appointment_localization` (
   `id_form` int(11) NOT NULL,
   PRIMARY KEY (`id_localization`),
   KEY `fk_appointment_localization_appointment_form_idx` (`id_form`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -462,7 +463,7 @@ CREATE TABLE `appointment_reservation_rule` (
   PRIMARY KEY (`id_reservation_rule`),
   KEY `fk_appointment_reservation_rule_appointment_form_idx` (`id_form`),
   KEY `fk_appointment_working_day_appointment_reservation_rule_idx` (`id_reservation_rule`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -499,7 +500,7 @@ CREATE TABLE `appointment_slot` (
   KEY `fk_appointment_slot_appointment_form_idx` (`id_form`),
   KEY `starting_date_time_idx` (`starting_date_time`),
   KEY `ending_date_time_idx` (`ending_date_time`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -508,7 +509,7 @@ CREATE TABLE `appointment_slot` (
 
 LOCK TABLES `appointment_slot` WRITE;
 /*!40000 ALTER TABLE `appointment_slot` DISABLE KEYS */;
-INSERT INTO `appointment_slot` VALUES (1,'2024-02-08 09:00:00','2024-02-08 10:00:00',1,0,3,3,3,0,1),(2,'2024-02-09 09:00:00','2024-02-09 10:00:00',1,0,3,3,3,0,1),(3,'2024-02-08 12:00:00','2024-02-08 13:00:00',1,0,3,3,3,0,1),(4,'2024-02-12 10:00:00','2024-02-12 11:00:00',1,0,3,2,2,1,1),(5,'2024-02-13 09:00:00','2024-02-13 10:00:00',1,0,3,3,3,0,1),(6,'2024-02-15 09:00:00','2024-02-15 10:00:00',1,0,3,2,2,1,1),(7,'2024-02-13 10:00:00','2024-02-13 11:00:00',1,0,3,2,2,1,1),(8,'2024-02-15 16:00:00','2024-02-15 17:00:00',1,0,3,3,3,0,1),(9,'2024-02-16 12:00:00','2024-02-16 13:00:00',1,0,3,3,3,0,1),(10,'2024-02-09 16:00:00','2024-02-09 17:00:00',1,0,3,3,3,0,1),(11,'2024-02-09 17:00:00','2024-02-09 18:00:00',1,0,3,3,3,0,1),(12,'2024-02-29 10:00:00','2024-02-29 11:00:00',1,0,3,2,2,1,1),(13,'2024-03-01 09:00:00','2024-03-01 10:00:00',1,0,3,1,1,2,1),(14,'2024-03-01 12:00:00','2024-03-01 13:00:00',1,0,3,2,2,1,1),(15,'2024-02-29 17:00:00','2024-02-29 18:00:00',1,0,3,2,2,1,1),(16,'2024-02-29 09:00:00','2024-02-29 10:00:00',1,0,3,3,3,0,1),(17,'2024-03-04 09:00:00','2024-03-04 10:00:00',1,0,3,2,2,1,1),(18,'2024-02-29 15:00:00','2024-02-29 16:00:00',1,0,3,2,2,1,1),(19,'2024-03-01 13:00:00','2024-03-01 14:00:00',1,0,3,3,3,0,1),(20,'2024-03-01 11:00:00','2024-03-01 12:00:00',1,0,3,2,2,1,1),(21,'2024-03-01 10:00:00','2024-03-01 11:00:00',1,0,3,2,2,1,1),(22,'2024-03-18 09:00:00','2024-03-18 10:00:00',1,0,3,2,2,1,1),(23,'2024-03-01 15:00:00','2024-03-01 16:00:00',1,0,3,3,3,0,1),(24,'2024-03-05 09:00:00','2024-03-05 10:00:00',1,0,3,3,3,0,1),(25,'2024-03-07 09:00:00','2024-03-07 10:00:00',1,0,3,2,2,1,1),(26,'2024-03-01 16:00:00','2024-03-01 17:00:00',1,0,3,2,2,1,1),(27,'2024-03-01 17:00:00','2024-03-01 18:00:00',1,0,3,2,2,1,1),(28,'2024-03-08 09:00:00','2024-03-08 10:00:00',1,0,3,3,3,0,1),(29,'2024-03-08 10:00:00','2024-03-08 11:00:00',1,0,3,2,2,1,1),(30,'2024-05-24 09:00:00','2024-05-24 10:00:00',1,0,3,3,3,0,1),(31,'2024-08-15 10:00:00','2024-08-15 11:00:00',0,1,1,1,1,0,1),(32,'2024-08-15 11:00:00','2024-08-15 12:00:00',0,1,1,1,1,0,1),(33,'2024-08-15 12:00:00','2024-08-15 13:00:00',0,1,1,1,1,0,1),(34,'2024-08-15 13:00:00','2024-08-15 14:00:00',0,1,1,1,1,0,1),(35,'2024-08-15 14:00:00','2024-08-15 15:00:00',0,1,1,1,1,0,1),(36,'2024-08-15 15:00:00','2024-08-15 16:00:00',0,1,1,1,1,0,1),(37,'2024-05-31 09:00:00','2024-05-31 10:00:00',1,0,3,2,2,1,1),(38,'2024-06-13 09:00:00','2024-06-13 10:00:00',1,0,3,2,2,1,1),(39,'2024-07-18 11:00:00','2024-07-18 12:00:00',1,0,1,0,0,1,1),(40,'2024-08-29 10:00:00','2024-08-29 11:00:00',1,0,1,0,0,1,1),(41,'2024-10-24 11:00:00','2024-10-24 12:00:00',1,0,3,2,2,1,1),(42,'2024-11-14 16:00:00','2024-11-14 17:00:00',1,0,3,2,2,1,1),(43,'2024-07-16 10:00:00','2024-07-16 11:00:00',0,1,1,1,1,0,1),(44,'2024-07-16 11:00:00','2024-07-16 12:00:00',0,1,1,1,1,0,1),(45,'2024-07-16 12:00:00','2024-07-16 13:00:00',0,1,1,1,1,0,1),(46,'2024-07-16 13:00:00','2024-07-16 14:00:00',0,1,1,1,1,0,1),(47,'2024-05-24 11:00:00','2024-05-24 12:00:00',1,0,3,3,0,0,1);
+INSERT INTO `appointment_slot` VALUES (1,'2024-02-08 09:00:00','2024-02-08 10:00:00',1,0,3,3,3,0,1),(2,'2024-02-09 09:00:00','2024-02-09 10:00:00',1,0,3,3,3,0,1),(3,'2024-02-08 12:00:00','2024-02-08 13:00:00',1,0,3,3,3,0,1),(4,'2024-02-12 10:00:00','2024-02-12 11:00:00',1,0,3,2,2,1,1),(5,'2024-02-13 09:00:00','2024-02-13 10:00:00',1,0,3,3,3,0,1),(6,'2024-02-15 09:00:00','2024-02-15 10:00:00',1,0,3,2,2,1,1),(7,'2024-02-13 10:00:00','2024-02-13 11:00:00',1,0,3,2,2,1,1),(8,'2024-02-15 16:00:00','2024-02-15 17:00:00',1,0,3,3,3,0,1),(9,'2024-02-16 12:00:00','2024-02-16 13:00:00',1,0,3,3,3,0,1),(10,'2024-02-09 16:00:00','2024-02-09 17:00:00',1,0,3,3,3,0,1),(11,'2024-02-09 17:00:00','2024-02-09 18:00:00',1,0,3,3,3,0,1),(12,'2024-02-29 10:00:00','2024-02-29 11:00:00',1,0,3,2,2,1,1),(13,'2024-03-01 09:00:00','2024-03-01 10:00:00',1,0,3,1,1,2,1),(14,'2024-03-01 12:00:00','2024-03-01 13:00:00',1,0,3,2,2,1,1),(15,'2024-02-29 17:00:00','2024-02-29 18:00:00',1,0,3,2,2,1,1),(16,'2024-02-29 09:00:00','2024-02-29 10:00:00',1,0,3,3,3,0,1),(17,'2024-03-04 09:00:00','2024-03-04 10:00:00',1,0,3,2,2,1,1),(18,'2024-02-29 15:00:00','2024-02-29 16:00:00',1,0,3,2,2,1,1),(19,'2024-03-01 13:00:00','2024-03-01 14:00:00',1,0,3,3,3,0,1),(20,'2024-03-01 11:00:00','2024-03-01 12:00:00',1,0,3,2,2,1,1),(21,'2024-03-01 10:00:00','2024-03-01 11:00:00',1,0,3,2,2,1,1),(22,'2024-03-18 09:00:00','2024-03-18 10:00:00',1,0,3,2,2,1,1),(23,'2024-03-01 15:00:00','2024-03-01 16:00:00',1,0,3,3,3,0,1),(24,'2024-03-05 09:00:00','2024-03-05 10:00:00',1,0,3,3,3,0,1),(25,'2024-03-07 09:00:00','2024-03-07 10:00:00',1,0,3,2,2,1,1),(26,'2024-03-01 16:00:00','2024-03-01 17:00:00',1,0,3,2,2,1,1),(27,'2024-03-01 17:00:00','2024-03-01 18:00:00',1,0,3,2,2,1,1),(28,'2024-03-08 09:00:00','2024-03-08 10:00:00',1,0,3,3,3,0,1),(29,'2024-03-08 10:00:00','2024-03-08 11:00:00',1,0,3,2,2,1,1),(30,'2024-05-24 09:00:00','2024-05-24 10:00:00',1,0,3,3,3,0,1),(31,'2024-08-15 10:00:00','2024-08-15 11:00:00',0,1,1,1,1,0,1),(32,'2024-08-15 11:00:00','2024-08-15 12:00:00',0,1,1,1,1,0,1),(33,'2024-08-15 12:00:00','2024-08-15 13:00:00',0,1,1,1,1,0,1),(34,'2024-08-15 13:00:00','2024-08-15 14:00:00',0,1,1,1,1,0,1),(35,'2024-08-15 14:00:00','2024-08-15 15:00:00',0,1,1,1,1,0,1),(36,'2024-08-15 15:00:00','2024-08-15 16:00:00',0,1,1,1,1,0,1),(37,'2024-05-31 09:00:00','2024-05-31 10:00:00',1,0,3,2,2,1,1),(38,'2024-06-13 09:00:00','2024-06-13 10:00:00',1,0,3,2,2,1,1),(39,'2024-07-18 11:00:00','2024-07-18 12:00:00',1,0,1,0,0,1,1),(40,'2024-08-29 10:00:00','2024-08-29 11:00:00',1,0,1,0,0,1,1),(41,'2024-10-24 11:00:00','2024-10-24 12:00:00',1,0,3,2,2,1,1),(42,'2024-11-14 16:00:00','2024-11-14 17:00:00',1,0,3,2,2,1,1),(43,'2024-07-16 10:00:00','2024-07-16 11:00:00',0,1,1,1,1,0,1),(44,'2024-07-16 11:00:00','2024-07-16 12:00:00',0,1,1,1,1,0,1),(45,'2024-07-16 12:00:00','2024-07-16 13:00:00',0,1,1,1,1,0,1),(46,'2024-07-16 13:00:00','2024-07-16 14:00:00',0,1,1,1,1,0,1),(47,'2024-05-24 11:00:00','2024-05-24 12:00:00',1,0,3,3,0,0,1),(48,'2025-04-22 08:00:00','2025-04-22 09:00:00',0,1,1,1,1,0,1),(49,'2025-04-22 09:00:00','2025-04-22 10:00:00',0,1,1,1,1,0,1),(50,'2025-04-22 10:00:00','2025-04-22 11:00:00',0,1,1,1,1,0,1),(51,'2025-04-22 11:00:00','2025-04-22 12:00:00',0,1,1,1,1,0,1),(52,'2025-04-22 12:00:00','2025-04-22 13:00:00',0,1,1,1,1,0,1),(53,'2025-04-22 13:00:00','2025-04-22 14:00:00',0,1,1,1,1,0,1),(54,'2025-05-01 07:00:00','2025-05-01 08:00:00',0,1,3,3,3,0,1),(55,'2025-05-01 08:00:00','2025-05-01 09:00:00',0,1,3,3,3,0,1),(56,'2025-05-01 09:00:00','2025-05-01 10:00:00',0,1,3,3,3,0,1),(57,'2025-05-01 10:00:00','2025-05-01 11:00:00',0,1,3,3,3,0,1),(58,'2025-05-01 11:00:00','2025-05-01 12:00:00',0,1,3,3,3,0,1),(59,'2025-05-01 12:00:00','2025-05-01 13:00:00',0,1,3,3,3,0,1),(60,'2025-05-01 13:00:00','2025-05-01 14:00:00',0,1,3,3,3,0,1),(61,'2025-05-01 14:00:00','2025-05-01 15:00:00',0,1,3,3,3,0,1),(62,'2025-05-01 15:00:00','2025-05-01 16:00:00',0,1,3,3,3,0,1),(63,'2025-05-08 07:00:00','2025-05-08 08:00:00',0,1,3,3,3,0,1),(64,'2025-05-08 08:00:00','2025-05-08 09:00:00',0,1,3,3,3,0,1),(65,'2025-05-08 09:00:00','2025-05-08 10:00:00',0,1,3,3,3,0,1),(66,'2025-05-08 10:00:00','2025-05-08 11:00:00',0,1,3,3,3,0,1),(67,'2025-05-08 11:00:00','2025-05-08 12:00:00',0,1,3,3,3,0,1),(68,'2025-05-08 12:00:00','2025-05-08 13:00:00',0,1,3,3,3,0,1),(69,'2025-05-08 13:00:00','2025-05-08 14:00:00',0,1,3,3,3,0,1),(70,'2025-05-08 14:00:00','2025-05-08 15:00:00',0,1,3,3,3,0,1),(71,'2025-05-08 15:00:00','2025-05-08 16:00:00',0,1,3,3,3,0,1),(72,'2025-05-29 07:00:00','2025-05-29 08:00:00',0,1,3,3,3,0,1),(73,'2025-05-29 08:00:00','2025-05-29 09:00:00',0,1,3,3,3,0,1),(74,'2025-05-29 09:00:00','2025-05-29 10:00:00',0,1,3,3,3,0,1),(75,'2025-05-29 10:00:00','2025-05-29 11:00:00',0,1,3,3,3,0,1),(76,'2025-05-29 11:00:00','2025-05-29 12:00:00',0,1,3,3,3,0,1),(77,'2025-05-29 12:00:00','2025-05-29 13:00:00',0,1,3,3,3,0,1),(78,'2025-05-29 13:00:00','2025-05-29 14:00:00',0,1,3,3,3,0,1),(79,'2025-05-29 14:00:00','2025-05-29 15:00:00',0,1,3,3,3,0,1),(80,'2025-05-29 15:00:00','2025-05-29 16:00:00',0,1,3,3,3,0,1),(81,'2025-06-09 07:00:00','2025-06-09 08:00:00',0,1,3,3,3,0,1),(82,'2025-06-09 08:00:00','2025-06-09 09:00:00',0,1,3,3,3,0,1),(83,'2025-06-09 09:00:00','2025-06-09 10:00:00',0,1,3,3,3,0,1),(84,'2025-06-09 10:00:00','2025-06-09 11:00:00',0,1,3,3,3,0,1),(85,'2025-06-09 11:00:00','2025-06-09 12:00:00',0,1,3,3,3,0,1),(86,'2025-06-09 12:00:00','2025-06-09 13:00:00',0,1,3,3,3,0,1),(87,'2025-06-09 13:00:00','2025-06-09 14:00:00',0,1,3,3,3,0,1),(88,'2025-06-09 14:00:00','2025-06-09 15:00:00',0,1,3,3,3,0,1),(89,'2025-06-09 15:00:00','2025-06-09 16:00:00',0,1,3,3,3,0,1),(90,'2025-01-24 08:00:00','2025-01-24 09:00:00',1,0,3,2,2,1,1),(91,'2025-02-06 11:00:00','2025-02-06 12:00:00',1,0,3,2,2,1,1),(92,'2025-02-11 09:00:00','2025-02-11 10:00:00',1,0,3,2,2,1,1),(93,'2025-02-13 16:00:00','2025-02-13 17:00:00',1,0,3,2,2,1,1),(94,'2025-02-07 16:00:00','2025-02-07 17:00:00',1,0,3,2,2,1,1),(95,'2025-02-04 12:00:00','2025-02-04 13:00:00',1,0,3,2,2,1,1),(96,'2025-03-04 08:00:00','2025-03-04 09:00:00',1,0,3,2,2,1,1),(97,'2025-03-18 12:00:00','2025-03-18 13:00:00',1,0,3,2,2,1,1),(98,'2025-04-03 12:00:00','2025-04-03 13:00:00',1,0,3,2,2,1,1),(99,'2025-04-17 09:00:00','2025-04-17 10:00:00',1,0,1,0,0,1,1),(100,'2025-03-11 12:00:00','2025-03-11 13:00:00',1,0,3,2,2,1,1),(101,'2025-01-23 13:00:00','2025-01-23 14:00:00',1,0,3,2,2,1,1),(102,'2025-04-01 09:00:00','2025-04-01 10:00:00',1,0,3,2,2,1,1),(103,'2025-04-10 09:00:00','2025-04-10 10:00:00',1,0,3,2,2,1,1),(104,'2025-04-24 09:00:00','2025-04-24 10:00:00',1,0,1,0,0,1,1),(105,'2025-04-29 14:00:00','2025-04-29 15:00:00',1,0,3,2,2,1,1),(106,'2025-04-01 13:00:00','2025-04-01 14:00:00',1,0,3,2,2,1,1),(107,'2025-02-13 10:00:00','2025-02-13 11:00:00',1,0,3,2,2,1,1),(108,'2025-05-06 10:00:00','2025-05-06 11:00:00',1,0,3,2,2,1,1),(109,'2025-03-14 11:00:00','2025-03-14 12:00:00',1,0,3,2,2,1,1),(110,'2025-05-30 07:00:00','2025-05-30 08:00:00',1,0,3,2,2,1,1),(111,'2025-06-05 07:00:00','2025-06-05 08:00:00',1,0,3,2,2,1,1),(112,'2025-04-15 11:00:00','2025-04-15 12:00:00',1,0,1,0,0,1,1);
 /*!40000 ALTER TABLE `appointment_slot` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -532,7 +533,7 @@ CREATE TABLE `appointment_time_slot` (
   KEY `fk_appointment_time_slot_appointment_working_day_idx` (`id_working_day`),
   KEY `starting_time_idx` (`starting_time`),
   KEY `ending_time_idx` (`ending_time`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -561,7 +562,7 @@ CREATE TABLE `appointment_user` (
   `phone_number` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_user`),
   KEY `email_idx` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -570,7 +571,7 @@ CREATE TABLE `appointment_user` (
 
 LOCK TABLES `appointment_user` WRITE;
 /*!40000 ALTER TABLE `appointment_user` DISABLE KEYS */;
-INSERT INTO `appointment_user` VALUES (1,'foo.bar@citelibre.org','Foo','Bar','foo.bar@citelibre.org',NULL),(2,'jane.doe@citelibre.org','Jane','Doe','jane.doe@citelibre.org',NULL),(3,'conrad.adams@citelibre.org','Conrad','Adams','conrad.adams@citelibre.org',NULL),(4,'conrad.adams@citelibre.org','Conrad','Adams','conrad.adams@citelibre.org',NULL),(5,'bruce.dickinson@citelibre.org','Bruce','Dickinson','bruce.dickinson@citelibre.org',NULL),(6,'agent.smith@citelibre.org','Agent','Smith','agent.smith@citelibre.org',NULL),(7,'al.capone@citelibre.org','Al','Capone','al.capone@citelibre.org',NULL),(8,'henriette.michu@citelibre.org','Henriette','Michu','henriette.michu@citelibre.org',NULL),(9,'pete.blake@citelibre.org','Pete','Blake','pete.blake@citelibre.org',NULL),(10,'joe.jackson@citelibre.org','Joe','Jackson','joe.jackson@citelibre.org',NULL),(11,'billy.zekid@citelibre.org','Billy','Zekid','billy.zekid@citelibre.org',NULL),(12,'sarah.connor@citelibre.org','Sarah','Connor','sarah.connor@citelibre.org',NULL),(13,'carl.knox@citelibre.org','Carl','knox','carl.knox@citelibre.org',NULL),(14,'anna.nasse@citelibre.org','Anna','Nasse','anna.nasse@citelibre.org',NULL),(15,'jill.morisson@citelibre.org','Jill','Morisson','jill.morisson@citelibre.org',NULL),(16,'joan.jett@citelibre.org','Joan','Jett','joan.jett@citelibre.org',NULL),(17,'marge.simpson@citelibre.org','Marge','Simpson','marge.simpson@citelibre.org',NULL),(18,NULL,'Peter','Parker','peter.parker@citelibre.org',NULL),(19,NULL,'Wade','Wilson','wade.wilson@citelibre.org',NULL),(20,NULL,'Harley','Quinn','harley.quinn@citelibre.org',NULL),(21,NULL,'Bruce','Banner','bruce.banner@citelibre.org',NULL),(22,NULL,'Wayne','Campbell','wayne.campbell@citelibre.org',NULL),(23,NULL,'Maximus','Decimus Meridius','maximus.decimus.meridius@citelibre.org',NULL);
+INSERT INTO `appointment_user` VALUES (1,'foo.bar@citelibre.org','Foo','Bar','foo.bar@citelibre.org',NULL),(2,'jane.doe@citelibre.org','Jane','Doe','jane.doe@citelibre.org',NULL),(3,'conrad.adams@citelibre.org','Conrad','Adams','conrad.adams@citelibre.org',NULL),(4,'conrad.adams@citelibre.org','Conrad','Adams','conrad.adams@citelibre.org',NULL),(5,'bruce.dickinson@citelibre.org','Bruce','Dickinson','bruce.dickinson@citelibre.org',NULL),(6,'agent.smith@citelibre.org','Agent','Smith','agent.smith@citelibre.org',NULL),(7,'al.capone@citelibre.org','Al','Capone','al.capone@citelibre.org',NULL),(8,'henriette.michu@citelibre.org','Henriette','Michu','henriette.michu@citelibre.org',NULL),(9,'pete.blake@citelibre.org','Pete','Blake','pete.blake@citelibre.org',NULL),(10,'joe.jackson@citelibre.org','Joe','Jackson','joe.jackson@citelibre.org',NULL),(11,'billy.zekid@citelibre.org','Billy','Zekid','billy.zekid@citelibre.org',NULL),(12,'sarah.connor@citelibre.org','Sarah','Connor','sarah.connor@citelibre.org',NULL),(13,'carl.knox@citelibre.org','Carl','knox','carl.knox@citelibre.org',NULL),(14,'anna.nasse@citelibre.org','Anna','Nasse','anna.nasse@citelibre.org',NULL),(15,'jill.morisson@citelibre.org','Jill','Morisson','jill.morisson@citelibre.org',NULL),(16,'joan.jett@citelibre.org','Joan','Jett','joan.jett@citelibre.org',NULL),(17,'marge.simpson@citelibre.org','Marge','Simpson','marge.simpson@citelibre.org',NULL),(18,NULL,'Peter','Parker','peter.parker@citelibre.org',NULL),(19,NULL,'Wade','Wilson','wade.wilson@citelibre.org',NULL),(20,NULL,'Harley','Quinn','harley.quinn@citelibre.org',NULL),(21,NULL,'Bruce','Banner','bruce.banner@citelibre.org',NULL),(22,NULL,'Wayne','Campbell','wayne.campbell@citelibre.org',NULL),(23,NULL,'Maximus','Decimus Meridius','maximus.decimus.meridius@citelibre.org',NULL),(24,NULL,'Andy','Dufresne','andy.dufresne@citelibre.org',NULL),(25,NULL,'Michael','Corleone','michael.corleone@citelibre.org',NULL),(26,NULL,'Frodon','Sacquet','frodon.sacquet@citelibre.org',NULL),(27,NULL,'Wallace','Mia','mia.wallace@citelibre.org',NULL),(28,NULL,'Obi-wan','Kenobi','obi-wan.kenobi@citelibre.org',NULL),(29,NULL,'Leia','Organa','leia.organa@citelibre.org',NULL),(30,NULL,'Luke','Skywalker','luke.skywalker@citelibre.org',NULL),(31,NULL,'Clarice','Tarling','clarice.tarling@citelibre.org',NULL),(32,NULL,'Marty','McFly','marty.mcfly@citelibre.org',NULL),(33,NULL,'Mathilda','Lando','mathilda.lando@citelibre.org',NULL),(34,NULL,'Mary Jane','Watson','mary-jane.watson@citelibre.org',NULL),(35,NULL,'Keyser','Söze','keyser.soze@citelibre.org',NULL),(36,NULL,'Ellen','Ripley','ellen.ripley@citelibre.org',NULL),(37,NULL,'Indiana','Jones','indiana.jones@citelibre.org',NULL),(38,NULL,'Wendy','Torrance','wendy.torrance@citelibre.org',NULL),(39,NULL,'Bryan','Mills','bryan.mills@citelibre.org',NULL),(40,NULL,'Tony','Montana','tony.montana@citelibre.org',NULL),(41,NULL,'Amélie','Poulain','amelie.poulain@citelibre.org',NULL),(42,NULL,'John','McClane','john.mcclane@citelibre.org',NULL),(43,NULL,'Truman','Burbank','truman.burbank@citelibre.org',NULL),(44,NULL,'Maverick','Mitchell','maverick.mitchell@citelibre.org',NULL),(45,NULL,'Beatrix','Kiddo','beatrix.kiddo@citelibre.org',NULL),(46,NULL,'Hermione','Granger','hermione.granger@citelibre.org',NULL);
 /*!40000 ALTER TABLE `appointment_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -589,7 +590,7 @@ CREATE TABLE `appointment_week_definition` (
   PRIMARY KEY (`id_week_definition`),
   UNIQUE KEY `appointment_week_definition_unique_date` (`id_reservation_rule`,`date_of_apply`),
   KEY `date_of_apply_idx` (`date_of_apply`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -598,7 +599,7 @@ CREATE TABLE `appointment_week_definition` (
 
 LOCK TABLES `appointment_week_definition` WRITE;
 /*!40000 ALTER TABLE `appointment_week_definition` DISABLE KEYS */;
-INSERT INTO `appointment_week_definition` VALUES (2,1,'2024-09-01','2025-01-01'),(3,1,'2024-01-01','2024-06-30'),(4,2,'2024-07-01','2024-08-31');
+INSERT INTO `appointment_week_definition` VALUES (2,1,'2024-09-01','2025-02-16'),(3,1,'2024-01-01','2024-06-30'),(4,2,'2024-07-01','2024-08-31'),(6,2,'2025-02-17','2025-03-02'),(7,2,'2025-04-14','2025-04-27'),(8,2,'2025-07-07','2025-08-31'),(9,1,'2025-03-03','2025-04-13'),(10,1,'2025-04-28','2025-07-06'),(11,2,'2025-10-20','2025-11-02'),(12,1,'2025-09-01','2025-10-19'),(13,1,'2025-11-03','2025-12-21'),(14,2,'2025-12-22','2025-12-31');
 /*!40000 ALTER TABLE `appointment_week_definition` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -615,7 +616,7 @@ CREATE TABLE `appointment_working_day` (
   `id_reservation_rule` int(11) NOT NULL,
   PRIMARY KEY (`id_working_day`),
   UNIQUE KEY `appointment_working_day_unique` (`id_reservation_rule`,`day_of_week`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -640,7 +641,7 @@ CREATE TABLE `appointmentgru_` (
   `guid` varchar(50) NOT NULL DEFAULT '',
   `cuid` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_appointmentgru`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -664,7 +665,7 @@ CREATE TABLE `core_admin_dashboard` (
   `dashboard_column` int(11) NOT NULL,
   `dashboard_order` int(11) NOT NULL,
   PRIMARY KEY (`dashboard_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -690,7 +691,7 @@ CREATE TABLE `core_admin_mailinglist` (
   `description` varchar(255) NOT NULL,
   `workgroup` varchar(50) NOT NULL,
   PRIMARY KEY (`id_mailinglist`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -715,7 +716,7 @@ CREATE TABLE `core_admin_mailinglist_filter` (
   `workgroup` varchar(50) NOT NULL,
   `role` varchar(50) NOT NULL,
   PRIMARY KEY (`id_mailinglist`,`workgroup`,`role`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -750,7 +751,7 @@ CREATE TABLE `core_admin_right` (
   `is_external_feature` smallint(6) DEFAULT 0,
   PRIMARY KEY (`id_right`),
   KEY `index_right` (`level_right`,`admin_url`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -774,7 +775,7 @@ CREATE TABLE `core_admin_role` (
   `role_key` varchar(50) NOT NULL DEFAULT '',
   `role_description` varchar(100) NOT NULL DEFAULT '',
   PRIMARY KEY (`role_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -783,7 +784,7 @@ CREATE TABLE `core_admin_role` (
 
 LOCK TABLES `core_admin_role` WRITE;
 /*!40000 ALTER TABLE `core_admin_role` DISABLE KEYS */;
-INSERT INTO `core_admin_role` VALUES ('all_site_manager','Site Manager'),('assign_groups','Assigner des groupes aux utilisateurs'),('assign_roles','Assigner des roles aux utilisateurs'),('CREATE_REFERENCE_IMPORT','Import csv file'),('kibana_dashboards_manager','Gestion des tableaux de bords Kibana'),('mylutece_manager','Gérer les patramètres avancés Mylutece'),('profiles_manager','Profiles management'),('profiles_views_manager','Profiles Views management'),('rendezvous_manager','all rendezvous-related rights'),('super_admin','Super Administrateur'),('workflow_manager','Workflow management');
+INSERT INTO `core_admin_role` VALUES ('all_site_manager','Site Manager'),('assign_groups','Assigner des groupes aux utilisateurs'),('assign_roles','Assigner des roles aux utilisateurs'),('CREATE_REFERENCE_IMPORT','Import csv file'),('kibana_dashboards_manager','Gestion des tableaux de bords Kibana'),('mylutece_manager','Gérer les paramètres avancés Mylutece'),('profiles_manager','Profiles management'),('profiles_views_manager','Profiles Views management'),('rendezvous_manager','all rendezvous-related rights'),('super_admin','Super Administrateur'),('workflow_manager','Workflow management');
 /*!40000 ALTER TABLE `core_admin_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -801,7 +802,7 @@ CREATE TABLE `core_admin_role_resource` (
   `resource_id` varchar(50) NOT NULL DEFAULT '',
   `permission` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`rbac_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1031 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1031 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -839,7 +840,7 @@ CREATE TABLE `core_admin_user` (
   `last_login` timestamp NULL DEFAULT '1980-01-01 00:00:00',
   `workgroup_key` varchar(50) DEFAULT 'all',
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -848,7 +849,7 @@ CREATE TABLE `core_admin_user` (
 
 LOCK TABLES `core_admin_user` WRITE;
 /*!40000 ALTER TABLE `core_admin_user` DISABLE KEYS */;
-INSERT INTO `core_admin_user` VALUES (1,'admin','Admin','admin','admin@lutece.fr',0,'PLAINTEXT:adminadmin','fr',0,0,0,'1980-01-01 00:00:00',NULL,0,'1980-01-01 00:00:00','all');
+INSERT INTO `core_admin_user` VALUES (1,'admin','Admin','admin','admin@citelibre.org',0,'PLAINTEXT:adminadmin','fr',0,0,0,'1980-01-01 00:00:00',NULL,0,'1980-01-01 00:00:00','all');
 /*!40000 ALTER TABLE `core_admin_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -863,7 +864,7 @@ CREATE TABLE `core_admin_user_anonymize_field` (
   `field_name` varchar(100) NOT NULL,
   `anonymize` smallint(6) NOT NULL,
   PRIMARY KEY (`field_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -892,7 +893,7 @@ CREATE TABLE `core_admin_user_field` (
   `user_field_value` mediumtext DEFAULT NULL,
   PRIMARY KEY (`id_user_field`),
   KEY `core_admin_user_field_idx_file` (`id_file`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -917,7 +918,7 @@ CREATE TABLE `core_admin_user_preferences` (
   `pref_value` mediumtext DEFAULT NULL,
   PRIMARY KEY (`id_user`,`pref_key`),
   KEY `index_admin_user_preferences` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -940,7 +941,7 @@ CREATE TABLE `core_admin_workgroup` (
   `workgroup_key` varchar(50) NOT NULL,
   `workgroup_description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`workgroup_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -963,7 +964,7 @@ CREATE TABLE `core_admin_workgroup_user` (
   `workgroup_key` varchar(50) NOT NULL,
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`workgroup_key`,`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -995,7 +996,7 @@ CREATE TABLE `core_attribute` (
   `plugin_name` varchar(255) DEFAULT NULL,
   `anonymize` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`id_attribute`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1027,7 +1028,7 @@ CREATE TABLE `core_attribute_field` (
   `is_multiple` smallint(6) DEFAULT 0,
   `field_position` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_field`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1053,7 +1054,7 @@ CREATE TABLE `core_connections_log` (
   `date_login` timestamp NOT NULL DEFAULT current_timestamp(),
   `login_status` int(11) DEFAULT NULL,
   KEY `index_connections_log` (`ip_address`,`date_login`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1062,7 +1063,6 @@ CREATE TABLE `core_connections_log` (
 
 LOCK TABLES `core_connections_log` WRITE;
 /*!40000 ALTER TABLE `core_connections_log` DISABLE KEYS */;
-INSERT INTO `core_connections_log` VALUES ('admin','172.25.0.1','2024-05-21 13:28:12',0),('admin','172.25.0.1','2024-05-21 14:57:00',0);
 /*!40000 ALTER TABLE `core_connections_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1078,7 +1078,7 @@ CREATE TABLE `core_dashboard` (
   `dashboard_column` int(11) NOT NULL,
   `dashboard_order` int(11) NOT NULL,
   PRIMARY KEY (`dashboard_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1102,7 +1102,7 @@ CREATE TABLE `core_datastore` (
   `entity_key` varchar(255) NOT NULL,
   `entity_value` mediumtext DEFAULT NULL,
   PRIMARY KEY (`entity_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1111,7 +1111,7 @@ CREATE TABLE `core_datastore` (
 
 LOCK TABLES `core_datastore` WRITE;
 /*!40000 ALTER TABLE `core_datastore` DISABLE KEYS */;
-INSERT INTO `core_datastore` VALUES ('appointment.site_property.nbplaces','5'),('core.advanced_parameters.access_failures_captcha','1'),('core.advanced_parameters.access_failures_interval','10'),('core.advanced_parameters.access_failures_max','3'),('core.advanced_parameters.account_life_time','12'),('core.advanced_parameters.account_reactivated_mail_sender','lutece@nowhere.com'),('core.advanced_parameters.account_reactivated_mail_subject','Votre compte a bien â”œâŒtâ”œâŒ râ”œâŒactivâ”œâŒ'),('core.advanced_parameters.default_user_language','fr'),('core.advanced_parameters.default_user_level','0'),('core.advanced_parameters.default_user_notification','1'),('core.advanced_parameters.default_user_status','0'),('core.advanced_parameters.email_pattern','^[\\w_.\\-!\\#\\$\\%\\&\'\\*\\+\\/\\=\\?\\^\\\\}\\{\\|\\~]+@[\\w_.\\-]+\\.[\\w]+$'),('core.advanced_parameters.email_pattern_verify_by',''),('core.advanced_parameters.expired_alert_mail_sender','lutece@nowhere.com'),('core.advanced_parameters.expired_alert_mail_subject','Votre compte a expirâ”œâŒ'),('core.advanced_parameters.first_alert_mail_sender','lutece@nowhere.com'),('core.advanced_parameters.first_alert_mail_subject','Votre compte va bientâ”œâ”¤t expirer'),('core.advanced_parameters.force_change_password_reinit','false'),('core.advanced_parameters.lock_reset_token_to_session','false'),('core.advanced_parameters.maximum_number_password_change',''),('core.advanced_parameters.nb_alert_account','2'),('core.advanced_parameters.notify_user_password_expired',''),('core.advanced_parameters.other_alert_mail_sender','lutece@nowhere.com'),('core.advanced_parameters.other_alert_mail_subject','Votre compte va bientâ”œâ”¤t expirer'),('core.advanced_parameters.password_duration','120'),('core.advanced_parameters.password_expired_mail_sender','lutece@nowhere.com'),('core.advanced_parameters.password_expired_mail_subject','Votre mot de passe a expirâ”œâŒ'),('core.advanced_parameters.password_format_numero','false'),('core.advanced_parameters.password_format_special_characters','false'),('core.advanced_parameters.password_format_upper_lower_case','false'),('core.advanced_parameters.password_history_size',''),('core.advanced_parameters.password_minimum_length','8'),('core.advanced_parameters.reset_token_validity','60'),('core.advanced_parameters.time_before_alert_account','30'),('core.advanced_parameters.time_between_alerts_account','10'),('core.advanced_parameters.tsw_size_password_change',''),('core.advanced_parameters.use_advanced_security_parameters',''),('core.backOffice.defaultEditor','tinymce'),('core.cache.status.appointment.appointmentFormCacheService.enabled','1'),('core.cache.status.asynchronousupload.asynchronousUploadCacheService.enabled','0'),('core.cache.status.BaseUserPreferencesCacheService.enabled','1'),('core.cache.status.BaseUserPreferencesCacheService.maxElementsInMemory','1000'),('core.cache.status.DatastoreCacheService.enabled','0'),('core.cache.status.EntryTypeServiceManagerCache.enabled','1'),('core.cache.status.LinksIncludeCacheService.enabled','1'),('core.cache.status.LuteceUserCacheService.enabled','1'),('core.cache.status.LuteceUserCacheService.maxElementsInMemory','1000'),('core.cache.status.MailAttachmentCacheService.diskPersistent','true'),('core.cache.status.MailAttachmentCacheService.enabled','1'),('core.cache.status.MailAttachmentCacheService.maxElementsInMemory','10'),('core.cache.status.MailAttachmentCacheService.overflowToDisk','true'),('core.cache.status.MailAttachmentCacheService.timeToLiveSeconds','7200'),('core.cache.status.MyPortalWidgetContentService.enabled','1'),('core.cache.status.MyPortalWidgetService.enabled','1'),('core.cache.status.PageCacheService.enabled','1'),('core.cache.status.PageCachingFilter(CAUTION:NEVERUSEWITHUSERDYNAMICDATA).enabled','0'),('core.cache.status.PageCachingFilter.enabled','0'),('core.cache.status.pathCacheService.enabled','1'),('core.cache.status.PortalMenuService.enabled','1'),('core.cache.status.PortletCacheService.enabled','0'),('core.cache.status.SiteMapService.enabled','1'),('core.cache.status.StaticFilesCachingFilter.enabled','1'),('core.cache.status.StaticFilesCachingFilter.timeToLiveSeconds','604800'),('core.cache.status.workflow.alertGruConfigCacheService.enabled','0'),('core.cache.status.workflow.notifyGruConfigCacheService.enabled','0'),('core.daemon.accountLifeTimeDaemon.interval','3600'),('core.daemon.accountLifeTimeDaemon.onStartUp','true'),('core.daemon.AlertGruDaemon.interval','86400'),('core.daemon.AlertGruDaemon.onStartUp','true'),('core.daemon.anonymizationDaemon.interval','86400'),('core.daemon.anonymizationDaemon.onStartUp','false'),('core.daemon.AppointmentReminderDaemon.interval','600'),('core.daemon.AppointmentReminderDaemon.onStartUp','true'),('core.daemon.archiveDaemon.interval','86400'),('core.daemon.archiveDaemon.onStartUp','true'),('core.daemon.automaticActionDaemon.interval','30'),('core.daemon.automaticActionDaemon.onStartUp','true'),('core.daemon.changeStateDaemon.interval','10'),('core.daemon.changeStateDaemon.onStartUp','false'),('core.daemon.chooseStateActionDaemon.interval','10'),('core.daemon.chooseStateActionDaemon.onStartUp','false'),('core.daemon.crmClientSender.interval','60'),('core.daemon.crmClientSender.onStartUp','true'),('core.daemon.fullIndexingDaemon.interval','86400'),('core.daemon.fullIndexingDaemon.onStartUp','true'),('core.daemon.incrementalIndexingDaemon.interval','600'),('core.daemon.incrementalIndexingDaemon.onStartUp','true'),('core.daemon.indexer.interval','300'),('core.daemon.indexer.onStartUp','true'),('core.daemon.mailSender.interval','3600'),('core.daemon.mailSender.onStartUp','true'),('core.daemon.notifyHistoryCleanerDaemon.interval','10'),('core.daemon.notifyHistoryCleanerDaemon.onStartUp','false'),('core.daemon.slotDaemon.interval','86400'),('core.daemon.slotDaemon.onStartUp','true'),('core.daemon.solrindexer.interval','300'),('core.daemon.solrindexer.onStartUp','true'),('core.daemon.temporaryfilesDaemon.interval','86400'),('core.daemon.temporaryfilesDaemon.onStartUp','false'),('core.daemon.threadLauncherDaemon.interval','86400'),('core.daemon.threadLauncherDaemon.onStartUp','true'),('core.frontOffice.defaultEditor','sceeditor'),('core.plugins.status.address-autocomplete.installed','true'),('core.plugins.status.address.installed','true'),('core.plugins.status.appointment-desk.installed','true'),('core.plugins.status.appointment-desk.pool','portal'),('core.plugins.status.appointment-filling.installed','true'),('core.plugins.status.appointment-filling.pool','portal'),('core.plugins.status.appointment-leaflet.installed','true'),('core.plugins.status.appointment-management.installed','true'),('core.plugins.status.appointment-management.pool','portal'),('core.plugins.status.appointment-mydashboard.installed','true'),('core.plugins.status.appointment-mydashboard.pool','portal'),('core.plugins.status.appointment-solr.installed','true'),('core.plugins.status.appointment-solrsearchapp.installed','true'),('core.plugins.status.appointment.installed','true'),('core.plugins.status.appointment.pool','portal'),('core.plugins.status.appointmentgru.installed','true'),('core.plugins.status.appointmentgru.pool','portal'),('core.plugins.status.asynchronous-upload.installed','true'),('core.plugins.status.asynchronous-upload.pool','portal'),('core.plugins.status.captcha.installed','true'),('core.plugins.status.crmclient.installed','true'),('core.plugins.status.crmclient.pool','portal'),('core.plugins.status.elasticdata-appointment.installed','true'),('core.plugins.status.elasticdata-appointment.pool','portal'),('core.plugins.status.elasticdata.installed','true'),('core.plugins.status.elasticdata.pool','portal'),('core.plugins.status.filegenerator.installed','true'),('core.plugins.status.filegenerator.pool','portal'),('core.plugins.status.genericalert.installed','true'),('core.plugins.status.genericalert.pool','portal'),('core.plugins.status.genericattributes-address.installed','true'),('core.plugins.status.genericattributes-googlemaps.installed','true'),('core.plugins.status.genericattributes.installed','true'),('core.plugins.status.genericattributes.pool','portal'),('core.plugins.status.grusupply.installed','true'),('core.plugins.status.grusupply.pool','portal'),('core.plugins.status.html.installed','true'),('core.plugins.status.htmlpage.installed','true'),('core.plugins.status.htmlpage.pool','portal'),('core.plugins.status.identitystore.installed','true'),('core.plugins.status.jcaptcha.installed','true'),('core.plugins.status.kibana.installed','true'),('core.plugins.status.kibana.pool','portal'),('core.plugins.status.leaflet.installed','true'),('core.plugins.status.lucene.installed','true'),('core.plugins.status.matomo.installed','true'),('core.plugins.status.mermaidjs.installed','true'),('core.plugins.status.mermaidjs.pool','portal'),('core.plugins.status.modulenotifygrumappingmanager.installed','false'),('core.plugins.status.modulenotifygrumappingmanager.pool','portal'),('core.plugins.status.mydashboard.installed','true'),('core.plugins.status.mydashboard.pool','portal'),('core.plugins.status.mylutece.installed','true'),('core.plugins.status.mylutece.pool','portal'),('core.plugins.status.notifygru-appointment.installed','true'),('core.plugins.status.notifygru-appointment.pool','portal'),('core.plugins.status.profiles.installed','true'),('core.plugins.status.profiles.pool','portal'),('core.plugins.status.referencelist.installed','true'),('core.plugins.status.referencelist.pool','portal'),('core.plugins.status.regularexpression.installed','true'),('core.plugins.status.regularexpression.pool','portal'),('core.plugins.status.rest.installed','true'),('core.plugins.status.sitelabels.installed','true'),('core.plugins.status.solr.installed','true'),('core.plugins.status.solr.pool','portal'),('core.plugins.status.swaggerui.installed','true'),('core.plugins.status.swaggerui.pool','portal'),('core.plugins.status.systeminfo.installed','true'),('core.plugins.status.themecitelibre.installed','true'),('core.plugins.status.workflow-alertgru.installed','true'),('core.plugins.status.workflow-alertgru.pool','portal'),('core.plugins.status.workflow-appointment.installed','true'),('core.plugins.status.workflow-appointment.pool','portal'),('core.plugins.status.workflow-notifygru.installed','true'),('core.plugins.status.workflow-notifygru.pool','portal'),('core.plugins.status.workflow-rest.installed','true'),('core.plugins.status.workflow.installed','true'),('core.plugins.status.workflow.pool','portal'),('core.startup.time','May 21, 2024, 7:49:15 AM'),('core.templates.currentCommonsInclude','Bootstrap5Tabler'),('core_banned_domain_names','yopmail.com'),('leaflet.icon.icons.default.installed','true'),('leaflet.icon.icons.green.installed','true'),('leaflet.icon.icons.red.installed','true'),('leaflet.icon.icons.yellow.installed','true'),('matomo.site_property.server.http.url','http://localhost/'),('matomo.site_property.server.https.url','http://localhost/'),('matomo.site_property.site.id','1'),('matomo.site_property.widget.auth.token','cfa9a798abd584817e2eb94d7bc14bb0'),('mylutece.security.public_url.mylutece.url.createAccount.page','jsp/site/Portal.jsp?page=mylutece&action=createAccount'),('mylutece.security.public_url.mylutece.url.doActionsAll','jsp/site/plugins/mylutece/Do*'),('mylutece.security.public_url.mylutece.url.doLogin','jsp/site/plugins/mylutece/DoMyLuteceLogin.jsp'),('mylutece.security.public_url.mylutece.url.doLogout','jsp/site/plugins/mylutece/DoMyLuteceLogout.jsp'),('mylutece.security.public_url.mylutece.url.lostLogin.page','jsp/site/Portal.jsp?page=mylutecedatabase&action=lostLogin'),('mylutece.security.public_url.mylutece.url.lostPassword.page','jsp/site/Portal.jsp?page=mylutece&action=lostPassword'),('mylutece.security.public_url.mylutece.url.modifyAccount.page','jsp/site/Portal.jsp?page=mylutece&action=modifyAccount'),('portal.site.site_property.admin_home_url','jsp/admin/AdminMenu.jsp'),('portal.site.site_property.avatar_default','themes/admin/shared/images/unknown.svg'),('portal.site.site_property.back_images','themes/admin/tabler/images/bg_login1.svg, themes/admin/tabler/images/bg_login2.svg'),('portal.site.site_property.bo.showXs.checkbox','1'),('portal.site.site_property.bo.showXsWarning.checkbox','0'),('portal.site.site_property.email','<webmaster email>'),('portal.site.site_property.home_url','jsp/site/Portal.jsp'),('portal.site.site_property.layout.darkmode.checkbox','0'),('portal.site.site_property.layout.menu.checkbox','0'),('portal.site.site_property.layout.readmode.checkbox','0'),('portal.site.site_property.layout.user.darkmode.show.checkbox','1'),('portal.site.site_property.layout.user.menumode.show.checkbox','1'),('portal.site.site_property.layout.user.readmode.show.checkbox','0'),('portal.site.site_property.locale.default','fr'),('portal.site.site_property.login.image',''),('portal.site.site_property.logo_url','themes/admin/shared/images/logo-header-icon.svg'),('portal.site.site_property.meta.author','<author>'),('portal.site.site_property.meta.copyright','<copyright>'),('portal.site.site_property.meta.description','<description>'),('portal.site.site_property.meta.keywords','<keywords>'),('portal.site.site_property.name','CiteLibre Rendez-Vous'),('portal.site.site_property.noreply_email','no-reply@mydomain.com'),('portal.site.site_property.popup_credits.textblock','&lt;credits text&gt;'),('portal.site.site_property.popup_legal_info.copyright.textblock','&lt;copyright text&gt;'),('portal.site.site_property.popup_legal_info.privacy.textblock','&lt;privacy text&gt;'),('portal.site.site_property.portlet.title.maxlength','75'),('themecitelibre.site_property.bannerMessage.CloseButton.checkbox','1'),('themecitelibre.site_property.bannerMessage.htmlblock',''),('themecitelibre.site_property.bannerMessage.Position','bottom-right'),('themecitelibre.site_property.bannerMessage.Title',''),('themecitelibre.site_property.bannerMessage.Type','info'),('themecitelibre.site_property.footer.about','CiteLibre est faite par et pour les villes, sur les principes de l\'open source. <br> <a class=\"btn btn-link ps-0\" href=\"http://lutece.paris.fr\" title=\"[Nouvelle fenêtre] LUTECE\" target=\"_blank><img src=\"images/poweredby.png\" alt=\"Powered by LUTECE\"></a> '),('themecitelibre.site_property.footer.about.title','A propos'),('themecitelibre.site_property.footer.cookieLabel','Gestion des cookies'),('themecitelibre.site_property.footer.cookieLink','#cookiecitelibrepack'),('themecitelibre.site_property.footer.links.title','Liens importants'),('themecitelibre.site_property.robotIndex.checkbox','1');
+INSERT INTO `core_datastore` VALUES ('appointment.site_property.nbplaces','5'),('core.advanced_parameters.access_failures_captcha','1'),('core.advanced_parameters.access_failures_interval','10'),('core.advanced_parameters.access_failures_max','3'),('core.advanced_parameters.account_life_time','12'),('core.advanced_parameters.account_reactivated_mail_sender','noreply@citelibre.org'),('core.advanced_parameters.account_reactivated_mail_subject','Votre compte a bien été réactivé'),('core.advanced_parameters.default_user_language','fr'),('core.advanced_parameters.default_user_level','0'),('core.advanced_parameters.default_user_notification','1'),('core.advanced_parameters.default_user_status','0'),('core.advanced_parameters.email_pattern','^[\\w_.\\-!\\#\\$\\%\\&\'\\*\\+\\/\\=\\?\\^\\\\}\\{\\|\\~]+@[\\w_.\\-]+\\.[\\w]+$'),('core.advanced_parameters.email_pattern_verify_by',''),('core.advanced_parameters.expired_alert_mail_sender','noreply@citelibre.org'),('core.advanced_parameters.expired_alert_mail_subject','Votre compte a expiré'),('core.advanced_parameters.first_alert_mail_sender','noreply@citelibre.org'),('core.advanced_parameters.first_alert_mail_subject','Votre compte va bientôt expirer'),('core.advanced_parameters.force_change_password_reinit','false'),('core.advanced_parameters.lock_reset_token_to_session','false'),('core.advanced_parameters.maximum_number_password_change',''),('core.advanced_parameters.nb_alert_account','2'),('core.advanced_parameters.notify_user_password_expired',''),('core.advanced_parameters.other_alert_mail_sender','noreply@citelibre.org'),('core.advanced_parameters.other_alert_mail_subject','Votre compte va bientôt expirer'),('core.advanced_parameters.password_duration','120'),('core.advanced_parameters.password_expired_mail_sender','noreply@citelibre.org'),('core.advanced_parameters.password_expired_mail_subject','Votre mot de passe a expiré'),('core.advanced_parameters.password_format_numero','false'),('core.advanced_parameters.password_format_special_characters','false'),('core.advanced_parameters.password_format_upper_lower_case','false'),('core.advanced_parameters.password_history_size',''),('core.advanced_parameters.password_minimum_length','8'),('core.advanced_parameters.reset_token_validity','60'),('core.advanced_parameters.time_before_alert_account','30'),('core.advanced_parameters.time_between_alerts_account','10'),('core.advanced_parameters.tsw_size_password_change',''),('core.advanced_parameters.use_advanced_security_parameters',''),('core.backOffice.defaultEditor','tinymce'),('core.cache.status.appointment.appointmentFormCacheService.enabled','1'),('core.cache.status.asynchronousupload.asynchronousUploadCacheService.enabled','0'),('core.cache.status.BaseUserPreferencesCacheService.enabled','1'),('core.cache.status.BaseUserPreferencesCacheService.maxElementsInMemory','1000'),('core.cache.status.DatastoreCacheService.enabled','0'),('core.cache.status.EntryTypeServiceManagerCache.enabled','1'),('core.cache.status.LinksIncludeCacheService.enabled','1'),('core.cache.status.LuteceUserCacheService.enabled','1'),('core.cache.status.LuteceUserCacheService.maxElementsInMemory','1000'),('core.cache.status.MailAttachmentCacheService.diskPersistent','true'),('core.cache.status.MailAttachmentCacheService.enabled','1'),('core.cache.status.MailAttachmentCacheService.maxElementsInMemory','10'),('core.cache.status.MailAttachmentCacheService.overflowToDisk','true'),('core.cache.status.MailAttachmentCacheService.timeToLiveSeconds','7200'),('core.cache.status.MyPortalWidgetContentService.enabled','1'),('core.cache.status.MyPortalWidgetService.enabled','1'),('core.cache.status.PageCacheService.enabled','1'),('core.cache.status.PageCachingFilter(CAUTION:NEVERUSEWITHUSERDYNAMICDATA).enabled','0'),('core.cache.status.PageCachingFilter.enabled','0'),('core.cache.status.pathCacheService.enabled','1'),('core.cache.status.PortalMenuService.enabled','1'),('core.cache.status.PortletCacheService.enabled','0'),('core.cache.status.SiteMapService.enabled','1'),('core.cache.status.StaticFilesCachingFilter.enabled','1'),('core.cache.status.StaticFilesCachingFilter.timeToLiveSeconds','604800'),('core.cache.status.workflow.alertGruConfigCacheService.enabled','0'),('core.cache.status.workflow.notifyGruConfigCacheService.enabled','0'),('core.daemon.accountLifeTimeDaemon.interval','3600'),('core.daemon.accountLifeTimeDaemon.onStartUp','true'),('core.daemon.AlertGruDaemon.interval','86400'),('core.daemon.AlertGruDaemon.onStartUp','true'),('core.daemon.anonymizationDaemon.interval','86400'),('core.daemon.anonymizationDaemon.onStartUp','false'),('core.daemon.AppointmentReminderDaemon.interval','600'),('core.daemon.AppointmentReminderDaemon.onStartUp','true'),('core.daemon.archiveDaemon.interval','86400'),('core.daemon.archiveDaemon.onStartUp','true'),('core.daemon.automaticActionDaemon.interval','30'),('core.daemon.automaticActionDaemon.onStartUp','true'),('core.daemon.changeStateDaemon.interval','10'),('core.daemon.changeStateDaemon.onStartUp','false'),('core.daemon.chooseStateActionDaemon.interval','10'),('core.daemon.chooseStateActionDaemon.onStartUp','false'),('core.daemon.crmClientSender.interval','60'),('core.daemon.crmClientSender.onStartUp','true'),('core.daemon.fullIndexingDaemon.interval','86400'),('core.daemon.fullIndexingDaemon.onStartUp','true'),('core.daemon.incrementalIndexingDaemon.interval','600'),('core.daemon.incrementalIndexingDaemon.onStartUp','true'),('core.daemon.indexer.interval','300'),('core.daemon.indexer.onStartUp','true'),('core.daemon.mailSender.interval','3600'),('core.daemon.mailSender.onStartUp','true'),('core.daemon.notifyHistoryCleanerDaemon.interval','10'),('core.daemon.notifyHistoryCleanerDaemon.onStartUp','false'),('core.daemon.slotDaemon.interval','86400'),('core.daemon.slotDaemon.onStartUp','true'),('core.daemon.solrindexer.interval','300'),('core.daemon.solrindexer.onStartUp','true'),('core.daemon.temporaryfilesDaemon.interval','86400'),('core.daemon.temporaryfilesDaemon.onStartUp','false'),('core.daemon.threadLauncherDaemon.interval','86400'),('core.daemon.threadLauncherDaemon.onStartUp','true'),('core.frontOffice.defaultEditor','sceeditor'),('core.plugins.status.address-autocomplete.installed','true'),('core.plugins.status.address.installed','true'),('core.plugins.status.appointment-desk.installed','true'),('core.plugins.status.appointment-desk.pool','portal'),('core.plugins.status.appointment-filling.installed','true'),('core.plugins.status.appointment-filling.pool','portal'),('core.plugins.status.appointment-leaflet.installed','true'),('core.plugins.status.appointment-management.installed','true'),('core.plugins.status.appointment-management.pool','portal'),('core.plugins.status.appointment-mydashboard.installed','true'),('core.plugins.status.appointment-mydashboard.pool','portal'),('core.plugins.status.appointment-solr.installed','true'),('core.plugins.status.appointment-solrsearchapp.installed','true'),('core.plugins.status.appointment.installed','true'),('core.plugins.status.appointment.pool','portal'),('core.plugins.status.appointmentgru.installed','true'),('core.plugins.status.appointmentgru.pool','portal'),('core.plugins.status.asynchronous-upload.installed','true'),('core.plugins.status.asynchronous-upload.pool','portal'),('core.plugins.status.captcha.installed','true'),('core.plugins.status.crmclient.installed','true'),('core.plugins.status.crmclient.pool','portal'),('core.plugins.status.elasticdata-appointment.installed','true'),('core.plugins.status.elasticdata-appointment.pool','portal'),('core.plugins.status.elasticdata.installed','true'),('core.plugins.status.elasticdata.pool','portal'),('core.plugins.status.filegenerator.installed','true'),('core.plugins.status.filegenerator.pool','portal'),('core.plugins.status.genericalert.installed','true'),('core.plugins.status.genericalert.pool','portal'),('core.plugins.status.genericattributes-address.installed','true'),('core.plugins.status.genericattributes-googlemaps.installed','true'),('core.plugins.status.genericattributes.installed','true'),('core.plugins.status.genericattributes.pool','portal'),('core.plugins.status.grusupply.installed','true'),('core.plugins.status.grusupply.pool','portal'),('core.plugins.status.html.installed','true'),('core.plugins.status.htmlpage.installed','true'),('core.plugins.status.htmlpage.pool','portal'),('core.plugins.status.identitystore.installed','true'),('core.plugins.status.jcaptcha.installed','true'),('core.plugins.status.kibana.installed','true'),('core.plugins.status.kibana.pool','portal'),('core.plugins.status.leaflet.installed','true'),('core.plugins.status.lucene.installed','true'),('core.plugins.status.matomo.installed','true'),('core.plugins.status.mermaidjs.installed','true'),('core.plugins.status.mermaidjs.pool','portal'),('core.plugins.status.modulenotifygrumappingmanager.installed','false'),('core.plugins.status.modulenotifygrumappingmanager.pool','portal'),('core.plugins.status.mydashboard.installed','true'),('core.plugins.status.mydashboard.pool','portal'),('core.plugins.status.mylutece-oauth2.installed','true'),('core.plugins.status.mylutece.installed','true'),('core.plugins.status.mylutece.pool','portal'),('core.plugins.status.notifygru-appointment.installed','true'),('core.plugins.status.notifygru-appointment.pool','portal'),('core.plugins.status.oauth2.installed','true'),('core.plugins.status.profiles.installed','true'),('core.plugins.status.profiles.pool','portal'),('core.plugins.status.referencelist.installed','true'),('core.plugins.status.referencelist.pool','portal'),('core.plugins.status.regularexpression.installed','true'),('core.plugins.status.regularexpression.pool','portal'),('core.plugins.status.rest.installed','true'),('core.plugins.status.sitelabels.installed','true'),('core.plugins.status.solr.installed','true'),('core.plugins.status.solr.pool','portal'),('core.plugins.status.swaggerui.installed','true'),('core.plugins.status.swaggerui.pool','portal'),('core.plugins.status.systeminfo.installed','true'),('core.plugins.status.themecitelibre.installed','true'),('core.plugins.status.workflow-alertgru.installed','true'),('core.plugins.status.workflow-alertgru.pool','portal'),('core.plugins.status.workflow-appointment.installed','true'),('core.plugins.status.workflow-appointment.pool','portal'),('core.plugins.status.workflow-notifygru.installed','true'),('core.plugins.status.workflow-notifygru.pool','portal'),('core.plugins.status.workflow-rest.installed','true'),('core.plugins.status.workflow.installed','true'),('core.plugins.status.workflow.pool','portal'),('core.startup.time','May 21, 2024, 7:49:15 AM'),('core.templates.currentCommonsInclude','Bootstrap5Tabler'),('core_banned_domain_names','yopmail.com'),('leaflet.icon.icons.default.installed','true'),('leaflet.icon.icons.green.installed','true'),('leaflet.icon.icons.red.installed','true'),('leaflet.icon.icons.yellow.installed','true'),('matomo.site_property.server.http.url','http://localhost/'),('matomo.site_property.server.https.url','http://localhost/'),('matomo.site_property.site.id','1'),('matomo.site_property.widget.auth.token','cfa9a798abd584817e2eb94d7bc14bb0'),('mylutece.security.public_url.mylutece.url.createAccount.page','jsp/site/Portal.jsp?page=mylutece&action=createAccount'),('mylutece.security.public_url.mylutece.url.doActionsAll','jsp/site/plugins/mylutece/Do*'),('mylutece.security.public_url.mylutece.url.doLogin','jsp/site/plugins/mylutece/DoMyLuteceLogin.jsp'),('mylutece.security.public_url.mylutece.url.doLogout','jsp/site/plugins/mylutece/DoMyLuteceLogout.jsp'),('mylutece.security.public_url.mylutece.url.login.page','jsp/site/Portal.jsp?page=mylutece&action=login'),('mylutece.security.public_url.mylutece.url.lostLogin.page','jsp/site/Portal.jsp?page=mylutecedatabase&action=lostLogin'),('mylutece.security.public_url.mylutece.url.lostPassword.page','jsp/site/Portal.jsp?page=mylutece&action=lostPassword'),('mylutece.security.public_url.mylutece.url.modifyAccount.page','jsp/site/Portal.jsp?page=mylutece&action=modifyAccount'),('portal.site.site_property.admin_home_url','jsp/admin/AdminMenu.jsp'),('portal.site.site_property.avatar_default','themes/admin/shared/images/unknown.svg'),('portal.site.site_property.back_images','themes/admin/tabler/images/bg_login1.svg, themes/admin/tabler/images/bg_login2.svg'),('portal.site.site_property.bo.showXs.checkbox','1'),('portal.site.site_property.bo.showXsWarning.checkbox','0'),('portal.site.site_property.email','<webmaster email>'),('portal.site.site_property.home_url','jsp/site/Portal.jsp'),('portal.site.site_property.layout.darkmode.checkbox','0'),('portal.site.site_property.layout.menu.checkbox','0'),('portal.site.site_property.layout.readmode.checkbox','0'),('portal.site.site_property.layout.user.darkmode.show.checkbox','1'),('portal.site.site_property.layout.user.menumode.show.checkbox','1'),('portal.site.site_property.layout.user.readmode.show.checkbox','0'),('portal.site.site_property.locale.default','fr'),('portal.site.site_property.login.image',''),('portal.site.site_property.logo_url','themes/admin/shared/images/logo-header-icon.svg'),('portal.site.site_property.meta.author','<author>'),('portal.site.site_property.meta.copyright','<copyright>'),('portal.site.site_property.meta.description','<description>'),('portal.site.site_property.meta.keywords','<keywords>'),('portal.site.site_property.name','CiteLibre Rendez-Vous'),('portal.site.site_property.noreply_email','noreply@citelibre.org'),('portal.site.site_property.popup_credits.textblock','&lt;credits text&gt;'),('portal.site.site_property.popup_legal_info.copyright.textblock','&lt;copyright text&gt;'),('portal.site.site_property.popup_legal_info.privacy.textblock','&lt;privacy text&gt;'),('portal.site.site_property.portlet.title.maxlength','75'),('themecitelibre.site_property.bannerMessage.CloseButton.checkbox','1'),('themecitelibre.site_property.bannerMessage.htmlblock',''),('themecitelibre.site_property.bannerMessage.Position','bottom-right'),('themecitelibre.site_property.bannerMessage.Title',''),('themecitelibre.site_property.bannerMessage.Type','info'),('themecitelibre.site_property.footer.about','CiteLibre est faite par et pour les villes, sur les principes de l\'open source. <br> <a class=\"btn btn-link ps-0\" href=\"http://lutece.paris.fr\" title=\"[Nouvelle fenêtre] LUTECE\" target=\"_blank><img src=\"images/poweredby.png\" alt=\"Powered by LUTECE\"></a> '),('themecitelibre.site_property.footer.about.title','A propos'),('themecitelibre.site_property.footer.cookieLabel','Gestion des cookies'),('themecitelibre.site_property.footer.cookieLink','#cookiecitelibrepack'),('themecitelibre.site_property.footer.links.title','Liens importants'),('themecitelibre.site_property.robotIndex.checkbox','1');
 /*!40000 ALTER TABLE `core_datastore` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1129,7 +1129,7 @@ CREATE TABLE `core_feature_group` (
   `feature_group_order` int(11) DEFAULT NULL,
   `feature_group_icon` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_feature_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1158,7 +1158,7 @@ CREATE TABLE `core_file` (
   `date_creation` timestamp NULL DEFAULT NULL,
   `origin` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_file`)
-) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1182,7 +1182,7 @@ CREATE TABLE `core_id_generator` (
   `class_name` varchar(250) NOT NULL DEFAULT '',
   `current_value` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`class_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1208,7 +1208,7 @@ CREATE TABLE `core_indexer_action` (
   `indexer_name` varchar(255) NOT NULL,
   `id_portlet` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_action`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1231,7 +1231,7 @@ CREATE TABLE `core_level_right` (
   `id_level` smallint(6) NOT NULL DEFAULT 0,
   `name` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`id_level`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1255,7 +1255,7 @@ CREATE TABLE `core_mail_item` (
   `id_mail_queue` int(11) NOT NULL DEFAULT 0,
   `mail_item` mediumblob DEFAULT NULL,
   PRIMARY KEY (`id_mail_queue`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1279,7 +1279,7 @@ CREATE TABLE `core_mail_queue` (
   `is_locked` smallint(6) DEFAULT 0,
   PRIMARY KEY (`id_mail_queue`),
   KEY `is_locked_core_mail_queue` (`is_locked`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1310,7 +1310,7 @@ CREATE TABLE `core_mode` (
   `output_xsl_omit_xml_dec` varchar(50) DEFAULT NULL,
   `output_xsl_standalone` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_mode`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1353,7 +1353,7 @@ CREATE TABLE `core_page` (
   PRIMARY KEY (`id_page`),
   KEY `index_page` (`id_template`,`id_parent`),
   KEY `index_childpage` (`id_parent`,`page_order`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1379,7 +1379,7 @@ CREATE TABLE `core_page_template` (
   `file_name` varchar(100) DEFAULT NULL,
   `picture` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_template`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1403,7 +1403,7 @@ CREATE TABLE `core_physical_file` (
   `id_physical_file` int(11) NOT NULL AUTO_INCREMENT,
   `file_value` mediumblob DEFAULT NULL,
   PRIMARY KEY (`id_physical_file`)
-) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1427,7 +1427,7 @@ CREATE TABLE `core_portal_component` (
   `id_portal_component` int(11) NOT NULL DEFAULT 0,
   `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_portal_component`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1464,7 +1464,7 @@ CREATE TABLE `core_portlet` (
   `device_display_flags` int(11) NOT NULL DEFAULT 15,
   PRIMARY KEY (`id_portlet`),
   KEY `index_portlet` (`id_page`,`id_portlet_type`,`id_style`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1488,7 +1488,7 @@ CREATE TABLE `core_portlet_alias` (
   `id_portlet` int(11) NOT NULL DEFAULT 0,
   `id_alias` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_portlet`,`id_alias`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1524,7 +1524,7 @@ CREATE TABLE `core_portlet_type` (
   `modify_specific_form` varchar(255) DEFAULT NULL,
   `icon_name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_portlet_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1549,7 +1549,7 @@ CREATE TABLE `core_role` (
   `role_description` varchar(255) DEFAULT NULL,
   `workgroup_key` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`role`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1572,7 +1572,7 @@ CREATE TABLE `core_search_parameter` (
   `parameter_key` varchar(100) NOT NULL,
   `parameter_value` mediumtext DEFAULT NULL,
   PRIMARY KEY (`parameter_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1599,7 +1599,7 @@ CREATE TABLE `core_style` (
   `id_portal_component` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_style`),
   KEY `index_style` (`id_portlet_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1625,7 +1625,7 @@ CREATE TABLE `core_style_mode_stylesheet` (
   `id_stylesheet` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_style`,`id_mode`,`id_stylesheet`),
   KEY `index_style_mode_stylesheet` (`id_stylesheet`,`id_mode`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1651,7 +1651,7 @@ CREATE TABLE `core_stylesheet` (
   `file_name` varchar(255) DEFAULT NULL,
   `source` mediumblob DEFAULT NULL,
   PRIMARY KEY (`id_stylesheet`)
-) ENGINE=InnoDB AUTO_INCREMENT=311 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=311 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1675,7 +1675,7 @@ CREATE TABLE `core_template` (
   `template_name` varchar(100) NOT NULL,
   `template_value` mediumtext DEFAULT NULL,
   PRIMARY KEY (`template_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1700,7 +1700,7 @@ CREATE TABLE `core_text_editor` (
   `editor_description` varchar(255) NOT NULL,
   `backOffice` smallint(6) NOT NULL,
   PRIMARY KEY (`editor_name`,`backOffice`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1725,7 +1725,7 @@ CREATE TABLE `core_user_password_history` (
   `password` mediumtext NOT NULL,
   `date_password_change` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id_user`,`date_password_change`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1734,7 +1734,6 @@ CREATE TABLE `core_user_password_history` (
 
 LOCK TABLES `core_user_password_history` WRITE;
 /*!40000 ALTER TABLE `core_user_password_history` DISABLE KEYS */;
-INSERT INTO `core_user_password_history` VALUES (1,'PBKDF2WITHHMACSHA512:40000:c70fa5d392001060a5e4e1383ace3180:a27f5d08fd0057bd0a3b3dab1f52a2acec45b56ff23d4869bf849bd68010fee9cdf484a17c09bfc4c447394e43c2d0365c320d5e656224891970d085dafd541542bb48f2a36dfb322dca482cef148b7ac14b01cedd6058cf537cec7ee0950a422c6c38da600967f88e5f95a8e3fcd52fca2117d3b64eee6c31b704d59c4a58da','2024-05-21 07:54:38');
 /*!40000 ALTER TABLE `core_user_password_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1751,7 +1750,7 @@ CREATE TABLE `core_user_preferences` (
   `pref_value` mediumtext DEFAULT NULL,
   PRIMARY KEY (`id_user`,`pref_key`),
   KEY `index_user_preferences` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1775,7 +1774,7 @@ CREATE TABLE `core_user_right` (
   `id_user` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_right`,`id_user`),
   KEY `index_user_right` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1799,7 +1798,7 @@ CREATE TABLE `core_user_role` (
   `role_key` varchar(50) NOT NULL DEFAULT '',
   `id_user` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`role_key`,`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1827,7 +1826,7 @@ CREATE TABLE `core_xsl_export` (
   `id_file` int(11) DEFAULT NULL,
   `plugin` varchar(255) DEFAULT '',
   PRIMARY KEY (`id_xsl_export`)
-) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1851,7 +1850,7 @@ CREATE TABLE `crm_client_crm_item` (
   `id_crm_queue` int(11) NOT NULL DEFAULT 0,
   `crm_item` mediumblob DEFAULT NULL,
   PRIMARY KEY (`id_crm_queue`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1875,7 +1874,7 @@ CREATE TABLE `crm_client_crm_queue` (
   `is_locked` smallint(6) DEFAULT 0,
   PRIMARY KEY (`id_crm_queue`),
   KEY `is_locked_crm_client_crm_queue` (`is_locked`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1899,7 +1898,7 @@ CREATE TABLE `elastic_mapping` (
   `id_customer` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_mapping`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1924,7 +1923,7 @@ CREATE TABLE `elasticdata_indexer_action` (
   `id_task` int(11) NOT NULL DEFAULT 0,
   `id_datasource` varchar(255) NOT NULL,
   PRIMARY KEY (`id_action`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1953,7 +1952,7 @@ CREATE TABLE `filegen_temporary_file` (
   `mime_type` varchar(255) DEFAULT NULL,
   `date_creation` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id_file`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1997,7 +1996,7 @@ CREATE TABLE `genatt_entry` (
   KEY `index_genatt_entry_parent` (`id_parent`),
   KEY `index_genatt_code` (`code`),
   KEY `fk_genatt_entry_type` (`id_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2029,7 +2028,7 @@ CREATE TABLE `genatt_entry_type` (
   `inactive` int(11) DEFAULT 0,
   PRIMARY KEY (`id_type`),
   KEY `index_genatt_entry_type_plugin` (`plugin`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2062,7 +2061,7 @@ CREATE TABLE `genatt_field` (
   `comment` mediumtext DEFAULT NULL,
   PRIMARY KEY (`id_field`),
   KEY `index_genatt_field_entry` (`id_entry`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2085,7 +2084,7 @@ CREATE TABLE `genatt_referenceitem_field` (
   `id_field` int(11) NOT NULL DEFAULT 0,
   `id_item` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_field`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2114,7 +2113,7 @@ CREATE TABLE `genatt_response` (
   `status` smallint(6) DEFAULT 1,
   PRIMARY KEY (`id_response`),
   KEY `index_genatt_response_entry` (`id_entry`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2138,7 +2137,7 @@ CREATE TABLE `genatt_verify_by` (
   `id_expression` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_field`,`id_expression`),
   KEY `index_genatt_verify_by_field` (`id_field`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2161,7 +2160,7 @@ CREATE TABLE `html_portlet` (
   `id_portlet` int(11) NOT NULL DEFAULT 0,
   `html` mediumtext DEFAULT NULL,
   PRIMARY KEY (`id_portlet`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2170,7 +2169,7 @@ CREATE TABLE `html_portlet` (
 
 LOCK TABLES `html_portlet` WRITE;
 /*!40000 ALTER TABLE `html_portlet` DISABLE KEYS */;
-INSERT INTO `html_portlet` VALUES (2,'<p>Affichage de la page <a href=\"jsp/site/Portal.jsp?page=appointmentsearch&amp;category=Avocats\">Cartographie</a> pour les services de rendez-vous détéritorrialisés</p>\n<p class=\"logo\">&nbsp;</p>'),(4,'<h2>Get into the Back Office of this demo site</h2> \n<p class=\"mb20\">Sign in as administrator with <em>admin/adminadmin</em>.</p> \n<p><a class=\"btn btn-primary\" title=\"Access to admin [Open  in new window]\" href=\"jsp/admin/AdminLogin.jsp\" target=\"\"><span class=\"fa fa-door-open\">&nbsp;</span> Enter Back Office</a></p> \n<p>&nbsp;</p>'),(5,'<h3>Resources</h3> \n<hr> \n<div class=\"row\"> \n <div class=\"col-xs-12 col-sm-6\"> \n  <div class=\"media\"> \n   <div class=\"media-left\">\n    <a title=\"GitHub site [Open  in new window]\" href=\"https://github.com/lutece-platform\" target=\"_blank\"><img class=\"media-object\" src=\"images/local/skin/github-logo.png\" alt=\"Github logo\" width=\"100px\"> </a>\n   </div> \n   <div class=\"media-body\"> \n    <h4 class=\"media-heading\">Access to our code repository</h4> \n   </div> \n  </div> \n  <div class=\"media\"> \n   <div class=\"media-left\">\n    <a title=\"Docker Hub site [Open  in new window]\" href=\"https://hub.docker.com/u/lutece\" target=\"_blank\"><img class=\"media-object\" src=\"images/local/skin/docker-logo.png\" alt=\"Docker images\" width=\"100px\"> </a>\n   </div> \n   <div class=\"media-body\"> \n    <h4 class=\"media-heading\">Grab some Docker images to run demos</h4> \n   </div> \n  </div> \n </div> \n <div class=\"col-xs-12 col-sm-6\"> \n  <div class=\"media\"> \n   <div class=\"media-left\">\n    <a title=\"Lutece Wiki site [Open  in new window]\" href=\"https://fr.lutece.paris.fr/fr/jsp/site/Portal.jsp?page=wiki&amp;action=changeLanguage&amp;page_name=home&amp;language=en\" target=\"_blank\"> <img class=\"media-object\" src=\"images/local/skin/wiki-logo.png\" alt=\"WIKI\" width=\"100px\"> </a>\n   </div> \n   <div class=\"media-body\"> \n    <h4 class=\"media-heading\">Read our technical documentation</h4> \n   </div> \n  </div> \n  <div class=\"media\"> \n   <div class=\"media-left\">\n    <a title=\" Twitter Site [Open  in new window]\" href=\"https://twitter.com/LuteceNews\" target=\"_blank\"> <img class=\"media-object\" src=\"images/local/skin/twitter-logo.png\" alt=\"Twitter logo\" width=\"100px\"> </a>\n   </div> \n   <div class=\"media-body\"> \n    <h4 class=\"media-heading\">Follow us on Twitter</h4> \n   </div> \n  </div> \n </div> \n</div>'),(8,'<p><strong>RendezVous</strong> est un service numérique qui comprend un ensemble de fonctionnalités rendues possibles grâce à l\'ajout de serveurs tiers permettant notamment les statistiques de visites (<strong>Matomo</strong>) et métier (<strong>ElasticSearch</strong> et <strong>Kibana</strong>), l\'authentification en back office (<strong>keycloak</strong>) ou encore l\'affichage des disponibilités sur une carte (grâce aux indexations sur <strong>SolR</strong>). Seuls les emails sont émulés par un outil (<strong>Mailpit</strong>) permettant d\'intercepter tous les envois effectués depuis l\'application pour vous donner une bonne idée des possibilités. Ces envois seront à pérenniser en utilisant votre propre serveur de messagerie d\'entreprise.</p>\n<p>Voici l\'ensemble des liens vers ces applicatifs, avec les identifiants des comptes utilisateurs vous permettant de vous connecter aux interfaces d\'administration :</p>'),(9,'<style>\r\ntable {\r\n  font-family: arial, sans-serif;\r\n  border-collapse: collapse;\r\n  width: 100%;\r\n}\r\n\r\ntd, th {\r\n  border: 1px solid #dddddd;\r\n  text-align: left;\r\n  padding: 4px;\r\n}\r\n\r\n/*tr:nth-child(even) {\r\n  background-color: #ff3300;\r\n}*/\r\n</style>\r\n<table>\r\n  <tr style=\"background-color: #ff3300;\">\r\n    <th>Service</th>\r\n    <th>Identifiants</th>\r\n    <th>Commentaires</th>\r\n  </tr>\r\n  <tr>\r\n    <td><b>Back Office RendezVous</b><br/><a href=\"http://localhost:8080/rendezvous/jsp/admin/AdminLogin.jsp\" target=\"_blank\">(lien)</a></td>\r\n    <td>Identifiant : admin<br/>Mot de passe : adminadmin<br/><i>Lors de la première connexion, il vous sera demandé de le modifier</i></td>\r\n    <td>Le \"back office\" est l\'interface d\'administration de votre application de prise de rendez-vous. Il vous permet de gérer les comptes et leurs autorisations associées, l\'éditorial, le paramétrage de votre application, et de gérer les rendez-vous pris par les usagers au quotidien : créer vos agendas, définissez vos disponibilités et les notifications à envoyer, et laissez l\'application faire le reste.</td>\r\n  </tr>\r\n<tr>\r\n    <td><b>Mailpit</b><br/><a href=\"http://localhost:1080/\" target=\"_blank\">(lien)</a></td>\r\n    <td>Pas d\'identifiant nécessaire</td>\r\n    <td>Mailpit est un petit outil permettant d\'intercepter les notifications envoyées sur un port particulier pour en afficher le contenu avec une légère mise en forme. Il suffit de cliquer sur une ligne de notification pour déplier le contenu. Cela vous permet de tester les envois effectués par l\'application.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>Matomo<br/><a href=\"http://localhost/\" target=\"_blank\">(lien)</a></td>\r\n    <td>Pas d\'identifiant nécessaire</td>\r\n    <td>Matomo est un logiciel libre et open source de mesure de statistiques d\'audience. Lorsqu\'un usager navigue sur l\'application, les pages qu\'il consulte, le temps passé, ainsi que les éléments techniques de son origine géographe, et son navigateur internet sont consultables depuis cette interface, mais également dans le back office de l\'application (menu \"Site\" -> \"Statistiques Web Matomo\").</td>\r\n  </tr>\r\n<tr>\r\n    <td>SolR<br/><a href=\"http://localhost:8983/solr/#/\" target=\"_blank\">(lien)</a></td>\r\n    <td>Pas d\'identifiant nécessaire</td>\r\n    <td>SolR est une base de données optimisée pour la recherche, conçue sous licence libre. Elle est utilisée pour indexer les créneaux disponibles de façon optimisée et pour restituer ces disponibilités sur une carte géographique.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>ElasticSearch / Kibana<br/><a href=\"http://localhost:5601/s/dev/app/home#/\" target=\"_blank\">(lien)</a></td>\r\n    <td>Pas d\'identifiant nécessaire</td>\r\n    <td>ElasticSearch est également une base de données permettant l\'indexation optimisée de données. Cette pile est utilisée pour stocker les statistiques métier liées à l\'utilisation du service (ex. combien de temps à l\'avance les rendez-vous sont-ils pris en moyenne, quels sont les créneaux les plus prisés, une répartition des rendez-vous sur votre territoire, les chiffres liés aux reports, annulations, surbooking, etc.)</td>\r\n  </tr>\r\n  <tr>\r\n    <td rowspan=\"2\">Keycloak<br/><a href=\"http://localhost:8081/admin/\" target=\"_blank\">(lien)</a></td>\r\n    <td>(<i>Compte admin</i>)<br/>Identifiant : admin<br/>Mot de passe : admin1234</td>\r\n    <td rowspan=\"2\">Keycloak est un outil open source permettant de l\'authentification unique et la gestion d\'identité, développé par la communauté WildFly et hébergé par RedHat.</td>\r\n  </tr>\r\n  <tr>\r\n        <td>(<i>Compte utilisateur de démo</i>)<br/>Identifiant : test@paris.fr<br/>Mot de passe : test1234=TEST1234</td>\r\n  </tr>\r\n</table>'),(11,'<h2>Choisissez le meilleur parcours usager pour accéder à vos agendas</h2>\n<p>Utilisez le module listant tous vos agendas automatiquement :&nbsp;</p>'),(13,'...ou bien utilisez la carte géographique comme point d\'entrée de vos services déterritorialisés...\r\n<p class=\"text-center\">\r\n<a class=\"btn-solid-reg\" href=\"jsp/site/Portal.jsp?page=appointmentsearch&category=Avocats\" target=\"_blank\" title=\"Cartographie\">\r\n<span class=\"icon\"><i class=\"ti ti-map-2\"></i></span>\r\n<span class=\"text\">Cartographie</span>\r\n</a>\r\n</p>'),(16,'<section id=\"lutece\" class=\"lutece\">\r\n    <div class=\"container\">\r\n        <div class=\"row align-items-center\">\r\n            <div class=\"col-lg-6\">\r\n                <div class=\"lutece-content\">\r\n                    <h1 class=\"my-3\">CiteLibre rendez-vous, votre outil clé en main</h1>\r\n                    <p class=\"font-weight-bold\" >\r\n                        FR : CiteLibre est la suite logicielle de services numériques clé en main réutilisant les composants du framework open source <a href=\"https://lutece.paris.fr/\" title=\"Site Lutece\" target=\"_blank\">Lutece</a>. Elle permet aux municipalités de tester, réutiliser et de paramétrer les services disponibles pour répondre à leurs besoins. CiteLibre est gratuit, open source, entièrement personnalisable et sécurisé.<br/>\r\nFélicitations, vous avez déployé votre service numérique de prise de rendez-vous. Prochaine étape, créer votre propre agenda. Toute la documentation est disponible <a href=\"https://lutece.paris.fr/support/wiki/howto-operational-plugin-appointment.html\" title=\"Site Lutece\" target=\"_blank\">ici</a>. <br/>\r\nAu fil de l\'utilisation de l\'application, vous pourrez exploiter des outils d\'aide à la décision (statistiques métier réalisées avec la couche ElasticSearch / Kibana). Mettez en place les règles de gestion propre à vos usages et appropriez-vous les détails des notifications envoyées à vos usagers.\r\n                    </p>\r\n                    <p class=\"font-weight-bold\">\r\n                        EN: <i>CiteLibre is the turnkey digital services software suite reusing components from the open source framework <a href=\"https://lutece.paris.fr/en/\" title=\"Site Lutece\" target=\"_blank\">Lutece</a>. It enables municipalities to test, reuse and parameterize the services available to meet their needs. CiteLibre is free, open source, fully customizable and secure.<br/>\r\nCongratulations, you\'ve deployed your digital appointment booking service. Next step is to create your own agenda. The full documentation is available <a href=\"https://lutece.paris.fr/support/wiki/howto-operational-plugin-appointment.html\" title=\"Site Lutece\" target=\"_blank\">here</a>.<br/>\r\nAs you use the application, you\'ll be able to harness decision-making tools (business statistics produced with the ElasticSearch / Kibana suite). Set up management rules specific to your uses and take ownership of the details of notifications sent to your users.</i>\r\n                    </p>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-lg-6\">\r\n                <img src=\"images/site/city-home.svg\" alt=\"\">\r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>'),(18,'<div class=\"lutece-content mt-5\">\r\n                    <h2 class=\"my-3\">Connectez-vous à l\'administration de l\'application</h2>\r\n                    <p class=\"font-weight-bold\">FR : Connectez-vous à l\'interface d\'administration en utilisant le login <strong>\"admin\"</strong> et le mot de passe <strong>\"adminadmin\"</strong> (vous serez invités à réinitialiser le mot de passe). Vous pourrez alors personnaliser l\'agenda de démo.<br/>Vous trouverez également tous les <a href=\"jsp/site/Portal.jsp?page_id=3\" title=\"Liens utiles\">liens utiles</a> avec les informations de connexion pour utiliser tous les services mis à disposition dans l\'application.</p>\r\n                    <p class=\"font-weight-bold\">EN: <i>Log in to the administration interface using login <strong>\"admin\"</strong> and password <strong>\"adminadmin\"</strong> (you will be prompted to reset the password). You can test each of its features and customize the demo calendar.<br/>You will also find all <a href=\"jsp/site/Portal.jsp?page_id=3\" title=\"Useful links\">Useful links</a> with connection credentials to use all available features.</i></p>\r\n                    <p class=\"text-center\">\r\n			<a class=\"btn-solid-reg\" href=\"jsp/admin/AdminLogin.jsp\" target=\"_blank\" title=\"Go to admin login page [Open in new window]\">\r\n				<span class=\"icon\"><i class=\"ti ti-user-cog\"></i></span>\r\n				<span class=\"text\">Administration</span>\r\n			</a>\r\n		</p>\r\n</div>');
+INSERT INTO `html_portlet` VALUES (2,'<p>Affichage de la page <a href=\"jsp/site/Portal.jsp?page=appointmentsearch&amp;category=Avocats\">Cartographie</a> pour les services de rendez-vous déterritorialisés</p>\n<p class=\"logo\">&nbsp;</p>'),(4,'<h2>Get into the Back Office of this demo site</h2> \n<p class=\"mb20\">Sign in as administrator with <em>admin/adminadmin</em>.</p> \n<p><a class=\"btn btn-primary\" title=\"Access to admin [Open  in new window]\" href=\"jsp/admin/AdminLogin.jsp\" target=\"\"><span class=\"fa fa-door-open\">&nbsp;</span> Enter Back Office</a></p> \n<p>&nbsp;</p>'),(5,'<h3>Resources</h3> \n<hr> \n<div class=\"row\"> \n <div class=\"col-xs-12 col-sm-6\"> \n  <div class=\"media\"> \n   <div class=\"media-left\">\n    <a title=\"GitHub site [Open  in new window]\" href=\"https://github.com/lutece-platform\" target=\"_blank\"><img class=\"media-object\" src=\"images/local/skin/github-logo.png\" alt=\"Github logo\" width=\"100px\"> </a>\n   </div> \n   <div class=\"media-body\"> \n    <h4 class=\"media-heading\">Access to our code repository</h4> \n   </div> \n  </div> \n  <div class=\"media\"> \n   <div class=\"media-left\">\n    <a title=\"Docker Hub site [Open  in new window]\" href=\"https://hub.docker.com/u/lutece\" target=\"_blank\"><img class=\"media-object\" src=\"images/local/skin/docker-logo.png\" alt=\"Docker images\" width=\"100px\"> </a>\n   </div> \n   <div class=\"media-body\"> \n    <h4 class=\"media-heading\">Grab some Docker images to run demos</h4> \n   </div> \n  </div> \n </div> \n <div class=\"col-xs-12 col-sm-6\"> \n  <div class=\"media\"> \n   <div class=\"media-left\">\n    <a title=\"Lutece Wiki site [Open  in new window]\" href=\"https://fr.lutece.paris.fr/fr/jsp/site/Portal.jsp?page=wiki&amp;action=changeLanguage&amp;page_name=home&amp;language=en\" target=\"_blank\"> <img class=\"media-object\" src=\"images/local/skin/wiki-logo.png\" alt=\"WIKI\" width=\"100px\"> </a>\n   </div> \n   <div class=\"media-body\"> \n    <h4 class=\"media-heading\">Read our technical documentation</h4> \n   </div> \n  </div> \n  <div class=\"media\"> \n   <div class=\"media-left\">\n    <a title=\" Twitter Site [Open  in new window]\" href=\"https://twitter.com/LuteceNews\" target=\"_blank\"> <img class=\"media-object\" src=\"images/local/skin/twitter-logo.png\" alt=\"Twitter logo\" width=\"100px\"> </a>\n   </div> \n   <div class=\"media-body\"> \n    <h4 class=\"media-heading\">Follow us on Twitter</h4> \n   </div> \n  </div> \n </div> \n</div>'),(8,'<p><strong>RendezVous</strong> est un service numérique qui comprend un ensemble de fonctionnalités rendues possibles grâce à l\'ajout de serveurs tiers permettant notamment les statistiques de visites (<strong>Matomo</strong>) et métier (<strong>ElasticSearch</strong> et <strong>Kibana</strong>), l\'authentification en back office (<strong>keycloak</strong>) ou encore l\'affichage des disponibilités sur une carte (grâce aux indexations sur <strong>SolR</strong>). Seuls les emails sont émulés par un outil (<strong>Mailpit</strong>) permettant d\'intercepter tous les envois effectués depuis l\'application pour vous donner une bonne idée des possibilités. Ces envois seront à pérenniser en utilisant votre propre serveur de messagerie d\'entreprise.</p>\n<p>Voici l\'ensemble des liens vers ces applicatifs, avec les identifiants des comptes utilisateurs vous permettant de vous connecter aux interfaces d\'administration :</p>'),(9,'<style>\r\ntable {\r\n  font-family: arial, sans-serif;\r\n  border-collapse: collapse;\r\n  width: 100%;\r\n}\r\n\r\ntd, th {\r\n  border: 1px solid #dddddd;\r\n  text-align: left;\r\n  padding: 4px;\r\n}\r\n\r\n/*tr:nth-child(even) {\r\n  background-color: #ff3300;\r\n}*/\r\n</style>\r\n<table>\r\n  <tr style=\"background-color: #ff3300;\">\r\n    <th>Service</th>\r\n    <th>Identifiants</th>\r\n    <th>Commentaires</th>\r\n  </tr>\r\n  <tr>\r\n    <td><b>Back Office RendezVous</b><br/><a href=\"http://localhost:8080/rendezvous/jsp/admin/AdminLogin.jsp\" target=\"_blank\">(lien)</a></td>\r\n    <td>Identifiant : admin<br/>Mot de passe : adminadmin<br/><i>Lors de la première connexion, il vous sera demandé de le modifier</i></td>\r\n    <td>Le \"back office\" est l\'interface d\'administration de votre application de prise de rendez-vous. Il vous permet de gérer les comptes et leurs autorisations associées, l\'éditorial, le paramétrage de votre application, et de gérer les rendez-vous pris par les usagers au quotidien : créer vos agendas, définissez vos disponibilités et les notifications à envoyer, et laissez l\'application faire le reste.</td>\r\n  </tr>\r\n<tr>\r\n    <td><b>Mailpit</b><br/><a href=\"http://localhost:1080/\" target=\"_blank\">(lien)</a></td>\r\n    <td>Pas d\'identifiant nécessaire</td>\r\n    <td>Mailpit est un petit outil permettant d\'intercepter les notifications envoyées sur un port particulier pour en afficher le contenu avec une légère mise en forme. Il suffit de cliquer sur une ligne de notification pour déplier le contenu. Cela vous permet de tester les envois effectués par l\'application.</td>\r\n  </tr>\r\n  <tr>\r\n    <td><b>Matomo</b><br/><a href=\"http://localhost/\" target=\"_blank\">(lien)</a></td>\r\n    <td>Pas d\'identifiant nécessaire</td>\r\n    <td>Matomo est un logiciel libre et open source de mesure de statistiques d\'audience. Lorsqu\'un usager navigue sur l\'application, les pages qu\'il consulte, le temps passé, ainsi que les éléments techniques de son origine géographe, et son navigateur internet sont consultables depuis cette interface, mais également dans le back office de l\'application (menu \"Site\" -> \"Statistiques Web Matomo\").</td>\r\n  </tr>\r\n<tr>\r\n    <td>SolR<br/><a href=\"http://localhost:8983/solr/#/\" target=\"_blank\">(lien)</a></td>\r\n    <td>Pas d\'identifiant nécessaire</td>\r\n    <td>SolR est une base de données optimisée pour la recherche, conçue sous licence libre. Elle est utilisée pour indexer les créneaux disponibles de façon optimisée et pour restituer ces disponibilités sur une carte géographique.</td>\r\n  </tr>\r\n  <tr>\r\n    <td><b>ElasticSearch / Kibana</b><br/><a href=\"http://localhost:5601/s/dev/app/home#/\" target=\"_blank\">(lien)</a></td>\r\n    <td>Pas d\'identifiant nécessaire</td>\r\n    <td>ElasticSearch est également une base de données permettant l\'indexation optimisée de données. Cette pile est utilisée pour stocker les statistiques métier liées à l\'utilisation du service (ex. combien de temps à l\'avance les rendez-vous sont-ils pris en moyenne, quels sont les créneaux les plus prisés, une répartition des rendez-vous sur votre territoire, les chiffres liés aux reports, annulations, surbooking, etc.)</td>\r\n  </tr>\r\n  <tr>\r\n    <td rowspan=\"2\"><b>Keycloak</b><br/><a href=\"http://localhost:8081/admin/\" target=\"_blank\">(lien)</a></td>\r\n    <td>(<i>Compte admin</i>)<br/>Identifiant : admin<br/>Mot de passe : admin1234</td>\r\n    <td rowspan=\"2\">Keycloak est un outil open source permettant de l\'authentification unique et la gestion d\'identité, développé par la communauté WildFly et hébergé par RedHat.</td>\r\n  </tr>\r\n  <tr>\r\n        <td>(<i>Compte utilisateur de démo</i>)<br/>Identifiant : test@paris.fr<br/>Mot de passe : test1234=TEST1234</td>\r\n  </tr>\r\n</table>'),(11,'<h2>Choisissez le meilleur parcours usager pour accéder à vos agendas</h2>\n<p>Utilisez le module listant tous vos agendas automatiquement :&nbsp;</p>'),(13,'...ou bien utilisez la carte géographique comme point d\'entrée de vos services déterritorialisés...\r\n<p class=\"text-center\">\r\n<a class=\"btn-solid-reg\" href=\"jsp/site/Portal.jsp?page=appointmentsearch&category=Avocats\" target=\"_blank\" title=\"Cartographie\">\r\n<span class=\"icon\"><i class=\"ti ti-map-2\"></i></span>\r\n<span class=\"text\">Cartographie</span>\r\n</a>\r\n</p>'),(16,'<section id=\"lutece\" class=\"lutece\">\r\n    <div class=\"container\">\r\n        <div class=\"row align-items-center\">\r\n            <div class=\"col-lg-6\">\r\n                <div class=\"lutece-content\">\r\n                    <h1 class=\"my-3\">CiteLibre Rendez-Vous, votre outil clé en main</h1>\r\n                    <p class=\"font-weight-bold\" >\r\n                        CiteLibre est la suite logicielle de services numériques clé en main réutilisant les composants du framework open source <a href=\"https://lutece.paris.fr/fr/\" title=\"Site Lutece\" target=\"_blank\">Lutece</a>. Elle permet aux municipalités de tester, réutiliser et de paramétrer les services disponibles pour répondre à leurs besoins. CiteLibre est gratuit, open source, entièrement personnalisable et sécurisé.<br/>\r\nFélicitations, vous avez déployé votre service numérique de prise de rendez-vous. Prochaine étape, créer votre propre agenda. Toute la documentation est disponible <a href=\"https://lutece.paris.fr/support/wiki/howto-operational-plugin-appointment.html\" title=\"Site Lutece\" target=\"_blank\">ici</a>. <br/>\r\nAu fil de l\'utilisation de l\'application, vous pourrez exploiter des outils d\'aide à la décision (statistiques métier réalisées avec la couche ElasticSearch / Kibana). Mettez en place les règles de gestion propre à vos usages et appropriez-vous les détails des notifications envoyées à vos usagers.\r\n                    </p>\r\n                    </div>\r\n            </div>\r\n            <div class=\"col-lg-6\">\r\n                <img src=\"images/site/city-home.svg\" alt=\"\">\r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>'),(18,'<div class=\"lutece-content mt-5\">\r\n                    <h2 class=\"my-3\">Connectez-vous à l\'administration de l\'application</h2>\r\n                    <p class=\"font-weight-bold\">Connectez-vous à l\'interface d\'administration en utilisant le login <strong>\"admin\"</strong> et le mot de passe <strong>\"adminadmin\"</strong> (vous serez invités à réinitialiser le mot de passe). Vous pourrez alors personnaliser l\'agenda de démo.<br/>Vous trouverez également tous les <a href=\"jsp/site/Portal.jsp?page_id=3\" title=\"Liens utiles\">liens utiles</a> avec les informations de connexion pour utiliser tous les services mis à disposition dans l\'application.</p>\r\n                    <p class=\"text-center\">\r\n			<a class=\"btn-solid-reg\" href=\"jsp/admin/AdminLogin.jsp\" target=\"_blank\" title=\"Go to admin login page [Open in new window]\">\r\n				<span class=\"icon\"><i class=\"ti ti-user-cog\"></i></span>\r\n				<span class=\"text\">Administration</span>\r\n			</a>\r\n		</p>\r\n</div>');
 /*!40000 ALTER TABLE `html_portlet` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2189,7 +2188,7 @@ CREATE TABLE `htmlpage` (
   `workgroup_key` varchar(50) NOT NULL DEFAULT 'all',
   `role` varchar(50) NOT NULL DEFAULT 'none',
   PRIMARY KEY (`id_htmlpage`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2218,7 +2217,7 @@ CREATE TABLE `identitystore_attribute` (
   PRIMARY KEY (`id_attribute`),
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `key_name` (`key_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2227,7 +2226,7 @@ CREATE TABLE `identitystore_attribute` (
 
 LOCK TABLES `identitystore_attribute` WRITE;
 /*!40000 ALTER TABLE `identitystore_attribute` DISABLE KEYS */;
-INSERT INTO `identitystore_attribute` VALUES (1,'Genre','gender','0:Non défini /  1:Homme / 2:Femme',0),(2,'Email','email','',0),(3,'Date de naissance','birthdate','au format DD/MM/YYYY',0),(4,'Lieu de naissance','birthplace','',0),(5,'Téléphone portable','mobile_phone','Réservé pour l\'envoi de SMS',0),(6,'Téléphone fixe','fixed_phone','',0),(7,'Téléphone fixe ou mobile','phone','',0),(8,'Nom usuel','preferred_username','',0),(9,'Adresse postale','address','',0),(10,'Prénom','first_name','Prénom usuel',0),(11,'Nom de famille de naissance','family_name','',0),(12,'Numéro de rue','address_number','Champ d\'adresse : numéro de rue ',0),(13,'Suffixe','address_suffix','Champ d\'adresse : suffixe de numéro (bis,ter...)',0),(14,'Rue','address_street','Champ d\'adresse :  rue, avenue...',0),(15,'Immeuble','address_building','Champ d\'adresse : immeuble, résidence...',0),(16,'Etage','address_stair','Champ d\'adresse : Etage, Numéro d appartement',0),(17,'Code postal','address_postal_code','Champ d\'adresse : code postal',0),(18,'Ville','address_city','Champ d\'adresse : ville',0),(19,'Pays de naissance','birthcountry','',0),(30,'(FC) Prénoms','fc_given_name','Format Pivot FranceConnect - Liste des prénoms',0),(31,'(FC) Nom de naissance','fc_family_name','Format Pivot FranceConnect',0),(32,'(FC) Date de naissance','fc_birthdate','Format Pivot FranceConnect - format YYYY-MM-DD',0),(33,'(FC) Genre','fc_gender','Format Pivot FranceConnect - male / female',0),(34,'(FC) Lieu de naissance','fc_birthplace','Format Pivot FranceConnect - Code INSEE du lieu de naissance (ou une chaÃ®ne vide si la personne est née à l\'étranger)',0),(35,'(FC) Pays de naissance','fc_birthcountry','Format Pivot FranceConnect - Code INSEE du pays de naissance',0);
+INSERT INTO `identitystore_attribute` VALUES (1,'Genre','gender','0:Non défini /  1:Homme / 2:Femme',0),(2,'Email','email','',0),(3,'Date de naissance','birthdate','au format DD/MM/YYYY',0),(4,'Lieu de naissance','birthplace','',0),(5,'Téléphone portable','mobile_phone','Réservé pour l\'envoi de SMS',0),(6,'Téléphone fixe','fixed_phone','',0),(7,'Téléphone fixe ou mobile','phone','',0),(8,'Nom usuel','preferred_username','',0),(9,'Adresse postale','address','',0),(10,'Prénom','first_name','Prénom usuel',0),(11,'Nom de famille de naissance','family_name','',0),(12,'Numéro de rue','address_number','Champ d\'adresse : numéro de rue ',0),(13,'Suffixe','address_suffix','Champ d\'adresse : suffixe de numéro (bis,ter...)',0),(14,'Rue','address_street','Champ d\'adresse :  rue, avenue...',0),(15,'Immeuble','address_building','Champ d\'adresse : immeuble, résidence...',0),(16,'Etage','address_stair','Champ d\'adresse : Etage, Numéro d appartement',0),(17,'Code postal','address_postal_code','Champ d\'adresse : code postal',0),(18,'Ville','address_city','Champ d\'adresse : ville',0),(19,'Pays de naissance','birthcountry','',0),(30,'(FC) Prénoms','fc_given_name','Format Pivot FranceConnect - Liste des prénoms',0),(31,'(FC) Nom de naissance','fc_family_name','Format Pivot FranceConnect',0),(32,'(FC) Date de naissance','fc_birthdate','Format Pivot FranceConnect - format YYYY-MM-DD',0),(33,'(FC) Genre','fc_gender','Format Pivot FranceConnect - male / female',0),(34,'(FC) Lieu de naissance','fc_birthplace','Format Pivot FranceConnect - Code INSEE du lieu de naissance (ou une chaine vide si la personne est née à l\'étranger)',0),(35,'(FC) Pays de naissance','fc_birthcountry','Format Pivot FranceConnect - Code INSEE du pays de naissance',0);
 /*!40000 ALTER TABLE `identitystore_attribute` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2245,7 +2244,7 @@ CREATE TABLE `identitystore_attribute_certificate` (
   `certificate_level` int(11) NOT NULL DEFAULT 0,
   `expiration_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_attribute_certificate`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2273,7 +2272,7 @@ CREATE TABLE `identitystore_attribute_right` (
   `searchable` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_client_app`,`id_attribute`),
   KEY `fk_attribute_right_id_attribute` (`id_attribute`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2301,7 +2300,7 @@ CREATE TABLE `identitystore_client_application` (
   PRIMARY KEY (`id_client_app`),
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `code` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2326,7 +2325,7 @@ CREATE TABLE `identitystore_client_application_certifiers` (
   `certifier_code` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id_client_app`,`certifier_code`),
   KEY `id_client_app` (`id_client_app`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2360,7 +2359,7 @@ CREATE TABLE `identitystore_history_identity_attribute` (
   `modification_date` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id_history`),
   KEY `fk_history_identity_attribute_id_identity` (`id_identity`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2391,7 +2390,7 @@ CREATE TABLE `identitystore_identity` (
   UNIQUE KEY `customer_id` (`customer_id`),
   KEY `connection_id_2` (`connection_id`),
   KEY `customer_id_2` (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2422,7 +2421,7 @@ CREATE TABLE `identitystore_identity_attribute` (
   PRIMARY KEY (`id_identity`,`id_attribute`),
   KEY `fk_identity_attribute_id_attribute` (`id_attribute`),
   KEY `ix_attribute_value` (`attribute_value`(50)) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2449,7 +2448,7 @@ CREATE TABLE `kibana_dashboard` (
   `dataSourceName` mediumtext DEFAULT NULL,
   PRIMARY KEY (`id_dashboard`),
   UNIQUE KEY `idkibanadashboard` (`idkibanadashboard`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2475,7 +2474,7 @@ CREATE TABLE `mydashboard_configuration` (
   `dashboard_order` int(11) NOT NULL,
   `hide_dashboard` smallint(6) NOT NULL,
   PRIMARY KEY (`my_dashboard_component_id`,`id_config`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2501,7 +2500,7 @@ CREATE TABLE `mydashboard_dashboard_association` (
   `position` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_dashboard_association`),
   KEY `fk_id_panel` (`id_panel`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2527,7 +2526,7 @@ CREATE TABLE `mydashboard_panel` (
   `description` mediumtext DEFAULT NULL,
   `is_default` smallint(6) NOT NULL,
   PRIMARY KEY (`id_panel`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2550,7 +2549,7 @@ CREATE TABLE `mydashboard_portlet_panel` (
   `id_portlet` int(11) NOT NULL,
   `id_panel` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_portlet`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2580,7 +2579,7 @@ CREATE TABLE `mylutece_attribute` (
   `plugin_name` varchar(255) DEFAULT NULL,
   `anonymize` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`id_attribute`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2611,7 +2610,7 @@ CREATE TABLE `mylutece_attribute_field` (
   `is_multiple` smallint(6) DEFAULT 0,
   `field_position` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_field`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2634,7 +2633,7 @@ CREATE TABLE `mylutece_connections_log` (
   `ip_address` varchar(63) DEFAULT NULL,
   `date_login` timestamp NOT NULL DEFAULT current_timestamp(),
   `login_status` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2657,7 +2656,7 @@ CREATE TABLE `mylutece_user_anonymize_field` (
   `field_name` varchar(100) NOT NULL,
   `anonymize` smallint(6) NOT NULL,
   PRIMARY KEY (`field_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2683,7 +2682,7 @@ CREATE TABLE `mylutece_user_field` (
   `id_field` int(11) DEFAULT NULL,
   `user_field_value` mediumtext DEFAULT NULL,
   PRIMARY KEY (`id_user_field`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2715,7 +2714,7 @@ CREATE TABLE `notifygru_alert_update_resource_state_queue` (
   `alert_reference_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `id_state` int(11) NOT NULL,
   PRIMARY KEY (`id_resource_queue`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2742,7 +2741,7 @@ CREATE TABLE `profile_action` (
   `icon_url` varchar(255) DEFAULT NULL,
   `action_permission` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_action`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2766,7 +2765,7 @@ CREATE TABLE `profile_profile` (
   `profile_key` varchar(50) NOT NULL DEFAULT '',
   `profile_description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`profile_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2789,7 +2788,7 @@ CREATE TABLE `profile_right` (
   `profile_key` varchar(50) NOT NULL DEFAULT '',
   `id_right` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`profile_key`,`id_right`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2812,7 +2811,7 @@ CREATE TABLE `profile_role` (
   `profile_key` varchar(50) NOT NULL DEFAULT '',
   `role_key` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`profile_key`,`role_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2835,7 +2834,7 @@ CREATE TABLE `profile_user` (
   `profile_key` varchar(50) NOT NULL DEFAULT '',
   `id_user` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`profile_key`,`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2858,7 +2857,7 @@ CREATE TABLE `profile_view` (
   `view_key` varchar(50) NOT NULL DEFAULT '',
   `view_description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`view_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2885,7 +2884,7 @@ CREATE TABLE `profile_view_action` (
   `icon_url` varchar(255) DEFAULT NULL,
   `action_permission` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_action`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2911,7 +2910,7 @@ CREATE TABLE `profile_view_dashboard` (
   `dashboard_column` int(11) NOT NULL,
   `dashboard_order` int(11) NOT NULL,
   PRIMARY KEY (`view_key`,`dashboard_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2934,7 +2933,7 @@ CREATE TABLE `profile_view_profile` (
   `view_key` varchar(50) NOT NULL DEFAULT '',
   `profile_key` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`view_key`,`profile_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2957,7 +2956,7 @@ CREATE TABLE `profile_workgroup` (
   `profile_key` varchar(50) NOT NULL DEFAULT '',
   `workgroup_key` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`profile_key`,`workgroup_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2982,7 +2981,7 @@ CREATE TABLE `referencelist_item` (
   `code` mediumtext NOT NULL,
   `idreference` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_reference_item`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3006,7 +3005,7 @@ CREATE TABLE `referencelist_reference` (
   `name` mediumtext NOT NULL,
   `description` mediumtext NOT NULL,
   PRIMARY KEY (`id_reference`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3031,7 +3030,7 @@ CREATE TABLE `referencelist_translation` (
   `name` mediumtext NOT NULL,
   `id_reference_item` int(11) NOT NULL,
   PRIMARY KEY (`id_translation`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3058,7 +3057,7 @@ CREATE TABLE `regularexpression_regular_expression` (
   `information_message` mediumtext DEFAULT NULL,
   `error_message` mediumtext DEFAULT NULL,
   PRIMARY KEY (`id_expression`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3081,7 +3080,7 @@ DROP TABLE IF EXISTS `solr_facet_intersection`;
 CREATE TABLE `solr_facet_intersection` (
   `id_field1` int(11) DEFAULT NULL,
   `id_field2` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3114,7 +3113,7 @@ CREATE TABLE `solr_fields` (
   `facet_mincount` int(11) DEFAULT 1,
   `operator_type` varchar(30) DEFAULT 'OR',
   PRIMARY KEY (`id_field`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3141,7 +3140,7 @@ CREATE TABLE `solr_indexer_action` (
   `type_ressource` varchar(255) NOT NULL,
   `id_portlet` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_action`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3177,7 +3176,7 @@ CREATE TABLE `workflow_action` (
   KEY `action_id_workflow_fk` (`id_workflow`),
   KEY `action_id_state_after_fk` (`id_state_after`),
   KEY `action_id_icon_fk` (`id_icon`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3201,7 +3200,7 @@ CREATE TABLE `workflow_action_action` (
   `id_action` int(11) NOT NULL DEFAULT 0,
   `id_linked_action` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_action`,`id_linked_action`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3224,7 +3223,7 @@ CREATE TABLE `workflow_action_state_before` (
   `id_action` int(11) NOT NULL,
   `id_state_before` int(11) NOT NULL,
   PRIMARY KEY (`id_action`,`id_state_before`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3258,7 +3257,7 @@ CREATE TABLE `workflow_appointment_reminder` (
   `phone_number` varchar(255) DEFAULT NULL,
   `id_state_after` int(11) NOT NULL,
   PRIMARY KEY (`id_task`,`id_form`,`rank`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3284,7 +3283,7 @@ CREATE TABLE `workflow_assignment_history` (
   PRIMARY KEY (`id_history`,`id_task`,`workgroup_key`),
   KEY `assignment_id_history_fk` (`id_history`),
   KEY `assignment_id_task_fk` (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3311,7 +3310,7 @@ CREATE TABLE `workflow_icon` (
   `width` int(11) DEFAULT NULL,
   `height` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_icon`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3344,7 +3343,7 @@ CREATE TABLE `workflow_prerequisite` (
   `prerequisite_type` varchar(255) NOT NULL,
   `uid_prerequisite` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_prerequisite`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3367,7 +3366,7 @@ CREATE TABLE `workflow_prerequisite_duration_cf` (
   `id_prerequisite` int(11) NOT NULL,
   `duration` int(11) NOT NULL,
   PRIMARY KEY (`id_prerequisite`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3398,7 +3397,7 @@ CREATE TABLE `workflow_resource_history` (
   KEY `history_id_workflow_fk` (`id_workflow`),
   KEY `history_id_action_fk` (`id_action`),
   KEY `history_id_resource_fk` (`id_resource`)
-) ENGINE=InnoDB AUTO_INCREMENT=352 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=375 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3407,7 +3406,7 @@ CREATE TABLE `workflow_resource_history` (
 
 LOCK TABLES `workflow_resource_history` WRITE;
 /*!40000 ALTER TABLE `workflow_resource_history` DISABLE KEYS */;
-INSERT INTO `workflow_resource_history` VALUES (22,1,'appointment',1,1,'2024-02-09 14:46:09','auto'),(23,2,'appointment',1,1,'2024-02-09 14:46:09','auto'),(24,3,'appointment',1,1,'2024-02-09 14:49:39','auto'),(25,4,'appointment',1,1,'2024-02-28 15:34:35','auto'),(26,5,'appointment',1,1,'2024-02-28 15:46:10','auto'),(27,6,'appointment',1,1,'2024-02-28 15:53:10','auto'),(28,7,'appointment',1,1,'2024-02-28 15:55:45','auto'),(29,8,'appointment',1,1,'2024-02-29 09:56:15','auto'),(30,9,'appointment',1,1,'2024-02-29 15:50:45','auto'),(31,10,'appointment',1,1,'2024-02-29 15:56:15','auto'),(32,11,'appointment',1,1,'2024-02-29 15:59:15','auto'),(33,12,'appointment',1,1,'2024-02-29 16:12:00','auto'),(34,13,'appointment',1,1,'2024-03-01 13:19:53','auto'),(35,14,'appointment',1,1,'2024-03-01 13:35:23','auto'),(36,14,'appointment',1,4,'2024-03-01 13:37:06','admin'),(37,15,'appointment',1,1,'2024-03-01 15:11:53','auto'),(38,16,'appointment',1,1,'2024-03-01 15:12:53','auto'),(39,17,'appointment',1,1,'2024-03-05 09:54:13','auto'),(346,18,'appointment',1,1,'2024-05-24 08:10:25','auto'),(347,19,'appointment',1,1,'2024-05-24 08:10:27','auto'),(348,20,'appointment',1,1,'2024-05-24 08:10:27','auto'),(349,21,'appointment',1,1,'2024-05-24 08:10:27','auto'),(350,22,'appointment',1,1,'2024-05-24 08:10:28','auto'),(351,23,'appointment',1,1,'2024-05-24 08:10:28','auto');
+INSERT INTO `workflow_resource_history` VALUES (22,1,'appointment',1,1,'2024-02-09 14:46:09','auto'),(23,2,'appointment',1,1,'2024-02-09 14:46:09','auto'),(24,3,'appointment',1,1,'2024-02-09 14:49:39','auto'),(25,4,'appointment',1,1,'2024-02-28 15:34:35','auto'),(26,5,'appointment',1,1,'2024-02-28 15:46:10','auto'),(27,6,'appointment',1,1,'2024-02-28 15:53:10','auto'),(28,7,'appointment',1,1,'2024-02-28 15:55:45','auto'),(29,8,'appointment',1,1,'2024-02-29 09:56:15','auto'),(30,9,'appointment',1,1,'2024-02-29 15:50:45','auto'),(31,10,'appointment',1,1,'2024-02-29 15:56:15','auto'),(32,11,'appointment',1,1,'2024-02-29 15:59:15','auto'),(33,12,'appointment',1,1,'2024-02-29 16:12:00','auto'),(34,13,'appointment',1,1,'2024-03-01 13:19:53','auto'),(35,14,'appointment',1,1,'2024-03-01 13:35:23','auto'),(36,14,'appointment',1,4,'2024-03-01 13:37:06','admin'),(37,15,'appointment',1,1,'2024-03-01 15:11:53','auto'),(38,16,'appointment',1,1,'2024-03-01 15:12:53','auto'),(39,17,'appointment',1,1,'2024-03-05 09:54:13','auto'),(346,18,'appointment',1,1,'2024-05-24 08:10:25','auto'),(347,19,'appointment',1,1,'2024-05-24 08:10:27','auto'),(348,20,'appointment',1,1,'2024-05-24 08:10:27','auto'),(349,21,'appointment',1,1,'2024-05-24 08:10:27','auto'),(350,22,'appointment',1,1,'2024-05-24 08:10:28','auto'),(351,23,'appointment',1,1,'2024-05-24 08:10:28','auto'),(352,24,'appointment',1,1,'2025-01-23 09:42:43','auto'),(353,25,'appointment',1,1,'2025-01-23 09:44:13','auto'),(354,26,'appointment',1,1,'2025-01-23 09:44:43','auto'),(355,27,'appointment',1,1,'2025-01-23 09:45:13','auto'),(356,28,'appointment',1,1,'2025-01-23 09:45:43','auto'),(357,29,'appointment',1,1,'2025-01-23 09:46:13','auto'),(358,30,'appointment',1,1,'2025-01-23 09:48:43','auto'),(359,31,'appointment',1,1,'2025-01-23 09:49:43','auto'),(360,32,'appointment',1,1,'2025-01-23 09:50:13','auto'),(361,33,'appointment',1,1,'2025-01-23 09:50:43','auto'),(362,34,'appointment',1,1,'2025-01-23 09:52:13','auto'),(363,35,'appointment',1,1,'2025-01-23 09:53:13','auto'),(364,36,'appointment',1,1,'2025-01-23 09:53:43','auto'),(365,37,'appointment',1,1,'2025-01-23 09:54:13','auto'),(366,38,'appointment',1,1,'2025-01-23 09:54:43','auto'),(367,39,'appointment',1,1,'2025-01-23 09:55:13','auto'),(368,40,'appointment',1,1,'2025-01-23 09:55:43','auto'),(369,41,'appointment',1,1,'2025-01-23 09:56:43','auto'),(370,42,'appointment',1,1,'2025-01-23 09:57:13','auto'),(371,43,'appointment',1,1,'2025-01-23 09:58:43','auto'),(372,44,'appointment',1,1,'2025-01-23 09:59:13','auto'),(373,45,'appointment',1,1,'2025-01-23 10:00:13','auto'),(374,46,'appointment',1,1,'2025-01-23 10:02:43','auto');
 /*!40000 ALTER TABLE `workflow_resource_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3426,7 +3425,7 @@ CREATE TABLE `workflow_resource_user_history` (
   `last_name` varchar(255) DEFAULT '',
   `realm` varchar(255) DEFAULT '',
   PRIMARY KEY (`id_history`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3458,7 +3457,7 @@ CREATE TABLE `workflow_resource_workflow` (
   KEY `workflow_resource_workflow_resource_type_fk` (`resource_type`),
   KEY `workflow_resource_workflow_id_workflow_fk` (`id_workflow`),
   KEY `fk_document_id_state` (`id_state`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3467,7 +3466,7 @@ CREATE TABLE `workflow_resource_workflow` (
 
 LOCK TABLES `workflow_resource_workflow` WRITE;
 /*!40000 ALTER TABLE `workflow_resource_workflow` DISABLE KEYS */;
-INSERT INTO `workflow_resource_workflow` VALUES (1,'appointment',2,1,1,0),(2,'appointment',2,1,1,0),(3,'appointment',2,1,1,0),(4,'appointment',2,1,1,0),(5,'appointment',2,1,1,0),(6,'appointment',2,1,1,0),(7,'appointment',2,1,1,0),(8,'appointment',2,1,1,0),(9,'appointment',2,1,1,0),(10,'appointment',2,1,1,0),(11,'appointment',2,1,1,0),(12,'appointment',2,1,1,0),(13,'appointment',2,1,1,0),(14,'appointment',2,1,1,0),(15,'appointment',2,1,1,0),(16,'appointment',2,1,1,0),(17,'appointment',2,1,1,0),(18,'appointment',2,1,1,0),(19,'appointment',2,1,1,0),(20,'appointment',2,1,1,0),(21,'appointment',2,1,1,0),(22,'appointment',2,1,1,0),(23,'appointment',2,1,1,0);
+INSERT INTO `workflow_resource_workflow` VALUES (1,'appointment',2,1,1,0),(2,'appointment',2,1,1,0),(3,'appointment',2,1,1,0),(4,'appointment',2,1,1,0),(5,'appointment',2,1,1,0),(6,'appointment',2,1,1,0),(7,'appointment',2,1,1,0),(8,'appointment',2,1,1,0),(9,'appointment',2,1,1,0),(10,'appointment',2,1,1,0),(11,'appointment',2,1,1,0),(12,'appointment',2,1,1,0),(13,'appointment',2,1,1,0),(14,'appointment',2,1,1,0),(15,'appointment',2,1,1,0),(16,'appointment',2,1,1,0),(17,'appointment',2,1,1,0),(18,'appointment',2,1,1,0),(19,'appointment',2,1,1,0),(20,'appointment',2,1,1,0),(21,'appointment',2,1,1,0),(22,'appointment',2,1,1,0),(23,'appointment',2,1,1,0),(24,'appointment',2,1,1,0),(25,'appointment',2,1,1,0),(26,'appointment',2,1,1,0),(27,'appointment',2,1,1,0),(28,'appointment',2,1,1,0),(29,'appointment',2,1,1,0),(30,'appointment',2,1,1,0),(31,'appointment',2,1,1,0),(32,'appointment',2,1,1,0),(33,'appointment',2,1,1,0),(34,'appointment',2,1,1,0),(35,'appointment',2,1,1,0),(36,'appointment',2,1,1,0),(37,'appointment',2,1,1,0),(38,'appointment',2,1,1,0),(39,'appointment',2,1,1,0),(40,'appointment',2,1,1,0),(41,'appointment',2,1,1,0),(42,'appointment',2,1,1,0),(43,'appointment',2,1,1,0),(44,'appointment',2,1,1,0),(45,'appointment',2,1,1,0),(46,'appointment',2,1,1,0);
 /*!40000 ALTER TABLE `workflow_resource_workflow` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3486,7 +3485,7 @@ CREATE TABLE `workflow_resource_workgroup` (
   KEY `workflow_resource_workgroup_id_resource_fk` (`id_resource`),
   KEY `workflow_resource_workgroup_resource_type_fk` (`resource_type`),
   KEY `workflow_resource_workgroup_id_workflow_fk` (`id_workflow`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3517,7 +3516,7 @@ CREATE TABLE `workflow_state` (
   `uid_state` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_state`),
   KEY `fk_state_id_workflow` (`id_workflow`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3545,7 +3544,7 @@ CREATE TABLE `workflow_task` (
   `uid_task` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_task`),
   KEY `task_id_action_fk` (`id_action`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3554,7 +3553,7 @@ CREATE TABLE `workflow_task` (
 
 LOCK TABLES `workflow_task` WRITE;
 /*!40000 ALTER TABLE `workflow_task` DISABLE KEYS */;
-INSERT INTO `workflow_task` VALUES (1,'taskNotifyGru',1,1,'174cdb5e-d64e-11ee-a4dc-0242ac120002'),(2,'taskUpdateAppointmentCancelAction',1,2,'174ce02b-d64e-11ee-a4dc-0242ac120002'),(3,'taskReportAppointment',4,1,'174ce191-d64e-11ee-a4dc-0242ac120002'),(4,'taskReportAppointment',5,1,'174ce2dc-d64e-11ee-a4dc-0242ac120002'),(5,'taskTypeArchive',6,1,NULL),(6,'taskTypeArchive',7,1,NULL),(7,'taskTypeArchive',8,1,NULL);
+INSERT INTO `workflow_task` VALUES (1,'taskNotifyGru',1,1,'174cdb5e-d64e-11ee-a4dc-0242ac120002'),(2,'taskUpdateAppointmentCancelAction',1,2,'174ce02b-d64e-11ee-a4dc-0242ac120002'),(3,'taskReportAppointment',4,1,'174ce191-d64e-11ee-a4dc-0242ac120002'),(4,'taskReportAppointment',5,1,'174ce2dc-d64e-11ee-a4dc-0242ac120002'),(5,'taskTypeArchive',6,1,NULL),(6,'taskTypeArchive',7,1,NULL),(7,'taskTypeArchive',8,1,NULL),(9,'taskNotifyGru',2,1,'7c1730c8-01bf-4fe5-9b28-8f1cb1011ff0'),(10,'taskTypeComment',3,1,'59f47fed-060d-4ab6-8a2a-cef7b084455d'),(11,'taskNotifyGru',3,2,'1f82e527-0c28-4d27-82bb-15b08bf58a95');
 /*!40000 ALTER TABLE `workflow_task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3606,7 +3605,7 @@ CREATE TABLE `workflow_task_alert_gru_cf` (
   `marker_alert` varchar(255) DEFAULT NULL,
   `alert_after_before` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3658,7 +3657,7 @@ CREATE TABLE `workflow_task_alert_gru_history` (
   `recipients_cci_broadcast` varchar(255) DEFAULT NULL,
   `is_active_onglet_broadcast` smallint(6) DEFAULT 0,
   PRIMARY KEY (`id_history`,`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3683,7 +3682,7 @@ CREATE TABLE `workflow_task_archive_cf` (
   `type_archival` varchar(255) DEFAULT NULL,
   `delay_archival` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3710,7 +3709,7 @@ CREATE TABLE `workflow_task_archive_resource` (
   `archival_date` timestamp NULL DEFAULT NULL,
   `is_archived` smallint(6) DEFAULT 0,
   PRIMARY KEY (`id_resource`,`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3738,7 +3737,7 @@ CREATE TABLE `workflow_task_assignment_cf` (
   `subject` varchar(45) DEFAULT NULL,
   `is_use_user_name` smallint(6) DEFAULT 0,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3761,7 +3760,7 @@ CREATE TABLE `workflow_task_change_appointment_status_cf` (
   `id_task` int(11) NOT NULL,
   `appointment_status` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3783,7 +3782,7 @@ DROP TABLE IF EXISTS `workflow_task_change_state_config`;
 CREATE TABLE `workflow_task_change_state_config` (
   `id_task` int(11) NOT NULL DEFAULT 0,
   `id_next_state` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3806,7 +3805,7 @@ CREATE TABLE `workflow_task_change_state_information` (
   `id_history` int(11) NOT NULL,
   `id_task` int(11) NOT NULL,
   `new_state` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3828,7 +3827,7 @@ DROP TABLE IF EXISTS `workflow_task_choice_config`;
 CREATE TABLE `workflow_task_choice_config` (
   `id_task` int(11) NOT NULL DEFAULT 0,
   `message` mediumtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3853,7 +3852,7 @@ CREATE TABLE `workflow_task_choose_state_config` (
   `id_state_ok` int(11) NOT NULL,
   `id_state_ko` int(11) NOT NULL,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3876,7 +3875,7 @@ CREATE TABLE `workflow_task_choose_state_information` (
   `id_history` int(11) NOT NULL,
   `id_task` int(11) NOT NULL,
   `new_state` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3901,7 +3900,7 @@ CREATE TABLE `workflow_task_comment_config` (
   `is_mandatory` smallint(6) DEFAULT 0,
   `is_richtext` smallint(6) DEFAULT 0,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3910,6 +3909,7 @@ CREATE TABLE `workflow_task_comment_config` (
 
 LOCK TABLES `workflow_task_comment_config` WRITE;
 /*!40000 ALTER TABLE `workflow_task_comment_config` DISABLE KEYS */;
+INSERT INTO `workflow_task_comment_config` VALUES (10,'Raison de l\'annulation',1,0);
 /*!40000 ALTER TABLE `workflow_task_comment_config` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3927,7 +3927,7 @@ CREATE TABLE `workflow_task_comment_value` (
   PRIMARY KEY (`id_history`,`id_task`),
   KEY `comment_value_id_history_fk` (`id_history`),
   KEY `comment_value_id_task_fk` (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3949,7 +3949,7 @@ DROP TABLE IF EXISTS `workflow_task_confirm_action_config`;
 CREATE TABLE `workflow_task_confirm_action_config` (
   `id_task` int(11) NOT NULL DEFAULT 0,
   `message` mediumtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3977,7 +3977,7 @@ CREATE TABLE `workflow_task_manual_app_notify` (
   `message` mediumtext DEFAULT NULL,
   PRIMARY KEY (`id_notif`),
   KEY `idx_wf_task_manual_app_notify` (`id_appointment`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4003,7 +4003,7 @@ CREATE TABLE `workflow_task_notification_cf` (
   `subject` varchar(255) DEFAULT NULL,
   `message` mediumtext DEFAULT NULL,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4037,7 +4037,7 @@ CREATE TABLE `workflow_task_notify_admin_appointment_cf` (
   `create_notif` smallint(6) DEFAULT 0,
   `location` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4070,7 +4070,7 @@ CREATE TABLE `workflow_task_notify_appointment_cf` (
   `location` varchar(255) NOT NULL DEFAULT '',
   `is_sms` smallint(6) DEFAULT 0,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4099,7 +4099,7 @@ CREATE TABLE `workflow_task_notify_appointment_crm` (
   `message` varchar(255) DEFAULT NULL,
   `sender` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4155,7 +4155,7 @@ CREATE TABLE `workflow_task_notify_gru_cf` (
   `is_active_onglet_broadcast` smallint(6) DEFAULT 0,
   `content_cleaned` smallint(6) DEFAULT 0,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4164,7 +4164,7 @@ CREATE TABLE `workflow_task_notify_gru_cf` (
 
 LOCK TABLES `workflow_task_notify_gru_cf` WRITE;
 /*!40000 ALTER TABLE `workflow_task_notify_gru_cf` DISABLE KEYS */;
-INSERT INTO `workflow_task_notify_gru_cf` VALUES (1,'notifygru-appointment.ProviderService.@.1','',0,0,2,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;${firstName!}&nbsp;${lastName!},</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;${date_appointment!} de&nbsp;${time_appointment!} &agrave;&nbsp;${end_time_appointment!} a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"${url_report!}\">ce lien</a>, ou l\'annuler en cliquant <a href=\"${url_cancel!}\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,0);
+INSERT INTO `workflow_task_notify_gru_cf` VALUES (1,'notifygru-appointment.ProviderService.@.1','',0,0,2,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;${firstName!}&nbsp;${lastName!},</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;${date_appointment!} de&nbsp;${time_appointment!} &agrave;&nbsp;${end_time_appointment!} a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"${url_report!}\">ce lien</a>, ou l\'annuler en cliquant <a href=\"${url_cancel!}\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,0),(9,'notifygru-appointment.ProviderService.@.1','',0,0,2,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'votre rendez-vous a bien &eacute;t&eacute; annul&eacute;','<p>Bonjour&nbsp;${firstName!}&nbsp;${lastName!},</p>\r\n<p>Suite a votre demande, votre rendez-vous a bien &eacute;t&eacute; annul&eacute;.</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,0),(11,'notifygru-appointment.ProviderService.@.1','',0,0,2,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous a &eacute;t&eacute; annul&eacute; ','<p>Bonjour&nbsp;${firstName!}&nbsp;${lastName!},</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous a &eacute;t&eacute; annul&eacute; pour la raison suivante ${cancel_motif!}.</p>\r\n<p>&nbsp;</p>\r\n<p>erci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,0);
 /*!40000 ALTER TABLE `workflow_task_notify_gru_cf` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4212,7 +4212,7 @@ CREATE TABLE `workflow_task_notify_gru_history` (
   `message_event` text DEFAULT NULL,
   `content_cleaned` smallint(6) DEFAULT 0,
   PRIMARY KEY (`id_history`,`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4221,7 +4221,7 @@ CREATE TABLE `workflow_task_notify_gru_history` (
 
 LOCK TABLES `workflow_task_notify_gru_history` WRITE;
 /*!40000 ALTER TABLE `workflow_task_notify_gru_history` DISABLE KEYS */;
-INSERT INTO `workflow_task_notify_gru_history` VALUES (22,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Phil&nbsp;Bar,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;12/02/2024 de&nbsp;10:00 &agrave;&nbsp;11:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=1f42f1b5e\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=1f42f1b5e\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://localhost:8080/rendezvous/rest/grusupply/notification] : ',0),(23,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Phil&nbsp;Bar,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;15/02/2024 de&nbsp;09:00 &agrave;&nbsp;10:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=27209b899\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=27209b899\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://localhost:8080/rendezvous/rest/grusupply/notification] : ',0),(24,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;prenom&nbsp;nom,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;13/02/2024 de&nbsp;10:00 &agrave;&nbsp;11:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=307de7871\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=307de7871\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,0),(25,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Phil&nbsp;Bar,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;29/02/2024 de&nbsp;10:00 &agrave;&nbsp;11:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=45078fbd0\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=45078fbd0\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://localhost:8080/rendezvous/rest/grusupply/notification] : ',0),(26,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Phil&nbsp;Bar,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;01/03/2024 de&nbsp;09:00 &agrave;&nbsp;10:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=5facef2e3\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=5facef2e3\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://127.0.0.1:8080/rendezvous/rest/grusupply/notification] : ',0),(27,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Phil&nbsp;Bar,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;01/03/2024 de&nbsp;12:00 &agrave;&nbsp;13:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=66e496225\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=66e496225\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://127.0.0.1:8080/rendezvous/rest/notification/send] : ',0),(28,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Phil&nbsp;Bar,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;29/02/2024 de&nbsp;17:00 &agrave;&nbsp;18:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=72603ed23\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=72603ed23\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://localhost:8080/rendezvous/rest/notification/send] : ',0),(30,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;philippe&nbsp;bareille,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;01/03/2024 de&nbsp;11:00 &agrave;&nbsp;12:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=956cce199\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=956cce199\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://localhost:8080/rendezvous/rest/notification/send] : ',0),(31,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;ph&nbsp;ba,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;01/03/2024 de&nbsp;10:00 &agrave;&nbsp;11:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=10270795a1\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=10270795a1\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://localhost:8080/rendezvous/rest/notification/send] : ',0),(32,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;phil&nbsp;bar,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;01/03/2024 de&nbsp;09:00 &agrave;&nbsp;10:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=11d4fbdbdc\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=11d4fbdbdc\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://localhost:8080/rendezvous/rest/notification/send] : ',0),(33,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;ph&nbsp;ba,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;04/03/2024 de&nbsp;09:00 &agrave;&nbsp;10:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=124d3d3dd3\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=124d3d3dd3\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,0),(34,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Phil&nbsp;Bar,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;18/03/2024 de&nbsp;09:00 &agrave;&nbsp;10:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=131830eb6c\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=131830eb6c\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://127.0.0.1:8080/rendezvous/rest/grusupply/notification] : ',0),(35,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Ginette&nbsp;Michu,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;05/03/2024 de&nbsp;09:00 &agrave;&nbsp;10:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=147009507d\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=147009507d\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,0),(37,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;P&nbsp;B,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;01/03/2024 de&nbsp;16:00 &agrave;&nbsp;17:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=15fe52817e\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=15fe52817e\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,0),(38,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Ph&nbsp;B,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;01/03/2024 de&nbsp;17:00 &agrave;&nbsp;18:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=16339f91d6\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=16339f91d6\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://127.0.0.1:8080/rendezvous/rest/grusupply/notification] : ',0),(39,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;P&nbsp;B,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;08/03/2024 de&nbsp;10:00 &agrave;&nbsp;11:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=177bd64a8d\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=177bd64a8d\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,0),(346,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Peter&nbsp;Parker,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;31/05/2024 de&nbsp;09:00 &agrave;&nbsp;10:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=18239f10cf\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=18239f10cf\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(347,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Wade&nbsp;Wilson,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;13/06/2024 de&nbsp;09:00 &agrave;&nbsp;10:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=19068fd1dc\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=19068fd1dc\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(348,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Harley&nbsp;Quinn,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;18/07/2024 de&nbsp;11:00 &agrave;&nbsp;12:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=20ce9e1a66\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=20ce9e1a66\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(349,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Bruce&nbsp;Banner,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;29/08/2024 de&nbsp;10:00 &agrave;&nbsp;11:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=21b4d294a1\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=21b4d294a1\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(350,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Wayne&nbsp;Campbell,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;24/10/2024 de&nbsp;11:00 &agrave;&nbsp;12:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=22b557a23c\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=22b557a23c\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(351,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Maximus&nbsp;Decimus Meridius,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;14/11/2024 de&nbsp;16:00 &agrave;&nbsp;17:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=233e93c5fd\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=233e93c5fd\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0);
+INSERT INTO `workflow_task_notify_gru_history` VALUES (22,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Phil&nbsp;Bar,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;12/02/2024 de&nbsp;10:00 &agrave;&nbsp;11:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=1f42f1b5e\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=1f42f1b5e\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://localhost:8080/rendezvous/rest/grusupply/notification] : ',0),(23,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Phil&nbsp;Bar,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;15/02/2024 de&nbsp;09:00 &agrave;&nbsp;10:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=27209b899\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=27209b899\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://localhost:8080/rendezvous/rest/grusupply/notification] : ',0),(24,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;prenom&nbsp;nom,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;13/02/2024 de&nbsp;10:00 &agrave;&nbsp;11:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=307de7871\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=307de7871\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,0),(25,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Phil&nbsp;Bar,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;29/02/2024 de&nbsp;10:00 &agrave;&nbsp;11:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=45078fbd0\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=45078fbd0\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://localhost:8080/rendezvous/rest/grusupply/notification] : ',0),(26,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Phil&nbsp;Bar,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;01/03/2024 de&nbsp;09:00 &agrave;&nbsp;10:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=5facef2e3\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=5facef2e3\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://127.0.0.1:8080/rendezvous/rest/grusupply/notification] : ',0),(27,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Phil&nbsp;Bar,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;01/03/2024 de&nbsp;12:00 &agrave;&nbsp;13:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=66e496225\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=66e496225\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://127.0.0.1:8080/rendezvous/rest/notification/send] : ',0),(28,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Phil&nbsp;Bar,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;29/02/2024 de&nbsp;17:00 &agrave;&nbsp;18:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=72603ed23\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=72603ed23\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://localhost:8080/rendezvous/rest/notification/send] : ',0),(30,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;philippe&nbsp;bareille,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;01/03/2024 de&nbsp;11:00 &agrave;&nbsp;12:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=956cce199\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=956cce199\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://localhost:8080/rendezvous/rest/notification/send] : ',0),(31,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;ph&nbsp;ba,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;01/03/2024 de&nbsp;10:00 &agrave;&nbsp;11:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=10270795a1\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=10270795a1\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://localhost:8080/rendezvous/rest/notification/send] : ',0),(32,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;phil&nbsp;bar,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;01/03/2024 de&nbsp;09:00 &agrave;&nbsp;10:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=11d4fbdbdc\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=11d4fbdbdc\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://localhost:8080/rendezvous/rest/notification/send] : ',0),(33,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;ph&nbsp;ba,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;04/03/2024 de&nbsp;09:00 &agrave;&nbsp;10:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=124d3d3dd3\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=124d3d3dd3\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,0),(34,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Phil&nbsp;Bar,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;18/03/2024 de&nbsp;09:00 &agrave;&nbsp;10:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=131830eb6c\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=131830eb6c\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://127.0.0.1:8080/rendezvous/rest/grusupply/notification] : ',0),(35,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Ginette&nbsp;Michu,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;05/03/2024 de&nbsp;09:00 &agrave;&nbsp;10:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=147009507d\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=147009507d\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,0),(37,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;P&nbsp;B,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;01/03/2024 de&nbsp;16:00 &agrave;&nbsp;17:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=15fe52817e\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=15fe52817e\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,0),(38,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Ph&nbsp;B,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;01/03/2024 de&nbsp;17:00 &agrave;&nbsp;18:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=16339f91d6\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=16339f91d6\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - Error HttpAccessTransport.doPostJSON on URL [http://127.0.0.1:8080/rendezvous/rest/grusupply/notification] : ',0),(39,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;P&nbsp;B,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;08/03/2024 de&nbsp;10:00 &agrave;&nbsp;11:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=177bd64a8d\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=177bd64a8d\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,0),(346,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Peter&nbsp;Parker,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;31/05/2024 de&nbsp;09:00 &agrave;&nbsp;10:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=18239f10cf\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=18239f10cf\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(347,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Wade&nbsp;Wilson,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;13/06/2024 de&nbsp;09:00 &agrave;&nbsp;10:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=19068fd1dc\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=19068fd1dc\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(348,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Harley&nbsp;Quinn,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;18/07/2024 de&nbsp;11:00 &agrave;&nbsp;12:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=20ce9e1a66\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=20ce9e1a66\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(349,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Bruce&nbsp;Banner,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;29/08/2024 de&nbsp;10:00 &agrave;&nbsp;11:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=21b4d294a1\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=21b4d294a1\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(350,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Wayne&nbsp;Campbell,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;24/10/2024 de&nbsp;11:00 &agrave;&nbsp;12:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=22b557a23c\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=22b557a23c\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(351,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Maximus&nbsp;Decimus Meridius,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;14/11/2024 de&nbsp;16:00 &agrave;&nbsp;17:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=233e93c5fd\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=233e93c5fd\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(352,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Andy&nbsp;Dufresne,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;24/01/2025 de&nbsp;09:00 &agrave;&nbsp;10:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=24a0b49222\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=24a0b49222\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(353,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Michael&nbsp;Corleone,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;06/02/2025 de&nbsp;12:00 &agrave;&nbsp;13:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=25e34ba33c\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=25e34ba33c\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(354,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Frodon&nbsp;Sacquet,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;11/02/2025 de&nbsp;10:00 &agrave;&nbsp;11:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=26b5fe664c\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=26b5fe664c\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(355,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Wallace&nbsp;Mia,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;13/02/2025 de&nbsp;17:00 &agrave;&nbsp;18:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=27f0d6faa1\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=27f0d6faa1\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(356,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Obi-wan&nbsp;Kenobi,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;07/02/2025 de&nbsp;17:00 &agrave;&nbsp;18:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=28dda79ddb\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=28dda79ddb\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(357,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Leia&nbsp;Organa,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;04/02/2025 de&nbsp;13:00 &agrave;&nbsp;14:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=29921921b8\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=29921921b8\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(358,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Luke&nbsp;Skywalker,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;04/03/2025 de&nbsp;09:00 &agrave;&nbsp;10:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=30e9c07e5b\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=30e9c07e5b\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(359,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Clarice&nbsp;Tarling,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;18/03/2025 de&nbsp;13:00 &agrave;&nbsp;14:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=313aca4d81\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=313aca4d81\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(360,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Marty&nbsp;McFly,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;03/04/2025 de&nbsp;14:00 &agrave;&nbsp;15:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=32bed77f25\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=32bed77f25\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(361,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Mathilda&nbsp;Lando,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;17/04/2025 de&nbsp;11:00 &agrave;&nbsp;12:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=33840245ea\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=33840245ea\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(362,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Mary Jane&nbsp;Watson,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;11/03/2025 de&nbsp;13:00 &agrave;&nbsp;14:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=34c049bb6f\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=34c049bb6f\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(363,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Keyser&nbsp;Söze,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;23/01/2025 de&nbsp;14:00 &agrave;&nbsp;15:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=35fa09bdd0\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=35fa09bdd0\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(364,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Ellen&nbsp;Ripley,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;01/04/2025 de&nbsp;11:00 &agrave;&nbsp;12:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=368f2c82ef\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=368f2c82ef\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(365,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Indiana&nbsp;Jones,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;10/04/2025 de&nbsp;11:00 &agrave;&nbsp;12:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=37623f7e22\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=37623f7e22\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(366,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Wendy&nbsp;Torrance,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;24/04/2025 de&nbsp;11:00 &agrave;&nbsp;12:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=38b77c42af\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=38b77c42af\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(367,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Bryan&nbsp;Mills,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;29/04/2025 de&nbsp;16:00 &agrave;&nbsp;17:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=39006d8674\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=39006d8674\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(368,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Tony&nbsp;Montana,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;01/04/2025 de&nbsp;15:00 &agrave;&nbsp;16:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=4014a69453\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=4014a69453\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(369,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Amélie&nbsp;Poulain,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;13/02/2025 de&nbsp;11:00 &agrave;&nbsp;12:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=4127aad033\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=4127aad033\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(370,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;John&nbsp;McClane,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;06/05/2025 de&nbsp;12:00 &agrave;&nbsp;13:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=42b94c7aca\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=42b94c7aca\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(371,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Truman&nbsp;Burbank,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;14/03/2025 de&nbsp;12:00 &agrave;&nbsp;13:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=43443ad8ca\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=43443ad8ca\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(372,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Maverick&nbsp;Mitchell,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;30/05/2025 de&nbsp;09:00 &agrave;&nbsp;10:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=446896393b\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=446896393b\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(373,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Beatrix&nbsp;Kiddo,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;05/06/2025 de&nbsp;09:00 &agrave;&nbsp;10:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=45e2bfef25\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=45e2bfef25\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0),(374,1,0,NULL,NULL,NULL,NULL,0,0,0,NULL,NULL,0,'Votre rendez-vous pour le conseil juridique','<p>Bonjour&nbsp;Hermione&nbsp;Granger,</p>\r\n<p>&nbsp;</p>\r\n<p>Votre rendez-vous du&nbsp;15/04/2025 de&nbsp;13:00 &agrave;&nbsp;14:00 a bien &eacute;t&eacute; valid&eacute;.</p>\r\n<p>Merci de pr&eacute;parer les &eacute;l&eacute;ments n&eacute;cessaires pour que notre conseiller juridique vous apporte tous les &eacute;l&eacute;ments.</p>\r\n<p>&nbsp;</p>\r\n<p>Vous pouvez &agrave; tout moment modifier ce cr&eacute;neau en cliquant sur <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewAppointmentCalendar&amp;id_form=1&amp;nbPlacesToTake=1&amp;refAppointment=46e3cdc1b7\">ce lien</a>, ou l\'annuler en cliquant <a href=\"http://localhost:8080/rendezvous/jsp/site/Portal.jsp?page=appointment&amp;view=getViewCancelAppointment&amp;refAppointment=46e3cdc1b7\">ici</a>.</p>\r\n<p>&nbsp;</p>\r\n<p>Merci d\'avoir utilis&eacute; nos services en ligne,</p>\r\n<p>L\'&eacute;quipe CiteLibre</p>','Ville de CiteLibre','','',1,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'error','LibraryNotifyGru - AbstractNotificationTransportRest.send invalid response : warning',0);
 /*!40000 ALTER TABLE `workflow_task_notify_gru_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4243,7 +4243,7 @@ CREATE TABLE `workflow_task_notify_gru_mapping_manager` (
   `demandetype` int(11) NOT NULL DEFAULT 0,
   `demand_reference` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_notifygrumappingmanager`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4267,7 +4267,7 @@ CREATE TABLE `workflow_task_notify_reminder_cf` (
   `id_form` int(11) NOT NULL DEFAULT 0,
   `nb_alerts` int(11) DEFAULT 0,
   PRIMARY KEY (`id_task`,`id_form`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4293,7 +4293,7 @@ CREATE TABLE `workflow_task_update_admin_appointment` (
   `id_admin_user` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_update`),
   KEY `idx_wf_task_update_admin_app` (`id_appointment`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4318,7 +4318,7 @@ CREATE TABLE `workflow_task_update_appointment_cancel_cf` (
   `id_action_report` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_task`),
   KEY `fk_wf_task_up_app_cancel_cf` (`id_action_cancel`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4347,7 +4347,7 @@ CREATE TABLE `workflow_workflow` (
   `workgroup_key` varchar(255) DEFAULT NULL,
   `uid_workflow` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_workflow`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4372,7 +4372,7 @@ CREATE TABLE `workflow_workgroup_cf` (
   `workgroup_key` varchar(255) NOT NULL,
   `id_mailing_list` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_task`,`workgroup_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4413,14 +4413,12 @@ INSERT INTO core_admin_security_header (name, value, description, type, page_cat
 INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('Cross-Origin-Resource-Policy', 'same-site', 'The HTTP Cross-Origin-Resource-Policy response header conveys a desire that the browser blocks no-cors cross-origin/cross-site requests to the given resource. The value recommended by OWASP for this header is ''same-origin'' and the value retained for Lutece is ''same-site'' which means that only requests from the same Site can read the resource. It is less restrictive than ''same-origin'' in order to allow Lutece sub-domains to access to resources.', 'page', 'all', 1);
 INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('Cache-Control', 'max-age=0, must-revalidate, no-cache, no-store, private', 'The Cache-Control HTTP header field holds directives (instructions) — in both requests and responses — that control caching in browsers and shared caches (e.g. Proxies, CDNs). The value recommended by OWASP for this header is ''no-store, max-age=0''. For Lutece, the directives retained are ''max-age=0, must-revalidate, no-cache, no-store, private'' and are applied to administration front office/back office pages with authentication in order to prevent caching of any information. Theoretically, OWASP recommended directives should be suficient but in practice some browsers may continue to use the cache or don''t support no-store directive. So, for Lutece, more directives have been added to prevent caching. For instance, the login page of gmail uses the following directives : no-cache, no-store, max-age=0, must-revalidate', 'page', 'auth_admin_BO', 1);
 INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('Cache-Control', 'max-age=0, must-revalidate, no-cache, no-store, private', 'The Cache-Control HTTP header field holds directives (instructions) — in both requests and responses — that control caching in browsers and shared caches (e.g. Proxies, CDNs). The value recommended by OWASP for this header is ''no-store, max-age=0''. For Lutece, the directives retained are ''max-age=0, must-revalidate, no-cache, no-store, private'' and are applied to administration front office/back office pages with authentication in order to prevent caching of any information. Theoretically, OWASP recommended directives should be suficient but in practice some browsers may continue to use the cache or don''t support no-store directive. So, for Lutece, more directives have been added to prevent caching. For instance, the login page of gmail uses the following directives : no-cache, no-store, max-age=0, must-revalidate', 'page', 'auth_admin_FO', 1);
-
 INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('Clear-Site-Data', '"cache","cookies","storage"', 'The Clear-Site-Data header clears browsing data (cookies, storage, cache) associated with the requesting website. It allows web developers to have more control over the data stored by a client browser for their origins. This header is useful for example, during a logout process, in order to ensure that all stored content on the client side like cookies, storage and cache are removed. The value recommended by OWASP for this header is ''"cache","cookies","storage"'' and this is the value retained for Lutece. It is added to the front office/back office logout pages of Lutece.', 'page', 'logout_BO', 1);
-
 INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('Clear-Site-Data', '"cache","cookies","storage"', 'The Clear-Site-Data header clears browsing data (cookies, storage, cache) associated with the requesting website. It allows web developers to have more control over the data stored by a client browser for their origins. This header is useful for example, during a logout process, in order to ensure that all stored content on the client side like cookies, storage and cache are removed. The value recommended by OWASP for this header is ''"cache","cookies","storage"'' and this is the value retained for Lutece. It is added to the front office/back office logout pages of Lutece.', 'page', 'logout_FO', 1);
-
 INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('Strict-Transport-Security', 'max-age=31536000; includeSubDomains', 'The HTTP Content-Security-Policy response header allows website administrators to control resources the user agent is allowed to load for a given page. With a few exceptions, policies mostly involve specifying server origins and script endpoints. This helps guard against cross-site scripting attacks (Cross-site_scripting). The value recommended by OWASP for this header when used as a response of an API call is ''frame-ancestors ''none'''' and this is the value retained for Lutece. It prevents any domain from framing the response returned by the API call.', 'rest_api', NULL, 1);
+INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('Content-Security-Policy', 'frame-ancestors ''none''', 'The HTTP Strict-Transport-Security response header (often abbreviated as HSTS) informs browsers that the site should only be accessed using HTTPS, and that any future attempts to access it using HTTP should automatically be converted to HTTPS. The value recommended by OWASP for this header when used as a response of an API call is ''max-age=31536000; includeSubDomains'' and this is the value retained for Lutece. This setting means that the browser should remember that this site and all of his subdomains are only to be accessed using HTTPS for 31536000 seconds (1 year).', 'rest_api', NULL, 1);
 
--- INSERT INTO core_admin_security_header (name, value, description, type, page_category, is_active) VALUES ('Content-Security-Policy', 'frame-ancestors ''none''', 'The HTTP Strict-Transport-Security response header (often abbreviated as HSTS) informs browsers that the site should only be accessed using HTTPS, and that any future attempts to access it using HTTP should automatically be converted to HTTPS. The value recommended by OWASP for this header when used as a response of an API call is ''max-age=31536000; includeSubDomains'' and this is the value retained for Lutece. This setting means that the browser should remember that this site and all of his subdomains are only to be accessed using HTTPS for 31536000 seconds (1 year).', 'rest_api', NULL, 1);
+INSERT INTO core_datastore VALUES('core.plugins.status.adminauthenticationoauth2.installed', 'true');
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -4432,4 +4430,4 @@ INSERT INTO core_admin_security_header (name, value, description, type, page_cat
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-24  8:24:18
+-- Dump completed on 2025-01-23 11:04:13
