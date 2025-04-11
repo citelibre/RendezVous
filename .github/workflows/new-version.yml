@@ -122,13 +122,13 @@ jobs:
       
     - name: Sign Docker images with Cosign (Keyless OIDC)
       run: |
-        for service in rendezvous mysql matomo solr keycloak kibana elasticsearch; do
+        for service in ihm mysql matomo solr keycloak kibana elasticsearch; do
           cosign sign --yes citelibre/rendezvous:$service-$VERSION
         done
       
     - name: Verify signatures
       run: |
-        for service in rendezvous mysql matomo solr keycloak kibana elasticsearch; do
+        for service in ihm mysql matomo solr keycloak kibana elasticsearch; do
           cosign verify citelibre/rendezvous:$service-$VERSION
         done
         
